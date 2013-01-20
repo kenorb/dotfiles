@@ -1,0 +1,29 @@
+[user]
+	name = Rafal
+	email = kenorb@gmail.com
+[alias]
+    out = !git log --boundary $(git rev-list --max-count=1 --simplify-by-decoration HEAD^)..
+;tag-svn2git = !git for-each-ref refs/remotes/tags --shell --format="r=%(refname:short) t=\${r#tags/}" | while read e; do eval "$e"; git tag -f $t refs/remotes/$r; git branch -d -r $r; done
+;branch-svn2git = !git for-each-ref refs/remotes --shell --format="r=%(refname:short) t=\${r#tags/}" | while read e; do eval "$e"; git branch -f $t refs/remotes/$r; git branch -d -r $r; done
+[diff]
+	tool = diffmerge
+[mergetool]
+	tool = diffmerge
+[opendiff]
+	tool = /usr/bin/opendiff
+[difftool]
+	prompt = NO
+[difftool "diffmerge"] 
+  cmd = /Applications/DiffMerge.app/Contents/MacOS/DiffMerge "$LOCAL" "$REMOTE" # For DiffMerge
+	keepBackup = false
+  trustExitCode = true
+[difftool "bbdiff"] 
+  cmd = /usr/local/bin/bbdiff --wait --resume "$LOCAL" "$REMOTE" # for BBEdit
+[difftool "twdiff"] 
+  cmd = /usr/bin/twdiff --wait --resume "$LOCAL" "$REMOTE" # for TextWrangler
+[difftool "filemerge"] 
+  cmd = /usr/bin/opendiff "$LOCAL" "$REMOTE" # for FileMerge
+
+[push]
+	default = matching
+
