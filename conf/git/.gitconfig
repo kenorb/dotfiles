@@ -4,6 +4,7 @@
 [alias]
     log-graph =       !git log --oneline --graph --decorate --all
     out =             !git log --boundary $(git rev-list --max-count=1 --simplify-by-decoration HEAD^)..
+    sm-clean-all =    "submodule foreach --recursive 'git clean -fXd'"
     pull-forks =      "!git submodule foreach 'git pull `git config --get remote.origin.url | sed s#EXAMPLE#kenorb#`&'"
     ; tag-svn2git =     !git for-each-ref refs/remotes/tags --shell --format="r=%(refname:short) t=\${r#tags/}" | while read e; do eval "$e"; git tag -f $t refs/remotes/$r; git branch -d -r $r; done
     ; branch-svn2git =  !git for-each-ref refs/remotes --shell --format="r=%(refname:short) t=\${r#tags/}" | while read e; do eval "$e"; git branch -f $t refs/remotes/$r; git branch -d -r $r; done
