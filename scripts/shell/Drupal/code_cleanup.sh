@@ -1,4 +1,8 @@
 #!/bin/sh
+#
+# @author Rafal Wieczorek <kenorb>
+#
+
 CUSTOM_DIR="../trunk/sites/all/modules/custom"
 IGNORE_LIST="-e features -e strongarm -e field_group"
 

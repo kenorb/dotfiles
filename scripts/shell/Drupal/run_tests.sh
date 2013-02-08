@@ -1,5 +1,13 @@
 #!/bin/sh
-# @file: run_tests.sh
+#
+# Script to run Drupal Simpletests
+#
+# @see http://drupal.org/node/1817744
+#
+# @file run_tests.sh
+#
+# @author Rafal Wieczorek <kenorb>
+#
 
 # Variables
 DEBUG="strace -fe write -s100 "

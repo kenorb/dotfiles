@@ -1,3 +1,9 @@
+#
+# Simple script to convert tabs to spaces in the specific codebase
+#
+# @author Rafal Wieczorek <kenorb>
+#
+
 CUSTOM_DIR="../trunk/sites/all/modules/custom"
 
 set -o xtrace

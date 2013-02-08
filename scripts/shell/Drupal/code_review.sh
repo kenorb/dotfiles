@@ -1,4 +1,8 @@
 #!/bin/sh
+#
+# @author Rafal Wieczorek <kenorb>
+#
+
 DRUSH="drush -r ../trunk"
 MODULES="my_module"
 
