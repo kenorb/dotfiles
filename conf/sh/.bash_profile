@@ -3,7 +3,7 @@
 # Change dir via find
 # Usage: cdf (dir)
 cdf() {
-  cd $(find . -name $1)
+  pushd $(find . -name $1)
 }
 
 # Find file
