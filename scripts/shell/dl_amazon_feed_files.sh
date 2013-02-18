@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Download all files from specific Amazon feed
+# Download all files from the Amazon feed
 #
 # @author
 #   Rafal Wieczorek <kenorb>
