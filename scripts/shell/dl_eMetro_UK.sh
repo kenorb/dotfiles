@@ -18,8 +18,8 @@ for year in {2008..2013}; do
           month=07
         fi
         # Download thumbnail and full SWF page for every page, otherwise go to the next issue
-        wget -c -x -UMozilla http://e-edition.metro.co.uk/$year/$month/$day/pages/$page/thumb.jpg \
-        && wget -c -x -UMozilla http://e-edition.metro.co.uk/$year/$month/$day/pages/$page/page.swf \
+        wget -c -x -UMozilla --tries=3 -nc http://e-edition.metro.co.uk/$year/$month/$day/pages/$page/thumb.jpg \
+        && wget -c -x -UMozilla --tries=3 -nc http://e-edition.metro.co.uk/$year/$month/$day/pages/$page/page.swf \
         || break
       done
     done
