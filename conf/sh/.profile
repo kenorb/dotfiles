@@ -1,16 +1,19 @@
 # EXPORTS
 
-export DYLD_FALLBACK_LIBRARY_PATH="/usr/X11/lib:/usr/lib"
+# export PATH=/Applications/MAMP/Library/bin:/Applications/MAMP/bin/php/php5.2.17/bin:/usr/local/bin:$PATH:/opt/local/bin
 export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
 
-# For Mac
-## MAMP
-#export PATH=/Applications/MAMP/Library/bin:/Applications/MAMP/bin/php/php5.3.6/bin:/usr/local/bin:$PATH:/opt/local/bin
-#export PATH=/Applications/MAMP/Library/bin:/Applications/MAMP/bin/php/php5.2.17/bin:/usr/local/bin:$PATH:/opt/local/bin
+## For MAC ##
 
-# ALIASES
-alias ll='ls -al'   # Unix like ls
+# Exports
+export DYLD_FALLBACK_LIBRARY_PATH="/usr/X11/lib:/usr/lib"
+# For MAMP
+# export PATH=/Applications/MAMP/Library/bin:/Applications/MAMP/bin/php/php5.3.6/bin:/usr/local/bin:$PATH:/opt/local/bin
+# export PATH=/Applications/MAMP/Library/bin:/Applications/MAMP/bin/php/php5.2.17/bin:/usr/local/bin:$PATH:/opt/local/bin
+
+# Aliases
+alias ll='ls -alF'   # Unix like ls
 alias diffmerge="/Applications/DiffMerge.app/Contents/MacOS/DiffMerge"
 # alias dc="drush -yv -l 'http://drupal'"
 

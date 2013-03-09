@@ -19,5 +19,5 @@ vimf() {
 }
 
 # ALIASES
-alias ll='ls -laG'   # Unix like ls
+alias ll='ls -laF'   # Unix like ls
 
