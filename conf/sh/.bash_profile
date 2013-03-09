@@ -1,3 +1,7 @@
+# Initialize
+echo .bash_profile loaded.
+. ~/.profile
+
 # FUNCTIONS
 
 # Change dir via find
