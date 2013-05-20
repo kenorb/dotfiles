@@ -2,17 +2,17 @@
 echo .profile loaded.
 
 # EXPORTS
-export PATH=/Applications/MAMP/Library/bin:/Applications/MAMP/bin//php/php5.3.14/bin:/usr/local/bin:$PATH:/opt/local/bin
+export PATH=/usr/local/bin:$PATH:/opt/local/bin
 export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
 
 ## For MAC ##
-
-# Exports
 export DYLD_FALLBACK_LIBRARY_PATH="/usr/X11/lib:/usr/lib"
+# For Development
+export PATH=$PATH:/opt/local/bin:/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin/gcc
+# :/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang
 # For MAMP
-# export PATH=/Applications/MAMP/Library/bin:/Applications/MAMP/bin/php/php5.3.6/bin:/usr/local/bin:$PATH:/opt/local/bin
-# export PATH=/Applications/MAMP/Library/bin:/Applications/MAMP/bin/php/php5.2.17/bin:/usr/local/bin:$PATH:/opt/local/bin
+export PATH=/Applications/MAMP/Library/bin:/Applications/MAMP/bin/php/php5.3.20/bin:$PATH
 
 # Aliases
 alias ll='ls -alF'   # Unix like ls

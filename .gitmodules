@@ -1,0 +1,3 @@
+[submodule "scripts/python/UStream-recorder"]
+	path = scripts/python/UStream-recorder
+	url = git@github.com:kenorb/UStream-recorder.git
