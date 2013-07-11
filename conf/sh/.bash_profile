@@ -28,6 +28,12 @@ dups() {
   fdupes -v && fdupes -rS1 $1 | sed '$!N;s/\n/ /' | sort -n
 }
 
+# Find the top 10 largest files
+# Usage: big (dir)
+big() {
+  find . $1 -type f -ls | sort -k7 -r -n | head -10
+}
+
 # ALIASES
 alias ll='ls -laF'   # Unix like ls
 
