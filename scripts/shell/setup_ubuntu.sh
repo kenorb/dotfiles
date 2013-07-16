@@ -23,16 +23,25 @@ sudo apt-get -y install secure-delete
 sudo apt-get -y install wget links lynx
 # Media tools
 sudo apt-get -y install youtube-dl
+# File management tools
+sudo apt-get -y install krusader
 
 #
 # DEVELOPMENT
 #
 # Common Linux development tools
 sudo apt-get -y install autoconf libtool automake
+# DevOps tools
+sudo apt-get -y install puppet
 
 #
 # PROGRAMMING
 #
+# PHP development
+sudo apt-get -y install php5
+# PHP extensions
+sudo apt-get -y install php5-xcache
+
 # Python development
 sudo apt-get -y install python-setuptools python-pip
 
@@ -41,6 +50,14 @@ sudo apt-get -y install python-mysqldb python-docutils
 
 # Django development
 sudo apt-get -y install python-django 
+
+#
+# DEBUGGING
+#
+# MC is crashing a lot
+sudo apt-get -y install mc-dbg
+# Krusader is crashing a lot
+sudo apt-get -y install krusader-dbg
 
 #
 # FIXES
@@ -59,8 +76,19 @@ sudo apt-cache -y show hfsprogs
 sudo apt-get -y install dnsmasq-base
 
 #
-# OTHER
+# OTHER TOOLS
 #
 # Fun tools
 sudo apt-get -y install beep sl
+
+#
+# CONFIGURATION CHANGES
+#
+# Alt+SysRq has been disabled since Ubuntu 10.10 maverick, so re-activating it.
+# It is useful for kernel debugging and troubleshooting kernel crashes.
+# See: http://en.wikipedia.org/wiki/Magic_SysRq_key
+echo 1 | sudo tee /proc/sys/kernel/sysrq
+sudo sed -i'.bak' "s/kernel.sysrq.=.[0-9]*/kernel.sysrq = 1/" /etc/sysctl.d/10-magic-sysrq.conf
+# echo "kernel.sysrq=1" | sudo tee /etc/sysctl.conf # Alternative way
+
 
