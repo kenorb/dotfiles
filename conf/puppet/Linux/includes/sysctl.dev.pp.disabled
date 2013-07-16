@@ -1,0 +1,58 @@
+#
+# Puppet recipe to modify kernel sysctl parameters
+#
+# Author: kenorb
+
+# Dependencies:
+#   augeas-tools (augtool)
+
+#
+# CONFIGURATION CHANGES
+#
+
+import 'manifests/sysctl.pp'
+
+sysctl::conf { 
+
+  # Alt+SysRq has been disabled since Ubuntu 10.10 maverick, so re-activating it.
+  # It is useful for kernel debugging and troubleshooting kernel crashes.
+  # See: http://en.wikipedia.org/wiki/Magic_SysRq_key
+  "kernel.sysrq": value =>  1;
+
+  # prevent java heap swap
+  # "vm.swappiness": value =>  0;
+
+  # increase max read/write buffer size that can be applied via setsockopt()
+  # "net.core.rmem_max": value =>  16777216;
+  # "net.core.wmem_max": value =>  16777216;
+
+}
+
+# Or by using puppet-sysctl module syntax
+# See: https://github.com/duritong/puppet-sysctl
+#
+#class s_sysctl::rhel_defaults {
+#    include sysctl
+#
+#    # Controls IP packet forwarding
+#    sysctl::set_value { "net.ipv4.ip_forward": 
+#                         value => 0 
+#    }
+#
+#    # Controls source route verification
+#    sysctl::set_value { "net.ipv4.conf.default.rp_filter": value => 1 }
+#
+#    sysctl::set_value { "kernel.sysrq": value => 1 }
+#}
+
+# Or by using Augeas construct.
+# See: http://docs.puppetlabs.com/references/latest/type.html#augeas
+#
+#augeas { "sysctl":
+# context => "/files/etc/sysctl.conf",
+#  changes => [
+#    "set kernel.sysrq = 1",
+#    #and whatever other lines are interesting to you
+#  ],
+#}
+
