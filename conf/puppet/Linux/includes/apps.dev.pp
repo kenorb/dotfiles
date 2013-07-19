@@ -13,6 +13,9 @@ package { 'bash': }
 package { 'realpath': }
 package { 'screen': }
 
+# Scripting tools
+package { 'parallel': }
+
 # File managements
 package { 'mc': }
 # For: sfill - secure free disk and inode space wiper
