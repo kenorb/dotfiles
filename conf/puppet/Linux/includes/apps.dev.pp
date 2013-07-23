@@ -15,6 +15,7 @@ package { 'screen': }
 
 # Scripting tools
 package { 'parallel': }
+package { 'htmldoc': }
 
 # File managements
 package { 'mc': }
