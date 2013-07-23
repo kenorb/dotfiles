@@ -26,6 +26,7 @@ package { 'secure-delete': }
 package { 'wget': }
 package { 'links': }
 package { 'lynx': }
+package { 'googlecl': }
 
 # Media tools
 package { 'youtube-dl': }
