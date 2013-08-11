@@ -36,6 +36,7 @@ big() {
 
 # ALIASES
 alias ll='ls -laF'   # Unix like ls
+alias youtube-dl='youtube-dl -vcti -R5 --write-description --write-info-json --all-subs --write-thumbnail'
 
 
 # added by Anaconda 1.5.1 installer
