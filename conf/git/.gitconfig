@@ -9,6 +9,8 @@
     pull-forks =      "!git submodule foreach 'git pull `git config --get remote.origin.url | sed s#EXAMPLE#kenorb#`&'"
     ; tag-svn2git =     !git for-each-ref refs/remotes/tags --shell --format="r=%(refname:short) t=\${r#tags/}" | while read e; do eval "$e"; git tag -f $t refs/remotes/$r; git branch -d -r $r; done
     ; branch-svn2git =  !git for-each-ref refs/remotes --shell --format="r=%(refname:short) t=\${r#tags/}" | while read e; do eval "$e"; git branch -f $t refs/remotes/$r; git branch -d -r $r; done
+    addremove = !git add . && git ls-files -deleted | xargs git rm
+    majonez = !echo Hellmanns
 [diff]
 	tool = diffmerge
 [mergetool]
@@ -17,6 +19,7 @@
 	tool = /usr/bin/opendiff
 [difftool]
 	prompt = NO
+	external = /usr/bin/diffmerge
 [difftool "diffmerge"] 
   cmd = /Applications/DiffMerge.app/Contents/MacOS/DiffMerge "$LOCAL" "$REMOTE" # For DiffMerge
 	keepBackup = false
@@ -30,4 +33,11 @@
 
 [push]
 	default = matching
+
+[gc]
+	auto = 0
+
+;[filter "rcs-keywords"]
+;  clean=.git_filters/rcs-keywords.clean
+;  smudge=.git_filters/rcs-keywords.smudge %f
 
