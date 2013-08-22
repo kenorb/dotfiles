@@ -1,0 +1,5 @@
+Host local
+  Hostname 127.0.0.1
+  User kenorb
+  IdentityFile ~/.ssh/id_rsa
+
