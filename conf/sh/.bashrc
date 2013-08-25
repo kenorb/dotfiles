@@ -11,6 +11,23 @@ case $- in
       *) return;;
 esac
 
+# Detect the platform (similar to $OSTYPE)
+case "$OSTYPE" in
+  solaris*)
+    ;;
+  darwin*)
+    ;;
+  linux*)
+    alias ls='ls --color=auto'
+    ;;
+  bsd*)
+    alias ls='ls -G'
+    ;;
+  *)
+    echo "Unknown: $OSTYPE"
+    ;;
+esac
+
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
