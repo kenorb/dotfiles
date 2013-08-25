@@ -1,5 +1,5 @@
 #
-# Puppet recipe to install Ubuntu LAMP environment.
+# Puppet recipe to install LAMP environment.
 #
 # Author: kenorb
 
@@ -54,7 +54,7 @@ service { 'mysql' :
 }
 
 # PHP packages
-$packages_php = [ 'libapache2-mod-php5', 'php5', 'php5-cli', 'php5-cgi', 'php5-common', 'php5-curl', 'php5-gd', 'php5-mysql', 'php5-pspell', 'php5-imagick', 'php5-mcrypt', 'php5-memcache', 'php5-memcached', 'php-apc', 'php-pear', 'php5-tidy', 'php5-odbc',  ]
+$packages_php = [ 'libapache2-mod-php5', 'php5', 'php5-cli', 'php5-cgi', 'php5-common', 'php5-curl', 'php5-gd', 'php5-mysql', 'php5-pspell', 'php5-imagick', 'php5-mcrypt', 'php5-memcache', 'php5-memcached', 'php-apc', 'php-pear', 'php5-tidy', 'php5-odbc', 'php5-xcache',  ]
 
 package { $packages_php :
   ensure => installed,

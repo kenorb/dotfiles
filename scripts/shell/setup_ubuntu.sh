@@ -33,6 +33,7 @@ sudo apt-get -y install krusader
 sudo apt-get -y install autoconf libtool automake
 # DevOps tools
 sudo apt-get -y install puppet
+sudo puppet module install puppetlabs/apt
 
 #
 # PROGRAMMING
