@@ -22,7 +22,8 @@
 # * The clarity and simplicity of the solution 
 # * The time taken - we would expect this task to take no more than 15-30 minutes 
 # 
-# NB Please develop your solution in the text area below, but we also encourage you to use your IDE/compiler of choice to test it.
+
+# Solution written by kenorb
 
 import sys
 import string
