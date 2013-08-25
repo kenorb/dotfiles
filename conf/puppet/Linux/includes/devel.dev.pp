@@ -10,4 +10,8 @@
 package { 'autoconf': }
 package { 'automake': }
 package { 'libtool': }
+#
+# Common Linux tools
+package { 'iotop': }
+package { 'htop': }
 
