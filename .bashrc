@@ -3,13 +3,17 @@
 # for examples
 
 # Initialize
-echo .bashrc loaded.
+# Determine within a startup script whether Bash is running interactively or not.
+if [ ! -z "$PS1" ]; then
+  echo .bashrc loaded.
+fi
 
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
       *) return;;
 esac
+
 
 # Detect the platform (similar to $OSTYPE)
 case "$OSTYPE" in

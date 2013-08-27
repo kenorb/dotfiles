@@ -5,7 +5,10 @@
 # the files are located in the bash-doc package.
 
 # Initialize
-echo .profile loaded.
+# Determine within a startup script whether Bash is running interactively or not.
+if [ ! -z "$PS1" ]; then
+  echo .profile loaded.
+fi
 
 # the default umask is set in /etc/profile; for setting the umask
 # for ssh logins, install and configure the libpam-umask package.
