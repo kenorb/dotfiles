@@ -15,7 +15,8 @@ esac
 case "$OSTYPE" in
   solaris*)
     ;;
-  darwin*)
+  darwin*) # Mac
+    export PATH=/Applications/MAMP/Library/bin:/Applications/MAMP/bin/php/php5.3.14/bin:/usr/local/bin:$PATH:/opt/local/bin
     ;;
   linux*)
     alias ls='ls --color=auto'
