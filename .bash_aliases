@@ -1,4 +1,10 @@
 # ~/.bash_aliases
+#
+# Initialize
+# Determine within a startup script whether Bash is running interactively or not.
+if [ ! -z "$PS1" ]; then
+  echo .bash_aliases loaded.
+fi
 
 #
 # ls variants

@@ -43,6 +43,7 @@ export PATH=/Applications/MAMP/Library/bin:/Applications/MAMP/bin/php/php5.3.20/
 # Aliases
 alias ll='ls -alF'   # Unix like ls
 alias diffmerge="/Applications/DiffMerge.app/Contents/MacOS/DiffMerge"
+alias xt-files="egrep -o '/[^/]+:[0-9]+'"
 # alias dc="drush -yv -l 'http://drupal'"
 
 alias iphone="/Developer/Platforms/iPhoneSimulator.platform/Developer/Applications/iPhone\ Simulator.app/Contents/MacOS/iPhone\ Simulator"

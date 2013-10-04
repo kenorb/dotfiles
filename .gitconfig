@@ -11,6 +11,7 @@
     ; branch-svn2git =  !git for-each-ref refs/remotes --shell --format="r=%(refname:short) t=\${r#tags/}" | while read e; do eval "$e"; git branch -f $t refs/remotes/$r; git branch -d -r $r; done
     addremove = !git add . && git ls-files -deleted | xargs git rm
     majonez = !echo Hellmanns
+    svn-dcommit =     "!set -o xtrace; git stash; git svn dcommit; git stash pop -q"
 [diff]
 	tool = diffmerge
 [mergetool]

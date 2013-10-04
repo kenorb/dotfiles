@@ -39,9 +39,34 @@ big() {
   find . $1 -type f -ls | sort -k7 -r -n | head -10
 }
 
+# Find command in history
+# Usage: ff (file)
+h() {
+  history | grep $1
+}
+
+# Trace mysqld for queries
+# Usage: dmysql
+dmysql() {
+  sudo dtruss -t read -fn mysqld 2>&1 | grep -Eo '[A-Z]{4}[^"]+'
+}
+
+# Trace apache
+# Usage: dapache
+dapache() {
+  sudo dtruss -fn httpd
+}
+
+# Trace apache files
+# Usage: dapache-files
+dapache-files() {
+  sudo dtruss -t open -fn httpd 2>&1 | grep -o '".*"' | grep -o '[^"].*\\'
+}
+
 # ALIASES
 alias ll='ls -laF'   # Unix like ls
 alias youtube-dl='youtube-dl -vcti -R5 --write-description --write-info-json --all-subs --write-thumbnail'
+alias xt-files='egrep -o "/[^/]+:[0-9]+"'
 
 
 # added by Anaconda 1.5.1 installer
