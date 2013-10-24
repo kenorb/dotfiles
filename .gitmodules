@@ -1,3 +1,6 @@
 [submodule "scripts/python/UStream-recorder"]
 	path = scripts/python/UStream-recorder
 	url = git@github.com:kenorb/UStream-recorder.git
+[submodule "other/adamv"]
+	path = other/adamv
+	url = https://github.com/adamv/dotfiles
