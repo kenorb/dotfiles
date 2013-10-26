@@ -23,59 +23,72 @@
 # Private IP Addresses will be alarmed by Red foreground.
 # Source	Destination	Color
 
-10.0.0.0/8	any		Red
-any		10.0.0.0/8	Red
-127.0.0.1/8	any		Red
-any		127.0.0.1/8	Red
-172.16.0.0/16	any		Red
-any		172.16.0.0/16	Red
-192.168.0.0/16	any		Red
-any		192.168.0.0/16	Red
+# 10.0.0.0/8	any		Red
+# any		10.0.0.0/8	Red
+# 127.0.0.1/8	any		Red
+# any		127.0.0.1/8	Red
+# 172.16.0.0/16	any		Red
+# any		172.16.0.0/16	Red
+# 192.168.0.0/16	any		Red
+# any		192.168.0.0/16	Red
 
 # Network Services.
 # Service	Color	Comments
 
 135		Red	# netbios
-137		red	# netbios
+137		Red	# netbios
 138		red	# netbios
 139		red	# netbios
 
-snmp		white
+# Special system protocols
+snmp		White
 smux		white
-162		White	# snmp-trap
-67		white	# bootp/dhcp-server
-68		white	# bootp/dhcp-client
-546		white	# dhcpv6-client
-547		white	# dhcpv6-server
+162		  White	# snmp-trap
+67		  white	# bootp/dhcp-server
+68		  white	# bootp/dhcp-client
+546		  white	# dhcpv6-client
+547		  white	# dhcpv6-server
 timed		white
-who		white
+who		  white
 
 domain		cyan
-389		cyan	# ldap
-636		cyan	# ldaps
-*/icmp		Cyan
 
-http		blue
-https		blue
-3128		Blue	# http-proxy
-8080		Blue	# http-proxy
+# Authentication
+389		    red # ldap
+636		    red # ldaps
 
+# Web traffic
+http		green
+https		green
+3128		Green # http-proxy
+8080		Green # http-proxy
+8008    Green # http-alt
+
+# E-mails
 smtp		Green
 nntp		Green
 pop3		green
-995		green	# pop3s
-143		green	# imap2,4
-220		green	# imap3
+995		  green	# pop3s
+143		  green	# imap2,4
+220		  green	# imap3
 
-ftp		yellow
-20		Yellow	# ftp-data
+# File transfers
+ftp	  	yellow
+20	  	Yellow	# ftp-data
 tftp		Yellow
-nfs		Yellow
+nfs	  	Yellow
 6000		Yellow	# X11
 
-ssh		magenta
-telnet		Magenta
-sunrpc		Magenta
-513/tcp		Magenta	# rsh
-514/tcp		Magenta	# rcmd
+# Remote terminals
+ssh		    Blue
+telnet		Blue
+sunrpc		Blue
+513/tcp		Blue # rsh
+514/tcp		Blue # rcmd
+
+# Other protocols
+*/udp     cyan
+*/icmp		cyan
+*/igmp		cyan
+*/ip		  cyan
 
