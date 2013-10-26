@@ -1,0 +1,81 @@
+#
+# default fcolor:bcolor
+#	- Set the default screen background color-pair
+#
+# port[/proto] fcolor:bcolor
+#	- Set color pattern by service port
+#
+# [proto] source[/mask][,port] destination[/mask][,port] fcolor:bcolor
+#	- Set color pattern by pair of from-to addresses
+#
+# Reserved tokens `*', `any', `all' matchs ANY in the pattern.
+#
+# The colors are:
+#	black  red  green  yellow  blue  magenta  cyan  white
+#
+# The upper-case Fcolor mean bright *on* and Bcolor blink *on*.
+#
+
+#default white:blue
+
+# following color settings looks nice under black-on-gray xterm (xterm-color)
+
+# Private IP Addresses will be alarmed by Red foreground.
+# Source	Destination	Color
+
+10.0.0.0/8	any		Red
+any		10.0.0.0/8	Red
+127.0.0.1/8	any		Red
+any		127.0.0.1/8	Red
+172.16.0.0/16	any		Red
+any		172.16.0.0/16	Red
+192.168.0.0/16	any		Red
+any		192.168.0.0/16	Red
+
+# Network Services.
+# Service	Color	Comments
+
+135		Red	# netbios
+137		red	# netbios
+138		red	# netbios
+139		red	# netbios
+
+snmp		white
+smux		white
+162		White	# snmp-trap
+67		white	# bootp/dhcp-server
+68		white	# bootp/dhcp-client
+546		white	# dhcpv6-client
+547		white	# dhcpv6-server
+timed		white
+who		white
+
+domain		cyan
+389		cyan	# ldap
+636		cyan	# ldaps
+*/icmp		Cyan
+
+http		blue
+https		blue
+3128		Blue	# http-proxy
+8080		Blue	# http-proxy
+
+smtp		Green
+nntp		Green
+pop3		green
+995		green	# pop3s
+143		green	# imap2,4
+220		green	# imap3
+
+ftp		yellow
+20		Yellow	# ftp-data
+tftp		Yellow
+nfs		Yellow
+6000		Yellow	# X11
+
+ssh		magenta
+telnet		Magenta
+sunrpc		Magenta
+513/tcp		Magenta	# rsh
+514/tcp		Magenta	# rcmd
+
