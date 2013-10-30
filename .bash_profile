@@ -36,7 +36,7 @@ dups() {
 # Find the top 10 largest files
 # Usage: big (dir)
 big() {
-  find . $1 -type f -ls | sort -k7 -r -n | head -10
+  find . $1 -type f -ls | sort -k7 -r -n | head -20
 }
 
 # Find command in history
@@ -67,6 +67,10 @@ dapache-files() {
 alias ll='ls -laF'   # Unix like ls
 alias youtube-dl='youtube-dl -vcti -R5 --write-description --write-info-json --all-subs --write-thumbnail'
 alias xt-files='egrep -o "/[^/]+:[0-9]+"'
+# OSX
+alias swap_on="sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.dynamic_pager.plist"
+alias swap_off="sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.dynamic_pager.plist"
+alias sql_istat='grep -oE "INTO `\w+`" | grep -oE "`\w+`" | sort | uniq -c | sort -nr'
 
 
 # added by Anaconda 1.5.1 installer
