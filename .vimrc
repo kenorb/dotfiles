@@ -1,7 +1,29 @@
-set tabstop=2 shiftwidth=2 softtabstop=0 smarttab expandtab nolist textwidth=0
+"####################
+"#    Vim config    #
+"# Author: kenorb   #
+"####################
+
+" Syntax
 syntax on               " syntax highlighting
 au BufReadPost *.module,*.install,*.theme,*.inc,*.test,*.profile set syntax=php
 
+set autoindent                    "Preserve current indent on new lines
+"# this one is more annoying than useful - ',pt' fixes perl anyhow
+""set textwidth=78                  "Wrap at this column
+set backspace=indent,eol,start    "Make backspaces delete sensibly
+
+set tabstop=2                     "Indentation levels every four columns
+set expandtab                     "Convert all tabs typed to spaces
+set shiftwidth=2                  "Indent/outdent by four columns
+set shiftround                    "Indent/outdent to nearest tabstop
+" set softtabstop=0 smarttab nolist textwidth=0
+
+"Set F2 to disable autoindenting if pasting into terminal in X
+nnoremap <F2> :set invpaste paste?<CR>
+set pastetoggle=<F2>
+set matchpairs+=<:>               "Allow % to bounce between angles too
+
+"
 set ai                  " auto indenting
 set history=100         " keep 100 lines of history
 set ruler               " show the cursor position
@@ -40,5 +62,10 @@ set wildchar=<TAB>
 " " and jump between errors inside vim
 set makeprg=php\ %
 set errorformat=%A%f:%l:\ %m,%-Z%p^,%-C%.%#
-" " Custom settings
-" 
+
+"#################################
+"# Customisations
+"#################################
+set showmode
+set iskeyword+=:
+
