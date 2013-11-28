@@ -1,17 +1,19 @@
 [user]
 	name = Rafal
 	email = kenorb@gmail.com
+[merge]
+  renamelimit =       7274
 [alias]
-    log-graph =       !git log --oneline --graph --decorate --all
-    out =             !git log --boundary $(git rev-list --max-count=1 --simplify-by-decoration HEAD^)..
-    sm-diff =         "submodule foreach 'git diff'"
-    sm-clean-all =    "submodule foreach --recursive 'git clean -fXd'"
-    pull-forks =      "!git submodule foreach 'git pull `git config --get remote.origin.url | sed s#EXAMPLE#kenorb#`&'"
-    ; tag-svn2git =     !git for-each-ref refs/remotes/tags --shell --format="r=%(refname:short) t=\${r#tags/}" | while read e; do eval "$e"; git tag -f $t refs/remotes/$r; git branch -d -r $r; done
-    ; branch-svn2git =  !git for-each-ref refs/remotes --shell --format="r=%(refname:short) t=\${r#tags/}" | while read e; do eval "$e"; git branch -f $t refs/remotes/$r; git branch -d -r $r; done
-    addremove = !git add . && git ls-files -deleted | xargs git rm
-    majonez = !echo Hellmanns
-    svn-dcommit =     "!set -o xtrace; git stash; git svn dcommit; git stash pop -q"
+  log-graph =       !git log --oneline --graph --decorate --all
+  out =             !git log --boundary $(git rev-list --max-count=1 --simplify-by-decoration HEAD^)..
+  sm-diff =         "submodule foreach 'git diff'"
+  sm-clean-all =    "submodule foreach --recursive 'git clean -fXd'"
+  pull-forks =      "!git submodule foreach 'git pull `git config --get remote.origin.url | sed s#EXAMPLE#kenorb#`&'"
+  ; tag-svn2git =     !git for-each-ref refs/remotes/tags --shell --format="r=%(refname:short) t=\${r#tags/}" | while read e; do eval "$e"; git tag -f $t refs/remotes/$r; git branch -d -r $r; done
+  ; branch-svn2git =  !git for-each-ref refs/remotes --shell --format="r=%(refname:short) t=\${r#tags/}" | while read e; do eval "$e"; git branch -f $t refs/remotes/$r; git branch -d -r $r; done
+  addremove = !git add . && git ls-files -deleted | xargs git rm
+  majonez = !echo Hellmanns
+  svn-dcommit =     "!set -o xtrace; git stash; git svn dcommit; git stash pop -q"
 [diff]
 	tool = diffmerge
 [mergetool]
