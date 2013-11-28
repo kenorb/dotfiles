@@ -1,2 +1,11 @@
+# GNU readline's configuration file
+# See: http://cnswww.cns.cwru.edu/php/chet/readline/rluserman.html
+
 set editing-mode vi
+
+# Definition of hot keys
+# <ctrl-m> = (enter)
+
+# Hot key: <ctrl>-^
+"\C-^": "\C-a\C-kecho Pressed Ctrl-^\C-m"
 
