@@ -9,6 +9,12 @@ fi
 
 # FUNCTIONS
 
+# Realpath to provide absolute path with OSX
+# See: http://stackoverflow.com/questions/3572030/bash-script-absolute-path-with-osx
+realpath () {
+  [[ $1 = /* ]] && echo "$1" || echo "$PWD/${1#./}"
+}
+
 # Change dir via find
 # Usage: cdf (dir)
 cdf() {
@@ -67,6 +73,7 @@ dapache-files() {
 alias ll='ls -laF'   # Unix like ls
 alias youtube-dl='youtube-dl -vcti -R5 --write-description --write-info-json --all-subs --write-thumbnail'
 alias xt-files='egrep -o "/[^/]+:[0-9]+"'
+alias wget-all='wget --user-agent=Mozilla -e robots=off --content-disposition --mirror'
 # OSX
 alias swap_on="sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.dynamic_pager.plist"
 alias swap_off="sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.dynamic_pager.plist"
