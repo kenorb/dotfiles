@@ -73,12 +73,14 @@ dapache-files() {
 alias ll='ls -laF'   # Unix like ls
 alias youtube-dl='youtube-dl -vcti -R5 --write-description --write-info-json --all-subs --write-thumbnail'
 alias xt-files='egrep -o "/[^/]+:[0-9]+"'
-alias wget-all='wget --user-agent=Mozilla -e robots=off --content-disposition --mirror'
+alias wget-all='wget --user-agent=Mozilla -e robots=off --content-disposition --mirror --convert-links -E -K -N -r -nc'
 # OSX
 alias swap_on="sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.dynamic_pager.plist"
 alias swap_off="sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.dynamic_pager.plist"
 alias sql_istat='grep -oE "INTO `\w+`" | grep -oE "`\w+`" | sort | uniq -c | sort -nr'
-
+alias kcrash_verbose='sudo nvram boot-args="-v keepsyms=y"'
+alias DiskUtility_debug='defaults write com.apple.DiskUtility DUDebugMenuEnabled 1' # http://osxdaily.com/2011/09/23/view-mount-hidden-partitions-in-mac-os-x/
+alias eject_force="diskutil unmountDisk force"
 
 # added by Anaconda 1.5.1 installer
 # export PATH="/Users/kenorb/anaconda/bin:$PATH"
