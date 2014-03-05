@@ -8,6 +8,7 @@ if [ ! -z "$PS1" ]; then
   echo .bashrc loaded.
 fi
 
+
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
@@ -137,3 +138,9 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+export PERL_LOCAL_LIB_ROOT="$PERL_LOCAL_LIB_ROOT:/Users/kenorb/perl5";
+export PERL_MB_OPT="--install_base /Users/kenorb/perl5";
+export PERL_MM_OPT="INSTALL_BASE=/Users/kenorb/perl5";
+export PERL5LIB="/Users/kenorb/perl5/lib/perl5:$PERL5LIB";
+export PATH="/Users/kenorb/perl5/bin:$PATH";

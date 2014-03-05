@@ -18,16 +18,29 @@ set shiftwidth=2                  "Indent/outdent by four columns
 set shiftround                    "Indent/outdent to nearest tabstop
 " set softtabstop=0 smarttab nolist textwidth=0
 
-"Set F2 to disable autoindenting if pasting into terminal in X
+" case-insensitive search
+set ignorecase smartcase
+
+" INDENTING
+" autoindent = same as previous line
+" smartindent = tries to understand C
+" cindent = smarter
+"Set F2 to disable autoindenting if pasting into terminal in X (aka don't mess with my indents)
 nnoremap <F2> :set invpaste paste?<CR>
 set pastetoggle=<F2>
-set matchpairs+=<:>               "Allow % to bounce between angles too
+
+" set visual bell
+set vb
+
+" visible white space
+set listchars=tab:>-,trail:.,eol:$
 
 "
 set ai                  " auto indenting
 set history=100         " keep 100 lines of history
 set ruler               " show the cursor position
 set hlsearch            " highlight the last searched term
+set matchpairs+=<:>     "Allow % to bounce between angles too
 filetype plugin on      " use the file type plugins
 colors slate
  
@@ -68,4 +81,3 @@ set errorformat=%A%f:%l:\ %m,%-Z%p^,%-C%.%#
 "#################################
 set showmode
 set iskeyword+=:
-
