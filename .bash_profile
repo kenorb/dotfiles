@@ -1,3 +1,5 @@
+# .bash_profile
+
 # Initialize
 # Determine within a startup script whether Bash is running interactively or not.
 if [ ! -z "$PS1" ]; then
@@ -5,7 +7,9 @@ if [ ! -z "$PS1" ]; then
 fi
 
 # Load user profile file
-. ~/.profile
+if [ -f ~/.profile ]; then
+  . ~/.profile
+fi
 
 # FUNCTIONS
 
