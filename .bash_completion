@@ -1,0 +1,5 @@
+# Git Flow completion
+complete -F _git_flow gf
+complete -F __git_flow_feature feature
+complete -F __git_flow_release release
+complete -F __git_flow_hotfix hotfix
