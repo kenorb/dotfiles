@@ -8,7 +8,6 @@ if [ ! -z "$PS1" ]; then
   echo .bashrc loaded.
 fi
 
-
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
@@ -137,6 +136,13 @@ if ! shopt -oq posix; then
   elif [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
   fi
+fi
+
+# brew: Add the following lines to your ~/.bash_profile:
+# Note: Install bash_completion by: brew install bash-completion
+# Note: Homebrew's own bash completion script: /usr/local/etc/bash_completion.d
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+  . $(brew --prefix)/etc/bash_completion
 fi
 
 export PERL_LOCAL_LIB_ROOT="$PERL_LOCAL_LIB_ROOT:/Users/kenorb/perl5";
