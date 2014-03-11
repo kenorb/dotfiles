@@ -23,18 +23,17 @@ case "$OSTYPE" in
 
   darwin*) # Mac (OSX)
 
+# For MAMP (OSX)
+    PHP_VER="5.4.19" # Or: 5.5.3 ($ls /Applications/MAMP/bin/php/php*)
+
 # PATH for OSX
-    export PATH=/Applications/MAMP/Library/bin:/Applications/MAMP/bin/php/php$PHP_VER/bin:/usr/local/sbin:/usr/local/bin:$PATH:/opt/local/bin:/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin/gcc
+    export PATH=/Applications/MAMP/Library/bin:/Applications/MAMP/bin/php/php$PHP_VER/bin:/usr/local/sbin:/usr/local/bin:$PATH:/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin/gcc
+# :/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang
 
 # For Development
     export HOMEBREW_GITHUB_API_TOKEN=0ff93b1c7cc8efdf109d169899a12852dfd566c8
     export FLEX_HOME=/usr/local/Cellar/flex_sdk/4.6.0.23201/libexec
     export DYLD_FALLBACK_LIBRARY_PATH="/usr/X11/lib:/usr/lib" # See: http://stackoverflow.com/questions/10820981/dylibs-and-os-x
-
-# For MAMP (OSX)
-    PHP_VER="5.5.3"
-    PHP_VER="5.4.19"
-# :/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang
 
 # Fix for Git-SVN (OSX) [Error: Can't locate SVN/Core.pm in @INC]. See: http://stackoverflow.com/questions/13571944/git-svn-unrecognized-url-scheme-error
     export PERL5LIB="/Users/kenorb/perl5/lib/perl5:/Applications/Xcode.app/Contents/Developer/Library/Perl/5.16"
@@ -54,7 +53,7 @@ case "$OSTYPE" in
     ;;
 
   linux*)
-    alias ls='ls --color=auto'
+    export PATH=/usr/local/bin:$PATH:/opt/local/bin
 
 # Debian: set variable identifying the chroot you work in (used in the prompt below)
     if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then

@@ -28,7 +28,6 @@ if [ -d "$HOME/bin" ] ; then
 fi
 
 # EXPORTS
-export PATH=/usr/local/bin:$PATH:/opt/local/bin
 export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
 
