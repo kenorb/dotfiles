@@ -19,6 +19,7 @@ realpath () {
   [[ $1 = /* ]] && echo "$1" || echo "$PWD/${1#./}"
 }
 
+
 # Change dir via find
 # Usage: cdf (dir)
 cdf() {
@@ -37,16 +38,16 @@ vimf() {
   vim $(find . -name $1)
 }
 
+# Allows you to search for any text in any file.
+# Usage: ft "my string" *.php
+ft() {
+  find . -name "$2" -exec grep -il "$1" {} \;
+}
+
 # Find duplicate files
 # Usage: dups (dir)
 dups() {
   fdupes -v && fdupes -rS1 $1 | sed '$!N;s/\n/ /' | sort -n
-}
-
-# Find the top 10 largest files
-# Usage: big (dir)
-big() {
-  find . $1 -type f -ls | sort -k7 -r -n | head -20
 }
 
 # Find command in history
@@ -73,8 +74,61 @@ dapache-files() {
   sudo dtruss -t open -fn httpd 2>&1 | grep -o '".*"' | grep -o '[^"].*\\'
 }
 
-# ALIASES
-alias ll='ls -laF'   # Unix like ls
+# Extract most know archives
+# Usage: extract (file)
+extract () {
+    if [ -f $1 ] ; then
+      case $1 in
+        *.tar.bz2)   tar xjf $1     ;;
+        *.tar.gz)    tar xzf $1     ;;
+        *.bz2)       bunzip2 $1     ;;
+        *.rar)       unrar e $1     ;;
+        *.gz)        gunzip $1      ;;
+        *.tar)       tar xf $1      ;;
+        *.tbz2)      tar xjf $1     ;;
+        *.tgz)       tar xzf $1     ;;
+        *.zip)       unzip $1       ;;
+        *.Z)         uncompress $1  ;;
+        *.7z)        7z x $1        ;;
+        *)     echo "'$1' cannot be extracted via extract()" ;;
+         esac
+     else
+         echo "'$1' is not a valid file"
+     fi
+}
+
+# ALIASES #
+
+# Recursive directory listing
+alias lr='ls -R | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\'' -e '\''s/^/   /'\'' -e '\''s/-/|/'\'''
+# Unix like ls
+alias ll='ls -laF'
+# Jump back n directories at a time
+alias ..='cd ..'
+alias ...='cd ../../'
+alias ....='cd ../../../'
+alias .....='cd ../../../../'
+alias ......='cd ../../../../../'
+# Compact, colorized git log
+alias gl="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+# Visualise git log (like gitk, in the terminal)
+alias lg='git log --graph --full-history --all --color --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"'
+# Show which commands you use the most
+alias freq='cut -f1 -d" " ~/.bash_history | sort | uniq -c | sort -nr | head -n 30'
+# Show active network listeners
+alias netlisteners='lsof -i -P | grep LISTEN'
+# Allow to find the biggest file or directory in the current directory.
+alias ds='du -ks *|sort -n'
+# List top ten largest files/directories in current directory
+alias big='du -cks *|sort -rn|head -20'
+# List top ten largest files in current directory
+alias big-files='find -type f -ls | sort -k7 -r -n | head -20'
+# What's gobbling the memory?
+alias psmem='ps -o time,ppid,pid,nice,pcpu,pmem,user,comm -A | sort -n -k 6 | tail -15'
+# Get external IP
+alias ifconfig-ext='curl ifconfig.me' # Or: ip.appspot.com
+
+# Other
 alias youtube-dl='youtube-dl -vcti -R5 --write-description --write-info-json --all-subs --write-thumbnail'
 alias xt-files='egrep -o "/[^/]+:[0-9]+"'
 alias wget-all='wget --user-agent=Mozilla -e robots=off --content-disposition --mirror --convert-links -E -K -N -r -nc'
@@ -85,6 +139,12 @@ alias sql_istat='grep -oE "INTO `\w+`" | grep -oE "`\w+`" | sort | uniq -c | sor
 alias kcrash_verbose='sudo nvram boot-args="-v keepsyms=y"'
 alias DiskUtility_debug='defaults write com.apple.DiskUtility DUDebugMenuEnabled 1' # http://osxdaily.com/2011/09/23/view-mount-hidden-partitions-in-mac-os-x/
 alias eject_force="diskutil unmountDisk force"
+# Reload DNS on OSX
+alias flushdns="dscacheutil -flushcache"
+
+# LINUX
+# Open any file with the default command for that file
+# alias open='xdg-open'
 
 # added by Anaconda 1.5.1 installer
 # export PATH="/Users/kenorb/anaconda/bin:$PATH"

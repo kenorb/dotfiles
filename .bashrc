@@ -24,7 +24,7 @@ case "$OSTYPE" in
   darwin*) # Mac (OSX)
 
 # For MAMP (OSX)
-    PHP_VER="5.4.19" # Or: 5.5.3 ($ls /Applications/MAMP/bin/php/php*)
+    PHP_VER="5.5.3" # Or: 5.4.19/5.5.3 ($ls /Applications/MAMP/bin/php/php*)
 
 # PATH for OSX
     export PATH=/Applications/MAMP/Library/bin:/Applications/MAMP/bin/php/php$PHP_VER/bin:/usr/local/sbin:/usr/local/bin:$PATH:/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin/gcc
