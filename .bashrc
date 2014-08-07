@@ -28,6 +28,10 @@ case "$OSTYPE" in
 
 # PATH for OSX
     export PATH=/Applications/MAMP/Library/bin:/Applications/MAMP/bin/php/php$PHP_VER/bin:/usr/local/sbin:/usr/local/bin:$PATH:/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin/gcc
+    export PATH=$PATH:$HOME/bin:$HOME/binfiles
+    export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH" # add a "gnubin" for coreutils
+    export PATH="$HOME/.composer/vendor/bin:$PATH" # add a Composer's global bin directory.
+    export PYTHONPATH="$PYTHONPATH:$HOME/.python"
 # :/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang
 
 # For Development
@@ -36,7 +40,7 @@ case "$OSTYPE" in
     export DYLD_FALLBACK_LIBRARY_PATH="/usr/X11/lib:/usr/lib" # See: http://stackoverflow.com/questions/10820981/dylibs-and-os-x
 
 # Fix for Git-SVN (OSX) [Error: Can't locate SVN/Core.pm in @INC]. See: http://stackoverflow.com/questions/13571944/git-svn-unrecognized-url-scheme-error
-    export PERL5LIB="/Users/kenorb/perl5/lib/perl5:/Applications/Xcode.app/Contents/Developer/Library/Perl/5.16"
+    export PERL5LIB="/Users/$USER/perl5/lib/perl5:/Applications/Xcode.app/Contents/Developer/Library/Perl/5.16"
 
 # OSX aliases
     alias ll='ls -alF'   # Unix like ls
@@ -177,8 +181,10 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-export PERL_LOCAL_LIB_ROOT="$PERL_LOCAL_LIB_ROOT:/Users/kenorb/perl5";
-export PERL_MB_OPT="--install_base /Users/kenorb/perl5";
-export PERL_MM_OPT="INSTALL_BASE=/Users/kenorb/perl5";
-export PERL5LIB="/Users/kenorb/perl5/lib/perl5:$PERL5LIB";
-export PATH="/Users/kenorb/perl5/bin:$PATH";
+# Exports
+export EDITOR="vim"
+export PERL_LOCAL_LIB_ROOT="$PERL_LOCAL_LIB_ROOT:/Users/$USER/perl5"
+export PERL_MB_OPT="--install_base /Users/$USER/perl5"
+export PERL_MM_OPT="INSTALL_BASE=/Users/$USER/perl5"
+export PERL5LIB="/Users/$USER/perl5/lib/perl5:$PERL5LIB"
+export PATH="/Users/$USER/perl5/bin:$PATH"
