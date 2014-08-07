@@ -97,8 +97,14 @@ extract () {
      fi
 }
 
+# GLOBAL VARIABLES #
+# Set architecture flags for x64
+export ARCHFLAGS="-arch x86_64"
+
 # ALIASES #
 
+# Getting colored results when using a pipe from grep to less.
+alias less='less -R'
 # Recursive directory listing
 alias lr='ls -R | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\'' -e '\''s/^/   /'\'' -e '\''s/-/|/'\'''
 # Unix like ls
@@ -129,9 +135,9 @@ alias psmem='ps -o time,ppid,pid,nice,pcpu,pmem,user,comm -A | sort -n -k 6 | ta
 alias ifconfig-ext='curl ifconfig.me' # Or: ip.appspot.com
 
 # Other
-alias youtube-dl='youtube-dl -vcti -R5 --write-description --write-info-json --all-subs --write-thumbnail'
+alias youtube-dl='youtube-dl -vcti -R5 --write-description --write-info-json --all-subs --write-thumbnail --add-metadata'
 alias xt-files='egrep -o "/[^/]+:[0-9]+"'
-alias wget-all='wget --user-agent=Mozilla -e robots=off --content-disposition --mirror --convert-links -E -K -N -r -nc'
+alias wget-all='wget --user-agent=Mozilla -e robots=off --content-disposition --mirror --convert-links -E -K -N -r -nc -c'
 # OSX
 alias swap_on="sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.dynamic_pager.plist"
 alias swap_off="sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.dynamic_pager.plist"
@@ -147,4 +153,4 @@ alias flushdns="dscacheutil -flushcache"
 # alias open='xdg-open'
 
 # added by Anaconda 1.5.1 installer
-# export PATH="/Users/kenorb/anaconda/bin:$PATH"
+# export PATH="/Users/$USER/anaconda/bin:$PATH"
