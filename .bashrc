@@ -55,10 +55,13 @@ case "$OSTYPE" in
 
     ;;
 
+# linux-gnu*)
+# ;;& # fall-through (OSX, check: http://apple.stackexchange.com/questions/141752/how-to-get-a-fall-through-behavior-in-case-statements-on-osx)
   linux*)
     export PATH=/usr/local/bin:$PATH:/opt/local/bin
 
-# Debian: set variable identifying the chroot you work in (used in the prompt below)
+    # Debian specific
+    # set variable identifying the chroot you work in (used in the prompt below)
     if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
         debian_chroot=$(cat /etc/debian_chroot)
     fi
@@ -162,17 +165,24 @@ fi
 unset color_prompt force_color_prompt
 
 # ALIASES #
+
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    alias dir='dir --color=auto'
+    alias vdir='vdir --color=auto'
+
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
 # some more ls aliases
-alias ll='ls -alF'
+alias ll='ls -l'
+#alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
-
-#alias dir='dir --color=auto'
-#alias vdir='vdir --color=auto'
-
-alias grep='grep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias egrep='egrep --color=auto'
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -181,6 +191,17 @@ alias egrep='egrep --color=auto'
 
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
+fi
+
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
 fi
 
 # Exports
