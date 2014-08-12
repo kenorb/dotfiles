@@ -14,6 +14,10 @@ case $- in
       *) return;;
 esac
 
+# Check the requirements.
+if [ "${BASH_VERSION:0:1}" -eq 3 ]; then
+  echo "Please upgrade your bash to >= 4."
+fi
 
 # Detect the platform (similar to $OSTYPE)
 case "$OSTYPE" in
@@ -55,10 +59,7 @@ case "$OSTYPE" in
 
     ;;
 
-# linux-gnu*)
-# ;;& # fall-through (OSX, check: http://apple.stackexchange.com/questions/141752/how-to-get-a-fall-through-behavior-in-case-statements-on-osx)
-  linux*)
-    export PATH=/usr/local/bin:$PATH:/opt/local/bin
+  linux-gnu*) # Debian
 
     # Debian specific
     # set variable identifying the chroot you work in (used in the prompt below)
@@ -72,7 +73,7 @@ case "$OSTYPE" in
         PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
     fi
 
-# Debian: If this is an xterm set the title to user@host:dir
+    # Debian: If this is an xterm set the title to user@host:dir
     case "$TERM" in
     xterm*|rxvt*)
         PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
@@ -80,6 +81,11 @@ case "$OSTYPE" in
     *)
         ;;
     esac
+
+    ;;& # fall-through syntax requires bash >= 4; (OSX, check: http://apple.stackexchange.com/questions/141752/how-to-get-a-fall-through-behavior-in-case-statements-on-osx)
+
+  linux*)
+    export PATH=/usr/local/bin:$PATH:/opt/local/bin
 
 # Linux: enable color support of ls and also add handy aliases
     if [ -x /usr/bin/dircolors ]; then
