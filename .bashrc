@@ -30,7 +30,6 @@ case "$OSTYPE" in
     export PATH=/Applications/MAMP/Library/bin:/Applications/MAMP/bin/php/php$PHP_VER/bin:/usr/local/sbin:/usr/local/bin:$PATH:/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin/gcc
     export PATH=$PATH:$HOME/bin:$HOME/binfiles
     export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH" # add a "gnubin" for coreutils
-    export PATH="$HOME/.composer/vendor/bin:$PATH" # add a Composer's global bin directory.
     export PYTHONPATH="$PYTHONPATH:$HOME/.python"
 # :/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang
 
@@ -114,6 +113,9 @@ case "$OSTYPE" in
     echo "Unknown: $OSTYPE"
     ;;
 esac
+
+# Add a Composer's global bin directory if exists.
+which composer && export PATH="$HOME/.composer/vendor/bin:$PATH"
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
