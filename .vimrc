@@ -61,6 +61,9 @@ nmap <silent> <C-N> :silent noh<CR>
 " " Get rid of annoying errors when you do simple typos
 map :W :w
 map :Q :q
+" " Move to the next row which has non-white space character in the same column (Control-k/j).
+:map <C-k> :call search('\%' . virtcol('.') . 'v\S', 'bW')<CR>
+:map <C-j> :call search('\%' . virtcol('.') . 'v\S', 'wW')<CR>
 "
 " " Settings...
 set cindent
