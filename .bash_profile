@@ -100,6 +100,7 @@ extract () {
 # GLOBAL VARIABLES #
 # Set architecture flags for x64
 export ARCHFLAGS="-arch x86_64"
+export LANG=C LC_CTYPE=C # Fixes for sed, see: http://www.delorie.com/gnu/docs/gawk/gawk_149.html, http://stackoverflow.com/q/19242275/55075
 
 # ALIASES #
 
