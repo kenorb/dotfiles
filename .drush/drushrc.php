@@ -5,7 +5,7 @@
 
 if (exec('git rev-parse --show-toplevel 2> /dev/null', $git)):
   $r = array_shift($git);
-  $options['config'] = "$r/.drush/drushrc.php:$r/drush/drushrc.php";
-  $options['include'] = "$r/.drush/commands:$r/drush/commands";
-  $options['alias-path'] = "$r/.drush:$r/drush";
+  $options['config'] = "$r/.drush/drushrc.php;$r/drush/drushrc.php";
+  $options['include'] = "$r/.drush/commands;$r/drush/commands";
+  $options['alias-path'] = "$r/.drush;$r/drush";
 endif;
