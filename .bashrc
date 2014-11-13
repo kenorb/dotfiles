@@ -4,15 +4,8 @@
 
 # Initialize
 # Determine within a startup script whether Bash is running interactively or not.
-if [ ! -z "$PS1" ]; then
-  echo .bashrc loaded.
-fi
-
-# If not running interactively, don't do anything
-case $- in
-    *i*) ;;
-      *) return;;
-esac
+[ -z "$PS1" ] && return
+echo $(basename $BASH_SOURCE) loaded.
 
 # Check the requirements.
 if [ "${BASH_VERSION:0:1}" -eq 3 ]; then
@@ -124,7 +117,7 @@ case "$OSTYPE" in
 esac
 
 # Add a Composer's global bin directory if exists.
-which composer && export PATH="$HOME/.composer/vendor/bin:$PATH"
+which composer >/dev/null && export PATH="$HOME/.composer/vendor/bin:$PATH"
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options

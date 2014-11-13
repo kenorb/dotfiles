@@ -6,9 +6,8 @@
 
 # Initialize
 # Determine within a startup script whether Bash is running interactively or not.
-if [ ! -z "$PS1" ]; then
-  echo .profile loaded.
-fi
+[ -z "$PS1" ] && return
+echo $(basename $BASH_SOURCE) loaded.
 
 # the default umask is set in /etc/profile; for setting the umask
 # for ssh logins, install and configure the libpam-umask package.
