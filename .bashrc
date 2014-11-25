@@ -2,6 +2,9 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
+# Add a Composer's global bin directory if exists.
+which composer >/dev/null && export PATH="$HOME/.composer/vendor/bin:$PATH"
+
 # Initialize
 # Determine within a startup script whether Bash is running interactively or not.
 [ -z "$PS1" ] && return
@@ -115,9 +118,6 @@ case "$OSTYPE" in
     echo "Unknown: $OSTYPE"
     ;;
 esac
-
-# Add a Composer's global bin directory if exists.
-which composer >/dev/null && export PATH="$HOME/.composer/vendor/bin:$PATH"
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
