@@ -9,3 +9,7 @@ if (exec('git rev-parse --show-toplevel 2> /dev/null', $git)):
   $options['include'] = array("$r/.drush/commands", "$r/drush/commands");
   $options['alias-path'] = array("$r/.drush", "$r/drush");
 endif;
+
+// Load a drushrc.php configuration file from the current working directory.
+$options['c'] = '.';
+
