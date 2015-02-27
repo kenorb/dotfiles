@@ -10,7 +10,7 @@ syntax on               " syntax highlighting
 " File specific settings
 " ----------------------
 au BufReadPost *.module,*.install,*.theme,*.inc,*.test,*.profile set syntax=php
-au! BufWrite,FileWritePre *.module,*.install call RemoveWhiteSpace()
+" au! BufWrite,FileWritePre *.module,*.install call RemoveWhiteSpace()
 
 " Interface
 " ------------
@@ -20,9 +20,10 @@ set showmatch                   " (sm) briefly jump to matching bracket when ins
 set autoindent                  " (ai) turn on auto-indenting and preserve current indent on new lines
 set backspace=indent,eol,start  " (bs) allows backspacing beyond starting point of insert mode, indents and line breaks
 set ruler                       " (ru) show the cursor position at all times
-set vb                          " set visual bell
+set visualbell                   " (vb) set visual bell
 "set showmode                    " (smd) if in Insert, Replace or Visual mode put a message on the last line
 "set guifont=ProFontWindows\ 9  " This is the XFT version of font names, if you have an old GTK 1.x version you need to use regular XFree86 font names
+set encoding=utf-8
 
 " Folding
 "set foldcolumn=6                " (fdc) width of fold column (to see where folds are)
@@ -50,6 +51,10 @@ set expandtab                   " (et) expand tabs to spaces (use :retab to redo
 set shiftwidth=2                " (sw) width (in spaces) used in each step of autoindent (aswell as << and >>)
 set shiftround                  " (sr) indent/outdent to nearest tabstop
 " set softtabstop=0 smarttab nolist textwidth=0
+
+" Options
+" -------
+set digraph                     " (dg) Enable the entering of digraphs in Insert mode. See: http://vi.stackexchange.com/q/2254/467
 
 "Set F2 to disable autoindenting if pasting into terminal in X (aka don't mess with my indents)
 nnoremap <F2> :set invpaste paste?<CR>
@@ -120,9 +125,9 @@ function! ReplaceM()
 endfunction
 " Removes superfluous white space from the end of a line
 function! RemoveWhiteSpace()
-    :%s/\s*$//g
+    :%s/\s*$//ge
     :'^
-    "`.
+    `.
 endfunction
 
 " Command Reference
