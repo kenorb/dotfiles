@@ -96,6 +96,12 @@ extract () {
      fi
 }
 
+# Uncompress zlib data (e.g. git objects)
+# Usage: deflate (file)
+deflate () {
+  printf "\x1f\x8b\x08\x00\x00\x00\x00\x00"  | cat -- - $1 | gunzip
+}
+
 # GLOBAL VARIABLES #
 # Set architecture flags for x64
 export ARCHFLAGS="-arch x86_64"
