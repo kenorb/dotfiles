@@ -102,6 +102,22 @@ deflate () {
   printf "\x1f\x8b\x08\x00\x00\x00\x00\x00"  | cat -- - $1 | gunzip
 }
 
+# Convert svn branches and tags into git.
+# Usage: svn2git
+# See: http://stackoverflow.com/q/2244252/55075
+svn2git () {
+  git svn fetch --all # Fetch all remote branches that have not been fetched yet.
+  git for-each-ref --format="%(refname:short) %(objectname)" refs/remotes/tags \
+  | while read BRANCH REF
+    do
+          TAG_NAME=${BRANCH#*/}
+          BODY="$(git log -1 --format=format:%B $REF)"
+          echo "ref=$REF parent=$(git rev-parse $REF^) tagname=$TAG_NAME body=$BODY" >&2
+          git tag -a -m "$BODY" $TAG_NAME $REF^  && \ # Create git tag from tag branch.
+          git branch -r -d $BRANCH # Delete tag branch.
+    done
+}
+
 # GLOBAL VARIABLES #
 # Set architecture flags for x64
 export ARCHFLAGS="-arch x86_64"
