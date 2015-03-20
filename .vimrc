@@ -56,9 +56,32 @@ set shiftround                  " (sr) indent/outdent to nearest tabstop
 " -------
 set digraph                     " (dg) Enable the entering of digraphs in Insert mode. See: http://vi.stackexchange.com/q/2254/467
 
-"Set F2 to disable autoindenting if pasting into terminal in X (aka don't mess with my indents)
+" Key mappings
+"
+" Set F2 to disable autoindenting if pasting into terminal in X (aka don't mess with my indents)
 nnoremap <F2> :set invpaste paste?<CR>
 set pastetoggle=<F2>
+" TABS
+" To create a new tab (Control-T)
+nnoremap <C-t> :tabnew<CR>
+inoremap <C-t> <Esc>:tabnew<CR>
+" Tab Navigation (Control+Left <-> Control-Right, Shift+H <-> Shift+L).
+nnoremap <S-h> gT
+nnoremap <S-l> gt
+nnoremap <A-Left> gT               " @fixme?
+nnoremap <A-Right> gt              " @fixme?
+nnoremap <C-S-Tab> gT              " @fixme?
+nnoremap <C-Tab> gt                " @fixme?
+" Tab Close (Control-W)
+nnoremap <C-BS> :tabclose<CR>      " @fixme?
+inoremap <C-BS> <Esc>:tabclose<CR> " @fixme?
+" Close All (Control-Q)
+nnoremap <C-q> :qa<CR>
+inoremap <C-q> <Esc>:qa<CR>
+
+
+" Allow us to use Ctrl-s and Ctrl-q as keybinds
+silent !stty -ixon
 
 " visible white space
 set listchars=tab:>-,trail:.,eol:$
@@ -87,12 +110,18 @@ nmap <silent> <C-N> :silent noh<CR>
 map :W :w
 map :Q :q
 " " Move to the next row which has non-white space character in the same column (Control-k/j).
-:map <C-k> :call search('\%' . virtcol('.') . 'v\S', 'bW')<CR>
-:map <C-j> :call search('\%' . virtcol('.') . 'v\S', 'wW')<CR>
+map <C-k> :call search('\%' . virtcol('.') . 'v\S', 'bW')<CR>
+map <C-j> :call search('\%' . virtcol('.') . 'v\S', 'wW')<CR>
+map <A-Up> :call search('\%' . virtcol('.') . 'v\S', 'bW')<CR>   " @fixme
+map <A-Down> :call search('\%' . virtcol('.') . 'v\S', 'wW')<CR> " @fixme
 
 " allows moving between split windows much faster and more intuitive
-map <C-J> <C-W>j<C-W>_
-map <C-K> <C-W>k<C-W>_
+"map <C-J> <C-W>j<C-W>_
+"map <C-K> <C-W>k<C-W>_
+
+" Map Ctrl+s to save file.
+map <C-s> :w <CR>
+imap <C-s> <Esc> :w <CR>
 
 
 "
