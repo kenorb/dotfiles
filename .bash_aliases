@@ -44,9 +44,9 @@ alias netlisteners='lsof -i -P | grep LISTEN'
 # Allow to find the biggest file or directory in the current directory.
 alias ds='du -ks *|sort -n'
 # List top ten largest files/directories in current directory
-alias big='du -cks *|sort -rn|head -20'
+alias big='du -ah . | sort -rh | head -20'
 # List top ten largest files in current directory
-alias big-files='find -type f -ls | sort -k7 -r -n | head -20'
+alias big-files='ls -1Rhs | sed -e "s/^ *//" | grep "^[0-9]" | sort -hr | head -n20'
 # What's gobbling the memory?
 alias psmem='ps -o time,ppid,pid,nice,pcpu,pmem,user,comm -A | sort -n -k 6 | tail -15'
 # Get external IP
@@ -61,6 +61,9 @@ alias youtube-dl='youtube-dl -vcti -R5 --write-description --write-info-json --a
 # Other
 # Find xdebug files.
 #alias xt-files='egrep -o "/[^/]+:[0-9]+"'
+
+# Useful converting tools.
+alias urldecode='sed "s@+@ @g;s@%@\\\\x@g" | xargs -0 printf "%b"'
 
 # OSX
 alias swap_on="sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.dynamic_pager.plist"
