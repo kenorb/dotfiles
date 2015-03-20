@@ -23,32 +23,37 @@ case "$OSTYPE" in
 
   darwin*) # Mac (OSX)
 
-# For MAMP (OSX)
+    # Set LC encoding to UTF-8.
+    export LC_ALL=en_GB.UTF-8
+
+    # For MAMP (OSX)
     PHP_VER="5.5.3" # Or: 5.4.19/5.5.3 ($ls /Applications/MAMP/bin/php/php*)
 
-# PATH for OSX
+    # Set PATH for OSX
     export PATH=/Applications/MAMP/Library/bin:/Applications/MAMP/bin/php/php$PHP_VER/bin:/usr/local/sbin:/usr/local/bin:$PATH:/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin/gcc
     export PATH=$PATH:$HOME/bin:$HOME/binfiles
     export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH" # add a "gnubin" for coreutils
     export PYTHONPATH="$PYTHONPATH:$HOME/.python"
-# :/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang
+    # :/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang
 
-# For Development
+    # Development variables.
     export HOMEBREW_GITHUB_API_TOKEN=0ff93b1c7cc8efdf109d169899a12852dfd566c8
     export FLEX_HOME=/usr/local/Cellar/flex_sdk/4.6.0.23201/libexec
     export DYLD_FALLBACK_LIBRARY_PATH="/usr/X11/lib:/usr/lib" # See: http://stackoverflow.com/questions/10820981/dylibs-and-os-x
 
-# Fix for Git-SVN (OSX) [Error: Can't locate SVN/Core.pm in @INC]. See: http://stackoverflow.com/questions/13571944/git-svn-unrecognized-url-scheme-error
+    # Fix for Git-SVN (OSX) [Error: Can't locate SVN/Core.pm in @INC]. See: http://stackoverflow.com/questions/13571944/git-svn-unrecognized-url-scheme-error
     export PERL5LIB="/Users/$USER/perl5/lib/perl5:/Applications/Xcode.app/Contents/Developer/Library/Perl/5.16"
 
-# OSX aliases
-    export LS_OPTIONS='-G -h'
+    # OSX specific aliases.
     alias diffmerge="/Applications/DiffMerge.app/Contents/MacOS/DiffMerge"
     alias xt-files="egrep -o '/[^/]+:[0-9]+'"
     alias iphone="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Applications/iPhone Simulator.app/Contents/MacOS/iPhone Simulator" # OSX Lion
 
-# OSX: Enable bash_completion (Install by: brew install bash-completion)
-#       Homebrew's own bash completion script: /usr/local/etc/bash_completion.d
+    # Set other options.
+    export LS_OPTIONS='-G -h'
+
+    # OSX: Enable bash_completion (Install by: brew install bash-completion)
+    #       Homebrew's own bash completion script: /usr/local/etc/bash_completion.d
     if [ -f $(brew --prefix)/etc/bash_completion ]; then
       . $(brew --prefix)/etc/bash_completion
     fi
@@ -78,21 +83,25 @@ case "$OSTYPE" in
       ;;
     esac
 
-    ;;& # fall-through syntax requires bash >= 4; (OSX, check: http://apple.stackexchange.com/questions/141752/how-to-get-a-fall-through-behavior-in-case-statements-on-osx)
+    ;;& # fall-through syntax requires bash >= 4; (OSX, check: http://apple.stackexchange.com/q/141752/22781)
 
   linux*)
+    # Set LC encoding to UTF-8.
+    export LANG=en_GB.UTF-8
+
+    # Set PATH for Linux
     export PATH=/usr/local/bin:$PATH:/opt/local/bin
 
-# Linux: enable color support of ls and also add handy aliases
+    # Linux: enable color support of ls and also add handy aliases
     if [ -x /usr/bin/dircolors ]; then
         test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     fi
 
-# Linux: Enable bash_completion (Install by: brew install bash-completion)
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-# Install by: sudo apt-get install bash-completion
+    # Linux: Enable bash_completion (Install by: brew install bash-completion)
+    # enable programmable completion features (you don't need to enable
+    # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+    # sources /etc/bash.bashrc).
+    # Install by: sudo apt-get install bash-completion
     if ! shopt -oq posix; then
       if [ -f /usr/share/bash-completion/bash_completion ]; then
         . /usr/share/bash-completion/bash_completion
@@ -101,11 +110,11 @@ case "$OSTYPE" in
       fi
     fi
 
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
+    # Linux aliases
+    # Add an "alert" alias for long running commands. Use like so: sleep 10; alert
     alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
-# Linux aliases
+    # Set other options.
     export LS_OPTIONS='--color=auto -h'
 
     ;;
