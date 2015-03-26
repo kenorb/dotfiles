@@ -12,6 +12,9 @@ syntax on               " syntax highlighting
 au BufReadPost *.module,*.install,*.theme,*.inc,*.test,*.profile set syntax=php
 " au! BufWrite,FileWritePre *.module,*.install call RemoveWhiteSpace()
 
+" Workaround for crontab (See: http://vi.stackexchange.com/q/137/467)
+au BufNewFile,BufRead crontab.* set nobackup | set nowritebackup
+
 " Interface
 " ------------
 set showcmd                     " (sc) display an incomplete command in the lower right
@@ -55,6 +58,7 @@ set shiftround                  " (sr) indent/outdent to nearest tabstop
 " Options
 " -------
 set digraph                     " (dg) Enable the entering of digraphs in Insert mode. See: http://vi.stackexchange.com/q/2254/467
+set mouse=a
 
 " Key mappings
 "
@@ -123,6 +127,11 @@ map <A-Down> :call search('\%' . virtcol('.') . 'v\S', 'wW')<CR> " @fixme
 map <C-s> :w <CR>
 imap <C-s> <Esc> :w <CR>
 
+" Map Shift-Up/Shift-Down for moving a line up and down.
+nnoremap <S-Up> :m-2<CR>
+nnoremap <S-Down> :m+<CR>
+inoremap <S-Up> <Esc>:m-2<CR>
+inoremap <S-Down> <Esc>:m+<CR>
 
 "
 " " Settings...
@@ -140,6 +149,20 @@ set errorformat=%A%f:%l:\ %m,%-Z%p^,%-C%.%#
 " --------------
 set iskeyword+=:
 let html_use_css = 1            " the ':%TOhtml' command generates html without <font> tags
+
+" Ensure private editing.
+" Usage - VIM_PRIVATE=1 vim
+if $VIM_PRIVATE
+  set nobackup
+  set nowritebackup
+  set noundofile
+  set noswapfile
+  set viminfo=""
+  set noshelltemp
+  set history=0
+  set nomodeline
+  set secure
+endif
 
 " Functions
 " ------------------------------------------------------------
