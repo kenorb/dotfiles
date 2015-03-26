@@ -87,7 +87,9 @@ case "$OSTYPE" in
 
   linux*)
     # Set LC encoding to UTF-8.
+    # Ubuntu way: Use locale-gen (part of locales).
     export LANG=en_GB.UTF-8
+    export LANGUAGE="en_GB:en"
 
     # Set PATH for Linux
     export PATH=/usr/local/bin:$PATH:/opt/local/bin
@@ -192,7 +194,7 @@ if ! shopt -oq posix; then
 fi
 
 # Exports
-export EDITOR="vim"
+export EDITOR='vim'
 export PERL_LOCAL_LIB_ROOT="$PERL_LOCAL_LIB_ROOT:/Users/$USER/perl5"
 export PERL_MB_OPT="--install_base /Users/$USER/perl5"
 export PERL_MM_OPT="INSTALL_BASE=/Users/$USER/perl5"
