@@ -75,6 +75,14 @@ alias eject_force="diskutil unmountDisk force"
 # Reload DNS on OSX
 alias flushdns="dscacheutil -flushcache"
 
+# Start/stop indexing on all volumes.
+alias spotlight_off='sudo mdutil -a -i off'
+alias spotlight_on='sudo mdutil -a -i on'
+
+# Load/unload Spotlight Launch Daemons.
+alias spotlight_unload='sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.metadata.mds.plist'
+alias spotlight_load='sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.metadata.mds.plist'
+
 # LINUX
 # Open any file with the default command for that file
 # alias open='xdg-open'

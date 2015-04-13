@@ -19,39 +19,39 @@ realpath () {
 }
 
 
-# Change dir via find
+# Change dir recursively via find.
 # Usage: cdf (dir)
 cdf() {
   pushd $(find . -name $1)
 }
 
-# Find file
+# Find file recursively.
 # Usage: ff (file)
 ff() {
   find . -name $1
 }
 
-# Vim file via find
+# Find recursively and edit the file in Vim.
 # Usage: ff (file)
 vimf() {
   vim $(find . -name $1)
 }
 
-# Allows you to search for any text in any file.
+# Allows you to search for any text in any file recursively.
 # Usage: ft "my string" *.php
 ft() {
   find . -name "$2" -exec grep -il "$1" {} \;
 }
 
-# Find duplicate files
+# Find duplicate files.
 # Usage: dups (dir)
 dups() {
   fdupes -v && fdupes -rS1 $1 | sed '$!N;s/\n/ /' | sort -n
 }
 
-# Find command in history
-# Usage: ff (file)
-h() {
+# Search for command in history.
+# Usage: hs (string)
+hs() {
   history | grep $1
 }
 
