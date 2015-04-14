@@ -15,26 +15,26 @@ fi
 # Realpath to provide absolute path with OSX
 # See: http://stackoverflow.com/questions/3572030/bash-script-absolute-path-with-osx
 realpath () {
-  [[ $1 = /* ]] && echo "$1" || echo "$PWD/${1#./}"
+  [[ "$1" = /* ]] && echo "$1" || echo "$PWD/${1#./}"
 }
 
 
 # Change dir recursively via find.
 # Usage: cdf (dir)
 cdf() {
-  pushd $(find . -name $1)
+  pushd "$(find . -name "$1")"
 }
 
 # Find file recursively.
 # Usage: ff (file)
 ff() {
-  find . -name $1
+  find . -name "$1"
 }
 
 # Find recursively and edit the file in Vim.
 # Usage: ff (file)
 vimf() {
-  vim $(find . -name $1)
+  vim $(find . -name "$1")
 }
 
 # Allows you to search for any text in any file recursively.
@@ -46,13 +46,13 @@ ft() {
 # Find duplicate files.
 # Usage: dups (dir)
 dups() {
-  fdupes -v && fdupes -rS1 $1 | sed '$!N;s/\n/ /' | sort -n
+  fdupes -v && fdupes -rS1 "$1" | sed '$!N;s/\n/ /' | sort -n
 }
 
 # Search for command in history.
 # Usage: hs (string)
 hs() {
-  history | grep $1
+  history | grep "$1"
 }
 
 # Trace mysqld for queries
