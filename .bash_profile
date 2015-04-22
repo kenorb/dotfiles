@@ -73,6 +73,26 @@ dapache-files() {
   sudo dtruss -t open -fn httpd 2>&1 | grep -o '".*"' | grep -o '[^"].*\\'
 }
 
+# Strip trailing whitespaces.
+# Usage: trim *.*
+# See: http://stackoverflow.com/q/149057/55075
+trim() {
+  ex +'bufdo!%s/\s\+$//e' -cxa $*
+}
+
+# Convert tabs to spaces.
+# Usage: retab *.*
+# See: http://stackoverflow.com/q/11094383/55075
+retab() {
+  ex +'set ts=2' +'bufdo retab' -cxa $*
+}
+
+# Archive the page in Wayback Machine.
+# Usage: archive http://example.com/
+archive() {
+  curl -s http://web.archive.org/save/$1 | tail
+}
+
 # Extract most know archives
 # Usage: extract (file)
 extract () {
