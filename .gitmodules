@@ -4,3 +4,9 @@
 [submodule "other/adamv"]
 	path = other/adamv
 	url = https://github.com/adamv/dotfiles
+[submodule "mathiasbynens"]
+	path = other/mathiasbynens
+	url = https://github.com/mathiasbynens/dotfiles
+[submodule "cowboy"]
+	path = other/cowboy
+	url = https://github.com/cowboy/dotfiles
