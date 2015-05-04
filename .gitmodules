@@ -10,3 +10,6 @@
 [submodule "cowboy"]
 	path = other/cowboy
 	url = https://github.com/cowboy/dotfiles
+[submodule "bin"]
+	path = bin
+	url = https://github.com/kenorb/binfiles
