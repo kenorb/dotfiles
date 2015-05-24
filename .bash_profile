@@ -90,7 +90,7 @@ retab() {
 # Archive the page in Wayback Machine.
 # Usage: archive http://example.com/
 archive() {
-  curl -s http://web.archive.org/save/$1 | tail
+  for url in $*; do curl -s http://web.archive.org/save/$url | tail; done
 }
 
 # Extract most know archives
@@ -118,14 +118,14 @@ extract () {
 
 # Uncompress zlib data (e.g. git objects)
 # Usage: deflate (file)
-deflate () {
+deflate() {
   printf "\x1f\x8b\x08\x00\x00\x00\x00\x00"  | cat -- - $1 | gunzip
 }
 
 # Convert svn branches and tags into git.
 # Usage: svn2git
 # See: http://stackoverflow.com/q/2244252/55075
-svn2git () {
+svn2git() {
   git svn fetch --all # Fetch all remote branches that have not been fetched yet.
   git for-each-ref --format="%(refname:short) %(objectname)" refs/remotes/tags \
   | while read BRANCH REF

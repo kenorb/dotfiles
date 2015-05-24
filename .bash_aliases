@@ -74,6 +74,13 @@ alias DiskUtility_debug='defaults write com.apple.DiskUtility DUDebugMenuEnabled
 alias eject_force="diskutil unmountDisk force"
 # Reload DNS on OSX
 alias flushdns="dscacheutil -flushcache"
+# Changes Terminal title.
+alias title="printf '\033]0;%s\007'"
+# Set Mac System Sleep Idle Time
+alias sleep="sudo systemsetup -setcomputersleep"
+alias startup="osascript -e 'tell application \"System Events\" to get name of every login item'"
+alias kextstat_noapple='kextstat -kl | grep -v com.apple'
+alias jobs_other='sudo launchctl list | sed 1d | awk "!/0x|com\.(apple|openssh|vix)|edu\.mit|org\.(amavis|apache|cups|isc|ntp|postfix|x)/{print $3}"'
 
 # Start/stop indexing on all volumes.
 alias spotlight_off='sudo mdutil -a -i off'
@@ -108,7 +115,6 @@ alias rm='rm -v'
 # One letter quickies:
 alias p='pwd'
 alias x='exit'
-alias {ack,ak}='ack-grep'
 
 #
 # Directories
