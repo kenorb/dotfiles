@@ -1,5 +1,5 @@
 [user]
-	name = Rafal
+	name = kenorb
 	email = kenorb@gmail.com
 [merge]
   renamelimit =       7274
@@ -14,6 +14,9 @@
   addremove = !git add . && git ls-files -deleted | xargs git rm
   majonez = !echo Hellmanns
   svn-dcommit =     "!set -o xtrace; git stash; git svn dcommit; git stash pop -q"
+# set -o xtrace; git stash; git svn dcommit; git stash pop -q"
+  update-all = "!cd $(git rev-parse --show-toplevel 2> /dev/null) && find -name .git -type d -execdir git pull -v ';'"
+# $(git rev-parse --show-toplevel 2> /dev/null)
 [diff]
 	tool = diffmerge
 [mergetool]
@@ -23,22 +26,25 @@
 [difftool]
 	prompt = NO
 	external = /usr/bin/diffmerge
-[difftool "diffmerge"] 
+[difftool "diffmerge"]
   cmd = /Applications/DiffMerge.app/Contents/MacOS/DiffMerge "$LOCAL" "$REMOTE" # For DiffMerge
 	keepBackup = false
   trustExitCode = true
-[difftool "bbdiff"] 
+[difftool "bbdiff"]
   cmd = /usr/local/bin/bbdiff --wait --resume "$LOCAL" "$REMOTE" # for BBEdit
-[difftool "twdiff"] 
+[difftool "twdiff"]
   cmd = /usr/bin/twdiff --wait --resume "$LOCAL" "$REMOTE" # for TextWrangler
-[difftool "filemerge"] 
+[difftool "filemerge"]
   cmd = /usr/bin/opendiff "$LOCAL" "$REMOTE" # for FileMerge
 
 [push]
-	default = matching
+	default = current
 
 [gc]
 	auto = 0
+
+[color]
+  ui = auto
 
 ;[filter "rcs-keywords"]
 ;  clean=.git_filters/rcs-keywords.clean
@@ -52,6 +58,13 @@
 	filemode = false
   ; detect and raise errors about trailing spaces and spaces before tabs
   whitespace = trailing-space,space-before-tab
+	excludesfile = /Users/kenorb/.gitignore_global
 [apply]
   ; strip whitespaces, but only during patch, not "always automatically"
   whitespace = fix
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path =
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true

@@ -20,6 +20,7 @@ realpath () {
 
 
 # Change dir recursively via find.
+# Note: It's basically the same as: cd **/dir when globstar is enabled.
 # Usage: cdf (dir)
 cdf() {
   pushd "$(find . -name "$1")"
@@ -32,9 +33,10 @@ ff() {
 }
 
 # Find recursively and edit the file in Vim.
+# Note: It's basically the same as: vim **/file when globstar is enabled.
 # Usage: ff (file)
 vimf() {
-  vim $(find . -name "$1")
+  vim "$(find . -name "$1")"
 }
 
 # Allows you to search for any text in any file recursively.
@@ -90,7 +92,7 @@ retab() {
 # Archive the page in Wayback Machine.
 # Usage: archive http://example.com/
 archive() {
-  for url in $*; do curl -s http://web.archive.org/save/$url | tail; done
+  for url in $*; do curl -vs http://web.archive.org/save/$url | tail; done
 }
 
 # Extract most know archives
@@ -149,6 +151,7 @@ export LANG=C LC_CTYPE=C # Fixes for sed, see: http://www.delorie.com/gnu/docs/g
 #############################################################################
 
 export PS1='\[\033[01;31m\]\u\[\033[01;33m\]@\[\033[01;36m\]\h \[\033[01;33m\]\w \[\033[01;35m\]\$ \[\033[00m\]'
+export PROMPT_DIRTRIM=2
 umask 022
 
 #############################################################################
@@ -162,3 +165,5 @@ export HISTSIZE=99999999
 export HISTCONTROL="ignoreboth"
 
 #############################################################################
+
+export PATH="$PATH:/Applications/DevDesktop/drush"

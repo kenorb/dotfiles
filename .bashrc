@@ -27,7 +27,7 @@ case "$OSTYPE" in
     export LC_ALL=en_GB.UTF-8
 
     # For MAMP (OSX)
-    PHP_VER="5.5.3" # Or: 5.4.19/5.5.3 ($ls /Applications/MAMP/bin/php/php*)
+    PHP_VER="5.6.10" # Or: 5.4.19/5.5.3 ($ls /Applications/MAMP/bin/php/php*)
 
     # Set PATH for OSX
     export PATH=/Applications/MAMP/Library/bin:/Applications/MAMP/bin/php/php$PHP_VER/bin:/usr/local/sbin:/usr/local/bin:$PATH:/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin/gcc
@@ -149,6 +149,9 @@ shopt -s checkwinsize
 # match all files and zero or more directories and subdirectories.
 shopt -s globstar
 
+# If set, the extended pattern matching features are enabled. See: http://wiki.bash-hackers.org/syntax/pattern
+shopt -s extglob
+
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
@@ -200,3 +203,5 @@ export PERL_MB_OPT="--install_base /Users/$USER/perl5"
 export PERL_MM_OPT="INSTALL_BASE=/Users/$USER/perl5"
 export PERL5LIB="/Users/$USER/perl5/lib/perl5:$PERL5LIB"
 export PATH="/Users/$USER/perl5/bin:$PATH"
+
+export PATH="$PATH:/Applications/DevDesktop/drush"

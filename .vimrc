@@ -9,8 +9,10 @@ syntax on               " syntax highlighting
 
 " File specific settings
 " ----------------------
-au BufReadPost *.module,*.install,*.theme,*.inc,*.test,*.profile set syntax=php
+au BufReadPost *.php,*.module,*.install,*.theme,*.inc,*.test,*.profile set syntax=php
 " au! BufWrite,FileWritePre *.module,*.install call RemoveWhiteSpace()
+au BufReadPost *.mq4,*.mq5,*.mqh set syntax=c
+au BufReadPost *.py set ts=4 | set sts=4 | set sw=4
 
 " Workaround for crontab (See: http://vi.stackexchange.com/q/137/467)
 au BufNewFile,BufRead crontab.* set nobackup | set nowritebackup
@@ -169,17 +171,17 @@ endif
 "
 " Removes the ^M character from the end of every line
 function! RemoveM()
-    :%s/^M$//g
+    :%s/^M$//ge
 endfunction
 " Replaces the ^M character with a carraige return native to the system
 function! ReplaceM()
-    :%s/^M/\r/g
+    :%s/^M/\r/ge
 endfunction
 " Removes superfluous white space from the end of a line
 function! RemoveWhiteSpace()
-    :%s/\s*$//ge
-    :'^
-    `.
+    :%s/\s\+$//e
+":'^
+"`.
 endfunction
 
 " Command Reference

@@ -77,7 +77,7 @@ alias flushdns="dscacheutil -flushcache"
 # Changes Terminal title.
 alias title="printf '\033]0;%s\007'"
 # Set Mac System Sleep Idle Time
-alias sleep="sudo systemsetup -setcomputersleep"
+alias systemsleep="sudo systemsetup -setcomputersleep"
 alias startup="osascript -e 'tell application \"System Events\" to get name of every login item'"
 alias kextstat_noapple='kextstat -kl | grep -v com.apple'
 alias jobs_other='sudo launchctl list | sed 1d | awk "!/0x|com\.(apple|openssh|vix)|edu\.mit|org\.(amavis|apache|cups|isc|ntp|postfix|x)/{print $3}"'
@@ -158,6 +158,9 @@ alias {gpus,gh}='git push '
 alias glom='git pull origin master'
 alias ghom='git push origin master'
 alias gg='git grep '
+alias cdgit='cd "$(git rev-parse --show-toplevel 2> /dev/null)"'
+alias git-pull-all='find $(git rev-parse --show-toplevel 2> /dev/null) -name .git -type d -execdir git pull -v ";"'
+
 
 #
 # vim
