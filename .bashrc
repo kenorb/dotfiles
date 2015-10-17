@@ -42,7 +42,7 @@ case "$OSTYPE" in
     export DYLD_FALLBACK_LIBRARY_PATH="/usr/X11/lib:/usr/lib" # See: http://stackoverflow.com/questions/10820981/dylibs-and-os-x
 
     # Fix for Git-SVN (OSX) [Error: Can't locate SVN/Core.pm in @INC]. See: http://stackoverflow.com/questions/13571944/git-svn-unrecognized-url-scheme-error
-    export PERL5LIB="/Users/$USER/perl5/lib/perl5:/Applications/Xcode.app/Contents/Developer/Library/Perl/5.16"
+    export PERL5LIB="$HOME/perl5/lib/perl5:/Applications/Xcode.app/Contents/Developer/Library/Perl/5.16"
 
     # OSX specific aliases.
     alias diffmerge="/Applications/DiffMerge.app/Contents/MacOS/DiffMerge"
@@ -205,3 +205,6 @@ export PERL5LIB="/Users/$USER/perl5/lib/perl5:$PERL5LIB"
 export PATH="/Users/$USER/perl5/bin:$PATH"
 
 export PATH="$PATH:/Applications/DevDesktop/drush"
+
+# added by travis gem
+[ -f /Users/kenorb/.travis/travis.sh ] && source /Users/kenorb/.travis/travis.sh

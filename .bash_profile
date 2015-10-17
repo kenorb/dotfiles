@@ -78,16 +78,16 @@ dapache-files() {
 # Strip trailing whitespaces.
 # Usage: trim *.*
 # See: http://stackoverflow.com/q/149057/55075
-trim() {
-  ex +'bufdo!%s/\s\+$//e' -cxa $*
-}
+#trim() {
+#  ex +'bufdo!%s/\s\+$//e' -cxa $*
+#}
 
 # Convert tabs to spaces.
 # Usage: retab *.*
 # See: http://stackoverflow.com/q/11094383/55075
-retab() {
-  ex +'set ts=2' +'bufdo retab' -cxa $*
-}
+#retab() {
+#  ex +'set ts=2' +'bufdo retab' -cxa $*
+#}
 
 # Archive the page in Wayback Machine.
 # Usage: archive http://example.com/
@@ -138,6 +138,13 @@ svn2git() {
           git tag -a -m "$BODY" $TAG_NAME $REF^  && \ # Create git tag from tag branch.
           git branch -r -d $BRANCH # Delete tag branch.
     done
+}
+
+# Compare two binary files.
+# Usage: diffhex file1 file2
+# See: http://superuser.com/a/968863/87805
+diffhex() {
+  diff -y -W200 <(xxd -l1000 "$1") <(xxd -l1000 "$2") | colordiff
 }
 
 # GLOBAL VARIABLES #

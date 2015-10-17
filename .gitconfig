@@ -17,8 +17,16 @@
 # set -o xtrace; git stash; git svn dcommit; git stash pop -q"
   update-all = "!cd $(git rev-parse --show-toplevel 2> /dev/null) && find -name .git -type d -execdir git pull -v ';'"
 # $(git rev-parse --show-toplevel 2> /dev/null)
+
+# DIFF section
 [diff]
 	tool = diffmerge
+[diff "zip"]
+    textconv = unzip -v
+[diff "bin"]
+    textconv = hexdump -v -C
+[diff "pdf"]
+    textconv = pdfinfo
 [mergetool]
 	tool = diffmerge
 [opendiff]
@@ -36,6 +44,9 @@
   cmd = /usr/bin/twdiff --wait --resume "$LOCAL" "$REMOTE" # for TextWrangler
 [difftool "filemerge"]
   cmd = /usr/bin/opendiff "$LOCAL" "$REMOTE" # for FileMerge
+
+[pull]
+	default = current
 
 [push]
 	default = current
@@ -59,12 +70,16 @@
   ; detect and raise errors about trailing spaces and spaces before tabs
   whitespace = trailing-space,space-before-tab
 	excludesfile = /Users/kenorb/.gitignore_global
+	autocrlf = false
 [apply]
   ; strip whitespaces, but only during patch, not "always automatically"
   whitespace = fix
+
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path =
 [mergetool "sourcetree"]
 	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
+[pull]
+	default = current

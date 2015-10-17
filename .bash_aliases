@@ -163,8 +163,10 @@ alias git-pull-all='find $(git rev-parse --show-toplevel 2> /dev/null) -name .gi
 
 
 #
-# vim
+# vim/vi/ex
 alias v='vim'
+alias trim="ex +'bufdo!%s/\s\+$//e' -scxa" # Strip trailing whitespaces.
+alias retab="ex +'set ts=2' +'bufdo retab' -scxa" # Convert tabs to spaces.
 
 #
 # tmux

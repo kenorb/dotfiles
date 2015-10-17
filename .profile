@@ -30,5 +30,4 @@ fi
 export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
 
-
 export PATH="$PATH:/Applications/DevDesktop/drush"
