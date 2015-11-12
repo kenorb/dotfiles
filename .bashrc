@@ -30,8 +30,9 @@ case "$OSTYPE" in
     PHP_VER="5.6.10" # Or: 5.4.19/5.5.3 ($ls /Applications/MAMP/bin/php/php*)
 
     # Set PATH for OSX
-    export PATH=/Applications/MAMP/Library/bin:/Applications/MAMP/bin/php/php$PHP_VER/bin:/usr/local/sbin:/usr/local/bin:$PATH:/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin/gcc
-    export PATH=$PATH:$HOME/bin:$HOME/binfiles
+    export PATH="$HOME/bin:$HOME/binfiles:/usr/local/sbin:/usr/local/bin:$PATH"
+    type brew && brew --prefix homebrew/php/php56 && export PATH="$(brew --prefix homebrew/php/php56)/bin:$PATH"
+    export PATH="$PATH:/Applications/MAMP/Library/bin:/Applications/MAMP/bin/php/php$PHP_VER/bin:/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin/gcc"
     export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH" # add a "gnubin" for coreutils
     export PYTHONPATH="$PYTHONPATH:$HOME/.python"
     # :/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang
@@ -196,15 +197,20 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# added by travis gem
+[ -f $HOME/.travis/travis.sh ] && source $HOME/.travis/travis.sh
+
 # Exports
 export EDITOR='vim'
-export PERL_LOCAL_LIB_ROOT="$PERL_LOCAL_LIB_ROOT:/Users/$USER/perl5"
-export PERL_MB_OPT="--install_base /Users/$USER/perl5"
-export PERL_MM_OPT="INSTALL_BASE=/Users/$USER/perl5"
-export PERL5LIB="/Users/$USER/perl5/lib/perl5:$PERL5LIB"
-export PATH="/Users/$USER/perl5/bin:$PATH"
 
-export PATH="$PATH:/Applications/DevDesktop/drush"
+if [ -d ~/perl5 ]; then
+  export PERL_LOCAL_LIB_ROOT="$PERL_LOCAL_LIB_ROOT:$HOME/perl5"
+  export PERL_MB_OPT="--install_base $HOME/perl5"
+  export PERL_MM_OPT="INSTALL_BASE=$HOME/perl5"
+  export PERL5LIB="$HOME/perl5/lib/perl5:$PERL5LIB"
+  export PATH="$PATH:$HOME/perl5/bin"
+fi
 
-# added by travis gem
-[ -f /Users/kenorb/.travis/travis.sh ] && source /Users/kenorb/.travis/travis.sh
+export COMPOSER_BIN_DIR="/usr/local/bin"
+#export PATH="$PATH:/Applications/DevDesktop/drush"
+
