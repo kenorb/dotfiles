@@ -2,10 +2,14 @@
 # Usage:
 #   make install
 #
+CWD:=$(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 
 install:
-	ln -vs ~/dotfiles/.ssh/* ~/.ssh 
-	ln -vs ~/dotfiles/.??* ~/
+	@echo Installing...
+	find "$(CWD)" -maxdepth 1 -name ".*" -type f -exec ln -vs {} ~/ ';'
+	find "$(CWD)/.ssh" -maxdepth 1 -type f -exec ln -vs {} ~/.ssh/ ';'
 
-uninstall:
-	find ~/ -maxdepth 2 -type l -exec rm -v "{}" \;
+clean:
+	@echo Cleaning...
+	find ~ -maxdepth 1 -name ".*" -type l -print -delete
+	find ~/.ssh -maxdepth 1 -type l -print -delete
