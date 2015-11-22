@@ -31,15 +31,15 @@ case "$OSTYPE" in
 
     # Set PATH for OSX
     export PATH="$HOME/bin:$HOME/binfiles:/usr/local/sbin:/usr/local/bin:$PATH"
-    type brew && brew --prefix homebrew/php/php56 && export PATH="$(brew --prefix homebrew/php/php56)/bin:$PATH"
+    which brew && brew --prefix homebrew/php/php56 > /dev/null && export PATH="$(brew --prefix homebrew/php/php56)/bin:$PATH"
     export PATH="$PATH:/Applications/MAMP/Library/bin:/Applications/MAMP/bin/php/php$PHP_VER/bin:/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin/gcc"
     export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH" # add a "gnubin" for coreutils
     export PYTHONPATH="$PYTHONPATH:$HOME/.python"
     # :/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang
 
     # Development variables.
-    # export HOMEBREW_GITHUB_API_TOKEN=0ff93b1c7cc8efdf109d169899a12852dfd566c8 # OAuth revoked: Do not keep this public for security reasons.
-    export FLEX_HOME=/usr/local/Cellar/flex_sdk/4.6.0.23201/libexec
+    export HOMEBREW_GITHUB_API_TOKEN=$(cat ~/.oauth_github) # Load secret OAuth from the file (do not keep token in public for security reasons)
+    export FLEX_HOME="/usr/local/Cellar/flex_sdk/4.6.0.23201/libexec"
     export DYLD_FALLBACK_LIBRARY_PATH="/usr/X11/lib:/usr/lib" # See: http://stackoverflow.com/questions/10820981/dylibs-and-os-x
 
     # Fix for Git-SVN (OSX) [Error: Can't locate SVN/Core.pm in @INC]. See: http://stackoverflow.com/questions/13571944/git-svn-unrecognized-url-scheme-error
