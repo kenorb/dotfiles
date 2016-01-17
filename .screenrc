@@ -1,2 +1,5 @@
-# Enable mouse scrolling and scroll bar history scrolling
+# Enable mouse scrolling and scroll bar history scrolling.
 termcapinfo xterm* ti@:te@
+# Easier scroll with PgUp/PgDown.
+bindkey "^[[5~" eval 'copy' 'stuff ^b'  # PgUp | Enter copy/scrollback mode and page up
+bindkey "^[[6~" eval 'copy' "stuff ^f'  # PgDown | Enter copy/scrollback mode and page down
