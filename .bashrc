@@ -38,7 +38,6 @@ case "$OSTYPE" in
     # :/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang
 
     # Development variables.
-    export HOMEBREW_GITHUB_API_TOKEN=$(cat ~/.oauth_github) # Load secret OAuth from the file (do not keep token in public for security reasons)
     export FLEX_HOME="/usr/local/Cellar/flex_sdk/4.6.0.23201/libexec"
     export DYLD_FALLBACK_LIBRARY_PATH="/usr/X11/lib:/usr/lib" # See: http://stackoverflow.com/questions/10820981/dylibs-and-os-x
 
@@ -197,6 +196,11 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# Load private secret settings.
+if [ -f ~/.secrets ]; then
+    . ~/.secrets
+fi
+
 # added by travis gem
 [ -f $HOME/.travis/travis.sh ] && source $HOME/.travis/travis.sh
 
@@ -214,3 +218,6 @@ fi
 export COMPOSER_BIN_DIR="/usr/local/bin"
 #export PATH="$PATH:/Applications/DevDesktop/drush"
 
+
+# added by travis gem
+[ -f /Users/kenorb/.travis/travis.sh ] && source /Users/kenorb/.travis/travis.sh
