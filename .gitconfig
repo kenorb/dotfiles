@@ -1,8 +1,75 @@
 [user]
-	name = kenorb
-	email = kenorb@gmail.com
+  name = kenorb
+  email = kenorb@users.noreply.github.com
+
+[push]
+  default = current
+
+[gc]
+  auto = 0
+
+[color]
+  ui = auto
+
+;[filter "rcs-keywords"]
+;  clean=.git_filters/rcs-keywords.clean
+;  smudge=.git_filters/rcs-keywords.smudge %f
+
+[apply]
+  ; strip whitespaces, but only during patch, not "always automatically"
+  whitespace = fix
+
+[rebase]
+  autoStash = true
+
 [merge]
-  renamelimit =       7274
+  renamelimit = 7274
+
+[mergetool]
+  tool = diffmerge
+
+[mergetool "sourcetree"]
+  cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+  trustExitCode = true
+
+# DIFF section
+[diff]
+  tool = diffmerge
+
+[diff "zip"]
+  textconv = unzip -v
+
+[diff "bin"]
+  textconv = hexdump -v -C
+
+[diff "pdf"]
+  textconv = pdfinfo
+
+[opendiff]
+  tool = /usr/bin/opendiff
+
+[difftool]
+  prompt = NO
+  external = /usr/bin/diffmerge
+
+[difftool "diffmerge"]
+  cmd = /Applications/DiffMerge.app/Contents/MacOS/DiffMerge "$LOCAL" "$REMOTE" # For DiffMerge
+  keepBackup = false
+  trustExitCode = true
+
+[difftool "bbdiff"]
+  cmd = /usr/local/bin/bbdiff --wait --resume "$LOCAL" "$REMOTE" # for BBEdit
+
+[difftool "twdiff"]
+  cmd = /usr/bin/twdiff --wait --resume "$LOCAL" "$REMOTE" # for TextWrangler
+
+[difftool "filemerge"]
+  cmd = /usr/bin/opendiff "$LOCAL" "$REMOTE" # for FileMerge
+
+[difftool "sourcetree"]
+  cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+  path =
+
 [alias]
   log-graph =       !git log --oneline --graph --decorate --all
   out =             !git log --boundary $(git rev-list --max-count=1 --simplify-by-decoration HEAD^)..
@@ -18,68 +85,14 @@
   update-all = "!cd $(git rev-parse --show-toplevel 2> /dev/null) && find -name .git -type d -execdir git pull -v ';'"
 # $(git rev-parse --show-toplevel 2> /dev/null)
 
-# DIFF section
-[diff]
-	tool = diffmerge
-[diff "zip"]
-    textconv = unzip -v
-[diff "bin"]
-    textconv = hexdump -v -C
-[diff "pdf"]
-    textconv = pdfinfo
-[mergetool]
-	tool = diffmerge
-[opendiff]
-	tool = /usr/bin/opendiff
-[difftool]
-	prompt = NO
-	external = /usr/bin/diffmerge
-[difftool "diffmerge"]
-  cmd = /Applications/DiffMerge.app/Contents/MacOS/DiffMerge "$LOCAL" "$REMOTE" # For DiffMerge
-	keepBackup = false
-  trustExitCode = true
-[difftool "bbdiff"]
-  cmd = /usr/local/bin/bbdiff --wait --resume "$LOCAL" "$REMOTE" # for BBEdit
-[difftool "twdiff"]
-  cmd = /usr/bin/twdiff --wait --resume "$LOCAL" "$REMOTE" # for TextWrangler
-[difftool "filemerge"]
-  cmd = /usr/bin/opendiff "$LOCAL" "$REMOTE" # for FileMerge
-
-[pull]
-	default = current
-
-[push]
-	default = current
-
-[gc]
-	auto = 0
-
-[color]
-  ui = auto
-
-;[filter "rcs-keywords"]
-;  clean=.git_filters/rcs-keywords.clean
-;  smudge=.git_filters/rcs-keywords.smudge %f
-
 ; HOW TO
 ; How to change the author of past commits in git? See: http://stackoverflow.com/questions/750172/how-do-i-change-the-author-of-a-commit-in-git
 ;   git filter-branch -f --env-filter 'if [ $GIT_AUTHOR_EMAIL = old@email ]; then GIT_AUTHOR_EMAIL='new@email'; GIT_COMMITTER_EMAIL='new@email'; fi; export GIT_AUTHOR_EMAIL; export GIT_COMMITTER_EMAIL;'
 ;   git filter-branch -f --env-filter "GIT_AUTHOR_NAME='Newname'; GIT_AUTHOR_EMAIL='newemail'; GIT_COMMITTER_NAME='Oldname'; GIT_COMMITTER_EMAIL='oldemail';" HEAD
+
 [core]
-	filemode = false
+  filemode = false
   ; detect and raise errors about trailing spaces and spaces before tabs
   whitespace = trailing-space,space-before-tab
-	excludesfile = /Users/kenorb/.gitignore_global
-	autocrlf = false
-[apply]
-  ; strip whitespaces, but only during patch, not "always automatically"
-  whitespace = fix
-
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path =
-[mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
-[pull]
-	default = current
+  ; excludesfile = /Users/kenorb/.gitignore_global
+  autocrlf = false
