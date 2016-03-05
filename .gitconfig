@@ -15,6 +15,10 @@
 ;  clean=.git_filters/rcs-keywords.clean
 ;  smudge=.git_filters/rcs-keywords.smudge %f
 
+# Usage in .gitattributes: some-dotfile filter=remove-pass
+[filter "remove-pass"]
+clean = "sed -e 's/^password=.*/#password=TODO/'"
+
 [apply]
   ; strip whitespaces, but only during patch, not "always automatically"
   whitespace = fix
