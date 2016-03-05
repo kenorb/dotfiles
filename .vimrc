@@ -3,13 +3,14 @@
 "# Author: kenorb   #
 "####################
 
-" Syntax highlighting
-" ------------
 syntax on               " syntax highlighting
+set nocompatible        " (cp) use Vim defaults (much better)
 
 " File specific settings
 " ----------------------
-au BufReadPost *.php,*.module,*.install,*.theme,*.inc,*.test,*.profile set syntax=php
+au BufReadPost *.php,*.module,*.inc,*.install,*.test,*.profile,*.theme
+  \ set syntax=php |
+  \ let g:syntastic_php_phpcs_args="--standard=Drupal --extensions=php,module,inc,install,test,profile,theme"
 " au! BufWrite,FileWritePre *.module,*.install call RemoveWhiteSpace()
 au BufReadPost *.mq4,*.mq5,*.mqh set syntax=c
 au BufReadPost *.py set ts=4 | set sts=4 | set sw=4
@@ -20,7 +21,6 @@ au BufNewFile,BufRead crontab.* set nobackup | set nowritebackup
 " Interface
 " ------------
 set showcmd                     " (sc) display an incomplete command in the lower right
-set nocompatible                " (cp) use Vim defaults (much better)
 set showmatch                   " (sm) briefly jump to matching bracket when inserting one
 set autoindent                  " (ai) turn on auto-indenting and preserve current indent on new lines
 set backspace=indent,eol,start  " (bs) allows backspacing beyond starting point of insert mode, indents and line breaks
@@ -166,8 +166,25 @@ if $VIM_PRIVATE
   set secure
 endif
 
+" Drupal Code Sniffer integration
+" -------------------------------
+if exists('g:loaded_syntastic_plugin') && has('statusline')
+  set laststatus=2
+  " Broken down into easily includeable segments
+  set statusline=%<%f\ " Filename
+  set statusline+=%w%h%m%r " Options
+  set statusline+=%{fugitive#statusline()} " Git Hotness
+  set statusline+=\ [%{&ff}/%Y] " filetype
+  set statusline+=\ [%{getcwd()}] " current dir
+  set statusline+=%#warningmsg#
+  set statusline+=%{SyntasticStatuslineFlag()}
+  set statusline+=%*
+  let g:syntastic_enable_signs=1
+  set statusline+=%=%-14.(%l,%c%V%)\ %p%% " Right aligned file nav info
+endif
+
 " Functions
-" ------------------------------------------------------------
+" ---------
 "
 " Removes the ^M character from the end of every line
 function! RemoveM()
@@ -182,6 +199,12 @@ function! RemoveWhiteSpace()
     :%s/\s\+$//e
 ":'^
 "`.
+endfunction
+function! UseTabs()
+  set autoindent
+  set noexpandtab
+  set tabstop=4
+  set shiftwidth=4
 endfunction
 
 " Command Reference
