@@ -94,5 +94,5 @@
   filemode = false
   ; detect and raise errors about trailing spaces and spaces before tabs
   whitespace = trailing-space,space-before-tab
-  ; excludesfile = /Users/kenorb/.gitignore_global
+  excludesfile = ~/.gitignore
   autocrlf = false
