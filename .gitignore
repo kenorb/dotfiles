@@ -1,2 +1,8 @@
 # Ignore Finder metadata files on Mac
 .DS_Store
+
+# Vim swap files
+.*.sw?
+
+# Vagrant folders.
+.vagrant
