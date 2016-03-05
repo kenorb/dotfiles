@@ -29,9 +29,13 @@ case "$OSTYPE" in
     # For MAMP (OSX)
     PHP_VER="5.6.10" # Or: 5.4.19/5.5.3 ($ls /Applications/MAMP/bin/php/php*)
 
+    # Mule ESB configuration.
+    export MULE_HOME=/usr/local/opt/mule
+    [ -d "$MULE_HOME" ] && export PATH=$PATH:$MULE_HOME/bin
+
     # Set PATH for OSX
     export PATH="$HOME/bin:$HOME/binfiles:/usr/local/sbin:/usr/local/bin:$PATH"
-    which brew && brew --prefix homebrew/php/php56 > /dev/null && export PATH="$(brew --prefix homebrew/php/php56)/bin:$PATH"
+    type brew > /dev/null && brew --prefix homebrew/php/php56 > /dev/null && export PATH="$(brew --prefix homebrew/php/php56)/bin:$PATH"
     export PATH="$PATH:/Applications/MAMP/Library/bin:/Applications/MAMP/bin/php/php$PHP_VER/bin:/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin/gcc"
     export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH" # add a "gnubin" for coreutils
     export PYTHONPATH="$PYTHONPATH:$HOME/.python"
