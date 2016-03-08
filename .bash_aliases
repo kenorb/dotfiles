@@ -144,6 +144,9 @@ alias play='cd ~/play/'
 #alias {setups,docs}="cd $WORKBASE_GIT/setups_and_docs"
 #alias {linker,lnk}="cd $WORKBASE_GIT/webs/rails_v3/linker"
 
+# Utils
+alias dos2unix="ex +'bufdo!%!tr -d \r' -scxa"
+
 #
 # git
 alias {gsta,gst}='git status' 
