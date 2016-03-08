@@ -53,6 +53,10 @@ case "$OSTYPE" in
     alias xt-files="egrep -o '/[^/]+:[0-9]+'"
     alias iphone="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Applications/iPhone Simulator.app/Contents/MacOS/iPhone Simulator" # OSX Lion
 
+    # Set prompt
+    export GIT_PS="\[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\] "
+    export PS1="\[\033[01;31m\]\u\[\033[01;33m\]@\[\033[01;36m\]\h \[\033[01;33m\]\W \[\033[01;35m\]\$ $GIT_PS\[\033[00m\]"
+
     # Set other options.
     export LS_OPTIONS='-G -h'
 
@@ -222,6 +226,9 @@ fi
 export COMPOSER_BIN_DIR="/usr/local/bin"
 #export PATH="$PATH:/Applications/DevDesktop/drush"
 
+# Git variables.
+export GITAWAREPROMPT=~/.bash/git-aware-prompt
+[ -f "${GITAWAREPROMPT}/main.sh" ] && source "${GITAWAREPROMPT}/main.sh"
 
 # added by travis gem
 [ -f /Users/kenorb/.travis/travis.sh ] && source /Users/kenorb/.travis/travis.sh

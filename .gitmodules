@@ -13,3 +13,6 @@
 [submodule "bin"]
 	path = bin
 	url = https://github.com/kenorb/binfiles
+[submodule "git-aware-prompt"]
+	path = .bash/git-aware-prompt
+	url = https://github.com/jimeh/git-aware-prompt.git
