@@ -16,17 +16,14 @@ alias la='ls $LS_OPTIONS -A'
 alias l='ls $LS_OPTIONS -alFtr'
 #alias l='ls $LS_OPTIONS -lA'
 #alias l='ls $LS_OPTIONS -CF'
-
-alias ..='cd ..'
-alias ...='cd ../..'
-alias s='ssh -l root'
-
-# Getting colored results when using a pipe from grep to less.
-alias less='less -R'
 # Recursive directory listing
 alias lr='ls -R | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\'' -e '\''s/^/   /'\'' -e '\''s/-/|/'\'''
 # Unix like ls
 alias ll='ls -laF'
+
+# Getting colored results when using a pipe from grep to less.
+alias grep='grep --color=auto'
+alias less='less -R'
 # Jump back n directories at a time
 alias ..='cd ..'
 alias ...='cd ../../'
@@ -81,6 +78,10 @@ alias systemsleep="sudo systemsetup -setcomputersleep"
 alias startup="osascript -e 'tell application \"System Events\" to get name of every login item'"
 alias kextstat_noapple='kextstat -kl | grep -v com.apple'
 alias jobs_other='sudo launchctl list | sed 1d | awk "!/0x|com\.(apple|openssh|vix)|edu\.mit|org\.(amavis|apache|cups|isc|ntp|postfix|x)/{print $3}"'
+alias git-svn='/Applications/Xcode.app/Contents/Developer/usr/libexec/git-core/git-svn'
+
+# PHP
+alias trace-php='sudo dtrace -qn "php*:::function-entry { printf(\"%Y: PHP function-entry:\t%s%s%s() in %s:%d\n\", walltimestamp, copyinstr(arg3), copyinstr(arg4), copyinstr(arg0), basename(copyinstr(arg1)), (int)arg2); }"'
 
 # Start/stop indexing on all volumes.
 alias spotlight_off='sudo mdutil -a -i off'
@@ -164,12 +165,14 @@ alias gg='git grep '
 alias cdgit='cd "$(git rev-parse --show-toplevel 2> /dev/null)"'
 alias git-pull-all='find $(git rev-parse --show-toplevel 2> /dev/null) -name .git -type d -execdir git pull -v ";"'
 
-
 #
 # vim/vi/ex
 alias v='vim'
 alias trim="ex +'bufdo!%s/\s\+$//e' -scxa" # Strip trailing whitespaces.
 alias retab="ex +'set ts=2' +'bufdo retab' -scxa" # Convert tabs to spaces.
+
+# npm
+alias npm-freeze='npm ls | grep -o "\S\+@\S\+$" | tr @ " " | awk -v q='\''"'\'' '\''{print q$1q": "q"^"$2q","}'\'''
 
 #
 # tmux
