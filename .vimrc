@@ -12,7 +12,7 @@ au BufReadPost *.php,*.module,*.inc,*.install,*.test,*.profile,*.theme
   \ set syntax=php |
   \ let g:syntastic_php_phpcs_args="--standard=Drupal --extensions=php,module,inc,install,test,profile,theme"
 " au! BufWrite,FileWritePre *.module,*.install call RemoveWhiteSpace()
-au BufReadPost *.mq4,*.mq5,*.mqh set syntax=c
+au BufReadPost *.mq4,*.mq5,*.mqh set syntax=c | set ts=4 | set sts=4 | set sw=4
 au BufReadPost *.py set ts=4 | set sts=4 | set sw=4
 
 " Workaround for crontab (See: http://vi.stackexchange.com/q/137/467)
