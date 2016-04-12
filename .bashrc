@@ -38,7 +38,7 @@ case "$OSTYPE" in
     type brew > /dev/null && brew --prefix homebrew/php/php56 > /dev/null && export PATH="$(brew --prefix homebrew/php/php56)/bin:$PATH"
     export PATH="$PATH:/Applications/MAMP/Library/bin:/Applications/MAMP/bin/php/php$PHP_VER/bin:/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin/gcc"
     export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH" # add a "gnubin" for coreutils
-    export PYTHONPATH="$PYTHONPATH:$HOME/.python"
+    export PYTHONPATH="$PYTHONPATH:$HOME/.python" # /usr/local/lib/python3.4/site-packages"
     # :/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang
 
     # Development variables.
@@ -225,6 +225,9 @@ fi
 
 export COMPOSER_BIN_DIR="/usr/local/bin"
 #export PATH="$PATH:/Applications/DevDesktop/drush"
+
+# Enable Bash auto-completion for Drupal Console if exists.
+[ -f "$HOME/.console/console.rc" ] && source "$HOME/.console/console.rc" 2>/dev/null
 
 # Git variables.
 export GITAWAREPROMPT=~/.bash/git-aware-prompt
