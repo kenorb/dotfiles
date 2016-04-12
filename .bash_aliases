@@ -21,6 +21,10 @@ alias lr='ls -R | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\
 # Unix like ls
 alias ll='ls -laF'
 
+# Permissions.
+alias fix-file-perms="find * -type d -print0 | xargs -0 chmod 0755"
+alias fix-dir-perms="find . -type f -print0 | xargs -0 chmod 0644"
+
 # Getting colored results when using a pipe from grep to less.
 alias grep='grep --color=auto'
 alias less='less -R'
@@ -47,7 +51,7 @@ alias big-files='ls -1Rhs | sed -e "s/^ *//" | grep "^[0-9]" | sort -hr | head -
 # What's gobbling the memory?
 alias psmem='ps -o time,ppid,pid,nice,pcpu,pmem,user,comm -A | sort -n -k 6 | tail -15'
 # Get external IP
-alias ifconfig-ext='curl ifconfig.me' # Or: ip.appspot.com
+alias whatismyip='curl ifconfig.me' # Or: ip.appspot.com
 #
 # wget (if available)
 alias wget-all='wget --user-agent=Mozilla -e robots=off --content-disposition --mirror --convert-links -E -K -N -r -c'
@@ -79,9 +83,22 @@ alias startup="osascript -e 'tell application \"System Events\" to get name of e
 alias kextstat_noapple='kextstat -kl | grep -v com.apple'
 alias jobs_other='sudo launchctl list | sed 1d | awk "!/0x|com\.(apple|openssh|vix)|edu\.mit|org\.(amavis|apache|cups|isc|ntp|postfix|x)/{print $3}"'
 alias git-svn='/Applications/Xcode.app/Contents/Developer/usr/libexec/git-core/git-svn'
+alias unpause="pkill -CONT -u $UID"
+alias debug-kernel="sudo fs_usage | grep -v 0.00"
 
-# PHP
+## DTrace
 alias trace-php='sudo dtrace -qn "php*:::function-entry { printf(\"%Y: PHP function-entry:\t%s%s%s() in %s:%d\n\", walltimestamp, copyinstr(arg3), copyinstr(arg4), copyinstr(arg0), basename(copyinstr(arg1)), (int)arg2); }"'
+# Files opened by process.
+alias trace-files="sudo dtrace -qn 'syscall::open*:entry { printf(\"%s %s\n\",execname,copyinstr(arg0)); }'"
+# Syscall count by program.
+alias trace-count-by-program="sudo dtrace -n 'syscall:::entry { @num[execname] = count(); }'"
+# Syscall count by syscall.
+alias trace-count-by-syscall="sudo dtrace -n 'syscall:::entry { @num[probefunc] = count(); }'"
+# Syscall count by process.
+alias trace-count-by-process="sudo dtrace -n 'syscall:::entry { @num[pid,execname] = count(); }'"
+
+# Memcached
+alias flush-memcache='echo flush_all > /dev/tcp/localhost/11211'
 
 # Start/stop indexing on all volumes.
 alias spotlight_off='sudo mdutil -a -i off'
@@ -109,7 +126,7 @@ fi
 
 #
 # Various
-alias h='history | tail'
+alias h='history | grep '
 alias mv='mv -v' 
 alias rm='rm -v'
 
@@ -121,6 +138,10 @@ alias x='exit'
 # Directories
 alias s='cd ..'
 alias play='cd ~/play/'
+
+# Debugging
+# Format strace output, see: http://stackoverflow.com/a/36557550/55075
+alias format-strace='grep --line-buffered -o '\''".\+[^"]"'\'' | grep --line-buffered -o '\''[^"]*[^"]'\'' | while read -r line; do printf "%b" $line; done | tr "\r\n" "\275\276" | tr -d "[:cntrl:]" | tr "\275\276" "\r\n"'
 
 #
 # Rails
@@ -144,6 +165,11 @@ alias play='cd ~/play/'
 #alias {webs,ww}="cd $WORKBASE_GIT/webs"
 #alias {setups,docs}="cd $WORKBASE_GIT/setups_and_docs"
 #alias {linker,lnk}="cd $WORKBASE_GIT/webs/rails_v3/linker"
+
+# Helper Drush/Drupal-related aliases
+alias drush="php -n $(which drush)"
+alias drush-dump7="drush sql-dump --ordered-dump --structure-tables cache,cache_filter,cache_menu,cache_page,history,sessions,watchdog --result-file=dump.sql"
+alias vagrant-suspend-all="vagrant global-status | awk '/running/{print $1}' | gxargs -r -d '\n' -n 1 -- vagrant suspend"
 
 # Utils
 alias dos2unix="ex +'bufdo!%!tr -d \r' -scxa"
