@@ -75,6 +75,7 @@ clean = "sed -e 's/^password=.*/#password=TODO/'"
   path =
 
 [alias]
+  curr-branch       = !git rev-parse --abbrev-ref HEAD
   log-graph =       !git log --oneline --graph --decorate --all
   out =             !git log --boundary $(git rev-list --max-count=1 --simplify-by-decoration HEAD^)..
   sm-diff =         "submodule foreach 'git diff'"
