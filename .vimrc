@@ -12,7 +12,7 @@ au BufReadPost *.php,*.module,*.inc,*.install,*.test,*.profile,*.theme
   \ set syntax=php |
   \ let g:syntastic_php_phpcs_args="--standard=Drupal --extensions=php,module,inc,install,test,profile,theme"
 " au! BufWrite,FileWritePre *.module,*.install call RemoveWhiteSpace()
-au BufReadPost *.mq4,*.mq5,*.mqh set syntax=c | set ts=4 | set sts=4 | set sw=4
+au BufReadPost *.mq4,*.mq5,*.mqh set syntax=c | set ts=2 | set sts=2 | set sw=2
 au BufReadPost *.py set ts=4 | set sts=4 | set sw=4
 
 " Workaround for crontab (See: http://vi.stackexchange.com/q/137/467)
@@ -183,6 +183,21 @@ if exists('g:loaded_syntastic_plugin') && has('statusline')
   set statusline+=%=%-14.(%l,%c%V%)\ %p%% " Right aligned file nav info
 endif
 
+" vim-airline integration
+" -------------------------------
+if exists('g:syntastic') && has('statusline')
+  set statusline+=%#warningmsg#
+  set statusline+=%{SyntasticStatuslineFlag()}
+  set statusline+=%*
+
+  let g:syntastic_always_populate_loc_list = 1
+  let g:syntastic_auto_loc_list = 1
+  let g:syntastic_check_on_open = 1
+  let g:syntastic_check_on_wq = 0
+endif
+
+" vim-airline integration
+
 " Functions
 " ---------
 "
@@ -206,6 +221,11 @@ function! UseTabs()
   set tabstop=4
   set shiftwidth=4
 endfunction
+
+" Initialize plugins.
+" ---------
+"
+execute pathogen#infect()
 
 " Command Reference
 " -----------------
