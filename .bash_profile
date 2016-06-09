@@ -26,7 +26,13 @@ cdf() {
   pushd "$(find . -name "$1")"
 }
 
-# Find file recursively.
+# Find files/dirs by name recursively.
+# Usage: ff (file)
+f() {
+  find . -name "*$1*"
+}
+
+# Find file by exact name recursively.
 # Usage: ff (file)
 ff() {
   find . -name "$1"
@@ -175,6 +181,16 @@ mysql-grant-db() {
 mysql-show-grants() {
   [ -z "$1" ] && { echo "Usage: mysql-show-grants (user)"; return; }
   mysql -ve "SHOW GRANTS FOR '$1'@'localhost'"
+}
+
+# Show all variables.
+mysql-show-variables() {
+  mysql -sve "SHOW VARIABLES LIKE '%$1%'"
+}
+
+# Show error log.
+mysql-show-errorlog() {
+  sudo tail -f $(mysql -Nse "SELECT @@log_error")
 }
 
 # Compare two binary files.
