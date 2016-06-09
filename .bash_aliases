@@ -7,6 +7,8 @@
 [ -z "$PS1" ] && return
 echo $(basename $BASH_SOURCE) loaded.
 
+## File system
+
 #
 # ls variants
 #alias lsd='ls -d .*'
@@ -34,14 +36,19 @@ alias ...='cd ../../'
 alias ....='cd ../../../'
 alias .....='cd ../../../../'
 alias ......='cd ../../../../../'
+
+## Git
+
 # Compact, colorized git log
 alias gl="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 # Visualise git log (like gitk, in the terminal)
 alias lg='git log --graph --full-history --all --color --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"'
+
+# Clone all repos of specific user: http://stackoverflow.com/a/32803025/55075
+alias gh-clone-user-repos='curl "https://api.github.com/users/$1/repos?per_page=1000" | grep -w clone_url | grep -o '\''[^"]\+://.\+.git'\'' | xargs -L1 git clone'
+
 # Show which commands you use the most
 alias freq='cut -f1 -d" " ~/.bash_history | sort | uniq -c | sort -nr | head -n 30'
-# Show active network listeners
-alias netlisteners='lsof -i -P | grep LISTEN'
 # Allow to find the biggest file or directory in the current directory.
 alias ds='du -ks *|sort -n'
 # List top ten largest files/directories in current directory
@@ -50,23 +57,35 @@ alias big='du -ah . | sort -rh | head -20'
 alias big-files='ls -1Rhs | sed -e "s/^ *//" | grep "^[0-9]" | sort -hr | head -n20'
 # What's gobbling the memory?
 alias psmem='ps -o time,ppid,pid,nice,pcpu,pmem,user,comm -A | sort -n -k 6 | tail -15'
+
+## Network
+
 # Get external IP
 alias whatismyip='curl ifconfig.me' # Or: ip.appspot.com
+
+# Show active network listeners
+alias netlisteners='lsof -i -P | grep LISTEN'
+
+## Downloading
+
 #
 # wget (if available)
 alias wget-all='wget --user-agent=Mozilla -e robots=off --content-disposition --mirror --convert-links -E -K -N -r -c'
 #
 # youtube-dl (if available)
 alias youtube-dl='youtube-dl -vcti -R5 --write-description --write-info-json --all-subs --write-thumbnail --add-metadata'
-#
-# Other
-# Find xdebug files.
-#alias xt-files='egrep -o "/[^/]+:[0-9]+"'
+
+## Conversion
 
 # Useful converting tools.
 alias urldecode='sed "s@+@ @g;s@%@\\\\x@g" | xargs -0 printf "%b"'
 
-# OSX
+# Other
+# Find xdebug files.
+#alias xt-files='egrep -o "/[^/]+:[0-9]+"'
+
+## OSX
+
 alias swap_on="sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.dynamic_pager.plist"
 alias swap_off="sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.dynamic_pager.plist"
 alias sql_istat='grep -oE "INTO `\w+`" | grep -oE "`\w+`" | sort | uniq -c | sort -nr'
@@ -84,7 +103,9 @@ alias kextstat_noapple='kextstat -kl | grep -v com.apple'
 alias jobs_other='sudo launchctl list | sed 1d | awk "!/0x|com\.(apple|openssh|vix)|edu\.mit|org\.(amavis|apache|cups|isc|ntp|postfix|x)/{print $3}"'
 alias git-svn='/Applications/Xcode.app/Contents/Developer/usr/libexec/git-core/git-svn'
 alias unpause="pkill -CONT -u $UID"
-alias debug-kernel="sudo fs_usage | grep -v 0.00"
+alias trace-kernel="sudo fs_usage | grep -v 0.00"
+alias disable-local-backups="sudo tmutil disablelocal"
+alias enable-local-backups="sudo tmutil enablelocal"
 
 ## DTrace
 alias trace-php='sudo dtrace -qn "php*:::function-entry { printf(\"%Y: PHP function-entry:\t%s%s%s() in %s:%d\n\", walltimestamp, copyinstr(arg3), copyinstr(arg4), copyinstr(arg0), basename(copyinstr(arg1)), (int)arg2); }"'
@@ -101,12 +122,12 @@ alias trace-count-by-process="sudo dtrace -n 'syscall:::entry { @num[pid,execnam
 alias flush-memcache='echo flush_all > /dev/tcp/localhost/11211'
 
 # Start/stop indexing on all volumes.
-alias spotlight_off='sudo mdutil -a -i off'
-alias spotlight_on='sudo mdutil -a -i on'
+alias spotlight-off='sudo mdutil -a -i off'
+alias spotlight-on='sudo mdutil -a -i on'
 
 # Load/unload Spotlight Launch Daemons.
-alias spotlight_unload='sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.metadata.mds.plist'
-alias spotlight_load='sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.metadata.mds.plist'
+alias spotlight-unload='sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.metadata.mds.plist'
+alias spotlight-load='sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.metadata.mds.plist'
 
 # LINUX
 # Open any file with the default command for that file
@@ -205,3 +226,5 @@ alias npm-freeze='npm ls | grep -o "\S\+@\S\+$" | tr @ " " | awk -v q='\''"'\'' 
 #alias {ton,tn}='tmux set -g mode-mouse on'
 #alias {tof,tf}='tmux set -g mode-mouse off'
 
+# Fun
+alias weather-london="curl http://wttr.in/london"
