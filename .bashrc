@@ -24,10 +24,14 @@ case "$OSTYPE" in
   darwin*) # Mac (OSX)
 
     # Set LC encoding to UTF-8.
-    export LC_ALL=en_GB.UTF-8
+    #export LC_ALL=en_GB.UTF-8
+
+    # Fixes for illegal byte sequence (http://stackoverflow.com/q/19242275/55075).
+    export LC_ALL=C
+    export LANG=C
 
     # For MAMP (OSX)
-    PHP_VER="5.6.10" # Or: 5.4.19/5.5.3 ($ls /Applications/MAMP/bin/php/php*)
+    PHP_VER="5.6.20" # Or: 5.4.19/5.5.3 ($ls /Applications/MAMP/bin/php/php*)
 
     # Mule ESB configuration.
     export MULE_HOME=/usr/local/opt/mule
@@ -44,6 +48,7 @@ case "$OSTYPE" in
     # Development variables.
     export FLEX_HOME="/usr/local/Cellar/flex_sdk/4.6.0.23201/libexec"
     export DYLD_FALLBACK_LIBRARY_PATH="/usr/X11/lib:/usr/lib" # See: http://stackoverflow.com/questions/10820981/dylibs-and-os-x
+    #export PHP_AUTOCONF="$(which autoconf)" # Install autoconf, which is needed for the installation of phpMyAdmin.
 
     # Fix for Git-SVN (OSX) [Error: Can't locate SVN/Core.pm in @INC]. See: http://stackoverflow.com/questions/13571944/git-svn-unrecognized-url-scheme-error
     export PERL5LIB="$HOME/perl5/lib/perl5:/Applications/Xcode.app/Contents/Developer/Library/Perl/5.16"
