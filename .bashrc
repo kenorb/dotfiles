@@ -8,14 +8,14 @@ which composer >/dev/null && export PATH="$HOME/.composer/vendor/bin:$PATH"
 # Initialize
 # Determine within a startup script whether Bash is running interactively or not.
 [ -z "$PS1" ] && return
-echo $(basename $BASH_SOURCE) loaded.
+echo "$(basename $BASH_SOURCE) loaded." >&2
 
 # Check the requirements.
 if [ "${BASH_VERSION:0:1}" -eq 3 ]; then
-  echo "Please upgrade your bash to >= 4."
+  echo "Please upgrade your bash to >= 4." >&2
 fi
 
-# Detect the platform (similar to $OSTYPE)
+# Detect the platform.
 case "$OSTYPE" in
 
   solaris*)
@@ -239,4 +239,4 @@ export GITAWAREPROMPT=~/.bash/git-aware-prompt
 [ -f "${GITAWAREPROMPT}/main.sh" ] && source "${GITAWAREPROMPT}/main.sh"
 
 # added by travis gem
-[ -f /Users/kenorb/.travis/travis.sh ] && source /Users/kenorb/.travis/travis.sh
+[ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
