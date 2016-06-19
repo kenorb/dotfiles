@@ -2,6 +2,13 @@
   name = kenorb
   email = kenorb@users.noreply.github.com
 
+[core]
+  filemode = true
+  ; detect and raise errors about trailing spaces and spaces before tabs
+  whitespace = trailing-space,space-before-tab
+  excludesfile = ~/.gitignore
+  autocrlf = false
+
 [push]
   default = current
 
@@ -87,17 +94,12 @@ clean = "sed -e 's/^password=.*/#password=TODO/'"
   majonez = !echo Hellmanns
   svn-dcommit =     "!set -o xtrace; git stash; git svn dcommit; git stash pop -q"
 # set -o xtrace; git stash; git svn dcommit; git stash pop -q"
-  update-all = "!cd $(git rev-parse --show-toplevel 2> /dev/null) && find -name .git -type d -execdir git pull -v ';'"
+  pull-all          = !"find . -name .git -type d -print -execdir git pull origin \\;"
+  update-all        = "!cd $(git rev-parse --show-toplevel 2> /dev/null) && find -name .git -type d -execdir git pull -v ';'"
+  reset-all         = !"find . -name .git -type d -print -execdir git reset HEAD --hard \\;"
 # $(git rev-parse --show-toplevel 2> /dev/null)
 
 ; HOW TO
 ; How to change the author of past commits in git? See: http://stackoverflow.com/questions/750172/how-do-i-change-the-author-of-a-commit-in-git
 ;   git filter-branch -f --env-filter 'if [ $GIT_AUTHOR_EMAIL = old@email ]; then GIT_AUTHOR_EMAIL='new@email'; GIT_COMMITTER_EMAIL='new@email'; fi; export GIT_AUTHOR_EMAIL; export GIT_COMMITTER_EMAIL;'
 ;   git filter-branch -f --env-filter "GIT_AUTHOR_NAME='Newname'; GIT_AUTHOR_EMAIL='newemail'; GIT_COMMITTER_NAME='Oldname'; GIT_COMMITTER_EMAIL='oldemail';" HEAD
-
-[core]
-  filemode = true
-  ; detect and raise errors about trailing spaces and spaces before tabs
-  whitespace = trailing-space,space-before-tab
-  excludesfile = ~/.gitignore
-  autocrlf = false
