@@ -56,6 +56,10 @@ clean = "sed -e 's/^password=.*/#password=TODO/'"
 [diff "pdf"]
   textconv = pdfinfo
 
+[diff "utf-16"]
+  # @see: http://blog.xk72.com/post/31456986659/diff-strings-files-in-git
+  textconv = "iconv -f utf-16 -t utf-8"
+
 [opendiff]
   tool = /usr/bin/opendiff
 
@@ -82,8 +86,10 @@ clean = "sed -e 's/^password=.*/#password=TODO/'"
   path =
 
 [alias]
-  curr-branch       = !git rev-parse --abbrev-ref HEAD
-  log-graph =       !git log --oneline --graph --decorate --all
+  lol             = log --graph --decorate --pretty=oneline --abbrev-commit
+  lola            = log --graph --decorate --pretty=oneline --abbrev-commit --all
+  curr-branch     = !git rev-parse --abbrev-ref HEAD
+  log-graph       = !git log --oneline --graph --decorate --all
   out =             !git log --boundary $(git rev-list --max-count=1 --simplify-by-decoration HEAD^)..
   sm-diff =         "submodule foreach 'git diff'"
   sm-clean-all =    "submodule foreach --recursive 'git clean -fXd'"
