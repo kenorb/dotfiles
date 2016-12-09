@@ -42,7 +42,7 @@ ff() {
 # Note: It's basically the same as: vim **/file when globstar is enabled.
 # Usage: ff (file)
 vimf() {
-  vim "$(find . -name "$1")"
+  vim "$(find . -name "*$1*")"
 }
 
 # Allows you to search for any text in any file recursively.
@@ -144,6 +144,14 @@ svn2git() {
           git tag -a -m "$BODY" $TAG_NAME $REF^  && \ # Create git tag from tag branch.
           git branch -r -d $BRANCH # Delete tag branch.
     done
+}
+
+# Convert video to gif file.
+# Usage: video2gif video_file (scale) (fps)
+video2gif() {
+  ffmpeg -y -i "${1}" -vf fps=${3:-10},scale=${2:-320}:-1:flags=lanczos,palettegen "${1}.png"
+  ffmpeg -i "${1}" -i "${1}.png" -filter_complex "fps=${3:-10},scale=${2:-320}:-1:flags=lanczos[x];[x][1:v]paletteuse" "${1}".gif
+  rm "${1}.png"
 }
 
 # Create user in MySQL/MariaDB.
