@@ -74,6 +74,9 @@ alias wget-all='wget --user-agent=Mozilla -e robots=off --content-disposition --
 #
 # youtube-dl (if available)
 alias youtube-dl='youtube-dl -vcti -R5 --write-description --write-info-json --all-subs --write-thumbnail --add-metadata'
+#
+# Move torrent files
+alias move_torrents='find . -name "*.torrent" -exec sh -c '\''DST=$(find . -type d -name "$(basename "{}" .torrent)" -print -quit); [ -d "$DST" ] && mv -v "{}" "$DST/"'\'' ";"'
 
 ## Conversion
 
@@ -85,7 +88,7 @@ alias urldecode='sed "s@+@ @g;s@%@\\\\x@g" | xargs -0 printf "%b"'
 #alias xt-files='egrep -o "/[^/]+:[0-9]+"'
 
 ## OSX
-
+alias bypass="/System/Library/Extensions/TMSafetyNet.kext/Contents/Helpers/bypass"
 alias swap_on="sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.dynamic_pager.plist"
 alias swap_off="sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.dynamic_pager.plist"
 alias sql_istat='grep -oE "INTO `\w+`" | grep -oE "`\w+`" | sort | uniq -c | sort -nr'
