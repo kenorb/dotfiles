@@ -9,14 +9,14 @@ set nocompatible        " (cp) use Vim defaults (much better)
 " File specific settings
 " ----------------------
 au BufReadPost *.php,*.module,*.inc,*.install,*.test,*.profile,*.theme
-  \ set syntax=php |
+  \ set syntax=php | set ff=unix |
   \ let g:syntastic_php_phpcs_args="--standard=Drupal --extensions=php,module,inc,install,test,profile,theme"
 " au! BufWrite,FileWritePre *.module,*.install call RemoveWhiteSpace()
-au BufReadPost *.mq4,*.mq5,*.mqh set syntax=c | set ts=2 | set sts=2 | set sw=2
-au BufReadPost *.py set ts=4 | set sts=4 | set sw=4
+au BufReadPost *.mq4,*.mq5,*.mqh set syntax=c | set ts=2 | set sts=2 | set sw=2 | set ff=unix
+au BufReadPost *.py set ts=4 | set sts=4 | set sw=4 | set ff=unix
 
 " Workaround for crontab (See: http://vi.stackexchange.com/q/137/467)
-au BufNewFile,BufRead crontab.* set nobackup | set nowritebackup
+au BufNewFile,BufRead crontab.* set nobackup | set nowritebackup | set ff=unix
 
 " Interface
 " ------------
@@ -43,6 +43,9 @@ set ignorecase                  " (ic) ignores case in search patterns
 set smartcase                   " (scs) don't ignore case when the search pattern has uppercase
 set infercase                   " (inf) during keyword completion, fix case of new word (when ignore case is on)
 
+" Formatting
+set ff=unix
+
 " Indenting
 " ------------
 " smartindent = tries to understand C
@@ -59,7 +62,7 @@ set shiftround                  " (sr) indent/outdent to nearest tabstop
 
 " Options
 " -------
-set digraph                     " (dg) Enable the entering of digraphs in Insert mode. See: http://vi.stackexchange.com/q/2254/467
+set nodigraph                   " (dg) Enable the entering of digraphs in Insert mode. See: http://vi.stackexchange.com/q/2254/467
 set mouse=a
 
 " Key mappings
@@ -94,10 +97,13 @@ set listchars=tab:>-,trail:.,eol:$
 
 "
 set history=100         " keep 100 lines of history
-set hlsearch            " highlight the last searched term
 set matchpairs+=<:>     "Allow % to bounce between angles too
 filetype plugin on      " use the file type plugins
 colors slate
+
+set hlsearch!           " highlight the last searched term
+" toggle highlighting (@see: http://stackoverflow.com/a/657457)
+nnoremap <F3> :set hlsearch!<CR>
 
 " When editing a file, always jump to the last cursor position
 autocmd BufReadPost *
@@ -196,7 +202,28 @@ if exists('g:syntastic') && has('statusline')
   let g:syntastic_check_on_wq = 0
 endif
 
-" vim-airline integration
+" Commands
+" ---------
+
+" @see: http://vi.stackexchange.com/a/10291
+" Define the default highlight group.
+hi link Match Search
+"
+":[range]SelectRange    Create a linewise visual selection of [range].
+command! -bar -range SelectRange execute "normal! m'" | call cursor(<line1>, 1) | execute 'normal! V' | call cursor(<line2>, 1)
+"
+":[range]MatchLines [{group}]
+"           Highlight the lines in [range] with the "Match" group /
+"           {group}. This only considers the line numbers, not their
+"           contents.
+command! -bar -range -nargs=? MatchLines execute 'match' (empty(<q-args>) ? 'Match' : <q-args>) printf('/\%%>%dl\%%<%dl/', (<line1> - 1), (<line2> + 1))
+"
+":[range]MatchRange [{group}]
+"           Highlight the content of the lines in [range] with the
+"           "Match" group / {group}. This considers the current
+"           content of the lines (also elsewhere in the buffer).
+command! -bar -range -nargs=? MatchRange execute 'match' (empty(<q-args>) ? 'Match' : <q-args>) '/\V\^' . join(map(getline(<line1>, <line2>), 'escape(v:val, "\\/")'), '\n') . '\$/'
+
 
 " Functions
 " ---------
