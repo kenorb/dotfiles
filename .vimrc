@@ -252,7 +252,9 @@ endfunction
 " Initialize plugins.
 " ---------
 "
-execute pathogen#infect()
+if exists('pathogen#infect')
+  execute pathogen#infect()
+endif
 
 " Command Reference
 " -----------------
