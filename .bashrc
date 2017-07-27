@@ -30,17 +30,15 @@ case "$OSTYPE" in
     export LC_ALL=C
     export LANG=C
 
-    # For MAMP (OSX)
-    PHP_VER="5.6.20" # Or: 5.4.19/5.5.3 ($ls /Applications/MAMP/bin/php/php*)
-
     # Mule ESB configuration.
     export MULE_HOME=/usr/local/opt/mule
     [ -d "$MULE_HOME" ] && export PATH=$PATH:$MULE_HOME/bin
 
     # Set PATH for OSX
     export PATH="$HOME/bin:$HOME/binfiles:/usr/local/sbin:/usr/local/bin:$PATH"
-    type brew > /dev/null && brew --prefix homebrew/php/php56 > /dev/null && export PATH="$(brew --prefix homebrew/php/php56)/bin:$PATH"
-    export PATH="$PATH:/Applications/MAMP/Library/bin:/Applications/MAMP/bin/php/php$PHP_VER/bin:/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin/gcc"
+    type brew > /dev/null && brew --prefix homebrew/php/php72 > /dev/null && export PATH="$(brew --prefix homebrew/php/php72)/bin:$PATH"
+    export PATH="$PATH:/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin/gcc"
+    export PATH="$PATH:/Applications/MAMP/Library/bin:/Applications/MAMP/bin/php/php5.6.10/bin"
     export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH" # add a "gnubin" for coreutils
     export PYTHONPATH="$PYTHONPATH:$HOME/.python" # /usr/local/lib/python3.4/site-packages"
     # :/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang
@@ -69,6 +67,14 @@ case "$OSTYPE" in
     #       Homebrew's own bash completion script: /usr/local/etc/bash_completion.d
     if [ -f $(brew --prefix)/etc/bash_completion ]; then
       . $(brew --prefix)/etc/bash_completion
+    fi
+
+    # macOS: Brew's perl package.
+    if [ -d "$HOME"/perl5/lib/perl5 ]; then
+      # Install via: # PERL_MM_OPT="INSTALL_BASE=$HOME/perl5" cpan local::lib
+      # By default non-brewed cpan modules are installed to the Cellar.
+      # This makes your modules to persist across updates we recommend using `local::lib`.
+      eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib)"
     fi
 
     ;;
