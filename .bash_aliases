@@ -52,9 +52,9 @@ alias freq='cut -f1 -d" " ~/.bash_history | sort | uniq -c | sort -nr | head -n 
 # Allow to find the biggest file or directory in the current directory.
 alias ds='du -ks *|sort -n'
 # List top ten largest files/directories in current directory
-alias big='du -ah . | sort -rh | head -20'
+alias big='du -ah . | sort -rh | head -40'
 # List top ten largest files in current directory
-alias big-files='ls -1Rhs | sed -e "s/^ *//" | grep "^[0-9]" | sort -hr | head -n20'
+alias big-files='ls -1Rhs | sed -e "s/^ *//" | grep "^[0-9]" | sort -hr | head -n40'
 # What's gobbling the memory?
 alias psmem='ps -o time,ppid,pid,nice,pcpu,pmem,user,comm -A | sort -n -k 6 | tail -15'
 
@@ -218,7 +218,7 @@ alias git-pull-all='find $(git rev-parse --show-toplevel 2> /dev/null) -name .gi
 #
 # vim/vi/ex
 alias v='vim'
-alias trim="ex +'bufdo!%s/\s\+$//e' -scxa" # Strip trailing whitespaces.
+alias trim="ex +'bufdo!%s/\s\+$//ge' -scxa" # Strip trailing whitespaces.
 alias retab="ex +'set ts=2' +'bufdo retab' -scxa" # Convert tabs to spaces.
 
 # npm

@@ -235,3 +235,15 @@ export HISTCONTROL="ignoreboth"
 #############################################################################
 
 export PATH="$PATH:/Applications/DevDesktop/drush"
+
+# asciidoc: Used to process AsciiDoc files through an XML stage (such as a2x for manpages).
+export XML_CATALOG_FILES=/usr/local/etc/xml/catalog
+
+# android-sdk: Control Android SDK packages via the sdkmanager command.
+export ANDROID_SDK_ROOT=/usr/local/share/android-sdk
+
+# added by Anaconda3 4.3.1 installer
+#export PATH="$HOME/anaconda/bin:$PATH"
+
+# For libxml2.
+export PATH="/usr/local/opt/libxml2/bin:$PATH"
