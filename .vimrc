@@ -8,12 +8,12 @@ set nocompatible        " (cp) use Vim defaults (much better)
 
 " File specific settings
 " ----------------------
-au BufReadPost *.php,*.module,*.inc,*.install,*.test,*.profile,*.theme
+au BufNewFile,BufReadPost *.php,*.module,*.inc,*.install,*.test,*.profile,*.theme
   \ set syntax=php | set ff=unix |
   \ let g:syntastic_php_phpcs_args="--standard=Drupal --extensions=php,module,inc,install,test,profile,theme"
 " au! BufWrite,FileWritePre *.module,*.install call RemoveWhiteSpace()
-au BufReadPost *.mq4,*.mq5,*.mqh set syntax=c | set ts=2 | set sts=2 | set sw=2 | set ff=unix
-au BufReadPost *.py set ts=4 | set sts=4 | set sw=4 | set ff=unix
+au BufNewFile,BufReadPost *.mq4,*.mq5,*.mqh set syntax=c | set ts=2 | set sts=2 | set sw=2 | set ff=unix
+au BufNewFile,BufReadPost *.py set ts=4 | set sts=4 | set sw=4 | set ff=unix
 
 " Workaround for crontab (See: http://vi.stackexchange.com/q/137/467)
 au BufNewFile,BufRead crontab.* set nobackup | set nowritebackup | set ff=unix
