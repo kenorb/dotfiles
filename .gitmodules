@@ -16,3 +16,6 @@
 [submodule "git-aware-prompt"]
 	path = .bash/git-aware-prompt
 	url = https://github.com/jimeh/git-aware-prompt.git
+[submodule "bsclifton"]
+	path = other/bsclifton
+	url = https://github.com/bsclifton/dotfiles
