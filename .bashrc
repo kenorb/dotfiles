@@ -51,10 +51,11 @@ case "$OSTYPE" in
     # Fix for Git-SVN (OSX) [Error: Can't locate SVN/Core.pm in @INC]. See: http://stackoverflow.com/questions/13571944/git-svn-unrecognized-url-scheme-error
     export PERL5LIB="$HOME/perl5/lib/perl5:/Applications/Xcode.app/Contents/Developer/Library/Perl/5.16"
 
-    # OSX specific aliases.
+    # macOS specific aliases.
     alias diffmerge="/Applications/DiffMerge.app/Contents/MacOS/DiffMerge"
     alias xt-files="egrep -o '/[^/]+:[0-9]+'"
     alias iphone="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Applications/iPhone Simulator.app/Contents/MacOS/iPhone Simulator" # OSX Lion
+    alias stop-services="killall -STOP mdworker mds bstservice"
 
     # Set prompt
     export GIT_PS="\[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\] "
