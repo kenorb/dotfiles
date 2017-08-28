@@ -61,11 +61,11 @@ clean = "sed -e 's/^password=.*/#password=TODO/'"
   textconv = "iconv -f utf-16 -t utf-8"
 
 [opendiff]
-  tool = /usr/bin/opendiff
+  tool = opendiff
 
 [difftool]
   prompt = NO
-  external = /usr/bin/diffmerge
+  tool = diffmerge
 
 [difftool "diffmerge"]
   cmd = /Applications/DiffMerge.app/Contents/MacOS/DiffMerge "$LOCAL" "$REMOTE" # For DiffMerge
