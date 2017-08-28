@@ -36,7 +36,7 @@ case "$OSTYPE" in
 
     # Set PATH for OSX
     export PATH="$HOME/bin:$HOME/binfiles:/usr/local/sbin:/usr/local/bin:$PATH"
-    type brew > /dev/null && brew --prefix homebrew/php/php72 > /dev/null && export PATH="$(brew --prefix homebrew/php/php72)/bin:$PATH"
+    type brew > /dev/null && brew --prefix homebrew/php/php71 > /dev/null && export PATH="$(brew --prefix homebrew/php/php71)/bin:$PATH"
     export PATH="$PATH:/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin/gcc"
     export PATH="$PATH:/Applications/MAMP/Library/bin:/Applications/MAMP/bin/php/php5.6.10/bin"
     export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH" # add a "gnubin" for coreutils
