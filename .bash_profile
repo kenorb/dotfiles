@@ -234,16 +234,19 @@ export HISTCONTROL="ignoreboth"
 
 #############################################################################
 
-export PATH="$PATH:/Applications/DevDesktop/drush"
+# For DevDesktop app.
+[ -d /Applications/DevDesktop/drush ] && export PATH="$PATH:/Applications/DevDesktop/drush"
 
 # asciidoc: Used to process AsciiDoc files through an XML stage (such as a2x for manpages).
-export XML_CATALOG_FILES=/usr/local/etc/xml/catalog
+[ -d /usr/local/etc/xml/catalog ] && export XML_CATALOG_FILES=/usr/local/etc/xml/catalog
 
 # android-sdk: Control Android SDK packages via the sdkmanager command.
-export ANDROID_SDK_ROOT=/usr/local/share/android-sdk
+[ -d /usr/local/share/android-sdk ] && export ANDROID_SDK_ROOT=/usr/local/share/android-sdk
 
 # added by Anaconda3 4.3.1 installer
 #export PATH="$HOME/anaconda/bin:$PATH"
 
 # For libxml2.
-export PATH="/usr/local/opt/libxml2/bin:$PATH"
+[ -d /usr/local/opt/libxml2/bin ] && export PATH="/usr/local/opt/libxml2/bin:$PATH"
+# tcl-tk: tk installs some X11 headers and macOS provides an (older) Tcl/Tk.
+[ -d /usr/local/opt/tcl-tk/bin ] && export PATH="/usr/local/opt/tcl-tk/bin:$PATH"
