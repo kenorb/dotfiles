@@ -30,12 +30,7 @@ case "$OSTYPE" in
     export LC_ALL=C
     export LANG=C
 
-    # Mule ESB configuration.
-    export MULE_HOME=/usr/local/opt/mule
-    [ -d "$MULE_HOME" ] && export PATH=$PATH:$MULE_HOME/bin
-
     # Set PATH for OSX
-    export PATH="$HOME/bin:$HOME/binfiles:/usr/local/sbin:/usr/local/bin:$PATH"
     type brew > /dev/null && brew --prefix homebrew/php/php71 > /dev/null && export PATH="$(brew --prefix homebrew/php/php71)/bin:$PATH"
     export PATH="$PATH:/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin/gcc"
     export PATH="$PATH:/Applications/MAMP/Library/bin:/Applications/MAMP/bin/php/php5.6.10/bin"
@@ -52,10 +47,9 @@ case "$OSTYPE" in
     export PERL5LIB="$HOME/perl5/lib/perl5:/Applications/Xcode.app/Contents/Developer/Library/Perl/5.16"
 
     # macOS specific aliases.
-    alias diffmerge="/Applications/DiffMerge.app/Contents/MacOS/DiffMerge"
-    alias xt-files="egrep -o '/[^/]+:[0-9]+'"
-    alias iphone="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Applications/iPhone Simulator.app/Contents/MacOS/iPhone Simulator" # OSX Lion
-    alias stop-services="killall -STOP mdworker mds bstservice"
+    if [ -f ~/.bash_aliases_macos ]; then
+        . ~/.bash_aliases_macos
+    fi
 
     # Set prompt
     export GIT_PS="\[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\] "
@@ -103,6 +97,11 @@ case "$OSTYPE" in
       ;;
     esac
 
+    # Linux specific aliases.
+    if [ -f ~/.bash_aliases_linux ]; then
+        . ~/.bash_aliases_linux
+    fi
+
     ;;& # fall-through syntax requires bash >= 4; (OSX, check: http://apple.stackexchange.com/q/141752/22781)
 
   linux*)
@@ -132,9 +131,10 @@ case "$OSTYPE" in
       fi
     fi
 
-    # Linux aliases
-    # Add an "alert" alias for long running commands. Use like so: sleep 10; alert
-    alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+    # Linux specific aliases.
+    if [ -f ~/.bash_aliases_linux ]; then
+        . ~/.bash_aliases_linux
+    fi
 
     # Set other options.
     export LS_OPTIONS='--color=auto -h'
@@ -150,29 +150,7 @@ case "$OSTYPE" in
     ;;
 esac
 
-# don't put duplicate lines or lines starting with space in the history.
-# See bash(1) for more options
-HISTCONTROL=ignoreboth
-
-# append to the history file, don't overwrite it
-shopt -s histappend
-
-# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
-
-# check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
-shopt -s checkwinsize
-
-# If set, the pattern "**" used in a pathname expansion context will
-# match all files and zero or more directories and subdirectories.
-shopt -s globstar
-
-# If set, the extended pattern matching features are enabled. See: http://wiki.bash-hackers.org/syntax/pattern
-shopt -s extglob
-
-# make less more friendly for non-text input files, see lesspipe(1)
+# Make less more friendly for non-text input files, see lesspipe(1).
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 # set a fancy prompt (non-color, unless we know we "want" color)
@@ -200,43 +178,22 @@ unset color_prompt force_color_prompt
 # Alias definitions.
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
+# Ref: /usr/share/doc/bash-doc/examples in the bash-doc package.
+# @see: https://ss64.com/bash/syntax-bashrc.html
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
-
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-if ! shopt -oq posix; then
-  if [ -f /usr/share/bash-completion/bash_completion ]; then
-    . /usr/share/bash-completion/bash_completion
-  elif [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-  fi
+if [ -f ~/.bash_functions ]; then
+    . ~/.bash_functions
+fi
+if [ -f ~/.bash_options ]; then
+    . ~/.bash_options
 fi
 
 # Load private secret settings.
 if [ -f ~/.secrets ]; then
     . ~/.secrets
 fi
-
-# added by travis gem
-[ -f $HOME/.travis/travis.sh ] && source $HOME/.travis/travis.sh
-
-# Exports
-export EDITOR='vim'
-
-if [ -d ~/perl5 ]; then
-  export PERL_LOCAL_LIB_ROOT="$PERL_LOCAL_LIB_ROOT:$HOME/perl5"
-  export PERL_MB_OPT="--install_base $HOME/perl5"
-  export PERL_MM_OPT="INSTALL_BASE=$HOME/perl5"
-  export PERL5LIB="$HOME/perl5/lib/perl5:$PERL5LIB"
-  export PATH="$PATH:$HOME/perl5/bin"
-fi
-
-export COMPOSER_BIN_DIR="/usr/local/bin"
-#export PATH="$PATH:/Applications/DevDesktop/drush"
 
 # Enable Bash auto-completion for Drupal Console if exists.
 [ -f "$HOME/.console/console.rc" ] && source "$HOME/.console/console.rc" 2>/dev/null
@@ -245,5 +202,5 @@ export COMPOSER_BIN_DIR="/usr/local/bin"
 export GITAWAREPROMPT=~/.bash/git-aware-prompt
 [ -f "${GITAWAREPROMPT}/main.sh" ] && source "${GITAWAREPROMPT}/main.sh"
 
-# added by travis gem
+# Added by Travis gem.
 [ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh

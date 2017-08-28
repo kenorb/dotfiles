@@ -7,7 +7,11 @@
 # You can re-read the inputrc file with C-x C-r.
 # Lines beginning with '#' are comments.
 #
-# See: http://cnswww.cns.cwru.edu/php/chet/readline/rluserman.html
+# Run: `bind -V` to list the current Readline variable names and values.
+# Run: `bind -p` to list the current Readline function names and bindings.
+#
+# @see: http://cnswww.cns.cwru.edu/php/chet/readline/rluserman.html
+# @see: https://www.gnu.org/software/bash/manual/html_node/Sample-Init-File.html#Sample-Init-File
 #
 # First, include any system-wide bindings and variable
 # assignments from /etc/Inputrc
@@ -17,7 +21,7 @@ $include /etc/Inputrc
 # Controls which default set of key bindings is used.
 set editing-mode vi
 
-# Definition of hot keys
+# Definition of hot keys.
 # <ctrl-m> = (enter)
 
 # Hot key: <ctrl>-^
@@ -46,25 +50,29 @@ $if Bash
 "\M-\C-v": "\C-a\C-k$\C-y\M-\C-e\C-a\C-y="
 $endif
 
-# use a visible bell if one is available
+# Use a visible bell if one is available.
 set bell-style visible
 
-# don't strip characters to 7 bits when reading
+# Don't strip characters to 7 bits when reading (same as meta-flag).
 set input-meta on
 
-# allow iso-latin1 characters to be inserted rather
-# than converted to prefix-meta sequences
+# Allow iso-latin1 characters to be inserted rather
+# than converted to prefix-meta sequences.
 set convert-meta off
 
-# display characters with the eighth bit set directly
-# rather than as meta-prefixed characters
+# Display characters with the eighth bit set directly
+# rather than as meta-prefixed characters.
 set output-meta on
 
-# if there are more than 150 possible completions for
-# a word, ask the user if he wants to see all of them
+# If there are more than 150 possible completions for
+# a word, ask the user if he wants to see all of them.
 set completion-query-items 150
 
-# For FTP
+# Readline performs filename matching and completion in a case-insensitive fashion.
+# The default value is off.
+set completion-ignore-case on
+
+# For FTP.
 $if Ftp
 "\C-xg": "get \M-?"
 "\C-xt": "put \M-?"

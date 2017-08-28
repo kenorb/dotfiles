@@ -4,10 +4,10 @@
 // See: http://www.astonishdesign.com/blog/drush-aliases-what-why-and-how
 
 if (exec('git rev-parse --show-toplevel 2> /dev/null', $git)) {
-  $r = array_shift($git);
-  $options['config'] = array("$r/.drush/drushrc.php", "$r/drush/drushrc.php");
-  $options['include'] = array("$r/.drush/commands", "$r/drush/commands");
-  $options['alias-path'] = array("$r/.drush", "$r/drush");
+  $path = array_shift($git);
+  $options['config'] = array("$path/.drush/drushrc.php", "$path/drush/drushrc.php");
+  $options['include'] = array("$path/.drush/commands", "$path/drush/commands");
+  $options['alias-path'] = array("$path/.drush", "$path/drush");
 }
 
 // Load a drushrc.php configuration file from the current working directory.

@@ -196,7 +196,7 @@ alias drush-dump7="drush sql-dump --ordered-dump --structure-tables cache,cache_
 alias vagrant-suspend-all="vagrant global-status | awk '/running/{print $1}' | gxargs -r -d '\n' -n 1 -- vagrant suspend"
 
 # Utils
-alias dos2unix="ex +'bufdo!%!tr -d \r' -scxa"
+alias dos2unix="ex +'bufdo! %! tr -d \\\\r' -scxa"
 
 #
 # git

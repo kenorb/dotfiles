@@ -1,0 +1,7 @@
+# ~/.bash_aliases_macos
+# Define macOS specific aliases.
+
+alias diffmerge="/Applications/DiffMerge.app/Contents/MacOS/DiffMerge"
+alias xt-files="egrep -o '/[^/]+:[0-9]+'"
+alias iphone="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Applications/iPhone Simulator.app/Contents/MacOS/iPhone Simulator" # OSX Lion
+alias stop-services="killall -STOP mdworker mds bstservice"

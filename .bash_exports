@@ -1,0 +1,61 @@
+# ~/.bash_exports
+# Define Bash exports.
+# Invoked by .bashrc file.
+
+# Editor.
+export EDITOR='vim'
+
+# Path.
+export PATH="$HOME/bin:$HOME/binfiles:/usr/local/sbin:/usr/local/bin:$PATH"
+
+# Don't put duplicate lines or lines starting with space in the history.
+# See bash(1) for more options.
+export HISTCONTROL="ignoreboth"
+
+# For setting history length see HISTSIZE and HISTFILESIZE in bash(1).
+export HISTSIZE=10000
+export HISTFILESIZE=20000
+
+# Perl 5.
+if [ -d ~/perl5 ]; then
+  export PERL_LOCAL_LIB_ROOT="$PERL_LOCAL_LIB_ROOT:$HOME/perl5"
+  export PERL_MB_OPT="--install_base $HOME/perl5"
+  export PERL_MM_OPT="INSTALL_BASE=$HOME/perl5"
+  export PERL5LIB="$HOME/perl5/lib/perl5:$PERL5LIB"
+  export PATH="$PATH:$HOME/perl5/bin"
+fi
+# Define Composer bin folder.
+export COMPOSER_BIN_DIR="/usr/local/bin"
+
+# Mule ESB configuration.
+[ -d /usr/local/opt/mule ] && export MULE_HOME=/usr/local/opt/mule
+[ -d "$MULE_HOME" ] && export PATH=$PATH:$MULE_HOME/bin
+
+# Fixes for sed.
+# @see: http://www.delorie.com/gnu/docs/gawk/gawk_149.html
+# @see: http://stackoverflow.com/q/19242275/55075
+export LANG=C
+export LC_CTYPE=C 
+
+# Set architecture flags for x64
+export ARCHFLAGS="-arch x86_64"
+
+# Added by Anaconda 1.5.1 installer.
+[ -d "/Users/$USER/anaconda/bin" ] && export PATH="/Users/$USER/anaconda/bin:$PATH"
+
+# For DevDesktop app.
+[ -d /Applications/DevDesktop/drush ] && export PATH="$PATH:/Applications/DevDesktop/drush"
+
+# asciidoc: Used to process AsciiDoc files through an XML stage (such as a2x for manpages).
+[ -d /usr/local/etc/xml/catalog ] && export XML_CATALOG_FILES=/usr/local/etc/xml/catalog
+
+# android-sdk: Control Android SDK packages via the sdkmanager command.
+[ -d /usr/local/share/android-sdk ] && export ANDROID_SDK_ROOT=/usr/local/share/android-sdk
+
+# added by Anaconda3 4.3.1 installer
+#export PATH="$HOME/anaconda/bin:$PATH"
+
+# For libxml2.
+[ -d /usr/local/opt/libxml2/bin ] && export PATH="/usr/local/opt/libxml2/bin:$PATH"
+# tcl-tk: tk installs some X11 headers and macOS provides an (older) Tcl/Tk.
+[ -d /usr/local/opt/tcl-tk/bin ] && export PATH="/usr/local/opt/tcl-tk/bin:$PATH"
