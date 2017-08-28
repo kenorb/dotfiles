@@ -8,12 +8,28 @@ which composer >/dev/null && export PATH="$HOME/.composer/vendor/bin:$PATH"
 # Initialize
 # Determine within a startup script whether Bash is running interactively or not.
 [ -z "$PS1" ] && return
+case $- in
+    *i*) ;;
+    *) return ;;
+esac
 echo "$(basename $BASH_SOURCE) loaded." >&2
 
 # Check the requirements.
 if [ "${BASH_VERSION:0:1}" -eq 3 ]; then
   echo "Please upgrade your bash to >= 4." >&2
 fi
+
+# Don't do anything if restricted, not even sourcing the ENV file
+# Testing $- for "r" doesn't work
+# shellcheck disable=SC2128
+[ -n "$BASH_VERSINFO" ] && shopt -q restricted_shell && return
+
+# If ENV is set, source it to get all the POSIX-compatible interactive stuff;
+# we should be able to do this even if we're running a truly ancient Bash
+[ -n "$ENV" ] && . "$ENV"
+
+# Clear away command_not_found_handle if a system bashrc file set it up
+unset -f command_not_found_handle
 
 # Detect the platform.
 case "$OSTYPE" in
@@ -174,6 +190,11 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 unset color_prompt force_color_prompt
+
+# Load Bash-specific startup files.
+for sh in "$HOME"/.bashrc.d/*.bash ; do
+    [[ -e $sh ]] && source "$sh"
+done
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like

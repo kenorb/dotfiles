@@ -1,5 +1,11 @@
+# ~/.bash_completion file.
+
 # Git Flow completion
 complete -F _git_flow gf
 complete -F __git_flow_feature feature
 complete -F __git_flow_release release
 complete -F __git_flow_hotfix hotfix
+
+# This file prevents bash-completion from loading,
+# from its /etc/profile.d script if installed.
+shopt -u progcomp
