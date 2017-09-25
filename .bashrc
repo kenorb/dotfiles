@@ -204,11 +204,20 @@ done
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
+
+# Includes function definitions.
 if [ -f ~/.bash_functions ]; then
     . ~/.bash_functions
 fi
+
+# Includes shell options.
 if [ -f ~/.bash_options ]; then
     . ~/.bash_options
+fi
+
+# Includes shell exports
+if [ -f ~/.bash_exports ]; then
+    . ~/.bash_exports
 fi
 
 # Load private secret settings.
@@ -225,3 +234,6 @@ export GITAWAREPROMPT=~/.bash/git-aware-prompt
 
 # Added by Travis gem.
 [ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
+
+# Adds depot_tools for Chromium.
+[ -d $HOME/Sources/Chromium/depot_tools ] && export PATH="$PATH:$HOME/Sources/Chromium/depot_tools"
