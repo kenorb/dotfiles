@@ -27,3 +27,7 @@ export PROMPT_DIRTRIM=2
 umask 022
 
 which dircolors && eval "`dircolors`"
+
+# Changes the ulimit limits.
+ulimit -Sn 4096      # open files
+ulimit -Sl unlimited # max locked memory
