@@ -18,9 +18,9 @@ export HISTSIZE=10000
 export HISTFILESIZE==$((1 << 15)) 
 
 # Keep the times of the commands in history
-HISTTIMEFORMAT='%F %T  
+HISTTIMEFORMAT='%F %T'
 
-# Use a more compact format for the `time` builtin's output
+# Use a more compact format for the 'time' builtin's output.
 TIMEFORMAT='real:%lR user:%lU sys:%lS'
 
 # Perl 5.
