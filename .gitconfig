@@ -46,6 +46,7 @@ clean = "sed -e 's/^password=.*/#password=TODO/'"
 # DIFF section
 [diff]
   tool = diffmerge
+  renamelimit = 7274
 
 [diff "zip"]
   textconv = unzip -v
@@ -100,6 +101,7 @@ clean = "sed -e 's/^password=.*/#password=TODO/'"
   majonez = !echo Hellmanns
   svn-dcommit =     "!set -o xtrace; git stash; git svn dcommit; git stash pop -q"
 # set -o xtrace; git stash; git svn dcommit; git stash pop -q"
+  fetch-all          = !"find . -name .git -type d -print -execdir git fetch --all \\;"
   pull-all          = !"find . -name .git -type d -print -execdir git pull origin \\;"
   update-all        = "!cd $(git rev-parse --show-toplevel 2> /dev/null) && find -name .git -type d -execdir git pull -v ';'"
   reset-all         = !"find . -name .git -type d -print -execdir git reset HEAD --hard \\;"
