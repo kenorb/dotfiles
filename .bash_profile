@@ -31,3 +31,19 @@ which dircolors && eval "`dircolors`"
 # Changes the ulimit limits.
 ulimit -Sn 4096      # open files
 ulimit -Sl unlimited # max locked memory
+
+# Enable Bash auto-completion for Drupal Console if exists.
+[ -f "$HOME/.console/console.rc" ] && source "$HOME/.console/console.rc" 2>/dev/null
+
+# Git variables.
+export GITAWAREPROMPT=~/.bash/git-aware-prompt
+[ -f "${GITAWAREPROMPT}/main.sh" ] && source "${GITAWAREPROMPT}/main.sh"
+
+# Added by Travis gem.
+[ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
+
+# Adds depot_tools for Chromium.
+[ -d $HOME/Sources/Chromium/depot_tools ] && export PATH="$PATH:$HOME/Sources/Chromium/depot_tools"
+
+# Configure Apple's CLT package.
+[ -d /usr/local/opt/apr/bin ] && export PATH="/usr/local/opt/apr/bin:$PATH"

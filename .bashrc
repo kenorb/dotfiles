@@ -43,8 +43,8 @@ case "$OSTYPE" in
     #export LC_ALL=en_GB.UTF-8
 
     # Fixes for illegal byte sequence (http://stackoverflow.com/q/19242275/55075).
-    export LC_ALL=C
-    export LANG=C
+    export LC_ALL=en_GB.UTF-8
+    export LANG=en_GB.UTF-8
 
     # Set PATH for OSX
     type brew > /dev/null && brew --prefix homebrew/php/php71 > /dev/null && export PATH="$(brew --prefix homebrew/php/php71)/bin:$PATH"
@@ -224,16 +224,3 @@ fi
 if [ -f ~/.secrets ]; then
     . ~/.secrets
 fi
-
-# Enable Bash auto-completion for Drupal Console if exists.
-[ -f "$HOME/.console/console.rc" ] && source "$HOME/.console/console.rc" 2>/dev/null
-
-# Git variables.
-export GITAWAREPROMPT=~/.bash/git-aware-prompt
-[ -f "${GITAWAREPROMPT}/main.sh" ] && source "${GITAWAREPROMPT}/main.sh"
-
-# Added by Travis gem.
-[ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
-
-# Adds depot_tools for Chromium.
-[ -d $HOME/Sources/Chromium/depot_tools ] && export PATH="$PATH:$HOME/Sources/Chromium/depot_tools"
