@@ -66,6 +66,7 @@ export ARCHFLAGS="-arch x86_64"
 # For libxml2.
 [ -d /usr/local/opt/libxml2/bin ] \
     && export PATH="/usr/local/opt/libxml2/bin:$PATH"
+
 # tcl-tk: tk installs some X11 headers and macOS provides an (older) Tcl/Tk.
 [ -d /usr/local/opt/tcl-tk/bin ] \
     && export PATH="/usr/local/opt/tcl-tk/bin:$PATH"
@@ -77,3 +78,14 @@ export ARCHFLAGS="-arch x86_64"
 # Configure Apple's CLT package.
 [ -d /usr/local/opt/apr/bin ] \
     && export PATH="/usr/local/opt/apr/bin:$PATH"
+
+# Configure ncurses package.
+[ -d /usr/local/opt/ncurses/bin \
+    && export PATH="/usr/local/opt/ncurses/bin:$PATH"
+
+# Notes:
+# For compilers to find this software you may need to set:
+#     LDFLAGS:  -L/usr/local/opt/ncurses/lib
+#     CPPFLAGS: -I/usr/local/opt/ncurses/include
+# For pkg-config to find this software you may need to set:
+#     PKG_CONFIG_PATH: /usr/local/opt/ncurses/lib/pkgconfig
