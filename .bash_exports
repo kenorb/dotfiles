@@ -80,7 +80,7 @@ export ARCHFLAGS="-arch x86_64"
     && export PATH="/usr/local/opt/apr/bin:$PATH"
 
 # Configure ncurses package.
-[ -d /usr/local/opt/ncurses/bin \
+[ -d /usr/local/opt/ncurses/bin ] \
     && export PATH="/usr/local/opt/ncurses/bin:$PATH"
 
 # Notes:
@@ -89,3 +89,11 @@ export ARCHFLAGS="-arch x86_64"
 #     CPPFLAGS: -I/usr/local/opt/ncurses/include
 # For pkg-config to find this software you may need to set:
 #     PKG_CONFIG_PATH: /usr/local/opt/ncurses/lib/pkgconfig
+
+# Configure go package.
+[ -d /usr/local/opt/go/libexec/bin ] \
+    && export PATH=$PATH:/usr/local/opt/go/libexec/bin
+# Notes for go package:
+# A valid GOPATH is required to use the `go get` command.
+# If $GOPATH is not specified, $HOME/go will be used by default
+# @see: https://golang.org/doc/code.html#GOPATH
