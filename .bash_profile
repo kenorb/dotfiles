@@ -41,9 +41,3 @@ export GITAWAREPROMPT=~/.bash/git-aware-prompt
 
 # Added by Travis gem.
 [ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
-
-# Adds depot_tools for Chromium.
-[ -d $HOME/Sources/Chromium/depot_tools ] && export PATH="$PATH:$HOME/Sources/Chromium/depot_tools"
-
-# Configure Apple's CLT package.
-[ -d /usr/local/opt/apr/bin ] && export PATH="/usr/local/opt/apr/bin:$PATH"

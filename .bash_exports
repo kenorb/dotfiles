@@ -47,22 +47,33 @@ export LC_CTYPE=C
 # Set architecture flags for x64
 export ARCHFLAGS="-arch x86_64"
 
-# Added by Anaconda 1.5.1 installer.
-[ -d "/Users/$USER/anaconda/bin" ] && export PATH="/Users/$USER/anaconda/bin:$PATH"
-
 # For DevDesktop app.
-[ -d /Applications/DevDesktop/drush ] && export PATH="$PATH:/Applications/DevDesktop/drush"
+[ -d /Applications/DevDesktop/drush ] \
+    && export PATH="$PATH:/Applications/DevDesktop/drush"
 
 # asciidoc: Used to process AsciiDoc files through an XML stage (such as a2x for manpages).
-[ -d /usr/local/etc/xml/catalog ] && export XML_CATALOG_FILES=/usr/local/etc/xml/catalog
+[ -d /usr/local/etc/xml/catalog ] \
+    && export XML_CATALOG_FILES=/usr/local/etc/xml/catalog
 
 # android-sdk: Control Android SDK packages via the sdkmanager command.
-[ -d /usr/local/share/android-sdk ] && export ANDROID_SDK_ROOT=/usr/local/share/android-sdk
+[ -d /usr/local/share/android-sdk ] \
+    && export ANDROID_SDK_ROOT=/usr/local/share/android-sdk
 
-# added by Anaconda3 4.3.1 installer
-#export PATH="$HOME/anaconda/bin:$PATH"
+# For Anaconda3 installer.
+[ -d "$HOME"/anaconda/bin ] \
+    && export PATH="$HOME/anaconda/bin:$PATH"
 
 # For libxml2.
-[ -d /usr/local/opt/libxml2/bin ] && export PATH="/usr/local/opt/libxml2/bin:$PATH"
+[ -d /usr/local/opt/libxml2/bin ] \
+    && export PATH="/usr/local/opt/libxml2/bin:$PATH"
 # tcl-tk: tk installs some X11 headers and macOS provides an (older) Tcl/Tk.
-[ -d /usr/local/opt/tcl-tk/bin ] && export PATH="/usr/local/opt/tcl-tk/bin:$PATH"
+[ -d /usr/local/opt/tcl-tk/bin ] \
+    && export PATH="/usr/local/opt/tcl-tk/bin:$PATH"
+
+# Adds depot_tools for Chromium.
+[ -d $HOME/Sources/Chromium/depot_tools ] \
+    && export PATH="$PATH:$HOME/Sources/Chromium/depot_tools"
+
+# Configure Apple's CLT package.
+[ -d /usr/local/opt/apr/bin ] \
+    && export PATH="/usr/local/opt/apr/bin:$PATH"
