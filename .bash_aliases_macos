@@ -5,3 +5,9 @@ alias diffmerge="/Applications/DiffMerge.app/Contents/MacOS/DiffMerge"
 alias xt-files="egrep -o '/[^/]+:[0-9]+'"
 alias iphone="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Applications/iPhone Simulator.app/Contents/MacOS/iPhone Simulator" # OSX Lion
 alias stop-services="killall -STOP mdworker mds bstservice"
+
+# Shows logs from Google apps.
+alias log-google="log stream --level debug --predicate 'processImagePath contains \"Google\"'"
+
+# Restart sound system.
+alias restart-sound="sudo kextunload /System/Library/Extensions/AppleHDA.kext && sudo kextload /System/Library/Extensions/AppleHDA.kext"
