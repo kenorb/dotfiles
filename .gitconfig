@@ -111,3 +111,8 @@ clean = "sed -e 's/^password=.*/#password=TODO/'"
 ; How to change the author of past commits in git? See: http://stackoverflow.com/questions/750172/how-do-i-change-the-author-of-a-commit-in-git
 ;   git filter-branch -f --env-filter 'if [ $GIT_AUTHOR_EMAIL = old@email ]; then GIT_AUTHOR_EMAIL='new@email'; GIT_COMMITTER_EMAIL='new@email'; fi; export GIT_AUTHOR_EMAIL; export GIT_COMMITTER_EMAIL;'
 ;   git filter-branch -f --env-filter "GIT_AUTHOR_NAME='Newname'; GIT_AUTHOR_EMAIL='newemail'; GIT_COMMITTER_NAME='Oldname'; GIT_COMMITTER_EMAIL='oldemail';" HEAD
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
