@@ -11,3 +11,6 @@ alias log-google="log stream --level debug --predicate 'processImagePath contain
 
 # Restart sound system.
 alias restart-sound="sudo kextunload /System/Library/Extensions/AppleHDA.kext && sudo kextload /System/Library/Extensions/AppleHDA.kext"
+
+# Restart Finder.
+alias restart-finder="launchctl stop com.apple.Finder; launchctl start com.apple.Finder"

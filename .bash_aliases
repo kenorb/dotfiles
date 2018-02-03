@@ -11,9 +11,12 @@ echo $(basename $BASH_SOURCE) loaded.
 
 #
 # ls variants
+lc=$(which lolcat >/dev/null && echo "|lolcat")
+alias ls='\ls'
+alias ll='\ls -alF'
+alias llh='\ls -alh'
 #alias lsd='ls -d .*'
-alias ls='ls $LS_OPTIONS'
-alias ll='ls $LS_OPTIONS -alF' # Unix like ls
+#alias ls='ls $LS_OPTIONS'
 alias la='ls $LS_OPTIONS -A'
 alias l='ls $LS_OPTIONS -alFtr'
 #alias l='ls $LS_OPTIONS -lA'
@@ -21,7 +24,8 @@ alias l='ls $LS_OPTIONS -alFtr'
 # Recursive directory listing
 alias lr='ls -R | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\'' -e '\''s/^/   /'\'' -e '\''s/-/|/'\'''
 # Unix like ls
-alias ll='ls -laF'
+#alias ll='ls -laF'
+#alias ll='ls $LS_OPTIONS -alF' # Unix like ls
 
 # Permissions.
 alias fix-file-perms="find * -type d -print0 | xargs -0 chmod 0755"

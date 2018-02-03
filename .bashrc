@@ -50,6 +50,7 @@ case "$OSTYPE" in
     type brew > /dev/null && brew --prefix homebrew/php/php71 > /dev/null && export PATH="$(brew --prefix homebrew/php/php71)/bin:$PATH"
     export PATH="$PATH:/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin/gcc"
     export PATH="$PATH:/Applications/MAMP/Library/bin:/Applications/MAMP/bin/php/php5.6.10/bin"
+    export PATH="/usr/libexec:$PATH" # Adds utils from libexec.
     export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH" # add a "gnubin" for coreutils
     export PYTHONPATH="$PYTHONPATH:$HOME/.python" # /usr/local/lib/python3.4/site-packages"
     # :/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang

@@ -17,6 +17,8 @@ au BufNewFile,BufReadPost *.py set ts=4 | set sts=4 | set sw=4 | set ff=unix
 
 " Workaround for crontab (See: http://vi.stackexchange.com/q/137/467)
 au BufNewFile,BufRead crontab.* set nobackup | set nowritebackup | set ff=unix
+" Sets XML formatter.
+au FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -\ 2>/dev/null
 
 " Interface
 " ------------
@@ -50,15 +52,16 @@ set ff=unix
 " ------------
 " smartindent = tries to understand C
 " cindent = smarter
-set autoindent                  " (ai) copy indent from current line when starting a new line
-set copyindent                  " (ci) when auto-indenting, use the indenting format of the previous line
-set smartindent                 " (si) enable the smartindenting feature for the following files
+set autoindent   " Copy indent from current line when starting a new line (ai).
+set copyindent   " On auto-indenting, use the indenting format of the previous line (ci).
+set smartindent  " Enable the smartindenting feature for the following files (si).
+set tabstop=2    " width (in spaces) that a <tab> is displayed as (ts).
+set expandtab    " expand tabs to spaces (use :retab to redo entire file) (et).
+set shiftwidth=2 " Width (in spaces) used in each step of autoindent (aswell as << and >>) (sw).
+set shiftround   " Indent/outdent to the nearest tabstop (sr).
+set smarttab     " Inserts blanks on a <Tab> key (as per sw, ts and sts).
 set cindent
-set tabstop=2                   " (ts) width (in spaces) that a <tab> is displayed as
-set expandtab                   " (et) expand tabs to spaces (use :retab to redo entire file)
-set shiftwidth=2                " (sw) width (in spaces) used in each step of autoindent (aswell as << and >>)
-set shiftround                  " (sr) indent/outdent to nearest tabstop
-" set softtabstop=0 smarttab nolist textwidth=0
+" set softtabstop=0 nolist textwidth=0
 
 " Options
 " -------
@@ -237,16 +240,24 @@ function! ReplaceM()
     :%s/^M/\r/ge
 endfunction
 " Removes superfluous white space from the end of a line
-function! RemoveWhiteSpace()
+function! RemoveWhiteSpaces()
     :%s/\s\+$//e
 ":'^
 "`.
 endfunction
 function! UseTabs()
-  set autoindent
-  set noexpandtab
-  set tabstop=4
-  set shiftwidth=4
+  set tabstop=4     " Size of a hard tabstop (ts).
+  set shiftwidth=4  " Size of an indentation (sw).
+  set noexpandtab   " Always uses tabs instead of space characters (noet).
+  set autoindent    " Copy indent from current line when starting a new line (ai).
+endfunction
+function! UseSpaces()
+  set tabstop=2     " Size of a hard tabstop (ts).
+  set shiftwidth=2  " Size of an indentation (sw).
+  set expandtab     " Always uses spaces instead of tab characters (et).
+  set softtabstop=0 " Number of spaces a <Tab> counts for. When 0, featuer is off (sts).
+  set autoindent    " Copy indent from current line when starting a new line.
+  set smarttab      " Inserts blanks on a <Tab> key (as per sw, ts and sts).
 endfunction
 
 " Initialize plugins.
