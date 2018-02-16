@@ -5,6 +5,9 @@
 # Add a Composer's global bin directory if exists.
 which composer >/dev/null && export PATH="$HOME/.composer/vendor/bin:$PATH"
 
+# Adds user's local bin directory.
+[ -d "$HOME"/bin ] && export PATH="$PATH:$HOME/bin"
+
 # Initialize
 # Determine within a startup script whether Bash is running interactively or not.
 [ -z "$PS1" ] && return
