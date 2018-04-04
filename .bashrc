@@ -50,7 +50,7 @@ case "$OSTYPE" in
     export LANG=en_GB.UTF-8
 
     # Set PATH for OSX
-    type brew > /dev/null && brew --prefix homebrew/php/php71 2> /dev/null && export PATH="$(brew --prefix homebrew/php/php71)/bin:$PATH"
+    type brew > /dev/null && brew --prefix php@7.1 > /dev/null && export PATH="$(brew --prefix php@7.1)/bin:$PATH"
     export PATH="$PATH:/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin/gcc"
     export PATH="$PATH:/Applications/MAMP/Library/bin:/Applications/MAMP/bin/php/php5.6.10/bin"
     export PATH="/usr/libexec:$PATH" # Adds utils from libexec.
