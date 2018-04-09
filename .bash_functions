@@ -199,3 +199,9 @@ mysql-show-errorlog() {
 diffhex() {
   diff -y -W200 <(xxd -l1000 "$1") <(xxd -l1000 "$2") | colordiff
 }
+
+# Compare two binary files.
+# Usage: open-rdp ip-address
+open-rdp() {
+  open rdp://full%20address=s:$*
+}
