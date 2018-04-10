@@ -31,8 +31,6 @@ if [ -d ~/perl5 ]; then
   export PERL5LIB="$HOME/perl5/lib/perl5:$PERL5LIB"
   export PATH="$PATH:$HOME/perl5/bin"
 fi
-# Define Composer bin folder.
-export COMPOSER_BIN_DIR="/usr/local/bin"
 
 # Mule ESB configuration.
 [ -d /usr/local/opt/mule ] && export MULE_HOME=/usr/local/opt/mule
