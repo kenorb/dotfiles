@@ -203,18 +203,6 @@ alias dos2unix="ex +'bufdo! %! tr -d \\\\r' -scxa"
 
 #
 # git
-alias {gsta,gst}='git status' 
-# Warning: gst conflicts with gnu-smalltalk (when used).
-alias {gbra,gb}='git branch'
-alias {gco,go}='git checkout'
-alias {gcob,gob}='git checkout -b '
-alias {gadd,ga}='git add '
-alias {gcom,gc}='git commit'
-alias {gpul,gl}='git pull '
-alias {gpus,gh}='git push '
-alias glom='git pull origin master'
-alias ghom='git push origin master'
-alias gg='git grep '
 alias cdgit='cd "$(git rev-parse --show-toplevel 2> /dev/null)"'
 alias git-pull-all='find $(git rev-parse --show-toplevel 2> /dev/null) -name .git -type d -execdir git pull -v ";"'
 
