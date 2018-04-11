@@ -57,6 +57,10 @@ export ARCHFLAGS="-arch x86_64"
 [ -d /usr/local/share/android-sdk ] \
     && export ANDROID_SDK_ROOT=/usr/local/share/android-sdk
 
+# For Cargo (Rust package manager).
+[ -d "$HOME"/.cargo/bin ] \
+  && export PATH="$HOME/.cargo/bin:$PATH"
+
 # For Anaconda3 installer.
 [ -d "$HOME"/anaconda/bin ] \
     && export PATH="$HOME/anaconda/bin:$PATH"
