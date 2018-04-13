@@ -17,3 +17,6 @@ alias restart-finder="launchctl stop com.apple.Finder; launchctl start com.apple
 
 # Logs
 alias log-php="log stream --level debug --predicate 'processImagePath contains \"php\"'"
+
+# Filesystem
+alias compress-big="find . -type f -size +10M -print0 | gxargs -r0 afsctool -v -c"
