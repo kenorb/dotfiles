@@ -61,6 +61,10 @@ export ARCHFLAGS="-arch x86_64"
 [ -d "$HOME"/.cargo/bin ] \
   && export PATH="$HOME/.cargo/bin:$PATH"
 
+# For Go (a tool for managing Go source code).
+[ -d "$HOME"/go/bin ] \
+  && export PATH="$HOME/go/bin:$PATH"
+
 # For Anaconda3 installer.
 [ -d "$HOME"/anaconda/bin ] \
     && export PATH="$HOME/anaconda/bin:$PATH"
