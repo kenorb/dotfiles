@@ -20,3 +20,7 @@ alias log-php="log stream --level debug --predicate 'processImagePath contains \
 
 # Filesystem
 alias compress-big="find . -type f -size +10M -print0 | gxargs -r0 afsctool -c -v -s 10"
+alias sudo-compress-big="find . -type f -size +10M -print0 | gxargs -r0 sudo afsctool -c -v -s 10"
+
+# Docker
+alias dev-env='docker run --cap-add SYS_PTRACE --rm -it -v ${PWD}:/home/ubuntu/workspace:ro kenorb/dev-env'

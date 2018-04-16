@@ -201,6 +201,9 @@ alias vagrant-suspend-all="vagrant global-status | awk '/running/{print $1}' | g
 # Utils
 alias dos2unix="ex +'bufdo! %! tr -d \\\\r' -scxa"
 
+# Docker
+alias docker-run-ptrace="docker run --cap-add SYS_PTRACE"
+
 #
 # git
 alias cdgit='cd "$(git rev-parse --show-toplevel 2> /dev/null)"'
