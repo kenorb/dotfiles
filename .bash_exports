@@ -23,6 +23,17 @@ HISTTIMEFORMAT='%F %T'
 # Use a more compact format for the 'time' builtin's output.
 TIMEFORMAT='real:%lR user:%lU sys:%lS'
 
+# Terminal colors (e.g. echo "${COLOR_RED}foo").
+COLOR_RESET=$(tput sgr0)
+COLOR_BLACK=$(tput setaf 0)
+COLOR_RED=$(tput setaf 1)
+COLOR_GREEN=$(tput setaf 2)
+COLOR_YELLOW=$(tput setaf 3)
+COLOR_BLUE=$(tput setaf 4)
+COLOR_MAGENTA=$(tput setaf 5)
+COLOR_CYAN=$(tput setaf 6)
+COLOR_WHITE=$(tput setaf 7)
+
 # Perl 5.
 if [ -d ~/perl5 ]; then
   export PERL_LOCAL_LIB_ROOT="$PERL_LOCAL_LIB_ROOT:$HOME/perl5"
