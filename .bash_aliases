@@ -27,6 +27,9 @@ alias lr='ls -R | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\
 #alias ll='ls -laF'
 #alias ll='ls $LS_OPTIONS -alF' # Unix like ls
 
+# Date
+alias date-iso="date --iso-8601=seconds"
+
 # Permissions.
 alias fix-file-perms="find * -type d -print0 | xargs -0 chmod 0755"
 alias fix-dir-perms="find . -type f -print0 | xargs -0 chmod 0644"
@@ -86,6 +89,7 @@ alias move_torrents='find . -name "*.torrent" -exec sh -c '\''DST=$(find . -type
 
 # Useful converting tools.
 alias urldecode='sed "s@+@ @g;s@%@\\\\x@g" | xargs -0 printf "%b"'
+alias urlencode='jq -s -R -r @uri'
 
 # Other
 # Find xdebug files.
