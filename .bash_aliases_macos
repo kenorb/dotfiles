@@ -23,4 +23,4 @@ alias compress-big="find . -type f -size +10M -print0 | gxargs -r0 afsctool -c -
 alias sudo-compress-big="find . -type f -size +10M -print0 | gxargs -r0 sudo afsctool -c -v -s 10"
 
 # Docker
-alias dev-env='docker run --cap-add SYS_PTRACE --rm -it -v ${PWD}:/home/ubuntu/workspace:ro kenorb/dev-env'
+alias dev-env='docker run --cap-add SYS_PTRACE --rm -it -v ${PWD}:/home/ubuntu/workspace:ro kenorb/dev-env-linux bash'
