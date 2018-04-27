@@ -104,6 +104,10 @@ export ARCHFLAGS="-arch x86_64"
 [ -d /usr/local/opt/icu4c/bin ] \
     && export PATH="/usr/local/opt/icu4c/sbin:/usr/local/opt/icu4c/bin:$PATH"
 
+# Configure RabbitMQ app.
+[ -d /Applications/RabbitMQ.app ] \
+    && export PATH="/Applications/RabbitMQ.app/Contents/Resources/Vendor/rabbitmq/sbin:$PATH"
+
 # Notes:
 # For compilers to find this software you may need to set:
 #     LDFLAGS:  -L/usr/local/opt/ncurses/lib
