@@ -46,13 +46,18 @@ alias ......='cd ../../../../../'
 
 ## Git
 
+# Change dir to git root.
+alias cdgit='cd "$(git rev-parse --show-toplevel 2> /dev/null)"'
+
+# Refresh all repos in the current dir.
+alias git-pull-all='find . -name .git -type d -execdir sh -c "git fetch --tags --all && git pull -v" ";"'
+alias git-pull-root='find $(git rev-parse --show-toplevel 2> /dev/null) -name .git -type d -execdir git pull -v ";"'
+
 # Compact, colorized git log
 alias gl="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+
 # Visualise git log (like gitk, in the terminal)
 alias lg='git log --graph --full-history --all --color --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"'
-
-# Clone all repos of specific user: http://stackoverflow.com/a/32803025/55075
-alias gh-clone-user-repos='curl "https://api.github.com/users/$1/repos?per_page=1000" | grep -w clone_url | grep -o '\''[^"]\+://.\+.git'\'' | xargs -L1 git clone'
 
 # Show which commands you use the most
 alias freq='cut -f1 -d" " ~/.bash_history | sort | uniq -c | sort -nr | head -n 30'
@@ -207,11 +212,6 @@ alias dos2unix="ex +'bufdo! %! tr -d \\\\r' -scxa"
 
 # Docker
 alias docker-run-ptrace="docker run --cap-add SYS_PTRACE"
-
-#
-# git
-alias cdgit='cd "$(git rev-parse --show-toplevel 2> /dev/null)"'
-alias git-pull-all='find $(git rev-parse --show-toplevel 2> /dev/null) -name .git -type d -execdir git pull -v ";"'
 
 #
 # vim/vi/ex
