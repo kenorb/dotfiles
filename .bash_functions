@@ -2,6 +2,11 @@
 # Define Bash functions.
 # Invoked by .bashrc file.
 
+# Includes other function definitions.
+if [ -f ~/.bash_functions_mysql ]; then
+  . ~/.bash_functions_mysql
+fi
+
 # FUNCTIONS
 
 # Realpath to provide absolute path with OSX
@@ -145,54 +150,7 @@ video2gif() {
   ffmpeg -i "${1}" -i "${1}.png" -filter_complex "fps=${3:-10},scale=${2:-320}:-1:flags=lanczos[x];[x][1:v]paletteuse" "${1}".gif
   rm "${1}.png"
 }
-
-# Create user in MySQL/MariaDB.
-mysql-create-user() {
-  [ -z "$2" ] && { echo "Usage: mysql-create-user (user) (password)" >&2; return; }
-  mysql -ve "CREATE USER '$1'@'localhost' IDENTIFIED BY '$2'"
-}
-
-# Delete user from MySQL/MariaDB
-mysql-drop-user() {
-  [ -z "$1" ] && { echo "Usage: mysql-drop-user (user)" >&2; return; }
-  mysql -ve "DROP USER '$1'@'localhost';"
-}
-
-# Create new database in MySQL/MariaDB.
-mysql-create-db() {
-  [ -z "$1" ] && { echo "Usage: mysql-create-db (db_name)" >&2; return; }
-  mysql -ve "CREATE DATABASE IF NOT EXISTS $1"
-}
-
-# Drop database in MySQL/MariaDB.
-mysql-drop-db() {
-  [ -z "$1" ] && { echo "Usage: mysql-drop-db (db_name)" >&2; return; }
-  mysql -ve "DROP DATABASE IF EXISTS $1"
-}
-
-# Grant all permissions for user for given database.
-mysql-grant-db() {
-  [ -z "$2" ] && { echo "Usage: mysql-grand-db (user) (database)" >&2; return; }
-  mysql -ve "GRANT ALL ON $2.* TO '$1'@'localhost'"
-  mysql -ve "FLUSH PRIVILEGES"
-}
-
-# Show current user permissions.
-mysql-show-grants() {
-  [ -z "$1" ] && { echo "Usage: mysql-show-grants (user)" >&2; return; }
-  mysql -ve "SHOW GRANTS FOR '$1'@'localhost'"
-}
-
-# Show all variables.
-mysql-show-variables() {
-  mysql -sve "SHOW VARIABLES LIKE '%$1%'"
-}
-
-# Show error log.
-mysql-show-errorlog() {
-  sudo tail -f $(mysql -Nse "SELECT @@log_error")
-}
-
+#
 # Compare two binary files.
 # Usage: diffhex file1 file2
 # See: http://superuser.com/a/968863/87805
