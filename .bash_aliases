@@ -94,7 +94,10 @@ alias move_torrents='find . -name "*.torrent" -exec sh -c '\''DST=$(find . -type
 
 # Useful converting tools.
 alias urldecode='sed "s@+@ @g;s@%@\\\\x@g" | xargs -0 printf "%b"'
-alias urlencode='jq -s -R -r @uri'
+
+type jq >/dev/null 2>&1 \
+  && alias urlencode='jq -rRs @uri' \
+  || alias urlencode='curl -Gso /dev/null -w %{url_effective} --data-urlencode @- "" | cut -c3-'
 
 # Other
 # Find xdebug files.
