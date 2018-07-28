@@ -215,6 +215,7 @@ alias dos2unix="ex +'bufdo! %! tr -d \\\\r' -scxa"
 
 # Docker
 alias docker-run-ptrace="docker run --cap-add SYS_PTRACE"
+alias yt='docker run --rm -u $(id -u):$(id -g) -v $PWD:/data vimagick/youtube-dl'
 
 #
 # vim/vi/ex
