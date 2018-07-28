@@ -167,5 +167,5 @@ open-rdp() {
 # GitHub clone all user repositories.
 # Usage: gh-clone-user (user)
 gh-clone-user() {
-  curl -sL "https://api.github.com/users/$1/repos?per_page=1000" | jq -r '.[]|.clone_url' | xargs -L1 git clone
+  curl -sL "https://api.github.com/users/$1/repos?per_page=1000" | jq -r '.[]|.clone_url' | xargs -L1 git clone --recurse-submodules
 }
