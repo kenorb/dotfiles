@@ -40,4 +40,4 @@ export GITAWAREPROMPT=~/.bash/git-aware-prompt
 [ -f "${GITAWAREPROMPT}/main.sh" ] && source "${GITAWAREPROMPT}/main.sh"
 
 # Added by Travis gem.
-[ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
+[ -f $HOME/.travis/travis.sh ] && source ~/.travis/travis.sh
