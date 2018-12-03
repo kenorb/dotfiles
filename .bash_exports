@@ -14,23 +14,12 @@ export PATH="$HOME/bin:$HOME/binfiles:/usr/local/sbin:/usr/local/bin:$PATH"
 # Add a Composer's global bin directory if exists.
 which composer >/dev/null && export PATH="$HOME/.composer/vendor/bin:$PATH"
 
+# Prompt.
+export PS1='\[\033[01;31m\]\u\[\033[01;33m\]@\[\033[01;36m\]\h \[\033[01;33m\]\w \[\033[01;35m\]\$ \[\033[00m\]'
+export PROMPT_DIRTRIM=2
+
 # Editor.
 export EDITOR='vim'
-
-# Don't put duplicate lines or lines starting with space in the history.
-# See bash(1) for more options.
-export HISTCONTROL="ignoredups"
-
-# For setting history length see HISTSIZE and HISTFILESIZE in bash(1).
-export HISTSIZE=10000
-# Keep around 32K lines of history in file.
-export HISTFILESIZE==$((1 << 15)) 
-
-# Keep the times of the commands in history
-export HISTTIMEFORMAT='%F %T'
-
-# Use a more compact format for the 'time' builtin's output.
-export TIMEFORMAT='real:%lR user:%lU sys:%lS'
 
 # Terminal colors (e.g. echo "${COLOR_RED}foo").
 export COLOR_RESET=$(tput sgr0)
@@ -46,6 +35,7 @@ export COLOR_WHITE=$(tput setaf 7)
 # CLI and ls colors.
 export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
+which dircolors &> /dev/null && eval "`dircolors`"
 
 # Perl 5.
 if [ -d ~/perl5 ]; then
