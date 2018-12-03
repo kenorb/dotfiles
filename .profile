@@ -5,9 +5,7 @@
 # the files are located in the bash-doc package.
 
 # Initialize
-# Determine within a startup script whether Bash is running interactively or not.
-[ -z "$PS1" ] && return
-echo $(basename $BASH_SOURCE) loaded.
+[ -z "$PS1" ] || echo $(basename $BASH_SOURCE) loaded.
 
 # the default umask is set in /etc/profile; for setting the umask
 # for ssh logins, install and configure the libpam-umask package.
@@ -26,8 +24,7 @@ if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
 
-# EXPORTS
-export CLICOLOR=1
-export LSCOLORS=ExFxCxDxBxegedabagacad
-
-export PATH="$PATH:/Applications/DevDesktop/drush"
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
