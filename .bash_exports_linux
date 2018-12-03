@@ -1,0 +1,17 @@
+# ~/.bash_exports_linux
+# Define Bash exports for Linux.
+# Invoked by .bashrc file.
+
+# Initialize
+[ -z "$PS1" ] || echo $(basename $BASH_SOURCE) loaded.
+
+# Set LC encoding to UTF-8.
+# Ubuntu way: Use locale-gen (part of locales).
+export LANG=en_GB.UTF-8
+export LANGUAGE="en_GB:en"
+
+# Set PATH for Linux
+export PATH=/usr/local/bin:$PATH:/opt/local/bin
+
+# Set other options.
+export LS_OPTIONS='--color=auto -h'

@@ -2,11 +2,20 @@
 # Define Bash exports.
 # Invoked by .bashrc file.
 
-# Editor.
-export EDITOR='vim'
+# Initialize
+[ -z "$PS1" ] || echo $(basename $BASH_SOURCE) loaded.
 
 # Path.
 export PATH="$HOME/bin:$HOME/binfiles:/usr/local/sbin:/usr/local/bin:$PATH"
+
+# Adds user's local bin directory.
+[ -d "$HOME"/bin ] && export PATH="$PATH:$HOME/bin"
+
+# Add a Composer's global bin directory if exists.
+which composer >/dev/null && export PATH="$HOME/.composer/vendor/bin:$PATH"
+
+# Editor.
+export EDITOR='vim'
 
 # Don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options.
@@ -60,10 +69,6 @@ export LC_CTYPE=C
 # Set architecture flags for x64
 export ARCHFLAGS="-arch x86_64"
 
-# For DevDesktop app.
-[ -d /Applications/DevDesktop/drush ] \
-    && export PATH="$PATH:/Applications/DevDesktop/drush"
-
 # asciidoc: Used to process AsciiDoc files through an XML stage (such as a2x for manpages).
 [ -d /usr/local/etc/xml/catalog ] \
     && export XML_CATALOG_FILES=/usr/local/etc/xml/catalog
@@ -95,10 +100,6 @@ export ARCHFLAGS="-arch x86_64"
 # Adds depot_tools for Chromium.
 [ -d $HOME/Sources/Chromium/depot_tools ] \
     && export PATH="$PATH:$HOME/Sources/Chromium/depot_tools"
-
-# Configure Apple's CLT package.
-[ -d /usr/local/opt/apr/bin ] \
-    && export PATH="/usr/local/opt/apr/bin:$PATH"
 
 # Configure ncurses package.
 [ -d /usr/local/opt/ncurses/bin ] \

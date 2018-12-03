@@ -2,25 +2,33 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
-# Add a Composer's global bin directory if exists.
-which composer >/dev/null && export PATH="$HOME/.composer/vendor/bin:$PATH"
-
-# Adds user's local bin directory.
-[ -d "$HOME"/bin ] && export PATH="$PATH:$HOME/bin"
-
-# Initialize
-# Determine within a startup script whether Bash is running interactively or not.
-[ -z "$PS1" ] && return
+# If not running interactively, don't do anything
 case $- in
     *i*) ;;
-    *) return ;;
+      *) return;;
 esac
+
+[ -z "$PS1" ] && return
 echo "$(basename $BASH_SOURCE) loaded." >&2
 
-# Check the requirements.
-if [ "${BASH_VERSION:0:1}" -eq 3 ]; then
-  echo "Please upgrade your bash to >= 4." >&2
-fi
+# don't put duplicate lines or lines starting with space in the history.
+# See bash(1) for more options
+HISTCONTROL=ignoreboth
+
+# append to the history file, don't overwrite it
+shopt -s histappend
+
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTSIZE=1000
+HISTFILESIZE=2000
+
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
+# If set, the pattern "**" used in a pathname expansion context will
+# match all files and zero or more directories and subdirectories.
+shopt -s globstar
 
 # Don't do anything if restricted, not even sourcing the ENV file
 # Testing $- for "r" doesn't work
@@ -34,49 +42,52 @@ fi
 # Clear away command_not_found_handle if a system bashrc file set it up
 unset -f command_not_found_handle
 
+# Alias definitions.
+# You may want to put all your additions into a separate file like
+# ~/.bash_aliases, instead of adding them here directly.
+# Ref: /usr/share/doc/bash-doc/examples in the bash-doc package.
+# @see: https://ss64.com/bash/syntax-bashrc.html
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
+# Includes function definitions.
+if [ -f ~/.bash_functions ]; then
+    . ~/.bash_functions
+fi
+
+# Includes shell options.
+if [ -f ~/.bash_options ]; then
+    . ~/.bash_options
+fi
+
+# Includes shell exports
+if [ -f ~/.bash_exports ]; then
+    . ~/.bash_exports
+fi
+
+# Check the requirements.
+if [ "${BASH_VERSION:0:1}" -eq 3 ]; then
+  echo "Please upgrade your bash to >= 4." >&2
+fi
+
 # Detect the platform.
 case "$OSTYPE" in
 
   solaris*)
     ;;
 
-  darwin*) # Mac (OSX)
-
-    # Set LC encoding to UTF-8.
-    #export LC_ALL=en_GB.UTF-8
-
-    # Fixes for illegal byte sequence (http://stackoverflow.com/q/19242275/55075).
-    export LC_ALL=en_GB.UTF-8
-    export LANG=en_GB.UTF-8
-
-    # Set PATH for OSX
-    type brew > /dev/null && brew --prefix php@7.1 > /dev/null && export PATH="$(brew --prefix php@7.1)/bin:$PATH"
-    export PATH="$PATH:/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin/gcc"
-    export PATH="$PATH:/Applications/MAMP/Library/bin:/Applications/MAMP/bin/php/php5.6.10/bin"
-    export PATH="/usr/libexec:$PATH" # Adds utils from libexec.
-    export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH" # add a "gnubin" for coreutils
-    export PYTHONPATH="$PYTHONPATH:$HOME/.python" # /usr/local/lib/python3.4/site-packages"
-    # :/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang
-
-    # Development variables.
-    export FLEX_HOME="/usr/local/Cellar/flex_sdk/4.6.0.23201/libexec"
-    export DYLD_FALLBACK_LIBRARY_PATH="/usr/X11/lib:/usr/lib" # See: http://stackoverflow.com/questions/10820981/dylibs-and-os-x
-    #export PHP_AUTOCONF="$(which autoconf)" # Install autoconf, which is needed for the installation of phpMyAdmin.
-
-    # Fix for Git-SVN (OSX) [Error: Can't locate SVN/Core.pm in @INC]. See: http://stackoverflow.com/questions/13571944/git-svn-unrecognized-url-scheme-error
-    export PERL5LIB="$HOME/perl5/lib/perl5:/Applications/Xcode.app/Contents/Developer/Library/Perl/5.16"
+  darwin*) # macOS
 
     # macOS specific aliases.
     if [ -f ~/.bash_aliases_macos ]; then
         . ~/.bash_aliases_macos
     fi
 
-    # Set prompt
-    export GIT_PS="\[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\] "
-    export PS1="\[\033[01;31m\]\u\[\033[01;33m\]@\[\033[01;36m\]\h \[\033[01;33m\]\W \[\033[01;35m\]\$ $GIT_PS\[\033[00m\]"
-
-    # Set other options.
-    export LS_OPTIONS='-G -h'
+    # macOS specific shell exports.
+    if [ -f ~/.bash_exports_macos ]; then
+        . ~/.bash_exports_macos
+    fi
 
     # OSX: Enable bash_completion (Install by: brew install bash-completion)
     #       Homebrew's own bash completion script: /usr/local/etc/bash_completion.d
@@ -120,13 +131,6 @@ case "$OSTYPE" in
     ;;& # fall-through syntax requires bash >= 4; (OSX, check: http://apple.stackexchange.com/q/141752/22781)
 
   linux*)
-    # Set LC encoding to UTF-8.
-    # Ubuntu way: Use locale-gen (part of locales).
-    export LANG=en_GB.UTF-8
-    export LANGUAGE="en_GB:en"
-
-    # Set PATH for Linux
-    export PATH=/usr/local/bin:$PATH:/opt/local/bin
 
     # Linux: enable color support of ls and also add handy aliases
     if [ -x /usr/bin/dircolors ]; then
@@ -151,12 +155,15 @@ case "$OSTYPE" in
         . ~/.bash_aliases_linux
     fi
 
-    # Set other options.
-    export LS_OPTIONS='--color=auto -h'
+    # Linux specific shell exports.
+    if [ -f ~/.bash_exports_linux ]; then
+        . ~/.bash_exports_linux
+    fi
 
     ;;
 
   bsd*)
+
     export LS_OPTIONS='-G'
     ;;
 
@@ -180,12 +187,12 @@ force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
+      # We have color support; assume it's compliant with Ecma-48
+      # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+      # a case would tend to support setf rather than setaf.)
+      color_prompt=yes
     else
-	color_prompt=
+      color_prompt=
     fi
 fi
 unset color_prompt force_color_prompt
@@ -194,30 +201,6 @@ unset color_prompt force_color_prompt
 for sh in "$HOME"/.bashrc.d/*.bash ; do
     [[ -e $sh ]] && source "$sh"
 done
-
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# Ref: /usr/share/doc/bash-doc/examples in the bash-doc package.
-# @see: https://ss64.com/bash/syntax-bashrc.html
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
-
-# Includes function definitions.
-if [ -f ~/.bash_functions ]; then
-    . ~/.bash_functions
-fi
-
-# Includes shell options.
-if [ -f ~/.bash_options ]; then
-    . ~/.bash_options
-fi
-
-# Includes shell exports
-if [ -f ~/.bash_exports ]; then
-    . ~/.bash_exports
-fi
 
 # Load private secret settings.
 if [ -f ~/.secrets ]; then
