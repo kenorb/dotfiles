@@ -18,21 +18,25 @@ export HISTSIZE=10000
 export HISTFILESIZE==$((1 << 15)) 
 
 # Keep the times of the commands in history
-HISTTIMEFORMAT='%F %T'
+export HISTTIMEFORMAT='%F %T'
 
 # Use a more compact format for the 'time' builtin's output.
-TIMEFORMAT='real:%lR user:%lU sys:%lS'
+export TIMEFORMAT='real:%lR user:%lU sys:%lS'
 
 # Terminal colors (e.g. echo "${COLOR_RED}foo").
-COLOR_RESET=$(tput sgr0)
-COLOR_BLACK=$(tput setaf 0)
-COLOR_RED=$(tput setaf 1)
-COLOR_GREEN=$(tput setaf 2)
-COLOR_YELLOW=$(tput setaf 3)
-COLOR_BLUE=$(tput setaf 4)
-COLOR_MAGENTA=$(tput setaf 5)
-COLOR_CYAN=$(tput setaf 6)
-COLOR_WHITE=$(tput setaf 7)
+export COLOR_RESET=$(tput sgr0)
+export COLOR_BLACK=$(tput setaf 0)
+export COLOR_RED=$(tput setaf 1)
+export COLOR_GREEN=$(tput setaf 2)
+export COLOR_YELLOW=$(tput setaf 3)
+export COLOR_BLUE=$(tput setaf 4)
+export COLOR_MAGENTA=$(tput setaf 5)
+export COLOR_CYAN=$(tput setaf 6)
+export COLOR_WHITE=$(tput setaf 7)
+
+# CLI and ls colors.
+export CLICOLOR=1
+export LSCOLORS=ExFxCxDxBxegedabagacad
 
 # Perl 5.
 if [ -d ~/perl5 ]; then
