@@ -1,6 +1,6 @@
 # ~/.bash_options
 # Define Bash options.
-# Invoked by .bashrc file.
+# Invoked by .bash_profile file.
 
 # Append to the history file, don't overwrite it.
 shopt -s histappend

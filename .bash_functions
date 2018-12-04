@@ -1,6 +1,6 @@
 # ~/.bash_functions
 # Define Bash functions.
-# Invoked by .bashrc file.
+# Invoked by .bash_profile file.
 
 # Includes other function definitions.
 if [ -f ~/.bash_functions_mysql ]; then

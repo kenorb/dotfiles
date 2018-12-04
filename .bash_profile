@@ -1,5 +1,5 @@
-# .bash_profile
-# Invoked by .bashrc file.
+# ~/.bash_profile: executed by bash(1) for login shells.
+# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 
 # Initialize
 # Determine within a startup script whether Bash is running interactively or not.

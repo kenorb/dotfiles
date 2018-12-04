@@ -1,6 +1,6 @@
 # ~/.bash_exports_linux
 # Define Bash exports for Linux.
-# Invoked by .bashrc file.
+# Invoked by .bash_profile file.
 
 # Set LC encoding to UTF-8.
 # Ubuntu way: Use locale-gen (part of locales).

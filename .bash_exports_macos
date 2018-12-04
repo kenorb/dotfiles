@@ -1,6 +1,6 @@
 # ~/.bash_exports_macos
 # Define Bash exports for macOS.
-# Invoked by .bashrc file.
+# Invoked by .bash_profile file.
 
 # Initialize
 [ -z "$PS1" ] || echo $(basename $BASH_SOURCE) loaded.
