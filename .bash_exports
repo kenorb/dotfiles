@@ -99,6 +99,15 @@ export ARCHFLAGS="-arch x86_64"
 [ -d /usr/local/opt/icu4c/bin ] \
     && export PATH="/usr/local/opt/icu4c/sbin:/usr/local/opt/icu4c/bin:$PATH"
 
+# Configure Platform.sh.
+# BEGIN SNIPPET: Platform.sh CLI configuration
+[ -d "$HOME"/.platformsh ]
+  {
+    export PATH="$PATH:$HOME/.platformsh/bin"
+    if [ -f "$HOME/.platformsh/shell-config.rc" ]; then . "$HOME/.platformsh/shell-config.rc"; fi
+  }
+# END SNIPPET
+
 # Notes:
 # For compilers to find this software you may need to set:
 #     LDFLAGS:  -L/usr/local/opt/ncurses/lib
