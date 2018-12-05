@@ -2,8 +2,20 @@
 # Define Bash options.
 # Invoked by .bash_profile file.
 
-# Append to the history file, don't overwrite it.
-shopt -s histappend
+# don't put duplicate lines or lines starting with space in the history.
+# See bash(1) for more options
+HISTCONTROL=ignoreboth
+
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTSIZE=10000
+# Keep around 32K lines of history in file.
+HISTFILESIZE==$((1 << 15)) 
+
+# Keep the times of the commands in history
+HISTTIMEFORMAT='%F %T'
+
+# Use a more compact format for the 'time' builtin's output.
+TIMEFORMAT='real:%lR user:%lU sys:%lS'
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -29,7 +41,7 @@ shopt -s cmdhist
 # @see: http://wiki.bash-hackers.org/syntax/pattern
 shopt -s extglob
 
-# Append history to $HISTFILE rather than overwriting it.
+# Append to the history file ($HISTFILE), don't overwrite it.
 shopt -s histappend
 
 # If history expansion fails, reload the command to try again.
