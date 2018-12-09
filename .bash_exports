@@ -105,11 +105,11 @@ export ARCHFLAGS="-arch x86_64"
 
 # Configure Platform.sh.
 # BEGIN SNIPPET: Platform.sh CLI configuration
-[ -d "$HOME"/.platformsh ]
-  {
+[ -d "$HOME"/.platformsh ] \
+  && (
     export PATH="$PATH:$HOME/.platformsh/bin"
     if [ -f "$HOME/.platformsh/shell-config.rc" ]; then . "$HOME/.platformsh/shell-config.rc"; fi
-  }
+  )
 # END SNIPPET
 
 # Notes:
