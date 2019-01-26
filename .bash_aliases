@@ -1,11 +1,10 @@
 # ~/.bash_aliases
 
-# ALIASES #
-#
+## ALIASES ##
+
 # Initialize
-# Determine within a startup script whether Bash is running interactively or not.
-[ -z "$PS1" ] && return
-echo $(basename $BASH_SOURCE) loaded.
+RC_LOADED+=($(basename $BASH_SOURCE))
+echo "${RC_LOADED[-1]} loaded." >&2
 
 ## File system
 

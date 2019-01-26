@@ -4,7 +4,8 @@
 # Initialize
 # Determine within a startup script whether Bash is running interactively or not.
 [ -z "$PS1" ] && return
-echo "$(basename $BASH_SOURCE) loaded." >&2
+RC_LOADED+=($(basename $BASH_SOURCE))
+echo "${RC_LOADED[-1]} loaded." >&2
 
 # Load user ~/.profile file regardless of shell version
 [ -e "$HOME"/.profile ] && . "$HOME"/.profile
@@ -18,7 +19,7 @@ fi
 
 # If ~/.bashrc exists, source that too; the tests for both interactivity and
 # >=2.05a (for features like [[) are in there
-[ -f "$HOME"/.bashrc ] && . "$HOME"/.bashrc
+[ -f "$HOME"/.bashrc ] && [[ ! ${RC_LOADED[@]} =~ ".bashrc" ]] && . "$HOME"/.bashrc
 
 #############################################################################
 

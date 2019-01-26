@@ -11,7 +11,11 @@ esac
 # Initialize
 # Determine within a startup script whether Bash is running interactively or not.
 [ -z "$PS1" ] && return
-echo "$(basename $BASH_SOURCE) loaded." >&2
+RC_LOADED+=($(basename $BASH_SOURCE))
+echo "${RC_LOADED[-1]} loaded." >&2
+
+# If ~/.bash_profile exists and was not loaded, source that too.
+[ -f "$HOME"/.bash_profile ] && [[ ! ${RC_LOADED[@]} =~ ".bash_profile" ]] && . "$HOME"/.bash_profile
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -32,3 +36,6 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+# added by travis gem
+[ -f /home/kenorb/.travis/travis.sh ] && source /home/kenorb/.travis/travis.sh

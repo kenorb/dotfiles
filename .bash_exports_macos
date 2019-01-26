@@ -3,7 +3,9 @@
 # Invoked by .bash_profile file.
 
 # Initialize
-[ -z "$PS1" ] || echo $(basename $BASH_SOURCE) loaded.
+[ -z "$PS1" ] && return
+RC_LOADED+=($(basename $BASH_SOURCE))
+echo "${RC_LOADED[-1]} loaded." >&2
 
 # For DevDesktop app.
 [ -d /Applications/DevDesktop/drush ] \
