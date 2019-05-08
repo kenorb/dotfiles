@@ -19,6 +19,7 @@ echo "${RC_LOADED[-1]} loaded." >&2
 # Fixes illegal byte sequence (http://stackoverflow.com/q/19242275/55075).
 export LC_ALL=en_GB.UTF-8
 export LANG=en_GB.UTF-8
+export LANGUAGE="en_GB:en"
 
 # Set PATH for OSX
 type brew > /dev/null && brew --prefix php@7.1 > /dev/null && export PATH="$(brew --prefix php@7.1)/bin:$PATH"

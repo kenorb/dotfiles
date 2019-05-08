@@ -3,7 +3,9 @@
 # Invoked by .bash_profile file.
 
 # Set LC encoding to UTF-8.
+# Fixes illegal byte sequence (http://stackoverflow.com/q/19242275/55075).
 # Ubuntu way: Use locale-gen (part of locales).
+export LC_ALL=en_GB.UTF-8
 export LANG=en_GB.UTF-8
 export LANGUAGE="en_GB:en"
 
