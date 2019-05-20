@@ -35,6 +35,12 @@ ff() {
   find . -name "$1"
 }
 
+# Search for pattern in UTF-16 files with Ruby.
+# Usage: grep16 PATTERN file.txt
+grep16() {
+  ruby -e "puts File.open('$2', mode:'rb:BOM|UTF-16LE').readlines.grep(Regexp.new '$1'.encode(Encoding::UTF_16LE))";
+}
+
 # Find recursively and edit the file in Vim.
 # Note: It's basically the same as: vim **/file when globstar is enabled.
 # Usage: ff (file)
