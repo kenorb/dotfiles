@@ -14,8 +14,12 @@ export PATH="$HOME/bin:$HOME/binfiles:/usr/local/sbin:/usr/local/bin:$PATH"
 [ -d "$HOME"/bin ] && export PATH="$PATH:$HOME/bin"
 [ -d "$HOME"/.local/bin ] && export PATH="$PATH:$HOME/.local/bin"
 
+# Composer.
 # Add a Composer's global bin directory if exists.
 which composer >/dev/null && export PATH="$HOME/.composer/vendor/bin:$PATH"
+# Increases Docker timeouts.
+export COMPOSE_HTTP_TIMEOUT=600
+export DOCKER_CLIENT_TIMEOUT=600
 
 # Prompt.
 export PS1='\[\033[01;31m\]\u\[\033[01;33m\]@\[\033[01;36m\]\h \[\033[01;33m\]\w \[\033[01;35m\]\$ \[\033[00m\]'
