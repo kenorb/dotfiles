@@ -4,7 +4,7 @@
 
 # Initialize
 RC_LOADED+=($(basename $BASH_SOURCE))
-echo "${RC_LOADED[-1]} loaded." >&2
+[ ${BASH_VERSION:0:1} -gt 3 ] && echo "${RC_LOADED[-1]} loaded." >&2
 
 ## File system
 

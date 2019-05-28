@@ -12,7 +12,7 @@ esac
 # Determine within a startup script whether Bash is running interactively or not.
 [ -z "$PS1" ] && return
 RC_LOADED+=($(basename $BASH_SOURCE))
-echo "${RC_LOADED[-1]} loaded." >&2
+[ ${BASH_VERSION:0:1} -gt 3 ] && echo "${RC_LOADED[-1]} loaded." >&2
 
 # If ~/.bash_profile exists and was not loaded, source that too.
 [ -f "$HOME"/.bash_profile ] && [[ ! ${RC_LOADED[@]} =~ ".bash_profile" ]] && . "$HOME"/.bash_profile

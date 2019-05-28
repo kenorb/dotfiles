@@ -5,7 +5,7 @@
 # Determine within a startup script whether Bash is running interactively or not.
 [ -z "$PS1" ] && return
 RC_LOADED+=($(basename $BASH_SOURCE))
-echo "${RC_LOADED[-1]} loaded." >&2
+[ ${BASH_VERSION:0:1} -gt 3 ] && echo "${RC_LOADED[-1]} loaded." >&2
 
 # Load user ~/.profile file regardless of shell version
 [ -e "$HOME"/.profile ] && . "$HOME"/.profile
