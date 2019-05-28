@@ -133,7 +133,7 @@ case "$OSTYPE" in
     esac
 
 
-    ;;& # fall-through syntax requires bash >= 4; (OSX, check: http://apple.stackexchange.com/q/141752/22781)
+    ;;
 
   linux*)
 
