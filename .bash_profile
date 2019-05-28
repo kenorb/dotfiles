@@ -49,11 +49,6 @@ if [ -f ~/.bash_functions ]; then
     . ~/.bash_functions
 fi
 
-# Check the requirements.
-if [ "${BASH_VERSION:0:1}" -eq 3 ]; then
-  echo "Please upgrade your bash to >= 4." >&2
-fi
-
 # Detect the platform.
 case "$OSTYPE" in
 
