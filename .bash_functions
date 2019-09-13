@@ -188,7 +188,7 @@ gh-clone-user-priv() {
 # Usage: update-proxies (file)
 proxy-update-list() {
   proxy_db=${1:-~/.proxies.db}
-  list_url=$(curl -s "http://www.live-socks.net/$(date +%Y)/$(date +%m)/" | grep -om1 http://.*socks-5-servers.html)
+  list_url=$(curl -Ls "http://www.live-socks.net/$(date +%Y)/$(date +%m)/" | grep -om1 http://.*socks-5-servers.html)
   curl -s "$list_url" | grep "^[0-9].*:[0-9]\+" | tee -a $proxy_db &>/dev/null
   sort -uo $proxy_db $proxy_db
 }
@@ -198,18 +198,20 @@ proxy-update-list() {
 proxy-find() {
   proxy_db=${1:-~/.proxies.db}
   while true; do
-    socks_proxy="socks5://$(shuf -n1 $proxy_db)"
-    curl -m5 -sqfx $socks_proxy http://example.com/ &>/dev/null
+    proxy_ip="$(shuf -n1 $proxy_db)"
+    curl -m5 -sqfx socks5://$proxy_ip http://example.com/ &>/dev/null
     if [[ "$?" -eq 0 ]]; then
-      break;
+      if curl -m5 -sqfx socks5://$proxy_ip http://example.com/ | grep -qw Example; then
+        break;
+      fi
     fi
-    ex +"g/$socks_proxy/d" -scwq $proxy_db
+    [ -n "$proxy_ip" ] && ex +"g/$proxy_ip/d" -scwq! $proxy_db
   done
-  echo $socks_proxy
+  echo $proxy_ip
 }
 
 # Curl with proxy.
 # Usage: curl-proxy
 curl-proxy() {
-  curl -x "$(proxy-find)" "$@"
+  curl -x "socks5://$(proxy-find)" "$@"
 }
