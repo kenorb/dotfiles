@@ -183,3 +183,33 @@ gh-clone-user-priv() {
   [ -z "$GITHUB_API_TOKEN" ] && { echo "Error: Define GITHUB_API_TOKEN."; return; }
   curl -sL "https://api.github.com/users/$1/repos?access_token=$GITHUB_API_TOKEN&per_page=1000&type=private" | jq -r '.[]|.clone_url' | xargs -L1 git clone --recurse-submodules
 }
+
+# Updates list of proxies.
+# Usage: update-proxies (file)
+proxy-update-list() {
+  proxy_db=${1:-~/.proxies.db}
+  list_url=$(curl -s "http://www.live-socks.net/$(date +%Y)/$(date +%m)/" | grep -om1 http://.*socks-5-servers.html)
+  curl -s "$list_url" | grep "^[0-9].*:[0-9]\+" | tee -a $proxy_db &>/dev/null
+  sort -uo $proxy_db $proxy_db
+}
+
+# Find valid proxy from the list.
+# Usage: proxy-find (file)
+proxy-find() {
+  proxy_db=${1:-~/.proxies.db}
+  while true; do
+    socks_proxy="socks5://$(shuf -n1 $proxy_db)"
+    curl -m5 -sqfx $socks_proxy http://example.com/ &>/dev/null
+    if [[ "$?" -eq 0 ]]; then
+      break;
+    fi
+    ex +"g/$socks_proxy/d" -scwq $proxy_db
+  done
+  echo $socks_proxy
+}
+
+# Curl with proxy.
+# Usage: curl-proxy
+curl-proxy() {
+  curl -x "$(proxy-find)" "$@"
+}
