@@ -48,9 +48,9 @@ clean = "sed -e 's/^password=.*/#password=TODO/'"
   tool = diffmerge
   renamelimit = 7274
 
-[diff "ansible-vault"]
-  cachetextconv = false
-  textconv = ansible-vault view
+#[diff "ansible-vault"]
+#  cachetextconv = false
+#  textconv = ansible-vault view
 
 [diff "zip"]
   textconv = unzip -v
@@ -91,25 +91,31 @@ clean = "sed -e 's/^password=.*/#password=TODO/'"
   path =
 
 [alias]
-  lol             = log --graph --decorate --pretty=oneline --abbrev-commit
-  lola            = log --graph --decorate --pretty=oneline --abbrev-commit --all
-  curr-branch     = !git rev-parse --abbrev-ref HEAD
-  log-graph       = !git log --oneline --graph --decorate --all
-  out =             !git log --boundary $(git rev-list --max-count=1 --simplify-by-decoration HEAD^)..
-  sm-diff =         "submodule foreach 'git diff'"
-  sm-clean-all =    "submodule foreach --recursive 'git clean -fXd'"
-  pull-forks =      "!git submodule foreach 'git pull `git config --get remote.origin.url | sed s#EXAMPLE#kenorb#`&'"
-  ; tag-svn2git =     !git for-each-ref refs/remotes/tags --shell --format="r=%(refname:short) t=\${r#tags/}" | while read e; do eval "$e"; git tag -f $t refs/remotes/$r; git branch -d -r $r; done
+  addremove    = !git add . && git ls-files -deleted | xargs git rm
+  big-files    = !"git rev-list --objects --all \
+                 | git cat-file --batch-check='%(objecttype) %(objectname) %(objectsize) %(rest)' \
+                 | sed -n 's/^blob //p' \
+                 | sort --numeric-sort --key=2 \
+                 | cut -c 1-12,41- \
+                 | $(command -v gnumfmt || echo numfmt) --field=2 --to=iec-i --suffix=B --padding=7 --round=nearest"
+  checkout-all = !"find . -name .git -type d -print -execdir git checkout -f HEAD \\;"
+  curr-branch  = !git rev-parse --abbrev-ref HEAD
+  fetch-all    = !"find . -name .git -type d -print -execdir git fetch --all \\;"
+  log-graph    = !git log --oneline --graph --decorate --all
+  lol          = log --graph --decorate --pretty=oneline --abbrev-commit
+  lola         = log --graph --decorate --pretty=oneline --abbrev-commit --all
+  majonez      = !echo Hellmanns
+  out          = !git log --boundary $(git rev-list --max-count=1 --simplify-by-decoration HEAD^)..
+  pull-all     = !"find . -name .git -type d -print -execdir git pull origin \\;"
+  pull-forks   = "!git submodule foreach 'git pull `git config --get remote.origin.url | sed s#EXAMPLE#kenorb#`&'"
+  reset-all    = !"find . -name .git -type d -print -execdir git reset HEAD --hard \\;"
+  sm-clean-all = "submodule foreach --recursive 'git clean -fXd'"
+  sm-diff      = "submodule foreach 'git diff'"
+  svn-dcommit  = "!set -o xtrace; git stash; git svn dcommit; git stash pop -q"
+  update-all   = "!cd $(git rev-parse --show-toplevel 2> /dev/null) && find -name .git -type d -execdir git pull -v ';'"
   ; branch-svn2git =  !git for-each-ref refs/remotes --shell --format="r=%(refname:short) t=\${r#tags/}" | while read e; do eval "$e"; git branch -f $t refs/remotes/$r; git branch -d -r $r; done
-  addremove = !git add . && git ls-files -deleted | xargs git rm
-  majonez = !echo Hellmanns
-  svn-dcommit =     "!set -o xtrace; git stash; git svn dcommit; git stash pop -q"
+  ; tag-svn2git =     !git for-each-ref refs/remotes/tags --shell --format="r=%(refname:short) t=\${r#tags/}" | while read e; do eval "$e"; git tag -f $t refs/remotes/$r; git branch -d -r $r; done
 # set -o xtrace; git stash; git svn dcommit; git stash pop -q"
-  checkout-all      = !"find . -name .git -type d -print -execdir git checkout -f HEAD \\;"
-  fetch-all         = !"find . -name .git -type d -print -execdir git fetch --all \\;"
-  pull-all          = !"find . -name .git -type d -print -execdir git pull origin \\;"
-  update-all        = "!cd $(git rev-parse --show-toplevel 2> /dev/null) && find -name .git -type d -execdir git pull -v ';'"
-  reset-all         = !"find . -name .git -type d -print -execdir git reset HEAD --hard \\;"
 # $(git rev-parse --show-toplevel 2> /dev/null)
 
 ; HOW TO
