@@ -246,3 +246,11 @@ alias npm-freeze='npm ls | grep -o "\S\+@\S\+$" | tr @ " " | awk -v q='\''"'\'' 
 
 # Fun
 alias weather-london="curl http://wttr.in/london"
+
+# Ansible
+alias ansible-diff-off="export ANSIBLE_DIFF_ALWAYS=false"
+alias ansible-diff-on="export ANSIBLE_DIFF_ALWAYS=true"
+alias ansible-host-check-off="export ANSIBLE_HOST_KEY_CHECKING=false"
+alias ansible-host-check-on="export ANSIBLE_HOST_KEY_CHECKING=true"
+alias ansible-warnings-off="export ANSIBLE_DEPRECATION_WARNINGS=false"
+alias ansible-warnings-on="export ANSIBLE_DEPRECATION_WARNINGS=true"
