@@ -17,8 +17,8 @@ brew "hub"
 brew "imagemagick"
 brew "jq"
 brew "mackup"
-brew "msodbcsql"
-brew "mssql-tools"
+#brew "msodbcsql"
+#brew "mssql-tools" # Homebrew/homebrew-bundle/issues/604
 #brew "mysql@5.6", restart_service: true, link: true, conflicts_with: ["mysql"]
 brew "node"
 brew "python3"
@@ -44,7 +44,7 @@ cask "ccmenu"
 cask "dash"
 cask "dropbox"
 cask "evernote"
-cask "homebrew/cask-fonts/font-charter"
+cask "hyper"
 cask "iterm2"
 cask "java" unless system "/usr/libexec/java_home --failfast"
 cask "reflector"
@@ -67,6 +67,9 @@ cask "qbittorrent"
 cask "skype"
 cask "steam"
 cask "the-unarchiver"
+
+# Casks (Security apps).
+cask 'dashlane'
 
 # Casks (Web browsers).
 cask "brave"
