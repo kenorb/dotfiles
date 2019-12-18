@@ -20,6 +20,7 @@ brew "sqlite"
 
 # Brew (development).
 brew "ack"
+brew "composer"
 brew "direnv"
 brew "docker-compose"
 brew "git"
@@ -27,6 +28,7 @@ brew "git-lfs"
 brew "hub"
 brew "jq"
 brew "node"
+brew "pv"
 brew "python3"
 brew "rbenv"
 brew "redis"
@@ -92,6 +94,7 @@ cask "vlc"
 cask "mplayerx"
 
 # Casks (Libraries).
+cask "authy"
 cask "flux"
 cask "xquartz"
 
