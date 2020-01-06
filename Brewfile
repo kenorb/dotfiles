@@ -3,7 +3,7 @@
 # @docs https://github.com/Homebrew/homebrew-bundle#usage
 
 # Taps.
-tap "microsoft/mssql-preview", "https://github.com/Microsoft/homebrew-mssql-preview"
+tap 'microsoft/mssql-release', 'https://github.com/Microsoft/homebrew-mssql-release'
 
 # Brew (CLI).
 brew "bash"
