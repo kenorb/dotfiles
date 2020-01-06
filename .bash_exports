@@ -21,6 +21,10 @@ which composer >/dev/null && export PATH="$HOME/.composer/vendor/bin:$PATH"
 export COMPOSE_HTTP_TIMEOUT=600
 export DOCKER_CLIENT_TIMEOUT=600
 
+# Homebrew
+ACCEPT_EULA=y
+#HOMEBREW_NO_ENV_FILTERING=1
+
 # Prompt.
 export PS1='\[\033[01;31m\]\u\[\033[01;33m\]@\[\033[01;36m\]\h \[\033[01;33m\]\w \[\033[01;35m\]\$ \[\033[00m\]'
 export PROMPT_DIRTRIM=2
