@@ -1,5 +1,5 @@
 # Bundler file for non-Ruby dependencies from Homebrew.
-# Usage: brew bundle -v
+# Usage: ACCEPT_EULA=y brew bundle install -v
 # @docs https://github.com/Homebrew/homebrew-bundle#usage
 
 # Taps.
@@ -29,6 +29,7 @@ brew "hub"
 brew "jq"
 brew "node"
 brew "pv"
+brew "pre-commit"
 brew "python3"
 brew "rbenv"
 brew "redis"
@@ -39,10 +40,14 @@ brew "vim"
 brew "yq"
 #brew "denji/nginx/nginx-full", args: ["with-rmtp-module"]
 
-# Casks (DevOps).
-brew "ansible"
+# Brew (DevOps).
+brew "ansible" unless system "command -v ansible"
 brew "azure-cli"
 brew "terraform"
+
+# Installs Drone CI.
+tap "drone/drone"
+brew "drone"
 
 # Brew (linters/formatters).
 brew 'shellcheck'
@@ -75,8 +80,10 @@ cask "charles"
 cask "dash"
 cask "dropbox"
 cask "evernote"
+cask "font-charter"
 cask "hyper"
 cask "iterm2"
+cask "iterm2" unless system "test -d /Applications/iTerm.app"
 cask "java" unless system "/usr/libexec/java_home --failfast"
 cask "keepassx"
 cask "reflector"
@@ -103,8 +110,14 @@ cask 'dashlane'
 
 # Casks (Social).
 cask "google-hangouts"
+cask "mplayerx"
+cask "openemu"
+cask "qbittorrent"
 cask "skype"
+cask "skype" unless system "test -d /Applications/Skype.app"
 cask "slack"
+cask "steam"
+cask "the-unarchiver"
 cask 'telegram'
 cask 'zoom'
 
