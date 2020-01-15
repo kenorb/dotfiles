@@ -8,6 +8,7 @@ tap 'microsoft/mssql-release', 'https://github.com/Microsoft/homebrew-mssql-rele
 # Brew (CLI).
 brew "bash"
 brew "bash-completion"
+brew "curl-openssl"
 brew "imagemagick"
 brew "mackup"
 brew "youtube-dl"
@@ -20,6 +21,7 @@ brew "sqlite"
 
 # Brew (development).
 brew "ack"
+brew "clang-format"
 brew "composer"
 brew "direnv"
 brew "docker-compose"
@@ -27,6 +29,7 @@ brew "git"
 brew "git-lfs"
 brew "hub"
 brew "jq"
+brew "maven"
 brew "node"
 brew "pv"
 brew "pre-commit"
@@ -103,6 +106,7 @@ cask "mplayerx"
 # Casks (Libraries).
 cask "authy"
 cask "flux"
+cask "google-cloud-sdk"
 cask "xquartz"
 
 # Casks (Security apps).
