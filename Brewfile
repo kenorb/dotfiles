@@ -11,9 +11,12 @@ brew "bash-completion"
 brew "curl-openssl"
 brew "imagemagick"
 brew "mackup"
+brew "transmission"
 brew "youtube-dl"
 
 # Brew (databases).
+brew "h2"
+brew "postgres"
 brew "sqlite"
 #brew "msodbcsql"
 #brew "mssql-tools" # Homebrew/homebrew-bundle/issues/604
@@ -46,17 +49,32 @@ brew "yq"
 # Brew (DevOps).
 brew "ansible" unless system "command -v ansible"
 brew "azure-cli"
+brew "helm" # The Kubernetes Package Manager.
+brew "mtr"
 brew "terraform"
+
+# Installs Circle CI
+brew "circleci"
 
 # Installs Drone CI.
 tap "drone/drone"
 brew "drone"
+
+# Install GitHub CLI.
+tap "github/gh"
+brew "gh"
 
 # Brew (linters/formatters).
 brew 'shellcheck'
 brew 'shfmt'
 brew 'tflint'
 brew 'yamllint'
+
+# SDL2 (game development).
+#brew "sdl2"
+#brew "sdl2_image"
+#brew "sdl2_mixer"
+#brew "sdl2_ttf"
 
 # Casks (Setup).
 tap "homebrew/cask"
