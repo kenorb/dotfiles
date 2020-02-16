@@ -59,18 +59,27 @@ alias ......='cd ../../../../../'
 
 ## Git
 
-# Change dir to git root.
-alias cdgit='cd "$(git rev-parse --show-toplevel 2> /dev/null)"'
+# git branch
+alias gb="git branch"
 
-# Refresh all repos in the current dir.
-alias git-pull-all='find . -name .git -type d -execdir sh -c "git fetch --tags --all && git pull -v" ";"'
-alias git-pull-root='find $(git rev-parse --show-toplevel 2> /dev/null) -name .git -type d -execdir git pull -v ";"'
+# git checkout master
+alias gcm="git checkout master"
+
+# git pull
+alias gp="git pull"
 
 # Compact, colorized git log
 alias gl="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 
 # Visualise git log (like gitk, in the terminal)
 alias lg='git log --graph --full-history --all --color --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"'
+
+# Change dir to git root.
+alias cdgit='cd "$(git rev-parse --show-toplevel 2> /dev/null)"'
+
+# Refresh all repos in the current dir.
+alias git-pull-all='find . -name .git -type d -execdir sh -c "git fetch --tags --all && git pull -v" ";"'
+alias git-pull-root='find $(git rev-parse --show-toplevel 2> /dev/null) -name .git -type d -execdir git pull -v ";"'
 
 # Show which commands you use the most
 alias freq='cut -f1 -d" " ~/.bash_history | sort | uniq -c | sort -nr | head -n 30'
@@ -98,7 +107,7 @@ alias netlisteners='lsof -i -P | grep LISTEN'
 alias wget-all='wget --user-agent=Mozilla -e robots=off --content-disposition --mirror --convert-links -E -K -N -r -c'
 #
 # youtube-dl (if available)
-alias youtube-dl='youtube-dl -vcti -R5 -f "(webm,mp4)" --write-description --write-info-json --all-subs --write-thumbnail --add-metadata'
+alias youtube-dl='youtube-dl -vci -R5 -f "(webm,mp4)" --write-description --write-info-json --all-subs --write-thumbnail --add-metadata'
 #
 # Move torrent files
 alias move_torrents='find . -name "*.torrent" -exec sh -c '\''DST=$(find . -type d -name "$(basename "{}" .torrent)" -print -quit); [ -d "$DST" ] && mv -v "{}" "$DST/"'\'' ";"'
@@ -246,6 +255,11 @@ alias npm-freeze='npm ls | grep -o "\S\+@\S\+$" | tr @ " " | awk -v q='\''"'\'' 
 
 # Fun
 alias weather-london="curl http://wttr.in/london"
+
+# Transmission
+alias magnet-add="transmission-remote -a"
+alias magnet-list="transmission-remote -l"
+alias tsm="transmission-remote"
 
 # Ansible
 alias ansible-cowsay-off="export ANSIBLE_NOCOWS=true"
