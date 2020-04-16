@@ -6,13 +6,33 @@
 tap 'microsoft/mssql-release', 'https://github.com/Microsoft/homebrew-mssql-release'
 
 # Brew (CLI).
+brew "afsctool"
 brew "bash"
 brew "bash-completion"
 brew "curl-openssl"
 brew "imagemagick"
 brew "mackup"
 brew "transmission"
+brew "wget"
 brew "youtube-dl"
+
+# Brew (GNU).
+# https://www.topbug.net/blog/2013/04/14/install-and-use-gnu-command-line-tools-in-mac-os-x/
+brew "coreutils"
+brew "diffutils"
+brew "findutils"
+brew "gawk"
+brew "gdb" # gdb requires special privileges. See `brew info gdb`.
+brew "gnu-indent"
+brew "gnu-sed"
+brew "gnu-tar"
+brew "gnu-which"
+brew "gnutls"
+brew "grep"
+brew "gzip"
+brew "screen"
+brew "watch"
+brew "wdiff"
 
 # Brew (databases).
 brew "h2"
@@ -50,6 +70,8 @@ brew "yq"
 brew "ansible" unless system "command -v ansible"
 brew "azure-cli"
 brew "helm" # The Kubernetes Package Manager.
+brew "kubernetes-cli"
+brew "minikube"
 brew "mtr"
 brew "terraform"
 
@@ -64,11 +86,19 @@ brew "drone"
 tap "github/gh"
 brew "gh"
 
+# Brew (libraries).
+brew "pcre"
+brew "pcre++"
+brew "openssl"
+
 # Brew (linters/formatters).
-brew 'shellcheck'
-brew 'shfmt'
-brew 'tflint'
-brew 'yamllint'
+brew "shellcheck"
+brew "shfmt"
+brew "tflint"
+brew "yamllint"
+
+# Brew (cryptocurrencies).
+#brew "vanitygen"
 
 # SDL2 (game development).
 #brew "sdl2"
@@ -110,7 +140,7 @@ cask "keepassx"
 cask "reflector"
 cask "sublime-text"
 cask 'visual-studio-code'
-#cask "vagrant"
+cask "vagrant"
 #cask "virtualbox"
 
 # Casks (Games).
