@@ -260,6 +260,7 @@ alias weather-london="curl http://wttr.in/london"
 alias magnet-add="transmission-remote -a"
 alias magnet-list="transmission-remote -l"
 alias tsm="transmission-remote"
+alias tsm-show-config="transmission-daemon --dump-settings"
 
 # Ansible
 alias ansible-cowsay-off="export ANSIBLE_NOCOWS=true"
