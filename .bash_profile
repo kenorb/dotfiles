@@ -127,6 +127,15 @@ case "$OSTYPE" in
             ;;
     esac
 
+    # Load Linux specific aliases.
+    if [ -f ~/.bash_aliases_linux ]; then
+        . ~/.bash_aliases_linux
+    fi
+
+    # Load Linux specific shell exports.
+    if [ -f ~/.bash_exports_linux ]; then
+        . ~/.bash_exports_linux
+    fi
 
     ;;
 
