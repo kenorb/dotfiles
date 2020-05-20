@@ -194,3 +194,8 @@ done
 if [ -f ~/.secrets ]; then
     . ~/.secrets
 fi
+
+# Setup kubectl autocomplete.
+if command -v kubectl &> /dev/null; then
+  source <(kubectl completion bash)
+fi
