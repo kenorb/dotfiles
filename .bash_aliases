@@ -40,6 +40,9 @@ alias lr='ls -R | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\
 #alias ll='ls -laF'
 #alias ll='ls $LS_OPTIONS -alF' # Unix like ls
 
+# rm variants
+alias rm-empty="find . -type d -empty -delete -print"
+
 # Date
 alias date-iso="date --iso-8601=seconds"
 
