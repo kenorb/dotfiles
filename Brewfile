@@ -73,6 +73,8 @@ brew "helm" # The Kubernetes Package Manager.
 brew "kubernetes-cli"
 brew "minikube"
 brew "mtr"
+brew "nomad"
+brew "packer"
 brew "terraform"
 
 # Installs Circle CI
@@ -83,8 +85,13 @@ tap "drone/drone"
 brew "drone"
 
 # Install GitHub CLI.
-tap "github/gh"
-brew "gh"
+brew "github/gh/gh"
+brew "nektos/tap/act"
+
+# Brew (encoders).
+brew "enca"
+brew "encguess"
+brew "uchardet"
 
 # Brew (libraries).
 brew "pcre"
@@ -92,6 +99,7 @@ brew "pcre++"
 brew "openssl"
 
 # Brew (linters/formatters).
+brew "hadolint"
 brew "shellcheck"
 brew "shfmt"
 brew "tflint"
