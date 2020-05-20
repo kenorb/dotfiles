@@ -271,3 +271,6 @@ alias ansible-host-check-off="export ANSIBLE_HOST_KEY_CHECKING=false"
 alias ansible-host-check-on="export ANSIBLE_HOST_KEY_CHECKING=true"
 alias ansible-warnings-off="export ANSIBLE_DEPRECATION_WARNINGS=false"
 alias ansible-warnings-on="export ANSIBLE_DEPRECATION_WARNINGS=true"
+
+# Encoders
+alias subtitle-convert-polish="enca -x utf8 -L polish"
