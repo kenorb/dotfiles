@@ -84,13 +84,14 @@ brew "circleci"
 tap "drone/drone"
 brew "drone"
 
-# Install GitHub CLI.
-brew "github/gh/gh"
-brew "nektos/tap/act"
+# Install GitHub CLI utilities.
+tap "github/gh"
+tap "nektos/tap"
+brew "act"
+brew "gh"
 
 # Brew (encoders).
 brew "enca"
-brew "encguess"
 brew "uchardet"
 
 # Brew (libraries).
@@ -119,9 +120,12 @@ tap "homebrew/cask"
 tap "homebrew/cask-versions"
 cask_args appdir: "/Applications"
 
+# Casks (Libs).
+cask "xquartz"
+
 # Casks (Apps).
 cask "alfred"
-cask "balsamiq-mockups"
+cask "balsamiq-wireframes"
 cask "bartender"
 cask "caffeine"
 cask "docker"
@@ -139,7 +143,6 @@ cask "charles"
 cask "dash"
 cask "dropbox"
 cask "evernote"
-cask "font-charter"
 cask "hyper"
 cask "iterm2"
 cask "iterm2" unless system "test -d /Applications/iTerm.app"
@@ -163,7 +166,6 @@ cask "mplayerx"
 cask "authy"
 cask "flux"
 cask "google-cloud-sdk"
-cask "xquartz"
 
 # Casks (Security apps).
 cask 'dashlane'
@@ -175,7 +177,7 @@ cask "openemu"
 cask "qbittorrent"
 cask "skype"
 cask "skype" unless system "test -d /Applications/Skype.app"
-cask "slack"
+cask "slack" unless system "test -d /Applications/Slack.app"
 cask "steam"
 cask "the-unarchiver"
 cask 'telegram'
@@ -184,5 +186,5 @@ cask 'zoom'
 # Casks (Web browsers).
 cask "brave-browser"
 cask "firefox"
-cask "google-chrome"
+cask "google-chrome" unless system "test -d '/Applications/Google Chrome.app'"
 cask "opera"
