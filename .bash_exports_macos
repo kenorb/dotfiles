@@ -7,6 +7,9 @@
 RC_LOADED+=($(basename $BASH_SOURCE))
 [ ${BASH_VERSION:0:1} -gt 3 ] && echo "${RC_LOADED[-1]} loaded." >&2
 
+# To silence the warning (HT208050).
+export BASH_SILENCE_DEPRECATION_WARNING=1
+
 # For DevDesktop app.
 [ -d /Applications/DevDesktop/drush ] \
     && export PATH="$PATH:/Applications/DevDesktop/drush"
@@ -22,7 +25,7 @@ export LANG=en_GB.UTF-8
 export LANGUAGE="en_GB:en"
 
 # Set PATH for OSX
-type brew > /dev/null && brew --prefix php@7.4 > /dev/null && export PATH="$(brew --prefix php@7.4)/bin:$PATH"
+type brew &>/dev/null && brew --prefix php@7.4 &> /dev/null && export PATH="$(brew --prefix php@7.4)/bin:$PATH"
 export PATH="$PATH:/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin/gcc"
 export PATH="$PATH:/Applications/MAMP/Library/bin"
 export PATH="/usr/libexec:$PATH" # Adds utils from libexec.
