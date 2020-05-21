@@ -179,7 +179,7 @@ gh-clone-user() {
 # GitHub clone all user private repositories.
 # Usage: gh-clone-user-priv (user)
 gh-clone-user-priv() {
-  type jq > /dev/null || return
+  type jq >/dev/null || return
   [ -z "$GITHUB_API_TOKEN" ] && { echo "Error: Define GITHUB_API_TOKEN."; return; }
   curl -sL "https://api.github.com/users/$1/repos?access_token=$GITHUB_API_TOKEN&per_page=1000&type=private" | jq -r '.[]|.clone_url' | xargs -L1 git clone --recurse-submodules
 }

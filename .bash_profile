@@ -69,7 +69,7 @@ case "$OSTYPE" in
 
     # Enable bash_completion (Install by: brew install bash-completion)
     # Homebrew's own bash completion script: /usr/local/etc/bash_completion.d
-    if [ -f $(brew --prefix)/etc/bash_completion ]; then
+    if type brew &>/dev/null && [ -f $(brew --prefix)/etc/bash_completion ]; then
       . $(brew --prefix)/etc/bash_completion
     fi
 
