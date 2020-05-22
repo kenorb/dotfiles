@@ -77,6 +77,10 @@ brew "nomad"
 brew "packer"
 brew "terraform"
 
+# Brew (media).
+brew "ffmpeg"
+brew "libav"
+
 # Installs Circle CI
 brew "circleci"
 
