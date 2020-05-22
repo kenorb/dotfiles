@@ -8,81 +8,8 @@ RC_LOADED+=($(basename $BASH_SOURCE))
 
 ## File system
 
-# make less more friendly for non-text input files, see lesspipe(1)
+# Make less more friendly for non-text input files, see lesspipe(1).
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
-# enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    alias dir='dir --color=auto'
-    alias vdir='vdir --color=auto'
-
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-fi
-
-#
-# ls variants
-lc=$(which lolcat >/dev/null && echo "|lolcat")
-alias ls='\ls'
-alias ll='\ls -alF'
-alias llh='\ls -alh'
-#alias lsd='ls -d .*'
-#alias ls='ls $LS_OPTIONS'
-alias la='ls $LS_OPTIONS -A'
-alias l='ls $LS_OPTIONS -alFtr'
-#alias l='ls $LS_OPTIONS -lA'
-#alias l='ls $LS_OPTIONS -CF'
-# Recursive directory listing
-alias lr='ls -R | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\'' -e '\''s/^/   /'\'' -e '\''s/-/|/'\'''
-# Unix like ls
-#alias ll='ls -laF'
-#alias ll='ls $LS_OPTIONS -alF' # Unix like ls
-
-# rm variants
-alias rm-empty="find . -type d -empty -delete -print"
-
-# Date
-alias date-iso="date --iso-8601=seconds"
-
-# Permissions.
-alias fix-file-perms="find * -type d -print0 | xargs -0 chmod 0755"
-alias fix-dir-perms="find . -type f -print0 | xargs -0 chmod 0644"
-
-# Getting colored results when using a pipe from grep to less.
-alias grep='grep --color=auto'
-alias less='less -R'
-# Jump back n directories at a time
-alias ..='cd ..'
-alias ...='cd ../../'
-alias ....='cd ../../../'
-alias .....='cd ../../../../'
-alias ......='cd ../../../../../'
-
-## Git
-
-# git branch
-alias gb="git branch"
-
-# git checkout master
-alias gcm="git checkout master"
-
-# git pull
-alias gp="git pull"
-
-# Compact, colorized git log
-alias gl="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
-
-# Visualise git log (like gitk, in the terminal)
-alias lg='git log --graph --full-history --all --color --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"'
-
-# Change dir to git root.
-alias cdgit='cd "$(git rev-parse --show-toplevel 2> /dev/null)"'
-
-# Refresh all repos in the current dir.
-alias git-pull-all='find . -name .git -type d -execdir sh -c "git fetch --tags --all && git pull -v" ";"'
-alias git-pull-root='find $(git rev-parse --show-toplevel 2> /dev/null) -name .git -type d -execdir git pull -v ";"'
 
 # Show which commands you use the most
 alias freq='cut -f1 -d" " ~/.bash_history | sort | uniq -c | sort -nr | head -n 30'
