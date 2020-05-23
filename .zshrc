@@ -13,6 +13,10 @@ if [ -f ~/.zsh_aliases ]; then
     . ~/.zsh_aliases
 fi
 
+
+# Controls which default set of key bindings is used.
+set -o vi
+
 # Allow a reverse history search in vi-mode.
 # https://unix.stackexchange.com/q/44115/21471
 bindkey "^R" history-incremental-search-backward
