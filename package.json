@@ -2,6 +2,7 @@
   "name": "dotfiles",
   "version": "1.0.0",
   "devDependencies": {
-    "markdown-cli": "^1.6"
+    "markdown-cli": "^1.6",
+    "markdown-lint": "^0"
   }
 }
