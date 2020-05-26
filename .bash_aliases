@@ -128,12 +128,7 @@ alias x='exit'
 
 #
 # Directories
-alias s='cd ..'
 alias play='cd ~/play/'
-
-# Debugging
-# Format strace output, see: http://stackoverflow.com/a/36557550/55075
-alias format-strace='grep --line-buffered -o '\''".\+[^"]"'\'' | grep --line-buffered -o '\''[^"]*[^"]'\'' | while read -r line; do printf "%b" $line; done | tr "\r\n" "\275\276" | tr -d "[:cntrl:]" | tr "\275\276" "\r\n"'
 
 #
 # Rails
@@ -165,42 +160,7 @@ alias vagrant-suspend-all="vagrant global-status | awk '/running/{print $1}' | g
 # Utils
 alias dos2unix="ex +'bufdo! %! tr -d \\\\r' -scxa"
 
-# Docker
-alias docker-run-ptrace="docker run --cap-add SYS_PTRACE"
-alias yt='docker run --rm -u $(id -u):$(id -g) -v $PWD:/data vimagick/youtube-dl'
-
-#
-# vim/vi/ex
-alias v='vim'
-alias trim="ex +'bufdo!%s/\s\+$//ge' -scxa" # Strip trailing whitespaces.
-alias retab="ex +'set ts=2' +'bufdo retab' -scxa" # Convert tabs to spaces.
-
-# npm
-alias npm-freeze='npm ls | grep -o "\S\+@\S\+$" | tr @ " " | awk -v q='\''"'\'' '\''{print q$1q": "q"^"$2q","}'\'''
-
 #
 # tmux
 #alias {ton,tn}='tmux set -g mode-mouse on'
 #alias {tof,tf}='tmux set -g mode-mouse off'
-
-# Fun
-alias weather-london="curl http://wttr.in/london"
-
-# Transmission
-alias magnet-add="transmission-remote -a"
-alias magnet-list="transmission-remote -l"
-alias tsm="transmission-remote"
-alias tsm-show-config="transmission-daemon --dump-settings"
-
-# Ansible
-alias ansible-cowsay-off="export ANSIBLE_NOCOWS=true"
-alias ansible-cowsay-on="export ANSIBLE_NOCOWS=false"
-alias ansible-diff-off="export ANSIBLE_DIFF_ALWAYS=false"
-alias ansible-diff-on="export ANSIBLE_DIFF_ALWAYS=true"
-alias ansible-host-check-off="export ANSIBLE_HOST_KEY_CHECKING=false"
-alias ansible-host-check-on="export ANSIBLE_HOST_KEY_CHECKING=true"
-alias ansible-warnings-off="export ANSIBLE_DEPRECATION_WARNINGS=false"
-alias ansible-warnings-on="export ANSIBLE_DEPRECATION_WARNINGS=true"
-
-# Encoders
-alias subtitle-convert-polish="enca -x utf8 -L polish"
