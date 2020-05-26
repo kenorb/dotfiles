@@ -157,9 +157,6 @@ alias play='cd ~/play/'
 alias drush-dump7="drush sql-dump --ordered-dump --structure-tables cache,cache_filter,cache_menu,cache_page,history,sessions,watchdog --result-file=dump.sql"
 alias vagrant-suspend-all="vagrant global-status | awk '/running/{print $1}' | gxargs -r -d '\n' -n 1 -- vagrant suspend"
 
-# Utils
-alias dos2unix="ex +'bufdo! %! tr -d \\\\r' -scxa"
-
 #
 # tmux
 #alias {ton,tn}='tmux set -g mode-mouse on'
