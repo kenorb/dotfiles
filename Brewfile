@@ -14,6 +14,7 @@ brew "imagemagick"
 brew "mackup"
 brew "telnet"
 brew "transmission"
+brew "tree"
 brew "wget"
 brew "youtube-dl"
 
@@ -69,6 +70,7 @@ brew "yq"
 
 # Brew (DevOps).
 brew "ansible" unless system "command -v ansible"
+brew "awscli"
 brew "azure-cli"
 brew "helm" # The Kubernetes Package Manager.
 brew "kubernetes-cli"
@@ -81,6 +83,9 @@ brew "terraform"
 # Brew (media).
 brew "ffmpeg"
 brew "libav"
+
+# Brew (security).
+brew "hashcat"
 
 # Installs Circle CI
 brew "circleci"
@@ -107,6 +112,8 @@ brew "openssl"
 # Brew (linters/formatters).
 brew "dos2unix"
 brew "hadolint"
+brew "html2text"
+brew "jsonlint"
 brew "shellcheck"
 brew "shfmt"
 brew "tflint"
@@ -137,6 +144,7 @@ cask "caffeine"
 cask "docker"
 cask "dropbox"
 cask "evernote"
+cask "keybase"
 cask "kindle"
 cask "qbittorrent"
 cask "the-unarchiver"
@@ -147,6 +155,7 @@ cask "android-file-transfer"
 cask "ccmenu"
 cask "charles"
 cask "dash"
+cask "diffmerge"
 cask "dropbox"
 cask "evernote"
 cask "hyper"
@@ -154,6 +163,7 @@ cask "iterm2"
 cask "iterm2" unless system "test -d /Applications/iTerm.app"
 cask "java" unless system "/usr/libexec/java_home --failfast"
 cask "keepassx"
+cask "meld"
 cask "reflector"
 cask "sublime-text"
 cask 'visual-studio-code'
