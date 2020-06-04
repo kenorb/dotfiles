@@ -13,6 +13,10 @@ if [ -f ~/.zsh_aliases ]; then
     . ~/.zsh_aliases
 fi
 
+# Load private secret settings.
+if [ -f ~/.secrets ]; then
+    . ~/.secrets
+fi
 
 # Controls which default set of key bindings is used.
 set -o vi
