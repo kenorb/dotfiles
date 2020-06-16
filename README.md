@@ -6,13 +6,17 @@ Various configuration files.
 
 Clone repository into your HOME dir, then execute in the repo folder:
 
-    dotfiles$ make install
+```console
+dotfiles$ make install
+```
 
-If you got warning _File exists_, consider moving/removing your existing file and re-run again.
+If you got warning *File exists*,
+consider moving/removing your existing file and re-run again.
 
 ### Support
 
-The dot/rc files should be compatible with Linux, macOS and WSL (Ubuntu on Windows).
+The dot/rc files should be compatible
+with Linux, macOS and WSL (Ubuntu on Windows).
 
 ### Troubleshooting
 
