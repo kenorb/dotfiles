@@ -96,7 +96,7 @@ fi
 #
 # Various
 alias h='history | grep '
-alias mv='mv -v' 
+alias mv='mv -v'
 alias rm='rm -v'
 
 # One letter quickies:
@@ -111,7 +111,7 @@ alias play='cd ~/play/'
 # Rails
 #alias src='script/rails console'
 #alias srs='script/rails server'
-#alias raked='rake db:drop db:create db:migrate db:seed' 
+#alias raked='rake db:drop db:create db:migrate db:seed'
 #alias rvm-restart='source '\''/home/durrantm/.rvm/scripts/rvm'\'''
 #alias rrg='rake routes | grep '
 #alias rspecd='rspec --drb '

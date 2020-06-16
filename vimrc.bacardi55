@@ -191,7 +191,7 @@ inoremap { {}<left>
 inoremap [ []<left>
 inoremap '' ''<left>
 inoremap "" ""<left>
-inoremap , , 
+inoremap , ,
 "php
 inoremap <? <?php<space><space>?><left><left><left>
 

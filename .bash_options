@@ -9,7 +9,7 @@ HISTCONTROL=ignoreboth
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=10000
 # Keep around 32K lines of history in file.
-HISTFILESIZE==$((1 << 15)) 
+HISTFILESIZE==$((1 << 15))
 
 # Keep the times of the commands in history
 HISTTIMEFORMAT='%F %T'

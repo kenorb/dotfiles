@@ -25,4 +25,3 @@ export HISTCONTROL="ignoreboth"
 export LS_OPTIONS='--color=auto -h'
 
 #############################################################################
-

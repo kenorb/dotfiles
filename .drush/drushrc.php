@@ -12,4 +12,3 @@ if (exec('git rev-parse --show-toplevel 2> /dev/null', $git)) {
 
 // Load a drushrc.php configuration file from the current working directory.
 $options['c'] = '.';
-

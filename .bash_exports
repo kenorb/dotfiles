@@ -68,7 +68,7 @@ fi
 # @see: http://www.delorie.com/gnu/docs/gawk/gawk_149.html
 # @see: http://stackoverflow.com/q/19242275/55075
 export LANG=C
-export LC_CTYPE=C 
+export LC_CTYPE=C
 
 # Set architecture flags for x64
 export ARCHFLAGS="-arch x86_64"
