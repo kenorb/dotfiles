@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "devDependencies": {
     "markdown-cli": "^1.6",
-    "markdown-lint": "^0"
+    "markdown-lint": "^0",
+    "@zeit/ncc": "^0.22"
   }
 }
