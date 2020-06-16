@@ -7,3 +7,6 @@
 
 # Vagrant folders.
 .vagrant
+
+# Ignores lock files.
+Brewfile.lock.json
