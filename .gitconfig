@@ -48,9 +48,9 @@ clean = "sed -e 's/^password=.*/#password=TODO/'"
   tool = diffmerge
   renamelimit = 7274
 
-[diff "ansible-vault"]
-  cachetextconv = false
-  textconv = ansible-vault view
+#[diff "ansible-vault"]
+  #cachetextconv = false
+  #textconv = ansible-vault view
 
 [diff "zip"]
   textconv = unzip -v
