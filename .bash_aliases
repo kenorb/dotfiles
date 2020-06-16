@@ -11,17 +11,6 @@ RC_LOADED+=($(basename $BASH_SOURCE))
 # Make less more friendly for non-text input files, see lesspipe(1).
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-# Show which commands you use the most
-alias freq='cut -f1 -d" " ~/.bash_history | sort | uniq -c | sort -nr | head -n 30'
-# Allow to find the biggest file or directory in the current directory.
-alias ds='du -ks *|sort -n'
-# List top ten largest files/directories in current directory
-alias big='du -ah . | sort -rh | head -40'
-# List top ten largest files in current directory
-alias big-files='ls -1Rhs | sed -e "s/^ *//" | grep "^[0-9]" | sort -hr | head -n40'
-# What's gobbling the memory?
-alias psmem='ps -o time,ppid,pid,nice,pcpu,pmem,user,comm -A | sort -n -k 6 | tail -15'
-
 ## Network
 
 # Get external IP
@@ -29,18 +18,6 @@ alias whatismyip='curl ifconfig.me' # Or: ip.appspot.com
 
 # Show active network listeners
 alias netlisteners='lsof -i -P | grep LISTEN'
-
-## Downloading
-
-#
-# wget (if available)
-alias wget-all='wget --user-agent=Mozilla -e robots=off --content-disposition --mirror --convert-links -E -K -N -r -c'
-#
-# youtube-dl (if available)
-alias youtube-dl='youtube-dl -vci -R5 -f "(webm,mp4)" --write-description --write-info-json --all-subs --write-thumbnail --add-metadata'
-#
-# Move torrent files
-alias move_torrents='find . -name "*.torrent" -exec sh -c '\''DST=$(find . -type d -name "$(basename "{}" .torrent)" -print -quit); [ -d "$DST" ] && mv -v "{}" "$DST/"'\'' ";"'
 
 ## Conversion
 

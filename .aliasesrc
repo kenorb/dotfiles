@@ -33,6 +33,17 @@ alias lr='ls -R | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\
 #alias ll='ls -laF'
 #alias ll='ls $LS_OPTIONS -alF' # Unix like ls
 
+# Show which commands you use the most
+alias freq='cut -f1 -d" " ~/.bash_history | sort | uniq -c | sort -nr | head -n 30'
+# Allow to find the biggest file or directory in the current directory.
+alias ds='du -ks *|sort -n'
+# List top ten largest files/directories in current directory
+alias big='du -ah . | sort -rh | head -40'
+# List top ten largest files in current directory
+alias big-files='ls -1Rhs | sed -e "s/^ *//" | grep "^[0-9]" | sort -hr | head -n40'
+# What's gobbling the memory?
+alias psmem='ps -o time,ppid,pid,nice,pcpu,pmem,user,comm -A | sort -n -k 6 | tail -15'
+
 # rm variants
 alias rm-empty="find . -type d -empty -delete -print"
 
@@ -115,3 +126,16 @@ alias subtitle-convert-polish="enca -x utf8 -L polish"
 # Debugging
 # Format strace output, see: http://stackoverflow.com/a/36557550/55075
 alias format-strace='grep --line-buffered -o '\''".\+[^"]"'\'' | grep --line-buffered -o '\''[^"]*[^"]'\'' | while read -r line; do printf "%b" $line; done | tr "\r\n" "\275\276" | tr -d "[:cntrl:]" | tr "\275\276" "\r\n"'
+
+## Downloading
+#
+# wget (if available)
+alias wget-all='wget --user-agent=Mozilla -e robots=off --content-disposition --mirror --convert-links -E -K -N -r -c'
+
+#
+# youtube-dl (if available)
+alias youtube-dl='youtube-dl -vci -R5 -f "(webm,mp4)" --write-description --write-info-json --all-subs --write-thumbnail --add-metadata'
+
+#
+# Move torrent files
+alias move_torrents='find . -name "*.torrent" -exec sh -c '\''DST=$(find . -type d -name "$(basename "{}" .torrent)" -print -quit); [ -d "$DST" ] && mv -v "{}" "$DST/"'\'' ";"'
