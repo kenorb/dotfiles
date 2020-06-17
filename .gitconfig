@@ -2,7 +2,11 @@
   name = kenorb
   email = kenorb@users.noreply.github.com
 
+[credential]
+	helper = osxkeychain
+
 [core]
+  editor = vim
   filemode = true
   ; detect and raise errors about trailing spaces and spaces before tabs
   whitespace = trailing-space,space-before-tab
@@ -16,6 +20,9 @@
   auto = 1
 
 [color]
+  branch = auto
+  diff = auto
+  status = auto
   ui = auto
 
 ;[filter "rcs-keywords"]
@@ -33,19 +40,10 @@ clean = "sed -e 's/^password=.*/#password=TODO/'"
 [rebase]
   autoStash = true
 
-[merge]
-  renamelimit = 7274
-
-[mergetool]
-  tool = diffmerge
-
-[mergetool "sourcetree"]
-  cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-  trustExitCode = true
-
 # DIFF section
 [diff]
   tool = diffmerge
+  guitool = diffmerge
   renamelimit = 7274
 
 #[diff "ansible-vault"]
@@ -65,30 +63,48 @@ clean = "sed -e 's/^password=.*/#password=TODO/'"
   # @see: http://blog.xk72.com/post/31456986659/diff-strings-files-in-git
   textconv = "iconv -f utf-16 -t utf-8"
 
-[opendiff]
-  tool = opendiff
-
 [difftool]
   prompt = NO
   tool = diffmerge
 
-[difftool "diffmerge"]
-  cmd = /Applications/DiffMerge.app/Contents/MacOS/DiffMerge "$LOCAL" "$REMOTE" # For DiffMerge
-  keepBackup = false
-  trustExitCode = true
-
 [difftool "bbdiff"]
   cmd = /usr/local/bin/bbdiff --wait --resume "$LOCAL" "$REMOTE" # for BBEdit
 
-[difftool "twdiff"]
-  cmd = /usr/bin/twdiff --wait --resume "$LOCAL" "$REMOTE" # for TextWrangler
+[difftool "diffmerge"]
+	cmd = diffmerge \"$LOCAL\" \"$REMOTE\"
+  keepBackup = false
+  trustExitCode = true
 
 [difftool "filemerge"]
   cmd = /usr/bin/opendiff "$LOCAL" "$REMOTE" # for FileMerge
 
+[difftool "meld"]
+	cmd = meld \"$LOCAL\" \"$REMOTE\"
+
+[difftool "opendiff"]
+  tool = opendiff
+
 [difftool "sourcetree"]
   cmd = opendiff \"$LOCAL\" \"$REMOTE\"
   path =
+
+[difftool "twdiff"]
+  cmd = /usr/bin/twdiff --wait --resume "$LOCAL" "$REMOTE" # for TextWrangler
+
+[difftool "vimdiff"]
+  tool = vimdiff
+
+[merge]
+	prompt = false
+	tool = mergemeld
+	conflictstyle = diff3
+	log = yes
+
+[mergetool "mergemeld"]
+	  cmd = meld --auto-merge --output \"$MERGED\" \"$LOCAL\" \"$BASE\" \"$REMOTE\" --diff \"$BASE\" \"$LOCAL\" --diff \"$BASE\" \"$REMOTE\"
+
+[mergetool "kdiff3"]
+	cmd = kdiff3 $LOCAL $BASE $REMOTE -o $MERGED
 
 [alias]
   addremove    = !git add . && git ls-files -deleted | xargs git rm
@@ -99,9 +115,10 @@ clean = "sed -e 's/^password=.*/#password=TODO/'"
                  | cut -c 1-12,41- \
                  | $(command -v gnumfmt || echo numfmt) --field=2 --to=iec-i --suffix=B --padding=7 --round=nearest"
   checkout-all = !"find . -name .git -type d -print -execdir git checkout -f HEAD \\;"
-  curr-branch  = !git rev-parse --abbrev-ref HEAD
+  curr-branch  = rev-parse --abbrev-ref HEAD
+  diff-stash   = stash show -p stash@{0}
   fetch-all    = !"find . -name .git -type d -print -execdir git fetch --all \\;"
-  log-graph    = !git log --oneline --graph --decorate --all
+  log-graph    = log --oneline --graph --decorate --all
   lol          = log --graph --decorate --pretty=oneline --abbrev-commit
   lola         = log --graph --decorate --pretty=oneline --abbrev-commit --all
   majonez      = !echo Hellmanns
@@ -112,6 +129,7 @@ clean = "sed -e 's/^password=.*/#password=TODO/'"
   reset-all    = !"find . -name .git -type d -print -execdir git reset HEAD --hard \\;"
   sm-clean-all = "submodule foreach --recursive 'git clean -fXd'"
   sm-diff      = "submodule foreach 'git diff'"
+  smu          = submodule update
   svn-dcommit  = "!set -o xtrace; git stash; git svn dcommit; git stash pop -q"
   update-all   = "!cd $(git rev-parse --show-toplevel 2> /dev/null) && find -name .git -type d -execdir git pull -v ';'"
   ; branch-svn2git =  !git for-each-ref refs/remotes --shell --format="r=%(refname:short) t=\${r#tags/}" | while read e; do eval "$e"; git branch -f $t refs/remotes/$r; git branch -d -r $r; done
@@ -128,3 +146,10 @@ clean = "sed -e 's/^password=.*/#password=TODO/'"
   smudge = git-lfs smudge -- %f
   process = git-lfs filter-process
   required = true
+
+[clangFormat]
+	extension = cpp,c,hpp,h,mq4,mq5,mqh
+	style = file
+
+[hooks.clangformat]
+	verbose = ON
