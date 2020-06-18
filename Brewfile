@@ -12,6 +12,7 @@ brew "bash"
 brew "bash-completion"
 brew "curl"
 brew "curl-openssl"
+brew "fd"
 brew "graphviz"
 brew "imagemagick"
 brew "mackup"
@@ -19,6 +20,7 @@ brew "telnet"
 brew "transmission"
 brew "tree"
 brew "wget"
+brew "ydiff"
 brew "youtube-dl"
 
 # Brew (GNU).
@@ -162,7 +164,7 @@ cask "tigervnc-viewer"
 cask "turbovnc-viewer"
 cask "vnc-viewer"
 cask "webtorrent"
-cask "wine-devel"
+#cask "wine-devel" # @fixme: Broken: Bad CPU type
 
 # Casks (development).
 cask "adoptopenjdk"
