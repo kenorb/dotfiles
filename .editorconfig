@@ -1,14 +1,48 @@
-# Drupal editor configuration normalization
-# @see http://editorconfig.org/
+# EditorConfig
+# See: https://EditorConfig.org
 
-# This is the top-most .editorconfig file; do not search in parent directories.
+# Top-most EditorConfig file.
 root = true
 
-# All files.
+# Unix-style newlines with a newline ending every file.
 [*]
+charset = utf-8
 end_of_line = LF
+indent_size = 2
+indent_style = space
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+# Matches multiple files with brace expansion notation.
+# Set default charset.
+[*.{js,py}]
+charset = utf-8
+
+# 4 space indentation.
+[*.py]
+indent_style = space
+indent_size = 4
+
+[*.sh]
+# like -i=4
 indent_style = space
 indent_size = 2
-charset = utf-8
-trim_trailing_whitespace = true
-insert_final_newline = true
+
+binary_next_line   = true  # like -bn
+switch_case_indent = true  # like -ci
+space_redirects    = true  # like -sr
+function_next_line = true  # like -fn
+
+# Tab indentation (no size specified).
+[Makefile]
+indent_style = tab
+
+# Indentation override for all JS under lib directory.
+[lib/**.js]
+indent_style = space
+indent_size = 2
+
+# Matches the exact files either package.json or .travis.yml.
+[{package.json,.travis.yml}]
+indent_style = space
+indent_size = 2
