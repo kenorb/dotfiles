@@ -4,8 +4,8 @@
 
 # If not running interactively, don't do anything
 case $- in
-    *i*) ;;
-      *) return;;
+*i*) ;;
+*) return ;;
 esac
 
 # Initialize
@@ -23,11 +23,11 @@ RC_LOADED+=($(basename $BASH_SOURCE))
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
 if [ -f ~/.aliasesrc ]; then
-    . ~/.aliasesrc
+  . ~/.aliasesrc
 fi
 
 if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+  . ~/.bash_aliases
 fi
 
 # enable programmable completion features (you don't need to enable

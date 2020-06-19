@@ -6,16 +6,16 @@
 # See /usr/share/doc/zsh-doc/examples in the zsh-doc package.
 
 if [ -f ~/.aliasesrc ]; then
-    . ~/.aliasesrc
+  . ~/.aliasesrc
 fi
 
 if [ -f ~/.zsh_aliases ]; then
-    . ~/.zsh_aliases
+  . ~/.zsh_aliases
 fi
 
 # Load private secret settings.
 if [ -f ~/.secrets ]; then
-    . ~/.secrets
+  . ~/.secrets
 fi
 
 # Controls which default set of key bindings is used.

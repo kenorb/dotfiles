@@ -24,9 +24,9 @@ alias netlisteners='lsof -i -P | grep LISTEN'
 # Useful converting tools.
 alias urldecode='sed "s@+@ @g;s@%@\\\\x@g" | xargs -0 printf "%b"'
 
-type jq >/dev/null 2>&1 \
-  && alias urlencode='jq -rRs @uri' \
-  || alias urlencode='curl -Gso /dev/null -w %{url_effective} --data-urlencode @- "" | cut -c3-'
+type jq >/dev/null 2>&1 &&
+  alias urlencode='jq -rRs @uri' ||
+  alias urlencode='curl -Gso /dev/null -w %{url_effective} --data-urlencode @- "" | cut -c3-'
 
 # Other
 # Find xdebug files.
@@ -83,14 +83,14 @@ alias spotlight-load='sudo launchctl load -w /System/Library/LaunchDaemons/com.a
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    alias dir='dir --color=auto'
-    alias vdir='vdir --color=auto'
+  test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+  alias ls='ls --color=auto'
+  alias dir='dir --color=auto'
+  alias vdir='vdir --color=auto'
 
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
+  alias grep='grep --color=auto'
+  alias fgrep='fgrep --color=auto'
+  alias egrep='egrep --color=auto'
 fi
 
 #
