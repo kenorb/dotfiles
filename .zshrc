@@ -13,6 +13,11 @@ if [ -f ~/.zsh_aliases ]; then
   . ~/.zsh_aliases
 fi
 
+# Includes function definitions.
+if [ -f ~/.functionsrc ]; then
+  . ~/.functionsrc
+fi
+
 # Load private secret settings.
 if [ -f ~/.secrets ]; then
   . ~/.secrets
