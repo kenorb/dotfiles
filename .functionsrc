@@ -211,6 +211,60 @@ curl-proxy() {
   curl -x "socks5://$(proxy-find)" "$@"
 }
 
+# CRYPTO FUNCTIONS
+# Based on https://github.com/k4m4/cryptocurrency-address-detector
+
+find-bitcoin-public() {
+  rg -w '(?:[13][a-km-zA-HJ-NP-Z1-9]{25,34})' $@
+}
+
+find-bitcoin-private() {
+  # BIP38 Encrypted Private Key.
+  local bip38='6P[a-km-zA-HJ-NP-Z1-9]{56}'
+  # WIF Private key, uncompressed public keys.
+  local wif_plain_pub='5[a-km-zA-HJ-NP-Z1-9]{50}'
+  # WIF Private key, compressed public keys.
+  local wif_com_pub='[KL][a-km-zA-HJ-NP-Z1-9]{51}'
+  # BIP32 HD wallet private node.
+  local bip32_xprv='xprv[a-km-zA-HJ-NP-Z1-9]{107,108}'
+  # BIP32 HD wallet public node.
+  local bip32_xpub='xpub[a-km-zA-HJ-NP-Z1-9]{107,108}'
+  # See: https://gist.github.com/chriswcohen/7e28c95ba7354a986c34
+  rg -w -e '[0-9A-F]{64}' -e ${bip38} -e ${wif_plain_pub} -e ${wif_com_pub} -e ${bip32_xprv} -e ${bip32_xpub} $@
+}
+
+find-bitcoincash-public() {
+  rg -w -e '[13][a-km-zA-HJ-NP-Z1-9]{33}' -e '((bitcoincash|bchreg|bchtest):)?(q|p)[a-z0-9]{41}' $@
+}
+
+find-dash-public() {
+  rg -w 'X[1-9A-HJ-NP-Za-km-z]{33}' $@
+}
+
+find-dogecoin-public() {
+  rg -w 'D{1}[5-9A-HJ-NP-U]{1}[1-9A-HJ-NP-Za-km-z]{32}' $@
+}
+
+find-ethereum-public() {
+  rg -w '0x[a-fA-F0-9]{40}' $@
+}
+
+find-litecoin-public() {
+  rg -w '[LM3][a-km-zA-HJ-NP-Z1-9]{26,33}' $@
+}
+
+find-monero-public() {
+  rg -w '4[0-9AB][1-9A-HJ-NP-Za-km-z]{93}' $@
+}
+
+find-neo-public() {
+  rg -w 'A[0-9a-zA-Z]{33}' $@
+}
+
+find-ripple-public() {
+  rg -w 'r[0-9a-zA-Z]{24,34}' $@
+}
+
 # MYSQL FUNCTIONS
 
 # Create user in MySQL/MariaDB.
