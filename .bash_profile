@@ -45,8 +45,8 @@ if [ -f ~/.bash_options ]; then
 fi
 
 # Includes function definitions.
-if [ -f ~/.bash_functions ]; then
-  . ~/.bash_functions
+if [ -f ~/.functionsrc ]; then
+  . ~/.functionsrc
 fi
 
 # Detect the platform.
