@@ -151,6 +151,13 @@ video2gif() {
   ffmpeg -i "${1}" -i "${1}.png" -filter_complex "fps=${3:-10},scale=${2:-320}:-1:flags=lanczos[x];[x][1:v]paletteuse" "${1}".gif
   rm "${1}.png"
 }
+
+# Resize video.
+# Usage: video-resize (file) (scale)
+video-resize() {
+  ffmpeg -y -i "${1}" -vf scale=854:${2:-320} "${1%.*}.resized.${1##*.}"
+}
+
 #
 # Compare two binary files.
 # Usage: diffhex file1 file2
