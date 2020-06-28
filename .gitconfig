@@ -108,6 +108,8 @@ clean = "sed -e 's/^password=.*/#password=TODO/'"
 
 [alias]
   addremove    = !git add . && git ls-files -deleted | xargs git rm
+  b            = branch
+  br           = branch
   big-files    = !"git rev-list --objects --all \
                  | git cat-file --batch-check='%(objecttype) %(objectname) %(objectsize) %(rest)' \
                  | sed -n 's/^blob //p' \
@@ -127,6 +129,8 @@ clean = "sed -e 's/^password=.*/#password=TODO/'"
   pull-forks   = "!git submodule foreach 'git pull `git config --get remote.origin.url | sed s#EXAMPLE#kenorb#`&'"
   reset-author = "commit --amend --reset-author --no-edit"
   reset-all    = !"find . -name .git -type d -print -execdir git reset HEAD --hard \\;"
+  s            = status
+  st           = status
   sm-clean-all = "submodule foreach --recursive 'git clean -fXd'"
   sm-diff      = "submodule foreach 'git diff'"
   smu          = submodule update
