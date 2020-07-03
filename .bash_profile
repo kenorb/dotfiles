@@ -54,13 +54,7 @@ case "$OSTYPE" in
 
 solaris*) ;;
 
-\
-  darwin*) # macOS
-
-  # Load macOS specific aliases.
-  if [ -f ~/.bash_aliases_macos ]; then
-    . ~/.bash_aliases_macos
-  fi
+darwin*) # macOS
 
   # Load macOS specific shell exports.
   if [ -f ~/.bash_exports_macos ]; then
@@ -127,11 +121,6 @@ linux-gnu*) # Debian
 
   esac
 
-  # Load Linux specific aliases.
-  if [ -f ~/.bash_aliases_linux ]; then
-    . ~/.bash_aliases_linux
-  fi
-
   # Load Linux specific shell exports.
   if [ -f ~/.bash_exports_linux ]; then
     . ~/.bash_exports_linux
@@ -159,11 +148,6 @@ linux*)
     fi
   fi
 
-  # Load Linux specific aliases.
-  if [ -f ~/.bash_aliases_linux ]; then
-    . ~/.bash_aliases_linux
-  fi
-
   # Load Linux specific shell exports.
   if [ -f ~/.bash_exports_linux ]; then
     . ~/.bash_exports_linux
@@ -180,7 +164,6 @@ bsd*)
   echo "Unknown: $OSTYPE"
   ;;
 esac
-return
 
 # Load Bash-specific startup files.
 for sh in "$HOME"/.bashrc.d/*.bash; do

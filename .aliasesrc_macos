@@ -6,6 +6,10 @@ alias xt-files="egrep -o '/[^/]+:[0-9]+'"
 alias iphone="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Applications/iPhone Simulator.app/Contents/MacOS/iPhone Simulator" # OSX Lion
 alias stop-services="killall -STOP mdworker mds bstservice"
 
+# Desktop.
+alias icons-hide="defaults write com.apple.finder CreateDesktop -bool false"
+alias icons-show="defaults write com.apple.finder CreateDesktop -bool true"
+
 # Shows logs from Google apps.
 alias log-google="log stream --level debug --predicate 'processImagePath contains \"Google\"'"
 

@@ -46,6 +46,7 @@ alias psmem='ps -o time,ppid,pid,nice,pcpu,pmem,user,comm -A | sort -n -k 6 | ta
 
 # rm variants
 alias rm-empty="find . -type d -empty -delete -print"
+alias rm-bak="find . -name '*.bak' -type f -delete -print"
 
 # Date
 alias date-iso="date --iso-8601=seconds"
@@ -132,6 +133,9 @@ alias format-strace='grep --line-buffered -o '\''".\+[^"]"'\'' | grep --line-buf
 # wget (if available)
 alias wget-all='wget --user-agent=Mozilla -e robots=off --content-disposition --mirror --convert-links -E -K -N -r -c'
 
+# Linters
+alias jenkins-lint="ssh jenkins-cli declarative-linter < ./Jenkinsfile"
+
 #
 # youtube-dl (if available)
 alias youtube-dl='youtube-dl -vci -R5 -f "(webm,mp4)" --write-description --write-info-json --all-subs --write-thumbnail --add-metadata'
@@ -139,3 +143,26 @@ alias youtube-dl='youtube-dl -vci -R5 -f "(webm,mp4)" --write-description --writ
 #
 # Move torrent files
 alias move_torrents='find . -name "*.torrent" -exec sh -c '\''DST=$(find . -type d -name "$(basename "{}" .torrent)" -print -quit); [ -d "$DST" ] && mv -v "{}" "$DST/"'\'' ";"'
+
+# Load other alias files.
+
+# Detect the platform.
+case "$OSTYPE" in
+
+  darwin*) # macOS
+
+    # Load macOS specific aliases.
+    if [ -f ~/.aliasesrc_macos ]; then
+      source ~/.aliasesrc_macos
+    fi
+    ;;
+
+  linux*) # Debian
+
+    # Load Linux specific aliases.
+    if [ -f ~/.aliasesrc_linux ]; then
+      source ~/.aliasesrc_linux
+    fi
+    ;;
+
+esac
