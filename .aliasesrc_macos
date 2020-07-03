@@ -7,8 +7,8 @@ alias iphone="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulat
 alias stop-services="killall -STOP mdworker mds bstservice"
 
 # Desktop.
-alias icons-hide="defaults write com.apple.finder CreateDesktop -bool false"
-alias icons-show="defaults write com.apple.finder CreateDesktop -bool true"
+alias icons-hide="defaults write com.apple.finder CreateDesktop -bool false && restart-finder"
+alias icons-show="defaults write com.apple.finder CreateDesktop -bool true && restart-finder"
 
 # Shows logs from Google apps.
 alias log-google="log stream --level debug --predicate 'processImagePath contains \"Google\"'"
