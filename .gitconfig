@@ -107,6 +107,7 @@ clean = "sed -e 's/^password=.*/#password=TODO/'"
 	cmd = kdiff3 $LOCAL $BASE $REMOTE -o $MERGED
 
 [alias]
+  aa           = commit --all --amend --no-edit
   addremove    = !git add . && git ls-files -deleted | xargs git rm
   b            = branch
   br           = branch
@@ -117,8 +118,13 @@ clean = "sed -e 's/^password=.*/#password=TODO/'"
                  | cut -c 1-12,41- \
                  | $(command -v gnumfmt || echo numfmt) --field=2 --to=iec-i --suffix=B --padding=7 --round=nearest"
   checkout-all = !"find . -name .git -type d -print -execdir git checkout -f HEAD \\;"
-  curr-branch  = rev-parse --abbrev-ref HEAD
+  ca           = commit -a
+  cp           = cherry-pick
+  gb           = get-branch
+  get-branch   = rev-parse --abbrev-ref HEAD
   diff-stash   = stash show -p stash@{0}
+  f            = fetch
+  fe           = fetch
   fetch-all    = !"find . -name .git -type d -print -execdir git fetch --all \\;"
   log-graph    = log --oneline --graph --decorate --all
   lol          = log --graph --decorate --pretty=oneline --abbrev-commit
