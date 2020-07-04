@@ -222,7 +222,7 @@ curl-proxy() {
 # Based on https://github.com/k4m4/cryptocurrency-address-detector
 
 find-bitcoin-public() {
-  rg -w '(?:[13][a-km-zA-HJ-NP-Z1-9]{25,34})' $@
+  rg -w '(bc1|[13])[a-km-zA-HJ-NP-Z1-9]{25,39}' $@
 }
 
 find-bitcoin-private() {
@@ -270,6 +270,12 @@ find-neo-public() {
 
 find-ripple-public() {
   rg -w 'r[0-9a-zA-Z]{24,34}' $@
+}
+
+get-crypto-balance() {
+  # Supported blockains: btc, ltc, bcy, doge.
+  # Supported networks: main, test, test3.
+  curl -s https://api.blockcypher.com/v1/${2:-btc}/${3:-main}/addrs/$1/balance ${@:4}
 }
 
 # MYSQL FUNCTIONS
