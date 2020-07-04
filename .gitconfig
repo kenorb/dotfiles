@@ -120,11 +120,13 @@ clean = "sed -e 's/^password=.*/#password=TODO/'"
   checkout-all = !"find . -name .git -type d -print -execdir git checkout -f HEAD \\;"
   ca           = commit -a
   cp           = cherry-pick
+  d            = diff
   gb           = get-branch
   get-branch   = rev-parse --abbrev-ref HEAD
   diff-stash   = stash show -p stash@{0}
   f            = fetch
   fe           = fetch
+  fo           = fetch origin
   fetch-all    = !"find . -name .git -type d -print -execdir git fetch --all \\;"
   log-graph    = log --oneline --graph --decorate --all
   lol          = log --graph --decorate --pretty=oneline --abbrev-commit
