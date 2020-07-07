@@ -24,6 +24,9 @@ brew "wget"
 brew "ydiff"
 brew "youtube-dl"
 
+# Brew (Crypto).
+brew "geth"
+
 # Brew (GNU).
 # https://www.topbug.net/blog/2013/04/14/install-and-use-gnu-command-line-tools-in-mac-os-x/
 brew "coreutils"
@@ -103,11 +106,16 @@ brew "circleci"
 tap "drone/drone"
 brew "drone"
 
-# Install GitHub CLI utilities.
+# Installs GitHub CLI utilities.
 tap "github/gh"
 tap "nektos/tap"
 brew "act"
 brew "gh"
+
+# Installs MicroK8s.
+# https://www.techrepublic.com/article/how-to-install-microk8s-on-macos/
+tap "ubuntu/microk8s"
+brew "microk8s"
 
 # Brew (encoders).
 brew "enca"
