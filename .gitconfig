@@ -117,6 +117,7 @@ clean = "sed -e 's/^password=.*/#password=TODO/'"
                  | sort --numeric-sort --key=2 \
                  | cut -c 1-12,41- \
                  | $(command -v gnumfmt || echo numfmt) --field=2 --to=iec-i --suffix=B --padding=7 --round=nearest"
+  c            = checkout
   checkout-all = !"find . -name .git -type d -print -execdir git checkout -f HEAD \\;"
   ca           = commit -a
   cp           = cherry-pick
@@ -126,13 +127,19 @@ clean = "sed -e 's/^password=.*/#password=TODO/'"
   diff-stash   = stash show -p stash@{0}
   f            = fetch
   fe           = fetch
+  fg           = fetch github
   fo           = fetch origin
+  fom          = fetch origin master
   fetch-all    = !"find . -name .git -type d -print -execdir git fetch --all \\;"
   log-graph    = log --oneline --graph --decorate --all
   lol          = log --graph --decorate --pretty=oneline --abbrev-commit
   lola         = log --graph --decorate --pretty=oneline --abbrev-commit --all
   majonez      = !echo Hellmanns
   out          = !git log --boundary $(git rev-list --max-count=1 --simplify-by-decoration HEAD^)..
+  p            = pull
+  pg           = pull github
+  po           = pull origin
+  pom          = pull origin master
   pull-all     = !"find . -name .git -type d -print -execdir git pull origin \\;"
   pull-forks   = "!git submodule foreach 'git pull `git config --get remote.origin.url | sed s#EXAMPLE#kenorb#`&'"
   reset-author = "commit --amend --reset-author --no-edit"

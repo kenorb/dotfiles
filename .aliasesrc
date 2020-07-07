@@ -75,8 +75,11 @@ alias gcm="git checkout master"
 
 # git pull
 alias gf="git fetch"
+alias gfh="git fetch github"
 alias gfo="git fetch origin"
 alias gp="git pull"
+alias gph="git pull github"
+alias gphm="git pull github master"
 alias gpo="git pull origin"
 alias gpom="git pull origin master"
 

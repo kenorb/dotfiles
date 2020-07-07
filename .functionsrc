@@ -275,6 +275,7 @@ find-ripple-public() {
 get-crypto-balance() {
   # Supported blockains: btc, ltc, bcy, doge.
   # Supported networks: main, test, test3.
+  # Notes: Another API: https://blockchair.com/api/docs
   curl -s https://api.blockcypher.com/v1/${2:-btc}/${3:-main}/addrs/$1/balance ${@:4}
 }
 
