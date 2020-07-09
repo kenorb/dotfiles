@@ -63,6 +63,7 @@ brew "git"
 brew "git-lfs"
 brew "groovy"
 brew "hub"
+brew "jinja2-cli"
 brew "jq"
 brew "maven"
 brew "node"
@@ -112,11 +113,6 @@ tap "nektos/tap"
 brew "act"
 brew "gh"
 
-# Installs MicroK8s.
-# https://www.techrepublic.com/article/how-to-install-microk8s-on-macos/
-tap "ubuntu/microk8s"
-brew "microk8s"
-
 # Brew (encoders).
 brew "enca"
 brew "uchardet"
@@ -145,6 +141,15 @@ brew "yamllint"
 #brew "sdl2_image"
 #brew "sdl2_mixer"
 #brew "sdl2_ttf"
+
+# Installs Jenkins X (JX).
+tap "jenkins-x/jx"
+brew "jx"
+
+# Installs MicroK8s.
+# https://www.techrepublic.com/article/how-to-install-microk8s-on-macos/
+tap "ubuntu/microk8s"
+brew "microk8s"
 
 # Casks (Setup).
 tap "homebrew/cask"
