@@ -74,6 +74,7 @@ alias gb="git branch"
 alias gcm="git checkout master"
 
 # git pull
+alias gd="git diff"
 alias gf="git fetch"
 alias gfh="git fetch github"
 alias gfo="git fetch origin"
