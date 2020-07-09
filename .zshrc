@@ -18,6 +18,11 @@ if [ -f ~/.functionsrc ]; then
   . ~/.functionsrc
 fi
 
+# Includes common shell exports
+if [ -f ~/.exportsrc ]; then
+  . ~/.exportsrc
+fi
+
 # Load private secret settings.
 if [ -f ~/.secrets ]; then
   . ~/.secrets

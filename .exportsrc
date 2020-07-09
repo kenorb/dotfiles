@@ -1,0 +1,61 @@
+# ~/.exportsrc
+# Define shell exports.
+# Invoked by .bash_profile and .zsrc files.
+
+# Adds user's local bin directory.
+[ -d "$HOME"/bin ] && export PATH="$PATH:$HOME/bin"
+[ -d "$HOME"/.local/bin ] && export PATH="$PATH:$HOME/.local/bin"
+
+# Architecture flags for x64
+export ARCHFLAGS="-arch x86_64"
+
+# Homebrew
+ACCEPT_EULA=y
+#HOMEBREW_NO_ENV_FILTERING=1
+
+# Cargo (Rust package manager).
+[ -d "$HOME"/.cargo/bin ] \
+  && export PATH="$HOME/.cargo/bin:$PATH"
+
+# CLI and ls colors.
+export CLICOLOR=1
+export LSCOLORS=ExFxCxDxBxegedabagacad
+which dircolors &> /dev/null && eval "`dircolors`"
+
+# Colored GCC warnings and errors.
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+
+# Curl on macOS.
+[ -d "/usr/local/opt/curl/bin" ] \
+  && export PATH="/usr/local/opt/curl/bin:$PATH"
+
+# Editor.
+export EDITOR='vim'
+
+# Fixes for sed.
+# @see: http://www.delorie.com/gnu/docs/gawk/gawk_149.html
+# @see: http://stackoverflow.com/q/19242275/55075
+export LANG=C
+export LC_CTYPE=C
+
+# Go packages.
+[ -d /usr/local/opt/go/libexec/bin ] \
+    && export PATH=$PATH:/usr/local/opt/go/libexec/bin
+# Notes for go package:
+# A valid GOPATH is required to use the `go get` command.
+# If $GOPATH is not specified, $HOME/go will be used by default
+# @see: https://golang.org/doc/code.html#GOPATH
+if [ -z "$GOPATH" ] && command -v go &> /dev/null; then
+  export GOPATH=$(go env GOPATH)
+fi
+
+# Terminal colors (e.g. echo "${COLOR_RED}foo").
+export COLOR_RESET=$(tput sgr0)
+export COLOR_BLACK=$(tput setaf 0)
+export COLOR_RED=$(tput setaf 1)
+export COLOR_GREEN=$(tput setaf 2)
+export COLOR_YELLOW=$(tput setaf 3)
+export COLOR_BLUE=$(tput setaf 4)
+export COLOR_MAGENTA=$(tput setaf 5)
+export COLOR_CYAN=$(tput setaf 6)
+export COLOR_WHITE=$(tput setaf 7)

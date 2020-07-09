@@ -34,7 +34,12 @@ ulimit -Sl unlimited # max locked memory
 export GITAWAREPROMPT=~/.bash/git-aware-prompt
 [ -f "${GITAWAREPROMPT}/main.sh" ] && source "${GITAWAREPROMPT}/main.sh"
 
-# Includes shell exports
+# Includes common shell exports
+if [ -f ~/.exportsrc ]; then
+  . ~/.exportsrc
+fi
+
+# Includes Bash shell exports
 if [ -f ~/.bash_exports ]; then
   . ~/.bash_exports
 fi
