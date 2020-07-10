@@ -27,6 +27,12 @@ brew "youtube-dl"
 # Brew (Crypto).
 brew "geth"
 
+# Brew (Extract tools).
+brew "cabextract"
+brew "gzip"
+brew "p7zip"
+brew "unrar"
+
 # Brew (GNU).
 # https://www.topbug.net/blog/2013/04/14/install-and-use-gnu-command-line-tools-in-mac-os-x/
 brew "coreutils"
@@ -40,7 +46,6 @@ brew "gnu-tar"
 brew "gnu-which"
 brew "gnutls"
 brew "grep"
-brew "gzip"
 brew "screen"
 brew "watch"
 brew "wdiff"
