@@ -31,6 +31,9 @@ fi
 # Controls which default set of key bindings is used.
 set -o vi
 
-# Allow a reverse history search in vi-mode.
+# Allows a reverse history search in vi-mode.
 # https://unix.stackexchange.com/q/44115/21471
 bindkey "^R" history-incremental-search-backward
+
+# Installs Shell Integration for iTerm2.
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
