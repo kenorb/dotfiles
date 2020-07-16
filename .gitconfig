@@ -107,7 +107,7 @@ clean = "sed -e 's/^password=.*/#password=TODO/'"
 	cmd = kdiff3 $LOCAL $BASE $REMOTE -o $MERGED
 
 [alias]
-  aa           = commit --all --amend --no-edit
+  aa           = commit --amend --no-edit
   addremove    = !git add . && git ls-files -deleted | xargs git rm
   b            = branch
   br           = branch
@@ -121,6 +121,7 @@ clean = "sed -e 's/^password=.*/#password=TODO/'"
   checkout-all = !"find . -name .git -type d -print -execdir git checkout -f HEAD \\;"
   ca           = commit -a
   cp           = cherry-pick
+  cm           = commit
   d            = diff
   gb           = get-branch
   get-branch   = rev-parse --abbrev-ref HEAD
@@ -131,6 +132,7 @@ clean = "sed -e 's/^password=.*/#password=TODO/'"
   fo           = fetch origin
   fom          = fetch origin master
   fetch-all    = !"find . -name .git -type d -print -execdir git fetch --all \\;"
+  l            = log
   log-graph    = log --oneline --graph --decorate --all
   lol          = log --graph --decorate --pretty=oneline --abbrev-commit
   lola         = log --graph --decorate --pretty=oneline --abbrev-commit --all
@@ -150,6 +152,8 @@ clean = "sed -e 's/^password=.*/#password=TODO/'"
   sm-diff      = "submodule foreach 'git diff'"
   smu          = submodule update
   svn-dcommit  = "!set -o xtrace; git stash; git svn dcommit; git stash pop -q"
+  unmerged     = branch --no-merged
+  unmerged-all = branch --all --no-merged
   update-all   = "!cd $(git rev-parse --show-toplevel 2> /dev/null) && find -name .git -type d -execdir git pull -v ';'"
   ; branch-svn2git =  !git for-each-ref refs/remotes --shell --format="r=%(refname:short) t=\${r#tags/}" | while read e; do eval "$e"; git branch -f $t refs/remotes/$r; git branch -d -r $r; done
   ; tag-svn2git =     !git for-each-ref refs/remotes/tags --shell --format="r=%(refname:short) t=\${r#tags/}" | while read e; do eval "$e"; git tag -f $t refs/remotes/$r; git branch -d -r $r; done
