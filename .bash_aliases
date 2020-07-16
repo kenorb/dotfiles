@@ -11,14 +11,6 @@ RC_LOADED+=($(basename $BASH_SOURCE))
 # Make less more friendly for non-text input files, see lesspipe(1).
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-## Network
-
-# Get external IP
-alias whatismyip='curl ifconfig.me' # Or: ip.appspot.com
-
-# Show active network listeners
-alias netlisteners='lsof -i -P | grep LISTEN'
-
 ## Conversion
 
 # Useful converting tools.
