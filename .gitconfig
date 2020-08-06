@@ -137,6 +137,7 @@ clean = "sed -e 's/^password=.*/#password=TODO/'"
   lol          = log --graph --decorate --pretty=oneline --abbrev-commit
   lola         = log --graph --decorate --pretty=oneline --abbrev-commit --all
   majonez      = !echo Hellmanns
+  mom          = merge origin/master
   out          = !git log --boundary $(git rev-list --max-count=1 --simplify-by-decoration HEAD^)..
   p            = pull
   pg           = pull github
