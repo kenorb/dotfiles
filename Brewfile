@@ -27,6 +27,7 @@ brew "youtube-dl"
 
 # Brew (Crypto).
 brew "geth"
+brew "hsd"
 
 # Brew (Extract tools).
 brew "cabextract"
@@ -52,7 +53,9 @@ brew "watch"
 brew "wdiff"
 
 # Brew (databases).
+tap "mongodb/brew"
 brew "h2"
+brew "mongodb-community"
 brew "mysql-client"
 brew "postgres"
 brew "sqlite"
@@ -222,8 +225,9 @@ cask "openemu"
 cask "steam"
 
 # Casks (Media).
-cask "vlc"
 cask "mplayerx"
+cask "spotify"
+cask "vlc"
 
 # Casks (Libraries).
 cask "authy"
@@ -232,6 +236,7 @@ cask "google-cloud-sdk"
 
 # Casks (Security apps).
 cask 'dashlane'
+cask 'gpg'
 
 # Casks (Social).
 cask "google-hangouts"
