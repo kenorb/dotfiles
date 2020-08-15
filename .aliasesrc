@@ -102,6 +102,20 @@ alias docker-run-ptrace="docker run --cap-add SYS_PTRACE"
 alias mysql-docker-start="docker run --name=mysql -p3306:3306 --rm -v $HOME/.cache/mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD:-root} mysql/mysql-server"
 alias yt='docker run --rm -u $(id -u):$(id -g) -v $PWD:/data vimagick/youtube-dl'
 
+# Kubernetes
+alias k="kubectl"
+alias k8="kubectl"
+
+# Terraform
+alias t="terraform"
+alias ta="terraform apply"
+alias tc="terraform console"
+alias tf="terraform fmt"
+alias ti="terraform init"
+alias tp="terraform plan"
+alias ts="terraform state"
+alias tsl="terraform state list"
+
 #
 # vim/vi/ex
 alias v='vim'
