@@ -93,6 +93,13 @@ brew "vim"
 brew "yq"
 #brew "denji/nginx/nginx-full", args: ["with-rmtp-module"]
 
+# Brew (fun)
+brew "cowsay"
+brew "fortune"
+brew "lolcat"
+brew "sl"
+brew "toilet"
+
 # Brew (DevOps).
 brew "ansible" unless system "command -v ansible"
 brew "arping"
@@ -128,6 +135,7 @@ brew "gh"
 
 # Brew (encoders).
 brew "enca"
+brew "recode"
 brew "uchardet"
 
 # Brew (libraries).
@@ -145,6 +153,7 @@ brew "shellcheck"
 brew "shfmt"
 brew "tflint"
 brew "yamllint"
+# brew install kube-score/tap/kube-score
 
 # Brew (cryptocurrencies).
 #brew "vanitygen"
