@@ -17,9 +17,9 @@ fi
 
 #
 # ls variants
-lc=$(which lolcat >/dev/null && echo "|lolcat")
 alias ls='\ls'
 alias ll='\ls -alF'
+alias llc='\ls -alh | lolcat'
 alias llh='\ls -alh'
 #alias lsd='ls -d .*'
 #alias ls='ls $LS_OPTIONS'
@@ -112,9 +112,11 @@ alias ta="terraform apply"
 alias tc="terraform console"
 alias tf="terraform fmt"
 alias ti="terraform init"
+alias to="terraform output"
 alias tp="terraform plan"
 alias ts="terraform state"
 alias tsl="terraform state list"
+alias tv="terraform validate"
 
 #
 # vim/vi/ex
@@ -126,6 +128,7 @@ alias retab="ex +'set ts=2' +'bufdo retab' -scxa" # Convert tabs to spaces.
 alias npm-freeze='npm ls | grep -o "\S\+@\S\+$" | tr @ " " | awk -v q='\''"'\'' '\''{print q$1q": "q"^"$2q","}'\'''
 
 # Fun
+alias lc=lolcat
 alias weather-london="curl http://wttr.in/london"
 
 # Transmission
@@ -165,6 +168,9 @@ alias jenkins-lint="ssh jenkins-cli declarative-linter < ./Jenkinsfile"
 #
 # youtube-dl (if available)
 alias youtube-dl='youtube-dl -vci -R5 -f "(webm,mp4)" --write-description --write-info-json --all-subs --write-thumbnail --add-metadata'
+
+## Misc
+alias randomize='fold -w1 | shuf | tr -d "\n"'
 
 ## MySQL
 alias mysql-tcp="mysql --protocol=TCP"
