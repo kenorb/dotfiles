@@ -12,6 +12,7 @@ brew "bash"
 brew "bash-completion"
 brew "curl"
 brew "curl-openssl"
+brew "exa"
 brew "fd"
 brew "fdupes"
 brew "graphviz"
@@ -48,6 +49,7 @@ brew "gnu-tar"
 brew "gnu-which"
 brew "gnutls"
 brew "grep"
+brew 'gpg'
 brew "screen"
 brew "watch"
 brew "wdiff"
@@ -246,7 +248,6 @@ cask "google-cloud-sdk"
 
 # Casks (Security apps).
 cask 'dashlane'
-cask 'gpg'
 
 # Casks (Social).
 cask "google-hangouts"
