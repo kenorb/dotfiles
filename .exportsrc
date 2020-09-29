@@ -29,6 +29,10 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 [ -d "/usr/local/opt/curl/bin" ] \
   && export PATH="/usr/local/opt/curl/bin:$PATH"
 
+# Python 3.8
+[ -d "$HOME"/Library/Python/3.8/bin ] \
+  && export PATH="$PATH:$HOME/Library/Python/3.8/bin"
+
 # Editor.
 export EDITOR='vim'
 
