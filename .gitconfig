@@ -114,9 +114,13 @@ clean = "sed -e 's/^password=.*/#password=TODO/'"
   big-files    = !"git rev-list --objects --all \
                  | git cat-file --batch-check='%(objecttype) %(objectname) %(objectsize) %(rest)' \
                  | sed -n 's/^blob //p' \
-                 | sort --numeric-sort --key=2 \
+                 | sort -nk2 \
                  | cut -c 1-12,41- \
                  | $(command -v gnumfmt || echo numfmt) --field=2 --to=iec-i --suffix=B --padding=7 --round=nearest"
+  big-objects = !"git rev-list --all \
+                | parallel git ls-tree -r --long "{}" \
+                | sort -uk3 \
+                | sort -nk4"
   c            = checkout
   checkout-all = !"find . -name .git -type d -print -execdir git checkout -f HEAD \\;"
   ca           = commit -a
