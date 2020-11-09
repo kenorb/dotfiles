@@ -49,9 +49,10 @@ brew "gnu-tar"
 brew "gnu-which"
 brew "gnutls"
 brew "grep"
-brew 'gpg'
+brew "parallel"
 brew "screen"
 brew "watch"
+brew 'gpg'
 brew "wdiff"
 
 # Brew (databases).
@@ -67,6 +68,7 @@ brew "sqlite"
 
 # Brew (development).
 brew "ack"
+brew "autopep8"
 brew "clang-format"
 brew "composer"
 brew "direnv"
