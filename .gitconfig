@@ -135,11 +135,13 @@ clean = "sed -e 's/^password=.*/#password=TODO/'"
   fg           = fetch github
   fo           = fetch origin
   fom          = fetch origin master
+  fommom       = !git fetch origin master && git merge origin/master
   fetch-all    = !"find . -name .git -type d -print -execdir git fetch --all \\;"
   l            = log
   log-graph    = log --oneline --graph --decorate --all
   lol          = log --graph --decorate --pretty=oneline --abbrev-commit
   lola         = log --graph --decorate --pretty=oneline --abbrev-commit --all
+  ma           = merge --abort
   majonez      = !echo Hellmanns
   mom          = merge origin/master
   out          = !git log --boundary $(git rev-list --max-count=1 --simplify-by-decoration HEAD^)..
@@ -149,6 +151,7 @@ clean = "sed -e 's/^password=.*/#password=TODO/'"
   pom          = pull origin master
   pull-all     = !"find . -name .git -type d -print -execdir git pull origin \\;"
   pull-forks   = "!git submodule foreach 'git pull `git config --get remote.origin.url | sed s#EXAMPLE#kenorb#`&'"
+  ra           = rebase --abort
   reset-author = "commit --amend --reset-author --no-edit"
   reset-all    = !"find . -name .git -type d -print -execdir git reset HEAD --hard \\;"
   s            = status
