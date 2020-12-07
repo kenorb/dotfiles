@@ -110,6 +110,7 @@ brew "arping"
 brew "awscli"
 brew "azure-cli"
 brew "helm" # The Kubernetes Package Manager.
+brew "krew"
 brew "kubernetes-cli"
 brew "minikube"
 brew "mtr"
