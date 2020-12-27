@@ -106,6 +106,9 @@ alias yt='docker run --rm -u $(id -u):$(id -g) -v $PWD:/data vimagick/youtube-dl
 alias k="kubectl"
 alias k8="kubectl"
 
+# Pre-commit
+alias pc="pre-commit run -a"
+
 # Terraform
 alias t="terraform"
 alias ta="terraform apply"
