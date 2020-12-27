@@ -137,6 +137,7 @@ clean = "sed -e 's/^password=.*/#password=TODO/'"
   fom          = fetch origin master
   fommom       = !git fetch origin master && git merge origin/master
   fetch-all    = !"find . -name .git -type d -print -execdir git fetch --all \\;"
+  exclude      = !echo >> .git/info/exclude
   l            = log
   log-graph    = log --oneline --graph --decorate --all
   lol          = log --graph --decorate --pretty=oneline --abbrev-commit
