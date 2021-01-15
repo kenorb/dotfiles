@@ -18,6 +18,7 @@ brew "fdupes"
 brew "graphviz"
 brew "imagemagick"
 brew "mackup"
+brew "pwgen"
 brew "rename"
 brew "socat"
 brew "telnet"
@@ -107,6 +108,7 @@ brew "toilet"
 
 # Brew (DevOps).
 brew "ansible" unless system "command -v ansible"
+brew "argocd"
 brew "arping"
 brew "awscli"
 brew "azure-cli"
@@ -126,6 +128,7 @@ brew "libav"
 
 # Brew (security).
 brew "hashcat"
+brew "strongswan"
 
 # Installs Circle CI
 brew "circleci"
