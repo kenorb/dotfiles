@@ -108,11 +108,13 @@ brew "toilet"
 
 # Brew (DevOps).
 brew "ansible" unless system "command -v ansible"
+brew "ansible-lint"
 brew "argocd"
 brew "arping"
 brew "awscli"
 brew "azure-cli"
 brew "helm" # The Kubernetes Package Manager.
+brew "k9s"
 brew "krew"
 brew "kubernetes-cli"
 brew "minikube"
