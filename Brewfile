@@ -131,6 +131,7 @@ brew "libav"
 # Brew (security).
 brew "hashcat"
 brew "strongswan"
+brew "vault"
 
 # Installs Circle CI
 brew "circleci"
