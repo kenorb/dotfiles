@@ -94,6 +94,7 @@ brew "redis"
 brew "ripgrep"
 brew "ruby-build"
 brew "rust"
+brew "sphinx-doc"
 brew "subversion"
 brew "unixodbc" # for msodbcsql
 brew "vim"
