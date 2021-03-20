@@ -18,7 +18,7 @@ grpcio==1.30.0
 h5py==2.10.0
 identify==1.4.21
 idna==2.10
-Jinja2==2.11.2
+Jinja2==2.11.3
 Keras-Preprocessing==1.1.2
 Markdown==3.2.2
 MarkupSafe==1.1.1
