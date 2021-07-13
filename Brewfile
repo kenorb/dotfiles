@@ -89,18 +89,23 @@ brew "node"
 brew "pev"
 brew "pre-commit"
 brew "pv"
-brew "python3"
 brew "rbenv"
 brew "redis"
 brew "ripgrep"
 brew "ruby-build"
 brew "rust"
+brew "scc"
 brew "sphinx-doc"
 brew "subversion"
 brew "unixodbc" # for msodbcsql
 brew "vim"
 brew "yq"
 #brew "denji/nginx/nginx-full", args: ["with-rmtp-module"]
+
+# Brew (development - Python)
+brew "pipenv"
+brew "python3"
+brew "virtualenv"
 
 # Brew (fun)
 brew "cowsay"
@@ -110,6 +115,7 @@ brew "sl"
 brew "toilet"
 
 # Brew (DevOps).
+brew "Azure/kubelogin/kubelogin"
 brew "ansible" unless system "command -v ansible"
 brew "ansible-lint"
 brew "argocd"
