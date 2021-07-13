@@ -102,9 +102,15 @@ alias docker-run-ptrace="docker run --cap-add SYS_PTRACE"
 alias mysql-docker-start="docker run --name=mysql -p3306:3306 --rm -v $HOME/.cache/mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD:-root} mysql/mysql-server"
 alias yt='docker run --rm -u $(id -u):$(id -g) -v $PWD:/data vimagick/youtube-dl'
 
+# JQ
+alias jwt-decode="jq -R 'split(\".\") | .[1] | @base64d | fromjson'"
+
 # Kubernetes
-alias k="kubectl"
 alias k8="kubectl"
+alias k="kubectl"
+alias kgno="kubectl get nodes"
+alias kgpo="kubectl get pods"
+alias krmpo="kubectl remove pod"
 
 # Pre-commit
 alias pc="pre-commit run -a"
