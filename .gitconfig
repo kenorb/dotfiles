@@ -3,7 +3,7 @@
   email = kenorb@users.noreply.github.com
 
 [credential]
-	helper = osxkeychain
+  helper = osxkeychain
 
 [core]
   editor = vim
@@ -71,7 +71,7 @@ clean = "sed -e 's/^password=.*/#password=TODO/'"
   cmd = /usr/local/bin/bbdiff --wait --resume "$LOCAL" "$REMOTE" # for BBEdit
 
 [difftool "diffmerge"]
-	cmd = diffmerge \"$LOCAL\" \"$REMOTE\"
+  cmd = diffmerge \"$LOCAL\" \"$REMOTE\"
   keepBackup = false
   trustExitCode = true
 
@@ -79,7 +79,7 @@ clean = "sed -e 's/^password=.*/#password=TODO/'"
   cmd = /usr/bin/opendiff "$LOCAL" "$REMOTE" # for FileMerge
 
 [difftool "meld"]
-	cmd = meld \"$LOCAL\" \"$REMOTE\"
+  cmd = meld \"$LOCAL\" \"$REMOTE\"
 
 [difftool "opendiff"]
   tool = opendiff
@@ -95,16 +95,16 @@ clean = "sed -e 's/^password=.*/#password=TODO/'"
   tool = vimdiff
 
 [merge]
-	prompt = false
-	tool = mergemeld
-	conflictstyle = diff3
-	log = yes
+  prompt = false
+  tool = mergemeld
+  conflictstyle = diff3
+  log = yes
 
 [mergetool "mergemeld"]
-	  cmd = meld --auto-merge --output \"$MERGED\" \"$LOCAL\" \"$BASE\" \"$REMOTE\" --diff \"$BASE\" \"$LOCAL\" --diff \"$BASE\" \"$REMOTE\"
+    cmd = meld --auto-merge --output \"$MERGED\" \"$LOCAL\" \"$BASE\" \"$REMOTE\" --diff \"$BASE\" \"$LOCAL\" --diff \"$BASE\" \"$REMOTE\"
 
 [mergetool "kdiff3"]
-	cmd = kdiff3 $LOCAL $BASE $REMOTE -o $MERGED
+  cmd = kdiff3 $LOCAL $BASE $REMOTE -o $MERGED
 
 [alias]
   aa           = commit --amend --no-edit
@@ -180,8 +180,10 @@ clean = "sed -e 's/^password=.*/#password=TODO/'"
   required = true
 
 [clangFormat]
-	extension = cpp,c,hpp,h,mq4,mq5,mqh
-	style = file
+  extension = cpp,c,hpp,h,mq4,mq5,mqh
+  style = file
 
 [hooks.clangformat]
-	verbose = ON
+  verbose = ON
+[init]
+  defaultBranch = master
