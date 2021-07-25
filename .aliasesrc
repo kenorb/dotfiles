@@ -153,6 +153,7 @@ alias ansible-diff-off="export ANSIBLE_DIFF_ALWAYS=false"
 alias ansible-diff-on="export ANSIBLE_DIFF_ALWAYS=true"
 alias ansible-host-check-off="export ANSIBLE_HOST_KEY_CHECKING=false"
 alias ansible-host-check-on="export ANSIBLE_HOST_KEY_CHECKING=true"
+alias ansible-local="ansible-playbook -c local -i local, -M ."
 alias ansible-warnings-off="export ANSIBLE_DEPRECATION_WARNINGS=false"
 alias ansible-warnings-on="export ANSIBLE_DEPRECATION_WARNINGS=true"
 
