@@ -125,6 +125,7 @@ clean = "sed -e 's/^password=.*/#password=TODO/'"
   checkout-all = !"find . -name .git -type d -print -execdir git checkout -f HEAD \\;"
   ca           = commit -a
   cp           = cherry-pick
+  cpa          = cherry-pick --abort
   cm           = commit
   d            = diff
   gb           = get-branch
