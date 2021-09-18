@@ -167,6 +167,7 @@ brew "pcre++"
 brew "openssl"
 
 # Brew (linters/formatters).
+brew "black"
 brew "dos2unix"
 brew "hadolint"
 brew "html2text"
