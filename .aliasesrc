@@ -47,6 +47,7 @@ alias psmem='ps -o time,ppid,pid,nice,pcpu,pmem,user,comm -A | sort -n -k 6 | ta
 # rm variants
 alias rm-empty="find . -type d -empty -delete -print"
 alias rm-bak="find . -name '*.bak' -type f -delete -print"
+alias rm-ds="find . -name '.DS_Store' -type f -delete -print"
 
 # rsync
 alias rsync-sudo="rsync --rsync-path='sudo rsync'"
