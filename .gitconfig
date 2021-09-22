@@ -1,6 +1,7 @@
 [user]
   name = kenorb
   email = kenorb@users.noreply.github.com
+  signingkey = 20640DB6D61A7BBBD3DBF898E95815EEE495E904
 
 [credential]
   helper = osxkeychain
@@ -153,7 +154,8 @@ clean = "sed -e 's/^password=.*/#password=TODO/'"
   pom          = pull origin master
   pull-all     = !"find . -name .git -type d -print -execdir git pull origin \\;"
   pull-forks   = "!git submodule foreach 'git pull `git config --get remote.origin.url | sed s#EXAMPLE#kenorb#`&'"
-  ra           = rebase --abort
+  rb           = rebase
+  rba          = rebase --abort
   reset-author = "commit --amend --reset-author --no-edit"
   reset-all    = !"find . -name .git -type d -print -execdir git reset HEAD --hard \\;"
   s            = status
