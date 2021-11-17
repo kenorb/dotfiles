@@ -51,6 +51,7 @@ alias rm-ds="find . -name '.DS_Store' -type f -delete -print"
 
 # rsync
 alias rsync-sudo='rsync --rsync-path="sudo rsync"'
+alias rsync-mv="rsync --ignore-existing --remove-source-files -av"
 
 # Date
 alias date-iso="date --iso-8601=seconds"
