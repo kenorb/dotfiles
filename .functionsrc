@@ -345,7 +345,7 @@ rg-perm-3w() {
 
 # Permutate 3 words with punctuations.
 rg-perm-3w-punct() {
-  rg -o '(\w+)\s(\w+)\s(\w+)' -r "$(crunch 12 12 + + 123 ' ,-+=' -t '${%}^${%}^$%' 2>/dev/null)"
+  rg -o '(\w+)\s(\w+)\s(\w+)' -r "$(crunch 12 12 + + 123 ' ,-+=<>;|' -t '${%}^${%}^$%' 2>/dev/null)"
 }
 
 # Permutate 4 words.
@@ -356,4 +356,9 @@ rg-perm-4w() {
 # Permutate 5 words.
 rg-perm-5w() {
   rg -o '(\w+)\s(\w+)\s(\w+)\s(\w+)\s(\w+)' -r "$(crunch 14 14 + + 12345 -t '$% $% $% $% $%' 2>/dev/null)"
+}
+
+# Permutate 3-5 words.
+rg-perm-345w() {
+  tee >(rg-perm-3w) >(rg-perm-4w) >(rg-perm-5w) >/dev/null | cat
 }
