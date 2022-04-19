@@ -53,6 +53,10 @@ if [ -z "$GOPATH" ] && command -v go &> /dev/null; then
   export GOPATH=$(go env GOPATH)
 fi
 
+# Rust
+[ -d "$HOME"/.cargo/bin ] \
+  && export PATH="$PATH:$HOME/.cargo/bin"
+
 # Terminal colors (e.g. echo "${COLOR_RED}foo").
 export COLOR_RESET=$(tput sgr0)
 export COLOR_BLACK=$(tput setaf 0)
