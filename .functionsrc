@@ -327,3 +327,33 @@ mysql-show-variables() {
 mysql-show-errorlog() {
   sudo tail -f $(mysql -Nse "SELECT @@log_error")
 }
+
+# Permutate 2 words.
+rg-perm-2w() {
+  rg -o '(\w+)\s(\w+)' -r "$(crunch 5 5 + + 12 -t '$% $%' 2>/dev/null)"
+}
+
+# Permutate 2 words with punctuations.
+rg-perm-2w-punct() {
+  rg -o '(\w+)\s(\w+)' -r "$(crunch 7 7 + + 12 ' !@%&*-_=+:,|.' -t '${%}^$%' 2>/dev/null)"
+}
+
+# Permutate 3 words.
+rg-perm-3w() {
+  rg -o '(\w+)\s(\w+)\s(\w+)' -r "$(crunch 8 8 + + 123 -t '$% $% $%' 2>/dev/null)"
+}
+
+# Permutate 3 words with punctuations.
+rg-perm-3w-punct() {
+  rg -o '(\w+)\s(\w+)\s(\w+)' -r "$(crunch 12 12 + + 123 ' ,-+=' -t '${%}^${%}^$%' 2>/dev/null)"
+}
+
+# Permutate 4 words.
+rg-perm-4w() {
+  rg -o '(\w+)\s(\w+)\s(\w+)\s(\w+)' -r "$(crunch 11 11 + + 1234 -t '$% $% $% $%' 2>/dev/null)"
+}
+
+# Permutate 5 words.
+rg-perm-5w() {
+  rg -o '(\w+)\s(\w+)\s(\w+)\s(\w+)\s(\w+)' -r "$(crunch 14 14 + + 12345 -t '$% $% $% $% $%' 2>/dev/null)"
+}
