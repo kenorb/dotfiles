@@ -330,64 +330,75 @@ mysql-show-errorlog() {
 
 # Permutate 2 words.
 rg-perm-2w() {
-  rg -o '(\w+)\W+(\w+)' -r "$(crunch 5 5 + + 12 -t '$% $%' 2>/dev/null)"
+  rg -o '(\w{2,20})\W+(\w{2,20})' \
+    -r "$(crunch 5 5 + + 12 -t '$% $%' 2>/dev/null)"
 }
 
 # Permutate 2 words with punctuations.
 rg-perm-2w-punct() {
-  rg -o '(\w+)\W+(\w+)' -r "$(crunch 7 7 + + 12 ' !@%&*-_=+:,|.' -t '${%}^$%' 2>/dev/null)"
+  rg -o '(\w{2,20})\W+(\w{2,20})' \
+    -r "$(crunch 7 7 + + 12 ' !@%&*-_=+:,|.' -t '${%}^$%' 2>/dev/null)"
 }
 
 # Permutate 3 words.
 rg-perm-3w() {
-  rg -o '(\w+)\W+(\w+)\W+(\w+)' -r "$(crunch 8 8 + + 123 -t '$% $% $%' 2>/dev/null)"
+  rg -o '(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})' \
+    -r "$(crunch 8 8 + + 123 -t '$% $% $%' 2>/dev/null)"
 }
 
 # Permutate 3 words with punctuations.
 rg-perm-3w-punct() {
-  rg -o '(\w+)\W+(\w+)\W+(\w+)' -r "$(crunch 12 12 + + 123 ' ,-+=<>;|' -t '${%}^${%}^$%' 2>/dev/null)"
+  rg -o '(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})' \
+    -r "$(crunch 12 12 + + 123 ' ,-+=<>;|' -t '${%}^${%}^$%' 2>/dev/null)"
 }
 
 # Permutate 4 words.
 rg-perm-4w() {
-  rg -o '(\w+)\W+(\w+)\W+(\w+)\W+(\w+)' -r "$(crunch 11 11 + + 1234 -t '$% $% $% $%' 2>/dev/null)"
+  rg -o '(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})' \
+    -r "$(crunch 11 11 + + 1234 -t '$% $% $% $%' 2>/dev/null)"
 }
 
 # Permutate 5 words.
 rg-perm-5w() {
-  rg -o '(\w+)\W+(\w+)\W+(\w+)\W+(\w+)\W+(\w+)' -r "$(crunch 14 14 + + 12345 -t '$% $% $% $% $%' 2>/dev/null)"
+  rg -o '(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})' \
+    -r "$(crunch 14 14 + + 12345 -t '$% $% $% $% $%' 2>/dev/null)"
 }
 
 # Permutate 6 words into 4.
 rg-perm-6w-to-4w() {
-  rg -o '(\w+)\W+(\w+)\W+(\w+)\W+(\w+)\W+(\w+)\W+(\w+)' -r "$(crunch 11 11 + + 123456 -t '$% $% $% $%' 2>/dev/null)"
+  rg -o '(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})' \
+    -r "$(crunch 11 11 + + 123456 -t '$% $% $% $%' 2>/dev/null)"
 }
 
 # Permutate 6 words into 5.
 rg-perm-6w-to-5w() {
-  rg -o '(\w+)\W+(\w+)\W+(\w+)\W+(\w+)\W+(\w+)\W+(\w+)' -r "$(crunch 14 14 + + 123456 -t '$% $% $% $% $%' 2>/dev/null)"
+  rg -o '(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})' \
+    -r "$(crunch 14 14 + + 123456 -t '$% $% $% $% $%' 2>/dev/null)"
 }
 
 # Permutate 7 words into 4.
 rg-perm-7w-to-4w() {
-  rg -o '(\w+)\W+(\w+)\W+(\w+)\W+(\w+)\W+(\w+)\W+(\w+)\W+(\w+)' -r "$(crunch 11 11 + + 1234567 -t '$% $% $% $%' 2>/dev/null)"
+  rg -o '(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})' \
+    -r "$(crunch 11 11 + + 1234567 -t '$% $% $% $%' 2>/dev/null)"
 }
 
 # Permutate 7 words into 5.
 rg-perm-7w-to-5w() {
-  rg -o '(\w+)\W+(\w+)\W+(\w+)\W+(\w+)\W+(\w+)\W+(\w+)\W+(\w+)' -r "$(crunch 14 14 + + 1234567 -t '$% $% $% $% $%' 2>/dev/null)"
+  rg -o '(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})' \
+    -r "$(crunch 14 14 + + 1234567 -t '$% $% $% $% $%' 2>/dev/null)"
 }
 
 # Permutate 8 words into 4.
 rg-perm-8w-to-4w() {
-  rg -o '(\w+)\W+(\w+)\W+(\w+)\W+(\w+)\W+(\w+)\W+(\w+)\W+(\w+)\W+(\w+)' -r "$(crunch 11 11 + + 12345678 -t '$% $% $% $%' 2>/dev/null)"
+  rg -o '(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})' \
+    -r "$(crunch 11 11 + + 12345678 -t '$% $% $% $%' 2>/dev/null)"
 }
 
 # Permutate 8 words into 5.
 rg-perm-8w-to-5w() {
-  rg -o '(\w+)\W+(\w+)\W+(\w+)\W+(\w+)\W+(\w+)\W+(\w+)\W+(\w+)\W+(\w+)' -r "$(crunch 14 14 + + 12345678 -t '$% $% $% $% $%' 2>/dev/null)"
+  rg -o '(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})' \
+    -r "$(crunch 14 14 + + 12345678 -t '$% $% $% $% $%' 2>/dev/null)"
 }
-
 
 # Permutate 3-5 words.
 rg-perm-345w() {
