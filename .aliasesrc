@@ -2,6 +2,11 @@
 
 ## ALIASES ##
 
+## Compression/extraction.
+
+### 7z
+alias 7zcat="7z e -bd -so"
+
 ## File system
 
 # Enable color support of ls and also add handy aliases.
@@ -106,7 +111,7 @@ alias git-pull-root='find $(git rev-parse --show-toplevel 2> /dev/null) -name .g
 # Docker
 alias docker-run-ptrace="docker run --cap-add SYS_PTRACE"
 alias mysql-docker-start="docker run --name=mysql -p3306:3306 --rm -v $HOME/.cache/mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD:-root} mysql/mysql-server"
-alias yt='docker run --rm -u $(id -u):$(id -g) -v $PWD:/data vimagick/youtube-dl'
+alias yt-dlp-all='yt-dlp -vci -R5 -f mp4,webm --write-description --write-info-json --all-subs --write-thumbnail --add-metadata'
 
 # JQ
 alias jwt-decode="jq -R 'split(\".\") | .[1] | @base64d | fromjson'"
@@ -184,8 +189,9 @@ alias jenkins-lint="ssh jenkins-cli declarative-linter < ./Jenkinsfile"
 ## Media
 
 #
-# youtube-dl (if available)
+# youtube-dl/yt-dlp (if available)
 alias youtube-dl='youtube-dl -vci -R5 -f "(webm,mp4)" --write-description --write-info-json --all-subs --write-thumbnail --add-metadata'
+alias yt-dlp='yt-dlp -vci -R5 -f "(webm,mp4)" --write-description --write-info-json --all-subs --write-thumbnail --add-metadata'
 
 ## Misc
 alias randomize='fold -w1 | shuf | tr -d "\n"'
