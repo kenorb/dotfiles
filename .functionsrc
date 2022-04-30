@@ -279,6 +279,18 @@ get-crypto-balance() {
   curl -s https://api.blockcypher.com/v1/${2:-btc}/${3:-main}/addrs/$1/balance ${@:4}
 }
 
+# CACHE & SWAP
+
+# Create a swap file and activate it.
+mk-swap-file() {
+  swapfile=${1:-swapfile}
+  size=${2:-10g}
+  sudo fallocate "$swapfile" -l "$size"
+  sudo chmod 600 "$swapfile"
+  sudo mkswap "$swapfile"
+  sudo swapon "$swapfile"
+}
+
 # MYSQL FUNCTIONS
 
 # Create user in MySQL/MariaDB.
