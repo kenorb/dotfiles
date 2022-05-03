@@ -7,6 +7,95 @@
 ### 7z
 alias 7zcat="7z e -bd -so"
 
+## Convert and translate text
+
+### AWK
+
+#alias conv_rev_words="awk '{for(i=NF;i>0;--i)printf "%s%s",$i,(i>1?OFS:ORS)}'"
+alias conv_rm_blanks="awk NF"
+
+### Fold
+
+#alias conv_folded="tee >(fold -sw10) >(fold -sw20) >(fold -sw30) >(fold -sw40) >(fold -sw60) >(fold -sw80) >/dev/null"
+alias conv_folded=tee
+alias conv_permutate="conv_to_spaces | conv_folded | conv_rm_trail_spaces \
+  | tee >(conv_rm_punct | conv_rm_trail_spaces | tee >(conv_to_asterisk) >(conv_to_at) >(conv_to_case_inv) >(conv_to_case_lower) >(conv_to_case_upper) >(conv_to_dashes) >(conv_to_pipes) >(conv_to_underscores) >(conv_to_alpha)) \
+    >(conv_to_case_lower) >(conv_to_case_lower | conv_to_case_uc_first) >(conv_to_case_lower | conv_to_case_uc_words) >(conv_to_case_upper) >(conv_to_case_uc_first) >(conv_to_case_uc_words) \
+    >(conv_to_commas) >(conv_to_print) >(conv_to_slashes) >(conv_to_stops) >(conv_to_tildes) \
+  | tee >(conv_rm_blank) \
+  | conv_rm_trail_spaces"
+
+### Mixed
+
+### Sed
+
+alias conv_rm_trail_spaces="sed -e 's/^[ \t]*//g' | sed -e 's/[ \t]*$//g'"
+alias conv_to_case_uc_first="sed 's/./\u&/'"
+alias conv_to_case_uc_words="sed 's/^./\U&/g; s/ ./\U&/g'"
+
+### Ripgrep
+alias conv_rm_xml_lines="rg -v '[<>]'"
+alias rg-chinese='rg -o "[\x{4E00}-\x{9FA5}]+"'
+alias rg-emoji='rg "[\x{1F1FF}-\x{1F600}]+"'
+alias rg-hindi='rg -o "[\x{0905}-\x{097f}]+"'
+alias rg-sha256='rg -HIowz "[A-Fa-f0-9]{64}"'
+alias rg-unicode='rg -o "[\x{0100}-\x{FFFF}]+"'
+alias rg_1S="rg -o '\S+'"
+alias rg_1w="rg -o '(\w{3,20})'"
+alias rg_2S="rg -o '\S+\s+\S+'"
+alias rg_2w="rg -o '(\w{3,20})\W(\w{3,20})'"
+alias rg_2W='rg -o "(\w{3,20})\W(\w{3,20})" -r "\$1 \$2$(printf "\n\r")\$2 \$1" | tr -d "\r"'
+alias rg_3S="rg -o '\S+\s+\S+\s+\S+'"
+alias rg_3w="rg -o '(\w{3,20})\W(\w{3,20})\W(\w{3,20})'"
+alias rg_3W='rg -o "(\w{3,20})\W(\w{3,20})\W(\w{3,20})" -r "\$1 \$2 \$3$(printf "\n\r")\$1 \$3 \$2$(printf "\n\r")\$2 \$1 \$3$(printf "\n\r")\$2 \$3 \$1$(printf "\n\r")\$3 \$1 \$2$(printf "\n\r")\$3 \$2 \$1" | tr -d "\r"'
+alias rg_4S="rg -o '\S+\s+\S+\s+\S+\s+\S+'"
+alias rg_4w="rg -o '(\w{3,20})\W(\w{3,20})\W(\w{3,20})\W(\w{3,20})'"
+alias rg_4W='rg -o "(\w{3,20})\W(\w{3,20})\W(\w{3,20})\W(\w{3,20})" -r "\$1 \$2 \$3 \$4$(printf "\n\r")\$1 \$3 \$2 \$4$(printf "\n\r")\$2 \$1 \$3 \$4$(printf "\n\r")\$2 \$3 \$1 \$4$(printf "\n\r")\$3 \$1 \$2 \$4$(printf "\n\r")\$3 \$2 \$1 \$4$(printf "\n\r")\$1 \$2 \$4 \$3$(printf "\n\r")\$1 \$3 \$4 \$2$(printf "\n\r")\$2 \$1 \$4 \$3$(printf "\n\r")\$2 \$3 \$4 \$1$(printf "\n\r")\$3 \$1 \$4 \$2$(printf "\n\r")\$3 \$2 \$4 \$1$(printf "\n\r")\$1 \$4 \$2 \$3$(printf "\n\r")\$1 \$4 \$3 \$2$(printf "\n\r")\$2 \$4 \$1 \$3$(printf "\n\r")\$2 \$4 \$3 \$1$(printf "\n\r")\$3 \$4 \$1 \$2$(printf "\n\r")\$3 \$4 \$2 \$1$(printf "\n\r")\$4 \$1 \$2 \$3$(printf "\n\r")\$4 \$1 \$3 \$2$(printf "\n\r")\$4 \$2 \$1 \$3$(printf "\n\r")\$4 \$2 \$3 \$1$(printf "\n\r")\$4 \$3 \$1 \$2$(printf "\n\r")\$4 \$3 \$2 \$1" | tr -d "\r"'
+alias rg_5S="rg -o '\S+\s+\S+\s+\S+\s+\S+\s+\S+'"
+alias rg_5w="rg -o '(\w{3,20})\W(\w{3,20})\W(\w{3,20})\W(\w{3,20})\W(\w{3,20})'"
+alias rg_6S="rg -o '\S+\s+\S+\s+\S+\s+\S+\s+\S+\s+\S+'"
+alias rg_6w="rg -o '(\w{3,20})\W(\w{3,20})\W(\w{3,20})\W(\w{3,20})\W(\w{3,20})\W(\w{3,20})'"
+alias rg_7S="rg -o '\S+\s+\S+\s+\S+\s+\S+\s+\S+\s+\S+\s+\S+'"
+alias rg_7w="rg -o '(\w{3,20})\W(\w{3,20})\W(\w{3,20})\W(\w{3,20})\W(\w{3,20})\W(\w{3,20})\W(\w{3,20})'"
+alias rg_8S="rg -o '\S+\s+\S+\s+\S+\s+\S+\s+\S+\s+\S+\s+\S+\s+\S+'"
+alias rg_8w="rg -o '(\w{3,20})\W(\w{3,20})\W(\w{3,20})\W(\w{3,20})\W(\w{3,20})\W(\w{3,20})\W(\w{3,20})\W(\w{3,20})'"
+alias rg_9S="rg -o '\S+\s+\S+\s+\S+\s+\S+\s+\S+\s+\S+\s+\S+\s+\S+\s+\S+'"
+alias rg_9w="rg -o '(\w{3,20})\W(\w{3,20})\W(\w{3,20})\W(\w{3,20})\W(\w{3,20})\W(\w{3,20})\W(\w{3,20})\W(\w{3,20})\W(\w{3,20})'"
+alias rg_ww="tee >(rg_2w) >(rg_3w) >(rg_4w) >(rg_5w) >(rg_6w) >(rg_7w) >(rg_8w) >(rg_9w) >/dev/null"
+
+### Sed
+
+alias conv_rm_xml_tags="sed -e 's/<[^>]*>//g'"
+alias conv_xml_tags_to_nl="sed -e 's/<[^>]*>/\n/g'"
+
+### Sort
+alias sort-fast="sort --parallel=40"
+
+### Spellout
+
+alias spellout-each="tee >(xargs spellout -a JAN) >(xargs spellout -a NATO) >(xargs spellout -a LAPD) >(xargs spellout -a WesternUnion) >(xargs spellout -a UsFinancial) >/dev/null | uniq"
+
+### Tr (translate or delete characters).
+alias conv_rm_punct="tr -s '[:punct:]' ' '"
+alias conv_rm_blank="tr -d '[:blank:]'"
+alias conv_to_at="tr ' ' '@'"
+alias conv_to_alpha="tr -cd '[:alpha:]\n '"
+alias conv_to_asterisk="tr ' ' '*'"
+alias conv_to_braces="tr '()' '{}'"
+alias conv_to_case_inv="tr '[:upper:][:lower:]' '[:lower:][:upper:]'"
+alias conv_to_case_lower="tr '[:upper:]' '[:lower:]'"
+alias conv_to_case_upper="tr '[:lower:]' '[:upper:]'"
+alias conv_to_commas="tr ' ' ','"
+alias conv_to_dashes="tr ' ' '-'"
+alias conv_to_parenthesis="tr '{}' '()'"
+alias conv_to_pipes="tr ' ' '|'"
+alias conv_to_print="tr -cd '[:print:]\n'"
+alias conv_to_slashes="tr ' ' '/'"
+alias conv_to_spaces="tr -s '[:blank:]' ' '"
+alias conv_to_stops="tr ' ' '.'"
+alias conv_to_tildes="tr ' ' '^'"
+alias conv_to_underscores="tr ' ' '_'"
+
 ## File system
 
 # Enable color support of ls and also add handy aliases.
