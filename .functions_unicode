@@ -1,0 +1,168 @@
+# ~/.functions_unicode
+# Defines shell functions for parsing unicode characters.
+
+# Filters 2-3 unicode characters.
+rg-23u() {
+  rg -o '([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])' \
+    -r "$(printf '$1$2\n$2$3\n$1$2$3')"
+}
+
+# Filters 2-4 unicode characters.
+rg-234u() {
+  rg -o '([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])' \
+    -r "$(printf '$1$2\n$2$3\n$3$4\n$1$2$3\n$2$3$4\n$1$2$3$4')"
+}
+
+# Filters 2-5 unicode characters.
+rg-2345u() {
+  rg -o '([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])' \
+    -r "$(printf '$1$2\n$2$3\n$3$4\n$4$5\n$1$2$3\n$2$3$4\n$3$4$5\n$1$2$3$4\n$2$3$4$5\n$1$2$3$4$5')"
+}
+
+# Filters 3-6 unicode characters.
+rg-3456u() {
+  rg -o '([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])' \
+    -r "$(printf '$1$2$3\n$2$3$4\n$3$4$5\n$4$5$6\n$1$2$3$4\n$2$3$4$5\n$3$4$5$6\n$1$2$3$4$5\n$2$3$4$5$6\n$1$2$3$4$5$6')"
+}
+
+# Filters 3-7 unicode characters.
+rg-34567u() {
+  rg -o '([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])' \
+    -r "$(printf '$1$2$3\n$2$3$4\n$3$4$5\n$4$5$6\n$5$6$7\n$1$2$3$4\n$2$3$4$5\n$3$4$5$6\n$4$5$6$7\n$1$2$3$4$5\n$2$3$4$5$6\n$3$4$5$6$7\n$1$2$3$4$5$6\n$2$3$4$5$6$7\n$1$2$3$4$5$6$7')"
+}
+
+# Filters 3-8 unicode characters.
+rg-345678u() {
+  rg -o '([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])' \
+    -r "$(printf '$1$2$3\n$2$3$4\n$3$4$5\n$4$5$6\n$5$6$7\n$6$7$8\n$1$2$3$4\n$2$3$4$5\n$3$4$5$6\n$4$5$6$7\n$5$6$7$8\n$1$2$3$4$5\n$2$3$4$5$6\n$3$4$5$6$7\n$4$5$6$7$8\n$1$2$3$4$5$6\n$2$3$4$5$6$7\n$3$4$5$6$7$8\n$1$2$3$4$5$6$7\n$2$3$4$5$6$7$8\n$1$2$3$4$5$6$7$8')"
+}
+
+# Filters 3-9 unicode characters.
+rg-3456789u() {
+  rg -o '([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])' \
+    -r "$(printf '$1$2$3\n$2$3$4\n$3$4$5\n$4$5$6\n$5$6$7\n$6$7$8\n$7$8$9\n$1$2$3$4\n$2$3$4$5\n$3$4$5$6\n$4$5$6$7\n$5$6$7$8\n$6$7$8$9\n$1$2$3$4$5\n$2$3$4$5$6\n$3$4$5$6$7\n$4$5$6$7$8\n$5$6$7$8$9\n$1$2$3$4$5$6\n$2$3$4$5$6$7\n$3$4$5$6$7$8\n$4$5$6$7$8$9\n$1$2$3$4$5$6$7\n$2$3$4$5$6$7$8\n$3$4$5$6$7$8$9\n$1$2$3$4$5$6$7$8\n$2$3$4$5$6$7$8$9\n$1$2$3$4$5$6$7$8$9')"
+}
+
+# Filters all unicode characters.
+rg-all-unicode() {
+  tee >/dev/null >(rg-23u) >(rg-234u) >(rg-2345u) >(rg-3456u) >(rg-34567u) >(rg-345678u) >(rg-3456789u)
+}
+
+# Filters 2 unicode characters.
+rg-perm-2u() {
+  rg -o '([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])' \
+    -r "$(crunch 4 4 + + 12 -t '$%$%' 2>/dev/null)"
+}
+
+# Permutate 3 unicode characters.
+rg-perm-3u() {
+  rg -o '([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])' \
+    -r "$(crunch 6 6 + + 123 -t '$%$%$%' 2>/dev/null)"
+}
+
+# Permutate 4 unicode characters.
+rg-perm-4u() {
+  rg -o '([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])' \
+    -r "$(crunch 8 8 + + 1234 -t '$%$%$%$%' 2>/dev/null)"
+}
+
+# Permutate 5 unicode characters.
+rg-perm-5u() {
+  rg -o '([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])' \
+    -r "$(crunch 10 10 + + 12345 -t '$%$%$%$%$%' 2>/dev/null)"
+}
+
+# Permutate 5 unicode characters into 3.
+rg-perm-5u-to-3u() {
+  rg -o '([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])' \
+    -r "$(crunch 6 6 + + 12345 -t '$%$%$%' 2>/dev/null)"
+}
+
+# Permutate 5 unicode characters into 4.
+rg-perm-5u-to-4u() {
+  rg -o '([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])' \
+    -r "$(crunch 8 8 + + 12345 -t '$%$%$%$%' 2>/dev/null)"
+}
+
+# Permutate 6 unicode characters into 3.
+rg-perm-6u-to-3u() {
+  rg -o '([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])' \
+    -r "$(crunch 6 6 + + 123456 -t '$%$%$%' 2>/dev/null)"
+}
+
+# Permutate 6 unicode characters into 4.
+rg-perm-6u-to-4u() {
+  rg -o '([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])' \
+    -r "$(crunch 8 8 + + 123456 -t '$%$%$%$%' 2>/dev/null)"
+}
+
+# Permutate 6 unicode characters into 5.
+rg-perm-6u-to-5u() {
+  rg -o '([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])' \
+    -r "$(crunch 10 10 + + 123456 -t '$%$%$%$%$%' 2>/dev/null)"
+}
+
+# Permutate 7 unicode characters into 3.
+rg-perm-7u-to-3u() {
+  rg -o '([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])' \
+    -r "$(crunch 6 6 + + 1234567 -t '$%$%$%' 2>/dev/null)"
+}
+
+# Permutate 7 unicode characters into 4.
+rg-perm-7u-to-4u() {
+  rg -o '([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])' \
+    -r "$(crunch 8 8 + + 1234567 -t '$%$%$%$%' 2>/dev/null)"
+}
+
+# Permutate 7 unicode characters into 5.
+rg-perm-7u-to-5u() {
+  rg -o '([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])' \
+    -r "$(crunch 10 10 + + 1234567 -t '$%$%$%$%$%' 2>/dev/null)"
+}
+
+# Permutate 8 unicode characters into 3.
+rg-perm-8u-to-3u() {
+  rg -o '([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])' \
+    -r "$(crunch 6 6 + + 12345678 -t '$%$%$%' 2>/dev/null)"
+}
+
+# Permutate 8 unicode characters into 4.
+rg-perm-8u-to-4u() {
+  rg -o '([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])' \
+    -r "$(crunch 8 8 + + 12345678 -t '$%$%$%$%' 2>/dev/null)"
+}
+
+# Permutate 8 unicode characters into 5.
+rg-perm-8u-to-5u() {
+  rg -o '([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])' \
+    -r "$(crunch 10 10 + + 12345678 -t '$%$%$%$%$%' 2>/dev/null)"
+}
+
+# Permutate 9 unicode characters into 3.
+rg-perm-9u-to-3u() {
+  rg -o '([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])' \
+    -r "$(crunch 6 6 + + 123456789 -t '$%$%$%' 2>/dev/null)"
+}
+
+# Permutate 9 unicode characters into 4.
+rg-perm-9u-to-4u() {
+  rg -o '([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])' \
+    -r "$(crunch 8 8 + + 123456789 -t '$%$%$%$%' 2>/dev/null)"
+}
+
+# Permutate 3-5 unicode characters.
+rg-perm-345u() {
+  tee >(rg-perm-3u) >(rg-perm-4u) >(rg-perm-5u) >/dev/null
+}
+
+# Permutate 3-5 unicode characters.
+rg-perm-56789u-to-34u() {
+  tee \
+    >(rg-perm-5u) \
+    >(rg-perm-5u-to-3u) >(rg-perm-5u-to-4u) \
+    >(rg-perm-6u-to-3u) >(rg-perm-6u-to-4u) \
+    >(rg-perm-7u-to-3u) >(rg-perm-7u-to-4u) \
+    >(rg-perm-8u-to-3u) >(rg-perm-8u-to-4u) \
+    >(rg-perm-9u-to-3u) >(rg-perm-9u-to-4u) \
+    >/dev/null
+}
