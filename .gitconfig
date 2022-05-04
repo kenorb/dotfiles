@@ -131,6 +131,8 @@ clean = "sed -e 's/^password=.*/#password=TODO/'"
   d            = diff
   gb           = get-branch
   get-branch   = rev-parse --abbrev-ref HEAD
+  grep-sha256  = grep -owE "[A-Fa-f0-9]{64}"
+  grep-wif     = grep -owE "[59KLc][1-9A-HJ-NP-Za-km-z]{50,51}"
   diff-stash   = stash show -p stash@{0}
   f            = fetch
   fe           = fetch
