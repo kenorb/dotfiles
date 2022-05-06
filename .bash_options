@@ -36,6 +36,9 @@ shopt -s cmdhist
 # Include filenames with leading dots in pattern matching.
 #shopt -s dotglob
 
+# Expand aliases in shell scripts.
+shopt -s expand_aliases
+
 # Enable extended globbing: !(foo), ?(bar|baz)...
 # If set, the extended pattern matching features are enabled.
 # @see: http://wiki.bash-hackers.org/syntax/pattern
