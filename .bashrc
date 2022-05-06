@@ -43,3 +43,7 @@ fi
 
 # added by travis gem
 [ -f /home/kenorb/.travis/travis.sh ] && source /home/kenorb/.travis/travis.sh
+
+# Wasmer
+export WASMER_DIR="/home/kenorb/.wasmer"
+[ -s "$WASMER_DIR/wasmer.sh" ] && source "$WASMER_DIR/wasmer.sh"
