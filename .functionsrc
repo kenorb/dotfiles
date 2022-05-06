@@ -342,7 +342,7 @@ mysql-show-errorlog() {
 
 # Filters 2-3 words.
 rg-23w() {
-  rg -o '(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})' \
+  rg -o '(\w{3,30})\W+(\w{3,30})\W+(\w{3,30})' \
     -r "$(printf '$1 $2\n$2 $3\n$1 $2 $3')"
 }
 
@@ -360,31 +360,38 @@ rg-2345w() {
 
 # Filters 3-6 words.
 rg-3456w() {
-  rg -o '(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})' \
+  rg -o '(\w{2,20})\W+(\w{1,20})\W+(\w{1,20})\W+(\w{1,20})\W+(\w{1,20})\W+(\w{2,20})' \
     -r "$(printf '$1 $2 $3\n$2 $3 $4\n$3 $4 $5\n$4 $5 $6\n$1 $2 $3 $4\n$2 $3 $4 $5\n$3 $4 $5 $6\n$1 $2 $3 $4 $5\n$2 $3 $4 $5 $6\n$1 $2 $3 $4 $5 $6')"
 }
 
 # Filters 3-7 words.
 rg-34567w() {
-  rg -o '(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})' \
+  rg -o '(\w{2,20})\W+(\w{1,20})\W+(\w{1,20})\W+(\w{1,20})\W+(\w{1,20})\W+(\w{1,20})\W+(\w{2,20})' \
     -r "$(printf '$1 $2 $3\n$2 $3 $4\n$3 $4 $5\n$4 $5 $6\n$5 $6 $7\n$1 $2 $3 $4\n$2 $3 $4 $5\n$3 $4 $5 $6\n$4 $5 $6 $7\n$1 $2 $3 $4 $5\n$2 $3 $4 $5 $6\n$3 $4 $5 $6 $7\n$1 $2 $3 $4 $5 $6\n$2 $3 $4 $5 $6 $7\n$1 $2 $3 $4 $5 $6 $7')"
 }
 
 # Filters 3-8 words.
 rg-345678w() {
-  rg -o '(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})' \
+  rg -o '(\w{2,20})\W+(\w{1,20})\W+(\w{1,20})\W+(\w{1,20})\W+(\w{1,20})\W+(\w{1,20})\W+(\w{1,20})\W+(\w{2,20})' \
     -r "$(printf '$1 $2 $3\n$2 $3 $4\n$3 $4 $5\n$4 $5 $6\n$5 $6 $7\n$6 $7 $8\n$1 $2 $3 $4\n$2 $3 $4 $5\n$3 $4 $5 $6\n$4 $5 $6 $7\n$5 $6 $7 $8\n$1 $2 $3 $4 $5\n$2 $3 $4 $5 $6\n$3 $4 $5 $6 $7\n$4 $5 $6 $7 $8\n$1 $2 $3 $4 $5 $6\n$2 $3 $4 $5 $6 $7\n$3 $4 $5 $6 $7 $8\n$1 $2 $3 $4 $5 $6 $7\n$2 $3 $4 $5 $6 $7 $8\n$1 $2 $3 $4 $5 $6 $7 $8')"
+}
+
+# Filters 3-9 words.
+rg-3456789w() {
+  rg -o '(\w{2,20})\W+(\w{1,20})\W+(\w{1,20})\W+(\w{1,20})\W+(\w{1,20})\W+(\w{1,20})\W+(\w{1,20})\W+(\w{1,20})\W+(\w{2,20})' \
+    -r "$(printf '$1 $2 $3\n$2 $3 $4\n$3 $4 $5\n$4 $5 $6\n$5 $6 $7\n$6 $7 $8\n$7 $8 $9\n$1 $2 $3 $4\n$2 $3 $4 $5\n$3 $4 $5 $6\n$4 $5 $6 $7\n$5 $6 $7 $8\n$6 $7 $8 $9\n$1 $2 $3 $4 $5\n$2 $3 $4 $5 $6\n$3 $4 $5 $6 $7\n$4 $5 $6 $7 $8\n$5 $6 $7 $8 $9\n$1 $2 $3 $4 $5 $6\n$2 $3 $4 $5 $6 $7\n$3 $4 $5 $6 $7 $8\n$4 $5 $6 $7 $8 $9\n$1 $2 $3 $4 $5 $6 $7\n$2 $3 $4 $5 $6 $7 $8\n$3 $4 $5 $6 $7 $8 $9\n$1 $2 $3 $4 $5 $6 $7 $8\n$2 $3 $4 $5 $6 $7 $8 $9\n$1 $2 $3 $4 $5 $6 $7 $8 $9')"
 }
 
 # Filters all words.
 rg-all-words() {
-  tee >/dev/null >(rg-23w) >(rg-234w) >(rg-2345w) >(rg-3456w) >(rg-34567w) >(rg-345678w)
+  tee >/dev/null >(rg-23w) >(rg-234w) >(rg-2345w) >(rg-3456w) >(rg-34567w) >(rg-345678w) >(rg-3456789w)
 }
 
 # Filters 2 words.
 rg-perm-2w() {
+  rg_r_arg="$(crunch 2 2 12 2>/dev/null | sed -E 's/([0-9])/$\1/g;s/([0-9])\$/\1 \$/g')"
   rg -o '(\w{2,20})\W+(\w{2,20})' \
-    -r "$(crunch 5 5 + + 12 -t '$% $%' 2>/dev/null)"
+    -r "$rg_r_arg"
 }
 
 # Permutate 2 words with punctuations.
@@ -395,8 +402,9 @@ rg-perm-2w-punct() {
 
 # Permutate 3 words.
 rg-perm-3w() {
+  rg_r_arg="$(crunch 3 3 123 -p 123 2>/dev/null | sed -E 's/([0-9])/$\1/g;s/([0-9])\$/\1 \$/g')"
   rg -o '(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})' \
-    -r "$(crunch 8 8 + + 123 -t '$% $% $%' 2>/dev/null)"
+    -r "$rg_r_arg"
 }
 
 # Permutate 3 words with punctuations.
@@ -407,97 +415,145 @@ rg-perm-3w-punct() {
 
 # Permutate 4 words.
 rg-perm-4w() {
+  rg_r_arg="$(crunch 4 4 1234 -p 1234 2>/dev/null | sed -E 's/([0-9])/$\1/g;s/([0-9])\$/\1 \$/g')"
   rg -o '(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})' \
-    -r "$(crunch 11 11 + + 1234 -t '$% $% $% $%' 2>/dev/null)"
+    -r "$rg_r_arg"
 }
 
 # Permutate 5 words.
 rg-perm-5w() {
+  rg_r_arg="$(crunch 5 5 12345 -p 12345 2>/dev/null | sed -E 's/([0-9])/$\1/g;s/([0-9])\$/\1 \$/g')"
   rg -o '(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})' \
-    -r "$(crunch 14 14 + + 12345 -t '$% $% $% $% $%' 2>/dev/null)"
+    -r "$rg_r_arg"
+}
+
+# Permutate 6 words.
+rg-perm-6w() {
+  rg_r_arg="$(crunch 5 5 123456 -p 123456 2>/dev/null | sed -E 's/([0-9])/$\1/g;s/([0-9])\$/\1 \$/g')"
+  rg -o '(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})' \
+    -r "$rg_r_arg"
 }
 
 # Permutate 5 words into 3.
 rg-perm-5w-to-3w() {
+  rg_r_arg="$(crunch 3 3 234 -p 234 2>/dev/null | sed -E 's/([0-9])/$\1/g;s/([0-9])\$/\1 \$/g')"
   rg -o '(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})' \
-    -r "$(crunch 8 8 + + 12345 -t '$% $% $%' 2>/dev/null)"
+    -r "$rg_r_arg"
 }
 
 # Permutate 5 words into 4.
 rg-perm-5w-to-4w() {
+  rg_r_arg="$(crunch 4 4 1234 -p 1234 2>/dev/null | sed -E 's/([0-9])/$\1/g;s/([0-9])\$/\1 \$/g')"
   rg -o '(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})' \
-    -r "$(crunch 11 11 + + 12345 -t '$% $% $% $%' 2>/dev/null)"
+    -r "$rg_r_arg"
 }
 
 # Permutate 6 words into 3.
 rg-perm-6w-to-3w() {
+  rg_r_arg="$(crunch 3 3 234 -p 234 2>/dev/null | sed -E 's/([0-9])/$\1/g;s/([0-9])\$/\1 \$/g')"
   rg -o '(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})' \
-    -r "$(crunch 8 8 + + 123456 -t '$% $% $%' 2>/dev/null)"
+    -r "$rg_r_arg"
 }
 
 # Permutate 6 words into 4.
 rg-perm-6w-to-4w() {
+  rg_r_arg="$(crunch 4 4 1234 -p 1234 2>/dev/null | sed -E 's/([0-9])/$\1/g;s/([0-9])\$/\1 \$/g')"
   rg -o '(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})' \
-    -r "$(crunch 11 11 + + 123456 -t '$% $% $% $%' 2>/dev/null)"
+    -r "$rg_r_arg"
 }
 
 # Permutate 6 words into 5.
 rg-perm-6w-to-5w() {
+  rg_r_arg="$(crunch 5 5 12345 -p 12345 2>/dev/null | sed -E 's/([0-9])/$\1/g;s/([0-9])\$/\1 \$/g')"
   rg -o '(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})' \
-    -r "$(crunch 14 14 + + 123456 -t '$% $% $% $% $%' 2>/dev/null)"
+    -r "$rg_r_arg"
 }
 
 # Permutate 7 words into 3.
 rg-perm-7w-to-3w() {
+  rg_r_arg="$(crunch 3 3 123 -p 123 2>/dev/null | sed -E 's/([0-9])/$\1/g;s/([0-9])\$/\1 \$/g')"
   rg -o '(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})' \
-    -r "$(crunch 8 8 + + 1234567 -t '$% $% $%' 2>/dev/null)"
+    -r "$rg_r_arg"
 }
 
 # Permutate 7 words into 4.
 rg-perm-7w-to-4w() {
+  rg_r_arg="$(crunch 4 4 2345 -p 2345 2>/dev/null | sed -E 's/([0-9])/$\1/g;s/([0-9])\$/\1 \$/g')"
   rg -o '(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})' \
-    -r "$(crunch 11 11 + + 1234567 -t '$% $% $% $%' 2>/dev/null)"
+    -r "$rg_r_arg"
 }
 
 # Permutate 7 words into 5.
 rg-perm-7w-to-5w() {
+  rg_r_arg="$(crunch 5 5 23456 -p 23456 2>/dev/null | sed -E 's/([0-9])/$\1/g;s/([0-9])\$/\1 \$/g')"
   rg -o '(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})' \
-    -r "$(crunch 14 14 + + 1234567 -t '$% $% $% $% $%' 2>/dev/null)"
+    -r "$rg_r_arg"
+}
+
+# Permutate 7 words into 6.
+rg-perm-7w-to-6w() {
+  rg_r_arg="$(crunch 5 5 123456 -p 123456 2>/dev/null | sed -E 's/([0-9])/$\1/g;s/([0-9])\$/\1 \$/g')"
+  rg -o '(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})' \
+    -r "$rg_r_arg"
 }
 
 # Permutate 8 words into 3.
 rg-perm-8w-to-3w() {
+  rg_r_arg="$(crunch 3 3 345 -p 345 2>/dev/null | sed -E 's/([0-9])/$\1/g;s/([0-9])\$/\1 \$/g')"
   rg -o '(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})' \
-    -r "$(crunch 8 8 + + 12345678 -t '$% $% $%' 2>/dev/null)"
+    -r "$rg_r_arg"
 }
 
 # Permutate 8 words into 4.
 rg-perm-8w-to-4w() {
+  rg_r_arg="$(crunch 4 4 3456 -p 3456 2>/dev/null | sed -E 's/([0-9])/$\1/g;s/([0-9])\$/\1 \$/g')"
   rg -o '(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})' \
-    -r "$(crunch 11 11 + + 12345678 -t '$% $% $% $%' 2>/dev/null)"
+    -r "$rg_r_arg"
 }
 
 # Permutate 8 words into 5.
 rg-perm-8w-to-5w() {
+  rg_r_arg="$(crunch 5 5 34567 -p 34567 2>/dev/null | sed -E 's/([0-9])/$\1/g;s/([0-9])\$/\1 \$/g')"
   rg -o '(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})' \
-    -r "$(crunch 14 14 + + 12345678 -t '$% $% $% $% $%' 2>/dev/null)"
+    -r "$rg_r_arg"
+}
+
+# Permutate 8 words into 6.
+rg-perm-8w-to-6w() {
+  rg_r_arg="$(crunch 6 6 234567 -p 234567 2>/dev/null | sed -E 's/([0-9])/$\1/g;s/([0-9])\$/\1 \$/g')"
+  rg -o '(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})' \
+    -r "$rg_r_arg"
 }
 
 # Permutate 9 words into 3.
 rg-perm-9w-to-3w() {
+  rg_r_arg="$(crunch 6 6 456 -p 456 2>/dev/null | sed -E 's/([0-9])/$\1/g;s/([0-9])\$/\1 \$/g')"
   rg -o '(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})' \
-    -r "$(crunch 8 8 + + 123456789 -t '$% $% $%' 2>/dev/null)"
+    -r "$rg_r_arg"
 }
 
 # Permutate 9 words into 4.
 rg-perm-9w-to-4w() {
+  rg_r_arg="$(crunch 4 4 3456 -p 3456 2>/dev/null | sed -E 's/([0-9])/$\1/g;s/([0-9])\$/\1 \$/g')"
   rg -o '(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})' \
-    -r "$(crunch 11 11 + + 123456789 -t '$% $% $% $%' 2>/dev/null)"
+    -r "$rg_r_arg"
 }
 
-# Permutate 3-5 words.
+# Permutate 9 words into 5.
+rg-perm-9w-to-5w() {
+  rg_r_arg="$(crunch 4 4 34567 -p 34567 2>/dev/null | sed -E 's/([0-9])/$\1/g;s/([0-9])\$/\1 \$/g')"
+  rg -o '(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})\W+(\w{2,20})' \
+    -r "$rg_r_arg"
+}
+
+# Permutate 3-6 words.
 rg-perm-345w() {
   tee >(rg-perm-3w) >(rg-perm-4w) >(rg-perm-5w) >/dev/null
+}
+
+# Permutate 3-6 words.
+rg-perm-3456w() {
+  tee >(rg-perm-3w) >(rg-perm-4w) >(rg-perm-5w) >(rg-perm-6w) >/dev/null
 }
 
 # Permutate 3-5 words.
