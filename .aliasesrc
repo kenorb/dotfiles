@@ -36,7 +36,7 @@ alias conv_to_case_uc_words="sed 's/^./\U&/g; s/ ./\U&/g'"
 ### Ripgrep
 alias conv_rm_xml_lines="rg -v '[<>]'"
 alias rg-all='rg --no-ignore'
-alias rg-btc-addr='rg -HNIowz "[13][a-km-zA-HJ-NP-Z1-9]{25,34}$|^(bc1)[ac-hj-np-z02-9]{39,59}$|^(BC1)[AC-HJ-NP-Z02-9]{39,59}"'
+alias rg-btc-addr='rg -Howz "[13][a-km-zA-HJ-NP-Z1-9]{25,34}$|^(bc1)[ac-hj-np-z02-9]{39,59}$|^(BC1)[AC-HJ-NP-Z02-9]{39,59}"'
 alias rg-chinese='rg -oz "[\x{4E00}-\x{9FA5}]+"'
 alias rg-domains='rg -oz "([a-z0-9]+(-[a-z0-9]+)*\.)+[a-z]{2,}"'
 alias rg-email="rg -ow '\S+@\S+\.[a-zA-Z]+'"
