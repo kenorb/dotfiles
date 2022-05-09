@@ -25,6 +25,9 @@ alias conv_permutate="conv_to_spaces | conv_folded | conv_rm_trail_spaces \
   | tee >(conv_rm_blank) \
   | conv_rm_trail_spaces"
 
+### Perl
+alias unicat='perl -e '\''while(<>){if(!$s{$_}){print $_;$|=1;$s{$_}=1;}}'\'''
+
 ### Mixed
 
 ### Sed
