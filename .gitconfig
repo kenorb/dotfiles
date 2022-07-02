@@ -75,21 +75,22 @@ clean = "sed -e 's/^password=.*/#password=TODO/'"
   cmd = /usr/local/bin/bbdiff --wait --resume "$LOCAL" "$REMOTE" # for BBEdit
 
 [difftool "diffmerge"]
-  cmd = diffmerge \"$LOCAL\" \"$REMOTE\"
+  cmd = diffmerge "$LOCAL" "$REMOTE"
   keepBackup = false
   trustExitCode = true
 
 [difftool "filemerge"]
   cmd = /usr/bin/opendiff "$LOCAL" "$REMOTE" # for FileMerge
+  tool = meld
 
 [difftool "meld"]
-  cmd = meld \"$LOCAL\" \"$REMOTE\"
+  cmd = meld "$LOCAL" "$REMOTE"
 
 [difftool "opendiff"]
   tool = opendiff
 
 [difftool "sourcetree"]
-  cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+  cmd = opendiff "$LOCAL" "$REMOTE"
   path =
 
 [difftool "twdiff"]
@@ -105,7 +106,7 @@ clean = "sed -e 's/^password=.*/#password=TODO/'"
   log = yes
 
 [mergetool "mergemeld"]
-    cmd = meld --auto-merge --output \"$MERGED\" \"$LOCAL\" \"$BASE\" \"$REMOTE\" --diff \"$BASE\" \"$LOCAL\" --diff \"$BASE\" \"$REMOTE\"
+    cmd = meld --auto-merge --output "$MERGED" "$LOCAL" "$BASE" "$REMOTE" --diff "$BASE" "$LOCAL" --diff "$BASE" "$REMOTE"
 
 [mergetool "kdiff3"]
   cmd = kdiff3 $LOCAL $BASE $REMOTE -o $MERGED
