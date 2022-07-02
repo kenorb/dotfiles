@@ -112,6 +112,7 @@ clean = "sed -e 's/^password=.*/#password=TODO/'"
 
 [alias]
   aa           = commit --amend --no-edit
+  aaa          = commit --amend --no-edit --all
   addremove    = !git add . && git ls-files -deleted | xargs git rm
   b            = branch
   br           = branch
