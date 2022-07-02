@@ -2,10 +2,27 @@
 
 ## ALIASES ##
 
+## Crypto
+alias base58tohex='base58 -d | xxd -p -c200'
+alias wif2sha='base58 -d | xxd -p -c200 | sed s/^80// | rg -oz "[A-Fa-f0-9]{64}"'
+
 ## Compression/extraction.
 
 ### 7z
 alias 7zcat="7z e -bd -so"
+
+### Zip
+
+alias zipcat="unzip -p"
+
+### ZStandard (zstd).
+
+alias tarzs-rm="tar -cv --remove-files --zstd -f"
+alias tarzs="tar -cv --zstd -f"
+alias zs="zstd -12"
+alias zscat="zstdcat"
+alias zsless="zstdless"
+alias zsrm="zstd -12 --rm"
 
 ## Convert and translate text
 
@@ -39,10 +56,12 @@ alias conv_to_case_uc_words="sed 's/^./\U&/g; s/ ./\U&/g'"
 ### Ripgrep
 alias conv_rm_xml_lines="rg -v '[<>]'"
 alias rg-all='rg --no-ignore'
-alias rg-btc-addr='rg -Howz "[13][a-km-zA-HJ-NP-Z1-9]{25,34}$|^(bc1)[ac-hj-np-z02-9]{39,59}$|^(BC1)[AC-HJ-NP-Z02-9]{39,59}"'
+alias rg-accent-words='rg -o "\w{0,}[ąęáàâäãåćéèêëńíìîïóòôöõúùûüçñýÿźż]\w{0,}"'
+alias rg-btc-addr='rg -Howz "[13][a-km-zA-HJ-NP-Z1-9]{25,34}|^(bc1)[ac-hj-np-z02-9]{39,59}$|^(BC1)[AC-HJ-NP-Z02-9]{39,59}"'
 alias rg-chinese='rg -oz "[\x{4E00}-\x{9FA5}]+"'
-alias rg-domains='rg -oz "([a-z0-9]+(-[a-z0-9]+)*\.)+[a-z]{2,}"'
-alias rg-email="rg -ow '\S+@\S+\.[a-zA-Z]+'"
+alias rg-domain='rg -oz "([a-z0-9]+(-[a-z0-9]+)*\.)+[a-z]{2,}"'
+alias rg-domain2urls='rg -o "([a-z0-9]+(-[a-z0-9]+)*\.)+[a-z]{2,}" -r "$(printf "\$0\nhttp://\$0\nhttps://\$0\nhttp://www.\$0\nhttps://www.\$0\n")"'
+alias rg-email="rg -ow '[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+'"
 alias rg-emoji='rg -oz "[\x{1F1FF}-\x{1F600}]+"'
 alias rg-handle='rg -oz "@[a-zA-Z]\w{4,}"'
 alias rg-hashtag='rg -oz "#[a-zA-Z]\w{4,}"'
@@ -163,9 +182,10 @@ alias big-files='ls -1Rhs | sed -e "s/^ *//" | grep "^[0-9]" | sort -hr | head -
 alias psmem='ps -o time,ppid,pid,nice,pcpu,pmem,user,comm -A | sort -n -k 6 | tail -15'
 
 # rm variants
-alias rm-empty="find . -type d -empty -delete -print"
 alias rm-bak="find . -name '*.bak' -type f -delete -print"
 alias rm-ds="find . -name '.DS_Store' -type f -delete -print"
+alias rm-empty-dirs="find . -type d -empty -delete -print"
+alias rm-empty-files="find . -type f -empty -delete -print"
 
 # rsync
 alias rsync-sudo='rsync --rsync-path="sudo rsync"'
