@@ -11,6 +11,10 @@ alias wif2sha='base58 -d | xxd -p -c200 | sed s/^80// | rg -oz "[A-Fa-f0-9]{64}"
 ### 7z
 alias 7zcat="7z e -bd -so"
 
+### Rar
+
+alias rarcat="unrar p"
+
 ### Zip
 
 alias zipcat="unzip -p"
@@ -19,10 +23,10 @@ alias zipcat="unzip -p"
 
 alias tarzs-rm="tar -cv --remove-files --zstd -f"
 alias tarzs="tar -cv --zstd -f"
-alias zs="zstd -12"
+alias zs="zstd -18 -T0"
 alias zscat="zstdcat"
 alias zsless="zstdless"
-alias zsrm="zstd -12 --rm"
+alias zsrm="zstd -18 --rm -T0"
 
 ## Convert and translate text
 
@@ -54,21 +58,31 @@ alias filter-4of4='perl -e "while (<>) { print if $. % 4 == 3; }"'
 alias filter-even='perl -e "while (<>) { print if $. % 2 == 0; }"' # Same as: split -n r/2/2
 alias filter-odd='perl -e "while (<>) { print if $. % 2 == 1; }"' # Same as: split -n r/1/2
 alias unicat2='perl -e '\''while(<>){if(!$s{$_}){print $_;$|=1;$s{$_}=1;}}'\'''
+alias reverse="perl -nle 'print scalar reverse \$_'"
 
 ### Mixed
 
 ### Sed
 
-alias conv_rm_trail_spaces="sed -e 's/^[ \t]*//g' | sed -e 's/[ \t]*$//g'"
-alias conv_to_case_uc_first="sed 's/./\u&/'"
-alias conv_to_case_uc_words="sed 's/^./\U&/g; s/ ./\U&/g'"
+alias conv-rm-trail-spaces="sed -e 's/^[ \t]*//g' | sed -e 's/[ \t]*$//g'"
+alias conv-to-case-uc-first="sed 's/./\u&/'"
+alias conv-to-case-uc-words="sed 's/^./\U&/g; s/ ./\U&/g'"
+alias swap-char-first-with-last="sed -E 's/(.)(.+)(.)/\3\2\1/'"
 
 ### Ripgrep
 alias conv_rm_xml_lines="rg -v '[<>]'"
-alias rg-all='rg --no-ignore'
+alias rg-all='tr -d "\0" | rg -uuu'
 alias rg-accent-words='rg -o "\w{0,}[ąęáàâäãåćéèêëńíìîïóòôöõúùûüçñýÿźż]\w{0,}"'
-alias rg-btc-addr='rg -Howz "[13][a-km-zA-HJ-NP-Z1-9]{25,34}|^(bc1)[ac-hj-np-z02-9]{39,59}$|^(BC1)[AC-HJ-NP-Z02-9]{39,59}"'
-alias rg-chinese='rg -oz "[\x{4E00}-\x{9FA5}]+"'
+alias rg-arabic='rg -oz "[\x{0621}-\x{0669}]+"' # Arabic
+alias rg-armenian='rg -oz "[\x{0531}-\x{0587}]+"' # Armenian
+alias rg-btc-addr='rg -Howz "[13][a-km-zA-HJ-NP-Z1-9]{25,34}|^(bc1|ltc1)[ac-hj-np-z02-9]{39,59}$|^(BC1|LTC1)[AC-HJ-NP-Z02-9]{39,59}"'
+alias rg-chinese='rg -oz "[\x{4E00}-\x{9FFF}]+"' # Kanji
+alias rg-greek='rg -oz "[\x{0374}-\x{03FF}]+"' # Greek
+alias rg-hebrew='rg -oz "[\x{0590}-\x{05FE}]+"' # Hebrew
+alias rg-japanese1='rg -oz "[\x{3040}-\x{309F}ー]+"' # Hiragana
+alias rg-japanese2='rg -oz "[\x{30A0}-\x{30FF}ー]+"' # Katakana
+alias rg-japanese='rg -oz "[\x{3040}-\x{30FF}ー]+"' # Hiragana & Katakana
+alias rg-russian='rg -oz "[а-яёА-ЯЁ]+"' # Russian
 alias rg-domain='rg -oz "([a-z0-9]+(-[a-z0-9]+)*\.)+[a-z]{2,}"'
 alias rg-domain2urls='rg -o "([a-z0-9]+(-[a-z0-9]+)*\.)+[a-z]{2,}" -r "$(printf "\$0\nhttp://\$0\nhttps://\$0\nhttp://www.\$0\nhttps://www.\$0\n")"'
 alias rg-email="rg -ow '[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+'"
@@ -258,6 +272,7 @@ alias yt-dlp-all='yt-dlp -vci -R5 -f mp4,webm --write-description --write-info-j
 
 # JQ
 alias jwt-decode="jq -R 'split(\".\") | .[1] | @base64d | fromjson'"
+alias jq-all="jq -rR 'try fromjson catch .'"
 
 # Kubernetes
 alias k8="kubectl"
@@ -325,6 +340,7 @@ alias format-strace='grep --line-buffered -o '\''".\+[^"]"'\'' | grep --line-buf
 #
 # wget (if available)
 alias wget-all='wget --user-agent=Mozilla -e robots=off --content-disposition --mirror --convert-links -E -K -N -r -c'
+alias wget-html='wget --user-agent=Mozilla -e robots=off --content-disposition --mirror --convert-links -E -K -N -r -c --html-extension --reject-regex "(.*)\?(.*)"'
 
 # Linters
 alias jenkins-cli="ssh jenkins-cli"
