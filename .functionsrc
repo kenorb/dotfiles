@@ -387,6 +387,24 @@ rg-all-words() {
   tee >/dev/null >(rg-23w) >(rg-234w) >(rg-2345w) >(rg-3456w) >(rg-34567w) >(rg-345678w) >(rg-3456789w)
 }
 
+# Filters all words (v2).
+rg-all-words2() {
+  pee \
+    'rg -o "\w+(\W\w+){1}"' 'rg -o "\S+(\s\S+){1}"' \
+    'rg -o "\w+(\W\w+){2}"' 'rg -o "\S+(\s\S+){2}"' \
+    'rg -o "\w+(\W\w+){3}"' 'rg -o "\S+(\s\S+){3}"' \
+    'rg -o "\w+(\W\w+){4}"' 'rg -o "\S+(\s\S+){4}"' \
+    'rg -o "\w+(\W\w+){5}"' 'rg -o "\S+(\s\S+){5}"' \
+    'rg -o "\w+(\W\w+){6}"' 'rg -o "\S+(\s\S+){6}"' \
+    'rg -o "\w+(\W\w+){7}"' 'rg -o "\S+(\s\S+){7}"' \
+    'rg -o "\w+(\W\w+){8}"' 'rg -o "\S+(\s\S+){8}"' \
+    'rg -o "\w+(\W\w+){9}"' 'rg -o "\S+(\s\S+){9}"' \
+    'rg -o "\w+(\W\w+){10}"' 'rg -o "\S+(\s\S+){10}"' \
+    'rg -o "\w+(\W\w+){11}"' 'rg -o "\S+(\s\S+){11}"' \
+    'rg -o "\w+(\W\w+){12}"' 'rg -o "\S+(\s\S+){12}"' \
+    'rg -o "\w+(\W\w+){13}"' 'rg -o "\S+(\s\S+){13}"'
+}
+
 # Filters 2 words.
 rg-perm-2w() {
   rg_r_arg="$(crunch 2 2 12 2>/dev/null | sed -E 's/([0-9])/$\1/g;s/([0-9])\$/\1 \$/g')"
