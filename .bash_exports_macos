@@ -14,16 +14,6 @@ export BASH_SILENCE_DEPRECATION_WARNING=1
 [ -d /Applications/DevDesktop/drush ] \
     && export PATH="$PATH:/Applications/DevDesktop/drush"
 
-# Configure Apple's CLT package.
-[ -d /usr/local/opt/apr/bin ] \
-    && export PATH="/usr/local/opt/apr/bin:$PATH"
-
-# Set LC encoding to UTF-8.
-# Fixes illegal byte sequence (http://stackoverflow.com/q/19242275/55075).
-export LC_ALL=en_GB.UTF-8
-export LANG=en_GB.UTF-8
-export LANGUAGE="en_GB:en"
-
 # Set PATH for OSX
 type brew &>/dev/null && brew --prefix php@7.4 &> /dev/null && export PATH="$(brew --prefix php@7.4)/bin:$PATH"
 export PATH="$PATH:/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin/gcc"
@@ -33,17 +23,9 @@ export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH" # add a "gnubin" for
 export PYTHONPATH="$PYTHONPATH:$HOME/.python" # /usr/local/lib/python3.4/site-packages"
 # :/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang
 
-# Development variables.
-export FLEX_HOME="/usr/local/Cellar/flex_sdk/4.6.0.23201/libexec"
-export DYLD_FALLBACK_LIBRARY_PATH="/usr/X11/lib:/usr/lib" # See: http://stackoverflow.com/questions/10820981/dylibs-and-os-x
-#export PHP_AUTOCONF="$(which autoconf)" # Install autoconf, which is needed for the installation of phpMyAdmin.
-
 # Fix for Git-SVN (OSX) [Error: Can't locate SVN/Core.pm in @INC]. See: http://stackoverflow.com/questions/13571944/git-svn-unrecognized-url-scheme-error
 export PERL5LIB="$HOME/perl5/lib/perl5:/Applications/Xcode.app/Contents/Developer/Library/Perl/5.16"
 
 # Set prompt
 export GIT_PS="\[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\] "
 export PS1="\[\033[01;31m\]\u\[\033[01;33m\]@\[\033[01;36m\]\h \[\033[01;33m\]\W \[\033[01;35m\]\$ $GIT_PS\[\033[00m\]"
-
-# Set other options.
-export LS_OPTIONS='-G -h'

@@ -13,6 +13,17 @@ export ARCHFLAGS="-arch x86_64"
 ACCEPT_EULA=y
 #HOMEBREW_NO_ENV_FILTERING=1
 
+# Configure Apple's CLT package.
+[ -d /usr/local/opt/apr/bin ] \
+    && export PATH="/usr/local/opt/apr/bin:$PATH"
+
+# Configure Ruby package on macOS.
+[ -d /opt/homebrew/opt/ruby ] \
+    && export CPPFLAGS="$CPPFLAGS -I/opt/homebrew/opt/ruby/include" \
+    && export LDFLAGS="$LDFLAGS -L/opt/homebrew/opt/ruby/lib" \
+    && export PATH="/opt/homebrew/opt/ruby/bin:$PATH" \
+    && export PKG_CONFIG_PATH="$PKG_CONFIG_PATH /opt/homebrew/opt/ruby/lib/pkgconfig"
+
 # Cargo (Rust package manager).
 [ -d "$HOME"/.cargo/bin ] \
   && export PATH="$HOME/.cargo/bin:$PATH"
@@ -28,6 +39,11 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 # Curl on macOS.
 [ -d "/usr/local/opt/curl/bin" ] \
   && export PATH="/usr/local/opt/curl/bin:$PATH"
+
+# Development variables.
+export DYLD_FALLBACK_LIBRARY_PATH="/usr/X11/lib:/usr/lib" # See: http://stackoverflow.com/questions/10820981/dylibs-and-os-x
+export FLEX_HOME="/usr/local/Cellar/flex_sdk/4.6.0.23201/libexec"
+#export PHP_AUTOCONF="$(which autoconf)" # Install autoconf, which is needed for the installation of phpMyAdmin.
 
 # Python 3.8
 [ -d "$HOME"/Library/Python/3.8/bin ] \
@@ -70,3 +86,12 @@ export COLOR_WHITE=$(tput setaf 7)
 
 # Misc
 export PM_PACKAGES_ROOT=$HOME/packman-repo
+
+# Set other options.
+export LS_OPTIONS='-G -h'
+
+# Set LC encoding to UTF-8.
+# Fixes illegal byte sequence (http://stackoverflow.com/q/19242275/55075).
+export LC_ALL=en_GB.UTF-8
+export LANG=en_GB.UTF-8
+export LANGUAGE="en_GB:en"
