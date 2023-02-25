@@ -18,3 +18,4 @@ alias docker-connect="export DOCKER_HOST=tcp://localhost:2375"
 
 # Ubuntu
 alias apt-add-key="apt-get adv --keyserver hkp://keyserver.ubuntu.com:80 --recv"
+alias apt-key-update="apt-key adv --keyserver keyserver.ubuntu.com --recv-keys" # Paste key as argument.
