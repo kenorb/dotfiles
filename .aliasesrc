@@ -71,7 +71,8 @@ alias swap-char-first-with-last="sed -E 's/(.)(.+)(.)/\3\2\1/'"
 
 ### Ripgrep
 alias conv_rm_xml_lines="rg -v '[<>]'"
-alias rg-all='tr -d "\0" | rg -uuu'
+alias rg-all='rg -uuu'
+alias rg-all-pipe='tr -d "\0" | rg -uuu'
 alias rg-accent-words='rg -o "\w{0,}[ąęáàâäãåćéèêëńíìîïóòôöõúùûüçñýÿźż]\w{0,}"'
 alias rg-arabic='rg -oz "[\x{0621}-\x{0669}]+"' # Arabic
 alias rg-armenian='rg -oz "[\x{0531}-\x{0587}]+"' # Armenian
