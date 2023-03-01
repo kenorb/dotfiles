@@ -320,7 +320,7 @@ mysql-drop-db() {
 # Grant all permissions for user for given database.
 mysql-grant-db() {
   [ -z "$2" ] && { echo "Usage: mysql-grand-db (user) (database)" >&2; return; }
-  mysql -ve "GRANT ALL ON $2.* TO '$1'@'localhost'"
+  mysql -ve "GRANT ALL PRIVILEGES ON $2.* TO '$1'@'localhost'"
   mysql -ve "FLUSH PRIVILEGES"
 }
 
