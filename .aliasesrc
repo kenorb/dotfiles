@@ -62,6 +62,9 @@ alias reverse="perl -nle 'print scalar reverse \$_'"
 
 ### Mixed
 
+# Shell
+alias for-each-file="find . -mindepth 1 -maxdepth 1 -type f -print0 | xargs -0 -L1"
+
 ### Sed
 
 alias conv-rm-trail-spaces="sed -e 's/^[ \t]*//g' | sed -e 's/[ \t]*$//g'"
@@ -99,6 +102,7 @@ alias rg-numbers-sep='rg -oz "\d+(,.\d+)+"'
 alias rg-quoted="rg -ow -e '[\"]([^\"]+)\"' -e \"[']([^']+)'\" -r '\$1'"
 alias rg-sha256='rg -owz "[A-Fa-f0-9]{64}"'
 alias rg-text='rg -owz "\w+(\W\w+)+"'
+alias rg-uuid='rg "[0-9a-f]{8}\b-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-\b[0-9a-f]{12}"'
 alias rg-unicode='rg -oz "[\x{0100}-\x{FFFF}]+"'
 alias rg-uri='rg -owz "[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)"'
 alias rg-url='rg -owz "\w+://[^.]+.([-a-zA-Z0-9@:%_+.~#?&//=]*)"'
@@ -203,6 +207,9 @@ alias ds='du -ks *|sort -n'
 alias big='du -ah . | sort -rh | head -40'
 # List top ten largest files in current directory
 alias big-files='ls -1Rhs | sed -e "s/^ *//" | grep "^[0-9]" | sort -hr | head -n40'
+
+## ps aliases ##
+alias ps-pgid="ps -o pid,ppid,pgid,command"
 # What's gobbling the memory?
 alias psmem='ps -o time,ppid,pid,nice,pcpu,pmem,user,comm -A | sort -n -k 6 | tail -15'
 
@@ -225,7 +232,9 @@ alias fix-dir-perms="find . -type f -print0 | xargs -0 chmod 0644"
 
 # Getting colored results when using a pipe from grep to less.
 alias grep='grep --color=auto'
+alias less-color='less --use-color'
 alias less='less -R'
+alias rg-color='rg --color=always'
 # Jump back n directories at a time
 alias ..='cd ..'
 alias ...='cd ../../'
@@ -270,6 +279,9 @@ alias git-pull-root='find $(git rev-parse --show-toplevel 2> /dev/null) -name .g
 alias docker-run-ptrace="docker run --cap-add SYS_PTRACE"
 alias mysql-docker-start="docker run --name=mysql -p3306:3306 --rm -v $HOME/.cache/mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD:-root} mysql/mysql-server"
 alias yt-dlp-all='yt-dlp -vci -R5 -f mp4,webm --write-description --write-info-json --all-subs --write-thumbnail --add-metadata'
+
+# ImageMagick
+alias identify-exif="identify -format '%[EXIF:*]'"
 
 # JQ
 alias jwt-decode="jq -R 'split(\".\") | .[1] | @base64d | fromjson'"
