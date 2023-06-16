@@ -586,3 +586,10 @@ rg-perm-56789w-to-34w() {
     >(rg-perm-9w-to-3w) >(rg-perm-9w-to-4w) \
     >/dev/null
 }
+
+# Watch
+# Watch top listing of UNIX domain socket files.
+# @see: https://askubuntu.com/a/1341845/78223
+function watchlsof {
+  watch "lsof -U +c 15 | cut -f1 -d' ' | sort | uniq -c  | sort -rn | head -20"
+}
