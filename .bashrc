@@ -42,8 +42,35 @@ if ! shopt -oq posix; then
 fi
 
 # added by travis gem
-[ -f /home/kenorb/.travis/travis.sh ] && source /home/kenorb/.travis/travis.sh
+[ -f $HOME/.travis/travis.sh ] && source $HOME/.travis/travis.sh
 
 # Wasmer
-export WASMER_DIR="/home/kenorb/.wasmer"
+export WASMER_DIR="$HOME/.wasmer"
 [ -s "$WASMER_DIR/wasmer.sh" ] && source "$WASMER_DIR/wasmer.sh"
+export WASMTIME_HOME="$HOME/.wasmtime"
+export PATH="$WASMTIME_HOME/bin:$PATH"
+
+# Wasienv
+export WASIENV_DIR="$HOME/.wasienv"
+[ -s "$WASIENV_DIR/wasienv.sh" ] && source "$WASIENV_DIR/wasienv.sh"
+
+export PATH="/usr/local/cuda-11.7/bin:$PATH"
+#export LD_LIBRARY_PATH="/usr/local/cuda-11.7/lib64"
+export PM_PACKAGES_ROOT=$HOME/packman-repo
+
+# >>> conda initialize >>>
+if [ -d "$HOME/anaconda3/bin/conda" ]; then
+  # !! Contents within this block are managed by 'conda init' !!
+  __conda_setup="$("$HOME/anaconda3/bin/conda" 'shell.bash' 'hook' 2> /dev/null)"
+  if [ $? -eq 0 ]; then
+      eval "$__conda_setup"
+  else
+      if [ -f "$HOME/anaconda3/etc/profile.d/conda.sh" ]; then
+          . "$HOME/anaconda3/etc/profile.d/conda.sh"
+      else
+          export PATH="$HOME/anaconda3/bin:$PATH"
+      fi
+  fi
+  unset __conda_setup
+  # <<< conda initialize <<<
+fi
