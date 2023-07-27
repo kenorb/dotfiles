@@ -36,6 +36,14 @@ which dircolors &> /dev/null && eval "`dircolors`"
 # Colored GCC warnings and errors.
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
+# Composer.
+# Add a Composer's global bin directory if exists.
+which composer >/dev/null && export PATH="$HOME/.composer/vendor/bin:$PATH"
+
+# Increases Docker timeouts.
+export COMPOSE_HTTP_TIMEOUT=600
+export DOCKER_CLIENT_TIMEOUT=600
+
 # Curl on macOS.
 [ -d "/usr/local/opt/curl/bin" ] \
   && export PATH="/usr/local/opt/curl/bin:$PATH"
