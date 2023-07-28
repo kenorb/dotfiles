@@ -343,6 +343,7 @@ alias ansible-warnings-on="export ANSIBLE_DEPRECATION_WARNINGS=true"
 
 # Encoders
 alias subtitle-convert-polish="enca -x utf8 -L polish"
+alias urldecode='python3 -c "import urllib.parse; print(urllib.parse.unquote(input()))"'
 alias urlencode='python3 -c "import urllib.parse;print (urllib.parse.quote(input()))"'
 
 # Debugging
