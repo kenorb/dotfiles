@@ -137,7 +137,12 @@ clean = "sed -e 's/^password=.*/#password=TODO/'"
   addremove    = !git add . && git ls-files -deleted | xargs git rm
   b            = branch
   br           = branch
-  big-files    = !"git rev-list --objects --all \
+  big-files    = !"git rev-list --all \
+                 | xargs -n1 git ls-tree --long -r \
+                 | sort -k3 \
+                 | uniq \
+                 | sort -nk4"
+  big-files2   = !"git rev-list --objects --all \
                  | git cat-file --batch-check='%(objecttype) %(objectname) %(objectsize) %(rest)' \
                  | sed -n 's/^blob //p' \
                  | sort -nk2 \
