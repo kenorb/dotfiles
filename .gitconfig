@@ -191,7 +191,7 @@ clean = "sed -e 's/^password=.*/#password=TODO/'"
   fo           = fetch origin
   fom          = fetch origin master
   fommom       = !git fetch origin master && git merge origin/master
-  fetch-all    = !"find . -name .git -type d -print -execdir git fetch --all \\;"
+  fetch-all    = !"GIT_TERMINAL_PROMPT=0 find . -name .git -type d -print -execdir git fetch --all \\;"
   exclude      = !echo >> .git/info/exclude
   l            = log
   log-graph    = log --oneline --graph --decorate --all
@@ -205,7 +205,7 @@ clean = "sed -e 's/^password=.*/#password=TODO/'"
   pg           = pull github
   po           = pull origin
   pom          = pull origin master
-  pull-all     = !"find . -name .git -type d -print -execdir git pull origin \\;"
+  pull-all     = !"GIT_TERMINAL_PROMPT=0 find . -name .git -type d -print -execdir git pull origin \\;"
   pull-forks   = "!git submodule foreach 'git pull `git config --get remote.origin.url | sed s#EXAMPLE#kenorb#`&'"
   rb           = rebase
   rba          = rebase --abort
