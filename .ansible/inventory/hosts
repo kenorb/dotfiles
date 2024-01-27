@@ -1,0 +1,2 @@
+# Manage localhost by default.
+localhost ansible_connection=local
