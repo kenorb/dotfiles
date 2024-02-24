@@ -283,8 +283,12 @@ get-crypto-balance() {
 
 # Create a swap file and activate it.
 mk-swap-file() {
+  set -x
   swapfile=${1:-swapfile}
   size=${2:-10g}
+  test -f "$swapfile" && return
+  sudo truncate -s 0 "$swapfile"
+  sudo chattr +C "$swapfile"
   sudo fallocate "$swapfile" -l "$size"
   sudo chmod 600 "$swapfile"
   sudo mkswap "$swapfile"
