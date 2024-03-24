@@ -371,6 +371,7 @@ alias yt-dlp='yt-dlp -vci -R5 -f "(webm,mp4)" --write-description --write-info-j
 alias randomize='fold -w1 | shuf | tr -d "\n"'
 
 ## MySQL
+alias mysql-fix-collation='sed "s/utf8mb4_0900_ai_ci/utf8_general_ci/g;s/utf8mb4/utf8/g"'
 alias mysql-tcp="mysql --protocol=TCP"
 alias mysql-tcp-local="mysql --protocol=TCP"
 
