@@ -220,6 +220,7 @@ alias rm-empty-dirs="find . -type d -empty -delete -print"
 alias rm-empty-files="find . -type f -empty -delete -print"
 
 # rsync
+alias rsync='rsync --info=progress2'
 alias rsync-sudo='rsync --rsync-path="sudo rsync"'
 alias rsync-mv="rsync --ignore-existing --remove-source-files -av"
 
