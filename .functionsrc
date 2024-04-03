@@ -128,6 +128,12 @@ deflate() {
   printf "\x1f\x8b\x08\x00\x00\x00\x00\x00"  | cat -- - $1 | gunzip
 }
 
+# Convert PDFs into a simple HTML file.
+# Usage: pdftotext-all (dir)
+pdftotext-all() {
+  find "${1:-.}" -name "*.pdf" -execdir [ ! -f "{}.txt.html" ] ';' -print0 | xargs -0 -t -I% -P8 pdftotext -htmlmeta "%" "%.txt.html"
+}
+
 # Convert svn branches and tags into git.
 # Usage: svn2git
 # See: http://stackoverflow.com/q/2244252/55075
