@@ -87,7 +87,7 @@ fi
 
 #
 # Various
-alias h='history | grep '
+alias h='history | grep -- '
 alias mv='mv -v'
 alias rm='rm -v'
 
