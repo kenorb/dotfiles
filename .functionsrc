@@ -58,7 +58,7 @@ dups() {
 # Search for command in history.
 # Usage: hs (string)
 hs() {
-  history | grep "$1"
+  history | grep -- "$1"
 }
 
 # Trace mysqld for queries
