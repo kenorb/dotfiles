@@ -10,6 +10,9 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
+# Rsync
+alias rsync='rsync --info=progress2'
+
 # Crypto.
 alias btcaddr2hash160="base58 -d | cut -c2- | xxd -p | head -c40"
 
