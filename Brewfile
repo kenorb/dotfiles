@@ -124,6 +124,7 @@ brew "arping"
 brew "awscli"
 brew "azure-cli"
 brew "helm" # The Kubernetes Package Manager.
+brew "helmfile"
 brew "k9s"
 brew "krew"
 brew "kubernetes-cli"
