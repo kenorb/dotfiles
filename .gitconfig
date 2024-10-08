@@ -194,6 +194,7 @@ clean = "sed -e 's/^password=.*/#password=TODO/'"
   fetch-all    = !"GIT_TERMINAL_PROMPT=0 find . -name .git -type d -print -execdir git fetch --all \\;"
   exclude      = !echo >> .git/info/exclude
   l            = log
+  ls-unmerged  = diff --name-only --diff-filter=U --relative
   log-graph    = log --oneline --graph --decorate --all
   lol          = log --graph --decorate --pretty=oneline --abbrev-commit
   lola         = log --graph --decorate --pretty=oneline --abbrev-commit --all
