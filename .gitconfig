@@ -13,6 +13,17 @@
   whitespace = trailing-space,space-before-tab
   excludesfile = ~/.gitignore
   autocrlf = false
+  pager = delta ; @see: https://github.com/dandavison/delta
+
+[delta]
+    navigate = true    # use n and N to move between diff sections
+
+    # delta detects terminal colors automatically; set one of these to disable auto-detection
+    # dark = true
+    # light = true
+
+[interactive]
+  diffFilter = delta --color-only
 
 [push]
   default = current
@@ -46,6 +57,7 @@ clean = "sed -e 's/^password=.*/#password=TODO/'"
 
 # DIFF section
 [diff]
+  colorMoved = default
   tool = diffmerge
   guitool = diffmerge
   renamelimit = 7274
