@@ -575,6 +575,24 @@ rg-perm-9w-to-5w() {
     -r "$rg_r_arg"
 }
 
+# Permutate 9 words into 5 using perl.
+perl-perm-9w-to-5w() {
+  perl -MList::Util=shuffle -alne '
+    my %seen;
+    # Repeat for 10000 variations.
+    for (1..10000) {
+      # Shuffle and select 5 words.
+      @words = (shuffle(@F))[0..4];
+      # Join the words into a string.
+      $combo = join(" ", @words);
+      # Skip if already seen.
+      next if $seen{$combo}++;
+      # Print if its a new combination.
+      print $combo;
+    }
+  '
+}
+
 # Permutate 3-6 words.
 rg-perm-345w() {
   tee >(rg-perm-3w) >(rg-perm-4w) >(rg-perm-5w) >/dev/null
