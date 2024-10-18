@@ -11,6 +11,9 @@ alias wif2sha='base58 -d | xxd -p -c200 | sed s/^80// | rg -oz "[A-Fa-f0-9]{64}"
 ### 7z
 alias 7zcat="7z e -bd -so"
 
+### Brotli
+alias brcat="brotli -cd"
+
 ### Rar
 
 alias rarcat="unrar p"
@@ -278,7 +281,7 @@ alias git-pull-root='find $(git rev-parse --show-toplevel 2> /dev/null) -name .g
 # Docker
 alias docker-run-ptrace="docker run --cap-add SYS_PTRACE"
 alias mysql-docker-start="docker run --name=mysql -p3306:3306 --rm -v $HOME/.cache/mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD:-root} mysql/mysql-server"
-alias yt-dlp-all='yt-dlp -vci -R5 -f mp4,webm --retry-sleep 1 --write-description --write-info-json --all-subs --convert-subs srt --sleep-subtitles 2 --sub-format txt --write-auto-subs --write-subs --write-thumbnail --add-metadata --get-comments'
+alias yt-dlp-all='yt-dlp -vci -R5 -f mp4,webm --retry-sleep 1 --write-description --write-info-json --all-subs --convert-subs srt --sleep-subtitles 10 --sub-format txt --write-auto-subs --write-subs --write-thumbnail --add-metadata --get-comments'
 
 # ImageMagick
 alias identify-exif="identify -format '%[EXIF:*]'"
