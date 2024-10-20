@@ -138,6 +138,9 @@ alias rg_9S="rg -o '\S+\s+\S+\s+\S+\s+\S+\s+\S+\s+\S+\s+\S+\s+\S+\s+\S+'"
 alias rg_9w="rg -o '(\w{3,20})\W(\w{3,20})\W(\w{3,20})\W(\w{3,20})\W(\w{3,20})\W(\w{3,20})\W(\w{3,20})\W(\w{3,20})\W(\w{3,20})'"
 alias rg_ww="tee >(rg_2w) >(rg_3w) >(rg_4w) >(rg_5w) >(rg_6w) >(rg_7w) >(rg_8w) >(rg_9w) >/dev/null"
 
+### Ripgrep All
+alias rgai="rga -I"
+
 ### Sed
 
 alias conv_rm_xml_tags="sed -e 's/<[^>]*>//g'"
