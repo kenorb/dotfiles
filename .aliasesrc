@@ -380,6 +380,7 @@ alias randomize='fold -w1 | shuf | tr -d "\n"'
 alias mysql-fix-collation='sed "s/utf8mb4_0900_ai_ci/utf8_general_ci/g;s/utf8mb4/utf8/g"'
 alias mysql-tcp="mysql --protocol=TCP"
 alias mysql-tcp-local="mysql --protocol=TCP"
+alias mysql-fix-collation='sed "s/utf8mb4_0900_ai_ci\|utf8mb4_unicode_ci/utf8_general_ci/g;s/\butf8mb[34]/utf8/g"'
 
 ## Network
 
