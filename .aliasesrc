@@ -39,16 +39,24 @@ alias zsrm="zstd -18 --rm -T0"
 alias conv_rm_blanks="awk NF"
 alias unicat='awk "!a[\$0]++{print}"'
 
+### Buffer
+alias buffer-1g="buffer -m 1024m -s 512k -t"
+alias buffer-100m="buffer -m 100m -s 256k -t"
+alias buffer-200m="buffer -m 200m -s 256k -t"
+
 ### Fold
 
 #alias conv_folded="tee >(fold -sw10) >(fold -sw20) >(fold -sw30) >(fold -sw40) >(fold -sw60) >(fold -sw80) >/dev/null"
 alias conv_folded=tee
-alias conv_permutate="conv_to_spaces | conv_folded | conv_rm_trail_spaces \
-  | tee >(conv_rm_punct | conv_rm_trail_spaces | tee >(conv_to_asterisk) >(conv_to_at) >(conv_to_case_inv) >(conv_to_case_lower) >(conv_to_case_upper) >(conv_to_dashes) >(conv_to_pipes) >(conv_to_underscores) >(conv_to_alpha)) \
-    >(conv_to_case_lower) >(conv_to_case_lower | conv_to_case_uc_first) >(conv_to_case_lower | conv_to_case_uc_words) >(conv_to_case_upper) >(conv_to_case_uc_first) >(conv_to_case_uc_words) \
+alias conv_permutate="conv_to_spaces | conv_folded | conv-rm-trail-spaces \
+  | tee >(conv_rm_punct | conv-rm-trail-spaces | tee >(conv_to_asterisk) >(conv_to_at) >(conv_to_case_inv) >(conv_to_case_lower) >(conv_to_case_upper) >(conv_to_dashes) >(conv_to_pipes) >(conv_to_underscores) >(conv_to_alpha)) \
+    >(conv_to_case_lower) >(conv_to_case_lower | conv-to-case-uc-first) >(conv_to_case_lower | conv-to-case-uc-words) >(conv_to_case_upper) >(conv-to-case-uc-first) >(conv-to-case-uc-words) \
     >(conv_to_commas) >(conv_to_print) >(conv_to_slashes) >(conv_to_stops) >(conv_to_tildes) \
   | tee >(conv_rm_blank) \
-  | conv_rm_trail_spaces"
+  | conv-rm-trail-spaces"
+
+### Parallel
+alias parallel-pipe="parallel -j 50% --block 1m --pipe --"
 
 ### Perl
 alias filter-1of3='perl -e "while (<>) { print if $. % 3 == 0; }"' # Same as: split -n r/1/3
@@ -139,7 +147,8 @@ alias rg_9w="rg -o '(\w{3,20})\W(\w{3,20})\W(\w{3,20})\W(\w{3,20})\W(\w{3,20})\W
 alias rg_ww="tee >(rg_2w) >(rg_3w) >(rg_4w) >(rg_5w) >(rg_6w) >(rg_7w) >(rg_8w) >(rg_9w) >/dev/null"
 
 ### Ripgrep All
-alias rgai="rga -I"
+alias rgai="rga --color=never -I"
+alias rgai-words="rga --color=never -I '\w+(\s\w+)+'"
 
 ### Sed
 
