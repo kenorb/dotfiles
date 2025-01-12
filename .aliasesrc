@@ -355,8 +355,12 @@ alias ansible-run="ansible -m shell -a"
 alias ansible-warnings-off="export ANSIBLE_DEPRECATION_WARNINGS=false"
 alias ansible-warnings-on="export ANSIBLE_DEPRECATION_WARNINGS=true"
 
-# Encoders
+# Encoders/decoders
+alias htmldecode="perl -n -mHTML::Entities -e '; print HTML::Entities::decode_entities(\$_);'"
+alias htmlrecode="recode html..utf8"
 alias subtitle-convert-polish="enca -x utf8 -L polish"
+alias unicode-decode='perl -Mutf8 -CS -pe "binmode(STDOUT, \":utf8\"); s/\\\\u([0-9a-fA-F]{4})/chr(hex(\$1))/ge"'
+alias unicode-encode='perl -Mutf8 -CS -pe "s/(.)/sprintf(\"\\\\u%04x\", ord(\$1))/ge"'
 alias urldecode='python3 -c "import urllib.parse; print(urllib.parse.unquote(input()))"'
 alias urlencode='python3 -c "import urllib.parse;print (urllib.parse.quote(input()))"'
 
