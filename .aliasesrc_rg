@@ -73,13 +73,13 @@ alias rg_ww="tee >(rg_2w) >(rg_3w) >(rg_4w) >(rg_5w) >(rg_6w) >(rg_7w) >(rg_8w) 
 ### Language filtering
 
 #### East Asian Scripts
-alias rg-chinese='rg -oz "[\x{4E00}-\x{9FFF}]+"' # Kanji
+alias rg-chinese='rg -oz "[\x{4E00}-\x{9FFF}]+"' # Chinese (Basic)
 alias rg-chinese-ext='rg -oz "[\x{3400}-\x{4DBF}]+"' # CJK Extension A
 alias rg-chinese-rare='rg -oz "[\x{20000}-\x{2A6DF}]+"' # CJK Extension B
-alias rg-japanese='rg -oz "[\x{3040}-\x{30FF}ー]+"' # Hiragana & Katakana
-alias rg-japanese1='rg -oz "[\x{3040}-\x{309F}ー]+"' # Hiragana
-alias rg-japanese2='rg -oz "[\x{30A0}-\x{30FF}ー]+"' # Katakana
 alias rg-japanese-half='rg -oz "[\x{FF66}-\x{FF9F}]+"' # Halfwidth Katakana
+alias rg-japanese-kana='rg -oz "[\x{3040}-\x{309F}\x{30A0}-\x{30FF}]+"' # Hiragana & Katakana
+alias rg-japanese-kanji='rg -oz "[\x{4E00}-\x{9FAF}]+"' # Japanese Kanji
+
 alias rg-korean-hangul='rg -oz "[\x{1100}-\x{11FF}\x{3130}-\x{318F}\x{AC00}-\x{D7AF}\x{A960}-\x{A97F}]+"' # Korean Hangul
 
 #### South Asian Scripts
@@ -131,6 +131,17 @@ alias rg-superscript='rg -oz "[\x{2070}-\x{209F}]+"' # Superscripts and Subscrip
 alias rg-all-cjk='rg -oz "[\x{4E00}-\x{9FFF}\x{3400}-\x{4DBF}\x{20000}-\x{2A6DF}]+"' # All CJK
 alias rg-all-indic='rg -oz "[\x{0900}-\x{0DFF}]+"' # All Indic Scripts
 alias rg-all-symbols='rg -oz "[\x{2190}-\x{22FF}\x{2700}-\x{27BF}]+"' # Arrows, Math, Dingbats
+
+#### Extended European Scripts
+alias rg-coptic='rg -oz "[\x{2C80}-\x{2CFF}]+"' # Coptic
+alias rg-cyrillic-ext='rg -oz "[\x{0400}-\x{04FF}\x{0500}-\x{052F}]+"' # Extended Cyrillic
+alias rg-gothic='rg -oz "[\x{10330}-\x{1034F}]+"' # Gothic
+alias rg-runic='rg -oz "[\x{16A0}-\x{16FF}]+"' # Runic
+
+#### Combined Searches (Additional)
+alias rg-all-east-asian='rg -oz "[\x{4E00}-\x{9FFF}\x{3040}-\x{30FF}\x{AC00}-\x{D7AF}]+"' # CJK Combined
+alias rg-all-south-asian='rg -oz "[\x{0900}-\x{0DFF}\x{0980}-\x{0FFF}]+"' # All South Asian Scripts
+alias rg-all-european='rg -oz "[\x{0100}-\x{024F}\x{1E00}-\x{1EFF}]+"' # Extended Latin
 
 ### Ripgrep All
 alias rgai="rga --color=never -I"
