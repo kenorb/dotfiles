@@ -33,7 +33,6 @@ alias rg-domain2urls='rg -o "([a-z0-9]+(-[a-z0-9]+)*\.)+[a-z]{2,}" -r "$(printf 
 ### Unicode & Special Characters
 alias rg-unicode='rg -oz "[\x{0100}-\x{FFFF}]+"'
 alias rg-emoji='rg -oz "[\x{1F1FF}-\x{1F600}]+"'
-alias rg-hindi='rg -oz "[\x{0905}-\x{097f}]+"'
 alias rg-accent-words='rg -o "\w{0,}[ąęáàâäãåćéèêëńíìîïóòôöõúùûüçñýÿźż]\w{0,}"'
 alias rg-var="rg -oz '\\\$[^(){}<>:; ]+'"
 
@@ -78,7 +77,6 @@ alias rg-lang-chinese-ext='rg -oz "[\x{3400}-\x{4DBF}]+"' # CJK Extension A
 alias rg-lang-chinese-rare='rg -oz "[\x{20000}-\x{2A6DF}]+"' # CJK Extension B
 alias rg-lang-japanese-half='rg -oz "[\x{FF66}-\x{FF9F}]+"' # Halfwidth Katakana
 alias rg-lang-japanese-kana='rg -oz "[\x{3040}-\x{309F}\x{30A0}-\x{30FF}]+"' # Hiragana & Katakana
-alias rg-lang-japanese-kanji='rg -oz "[\x{4E00}-\x{9FAF}]+"' # Japanese Kanji
 alias rg-lang-korean-jamo='rg -oz "[\x{1100}-\x{11FF}]+"' # Hangul Jamo (Basic consonants and vowels)
 alias rg-lang-korean-compat='rg -oz "[\x{3130}-\x{318F}]+"' # Hangul Compatibility Jamo
 alias rg-lang-korean-syllables='rg -oz "[\x{AC00}-\x{D7AF}]+"' # Hangul Syllables
@@ -151,6 +149,8 @@ alias rg-lang-cuneiform='rg -oz "[\x{12000}-\x{123FF}]+"' # Cuneiform
 alias rg-lang-linearb='rg -oz "[\x{10000}-\x{1007F}]+"' # Linear B
 alias rg-lang-phoenician='rg -oz "[\x{10900}-\x{1091F}]+"' # Phoenician
 alias rg-lang-hieroglyph='rg -oz "[\x{13000}-\x{1342F}]+"' # Egyptian Hieroglyphs
+alias rg-lang-ancient-greek='rg -oz "[\x{10140}-\x{1018F}]+"' # Ancient Greek Numbers
+alias rg-lang-linear-b='rg -oz "[\x{10000}-\x{1007F}]+"' # Linear B
 
 #### Additional European Scripts
 alias rg-lang-ogham='rg -oz "[\x{1680}-\x{169F}]+"' # Ogham
@@ -231,13 +231,36 @@ alias rg-cjk-strokes='rg -oz "[\x{31C0}-\x{31EF}]+"' # CJK Strokes
 alias rg-cjk-symbols='rg -oz "[\x{3200}-\x{32FF}]+"' # Enclosed CJK Letters and Months
 
 ### Historic Scripts
-alias rg-ancient-greek='rg -oz "[\x{10140}-\x{1018F}]+"' # Ancient Greek Numbers
-alias rg-runes='rg -oz "[\x{16A0}-\x{16FF}]+"' # Runic
-alias rg-hieroglyphs='rg -oz "[\x{13000}-\x{1342F}]+"' # Egyptian Hieroglyphs
+alias rg-lang-ancient-greek='rg -oz "[\x{10140}-\x{1018F}]+"' # Ancient Greek Numbers
+alias rg-lang-runes='rg -oz "[\x{16A0}-\x{16FF}]+"' # Runic
+alias rg-lang-hieroglyphs='rg -oz "[\x{13000}-\x{1342F}]+"' # Egyptian Hieroglyphs
 
 ### Musical Notation
 alias rg-music-symbols='rg -oz "[\x{1D100}-\x{1D1FF}]+"' # Musical Symbols
 alias rg-music-ancient='rg -oz "[\x{1D200}-\x{1D24F}]+"' # Ancient Greek Musical Notation
+
+### Basic Latin & Extensions
+alias rg-lang-latin-basic='rg -oz "[\x{0000}-\x{007F}]+"' # Basic Latin
+alias rg-lang-latin-1='rg -oz "[\x{0080}-\x{00FF}]+"' # Latin-1 Supplement
+alias rg-lang-latin-a='rg -oz "[\x{0100}-\x{017F}]+"' # Latin Extended-A
+alias rg-lang-latin-b='rg -oz "[\x{0180}-\x{024F}]+"' # Latin Extended-B
+alias rg-lang-latin-add='rg -oz "[\x{1E00}-\x{1EFF}]+"' # Latin Extended Additional
+
+### Punctuation & Symbols
+alias rg-letterlike='rg -oz "[\x{2100}-\x{214F}]+"' # Letterlike Symbols
+alias rg-number-forms='rg -oz "[\x{2150}-\x{218F}]+"' # Number Forms
+alias rg-enclosed-alpha='rg -oz "[\x{2460}-\x{24FF}]+"' # Enclosed Alphanumerics
+alias rg-enclosed-alpha-supp='rg -oz "[\x{1F100}-\x{1F1FF}]+"' # Enclosed Alphanumeric Supplement
+alias rg-shapes='rg -oz "[\x{25A0}-\x{25FF}]+"' # Geometric Shapes
+alias rg-misc-symbols='rg -oz "[\x{2600}-\x{26FF}]+"' # Miscellaneous Symbols
+
+### Additional CJK
+alias rg-cjk-radicals-supp='rg -oz "[\x{2E80}-\x{2EFF}]+"' # CJK Radicals Supplement
+alias rg-kangxi='rg -oz "[\x{2F00}-\x{2FDF}]+"' # Kangxi Radicals
+alias rg-cjk-symbols='rg -oz "[\x{3000}-\x{303F}]+"' # CJK Symbols and Punctuation
+alias rg-cjk-compat='rg -oz "[\x{3300}-\x{33FF}]+"' # CJK Compatibility
+alias rg-cjk-ext-c='rg -oz "[\x{2A700}-\x{2B73F}]+"' # CJK Extension C
+alias rg-cjk-ext-d='rg -oz "[\x{2B740}-\x{2B81F}]+"' # CJK Extension D
 
 ### Ripgrep All
 alias rgai="rga --color=never -I"

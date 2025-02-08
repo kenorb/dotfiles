@@ -19,7 +19,6 @@ pl-print-chars() {
       pl-print-unicode-range 0x3040 0x309F  # Hiragana
       pl-print-unicode-range 0x30A0 0x30FF  # Katakana
       ;;
-    "japanese-kanji") pl-print-unicode-range 0x4E00 0x9FAF ;;
 
     # Korean Scripts
     "korean-jamo") pl-print-unicode-range 0x1100 0x11FF ;;
@@ -167,9 +166,11 @@ pl-print-chars() {
       echo "  Ancient: ancient-greek, cuneiform, hieroglyph, linearb, phoenician"
       echo "  European: armenian, coptic, cyrillic-ext, european, glagolitic, gothic, greek, ogham, olditalic, runic"
       echo "  African: adlam, bamum, ethiopic, nko, tifinagh, vai"
-      echo "  Symbolic: arrows, box-drawing, braille, currency, dingbats, math-operators, math-symbols, punctuation"
+      echo "  Symbolic: arrows, box-drawing, braille, currency, dingbats, math-operators, math-symbols, math-arrows, math-ext"
+      echo "  Technical: tech-symbols, phonetic, phonetic-ext, superscript"
       echo "  Games: cards, chess, dice, domino, mahjong"
       echo "  Emoji: emoji, emoji-basic, emoji-emotions, emoji-food, emoji-transport, emoji-misc"
+      echo "  Other: mongolian, mongolian-ext, tibetan, yi"
       echo "  Combined: cjk, east-asian, south-asian, african-ext, math-all, games-all, music-all"
       ;;
     *)
