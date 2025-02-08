@@ -164,6 +164,21 @@ alias rg-lang-tifinagh='rg -oz "[\x{2D30}-\x{2D7F}]+"' # Tifinagh
 alias rg-lang-vai='rg -oz "[\x{A500}-\x{A63F}]+"' # Vai
 alias rg-lang-bamum='rg -oz "[\x{A6A0}-\x{A6FF}]+"' # Bamum
 
+#### Additional Scripts
+alias rg-lang-adlam='rg -oz "[\x{1E900}-\x{1E95F}]+"' # Adlam (West African)
+alias rg-lang-balinese='rg -oz "[\x{1B00}-\x{1B7F}]+"' # Balinese
+alias rg-lang-javanese='rg -oz "[\x{A980}-\x{A9DF}]+"' # Javanese
+alias rg-lang-mongolian-ext='rg -oz "[\x{11660}-\x{1167F}]+"' # Mongolian Extension
+alias rg-lang-oriya='rg -oz "[\x{0B00}-\x{0B7F}]+"' # Oriya/Odia
+alias rg-lang-sundanese='rg -oz "[\x{1B80}-\x{1BBF}]+"' # Sundanese
+alias rg-lang-syriac='rg -oz "[\x{0700}-\x{074F}]+"' # Syriac
+alias rg-lang-thaana='rg -oz "[\x{0780}-\x{07BF}]+"' # Thaana
+alias rg-lang-yi='rg -oz "[\x{A000}-\x{A48F}]+"' # Yi Syllables
+
+#### Combined Regional Scripts
+alias rg-lang-indonesian='rg -oz "[\x{1B00}-\x{1B7F}\x{A980}-\x{A9DF}\x{1B80}-\x{1BBF}]+"' # Balinese, Javanese, Sundanese
+alias rg-lang-african-ext='rg -oz "[\x{1E900}-\x{1E95F}\x{07C0}-\x{07FF}]+"' # Adlam, NKo
+
 #### Phonetic and IPA
 alias rg-lang-ipa='rg -oz "[\x{0250}-\x{02AF}]+"' # IPA Extensions
 alias rg-lang-phonetic='rg -oz "[\x{1D00}-\x{1D7F}]+"' # Phonetic Extensions
@@ -177,6 +192,52 @@ alias rg-lang-braille='rg -oz "[\x{2800}-\x{28FF}]+"' # Braille Patterns
 #### Combined Extended Searches
 alias rg-lang-ancient-all='rg -oz "[\x{12000}-\x{123FF}\x{10000}-\x{1007F}\x{10900}-\x{1091F}\x{13000}-\x{1342F}]+"' # All Ancient Scripts
 alias rg-lang-phonetic-all='rg -oz "[\x{0250}-\x{02AF}\x{1D00}-\x{1D7F}\x{1D80}-\x{1DBF}]+"' # All Phonetic Symbols
+
+#### Drawing & ASCII Art
+alias rg-box='rg -oz "[\x{2500}-\x{257F}]+"' # Box Drawing Elements
+alias rg-block='rg -oz "[\x{2580}-\x{259F}]+"' # Block Elements
+alias rg-shapes='rg -oz "[\x{25A0}-\x{25FF}]+"' # Geometric Shapes
+alias rg-lines='rg -oz "[\x{2500}-\x{2570}]+"' # Box Drawing Lines
+alias rg-corners='rg -oz "[\x{2571}-\x{257B}]+"' # Box Drawing Corners
+alias rg-shading='rg -oz "[\x{2591}-\x{2593}]+"' # Shading Blocks
+alias rg-terminal='rg -oz "[\x{2580}-\x{259F}\x{2500}-\x{257F}]+"' # Terminal Drawing
+
+#### Combined Art Searches
+alias rg-ascii-art='rg -oz "[\x{2500}-\x{257F}\x{2580}-\x{259F}\x{25A0}-\x{25FF}]+"' # All Drawing Characters
+alias rg-art-extended='rg -oz "[\x{2500}-\x{257F}\x{2580}-\x{259F}\x{25A0}-\x{25FF}\x{2700}-\x{27BF}]+"' # Drawing + Dingbats
+
+### Extended Symbol Ranges
+alias rg-emoji-emotions='rg -oz "[\x{1F600}-\x{1F64F}]+"' # Emoticons
+alias rg-emoji-transport='rg -oz "[\x{1F680}-\x{1F6FF}]+"' # Transport & Map Symbols
+alias rg-emoji-misc='rg -oz "[\x{1F300}-\x{1F5FF}]+"' # Misc Symbols & Pictographs
+alias rg-emoji-food='rg -oz "[\x{1F32D}-\x{1F37F}]+"' # Food & Drink
+
+### Mathematical & Technical
+alias rg-math-operators='rg -oz "[\x{2200}-\x{22FF}]+"' # Mathematical Operators
+alias rg-math-symbols='rg -oz "[\x{27C0}-\x{27EF}]+"' # Miscellaneous Mathematical Symbols-A
+alias rg-math-arrows='rg -oz "[\x{27F0}-\x{27FF}]+"' # Supplemental Arrows-A
+alias rg-tech-symbols='rg -oz "[\x{2300}-\x{23FF}]+"' # Miscellaneous Technical
+
+### Games & Entertainment
+alias rg-cards='rg -oz "[\x{1F0A0}-\x{1F0FF}]+"' # Playing Cards
+alias rg-chess='rg -oz "[\x{2654}-\x{265F}]+"' # Chess Symbols
+alias rg-dice='rg -oz "[\x{2680}-\x{2685}]+"' # Die Faces
+alias rg-domino='rg -oz "[\x{1F030}-\x{1F093}]+"' # Domino Tiles
+alias rg-mahjong='rg -oz "[\x{1F000}-\x{1F02F}]+"' # Mahjong Tiles
+
+### Additional CJK Ranges
+alias rg-cjk-radicals='rg -oz "[\x{2E80}-\x{2EFF}]+"' # CJK Radicals Supplement
+alias rg-cjk-strokes='rg -oz "[\x{31C0}-\x{31EF}]+"' # CJK Strokes
+alias rg-cjk-symbols='rg -oz "[\x{3200}-\x{32FF}]+"' # Enclosed CJK Letters and Months
+
+### Historic Scripts
+alias rg-ancient-greek='rg -oz "[\x{10140}-\x{1018F}]+"' # Ancient Greek Numbers
+alias rg-runes='rg -oz "[\x{16A0}-\x{16FF}]+"' # Runic
+alias rg-hieroglyphs='rg -oz "[\x{13000}-\x{1342F}]+"' # Egyptian Hieroglyphs
+
+### Musical Notation
+alias rg-music-symbols='rg -oz "[\x{1D100}-\x{1D1FF}]+"' # Musical Symbols
+alias rg-music-ancient='rg -oz "[\x{1D200}-\x{1D24F}]+"' # Ancient Greek Musical Notation
 
 ### Ripgrep All
 alias rgai="rga --color=never -I"
