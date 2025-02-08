@@ -1,6 +1,15 @@
 # ~/.functions_unicode
 # Defines shell functions for parsing unicode characters.
 
+# Print Unicode range.
+# Args: {range1} {range2}
+pl-print-unicode-range() {
+  cat <<_EOF | perl
+    binmode(STDOUT, ":encoding(UTF-8)");
+    for (\$n = $1; \$n <= $2; \$n++) { print chr(\$n) }
+_EOF
+}
+
 # Filters 2-3 unicode characters.
 rg-23u() {
   rg -o '([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])([\x{0100}-\x{FFFF}])' \
