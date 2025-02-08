@@ -73,48 +73,47 @@ alias rg_ww="tee >(rg_2w) >(rg_3w) >(rg_4w) >(rg_5w) >(rg_6w) >(rg_7w) >(rg_8w) 
 ### Language filtering
 
 #### East Asian Scripts
-alias rg-chinese='rg -oz "[\x{4E00}-\x{9FFF}]+"' # Chinese (Basic)
-alias rg-chinese-ext='rg -oz "[\x{3400}-\x{4DBF}]+"' # CJK Extension A
-alias rg-chinese-rare='rg -oz "[\x{20000}-\x{2A6DF}]+"' # CJK Extension B
-alias rg-japanese-half='rg -oz "[\x{FF66}-\x{FF9F}]+"' # Halfwidth Katakana
-alias rg-japanese-kana='rg -oz "[\x{3040}-\x{309F}\x{30A0}-\x{30FF}]+"' # Hiragana & Katakana
-alias rg-japanese-kanji='rg -oz "[\x{4E00}-\x{9FAF}]+"' # Japanese Kanji
-
-alias rg-korean-hangul='rg -oz "[\x{1100}-\x{11FF}\x{3130}-\x{318F}\x{AC00}-\x{D7AF}\x{A960}-\x{A97F}]+"' # Korean Hangul
+alias rg-lang-chinese='rg -oz "[\x{4E00}-\x{9FFF}]+"' # Chinese (Basic)
+alias rg-lang-chinese-ext='rg -oz "[\x{3400}-\x{4DBF}]+"' # CJK Extension A
+alias rg-lang-chinese-rare='rg -oz "[\x{20000}-\x{2A6DF}]+"' # CJK Extension B
+alias rg-lang-japanese-half='rg -oz "[\x{FF66}-\x{FF9F}]+"' # Halfwidth Katakana
+alias rg-lang-japanese-kana='rg -oz "[\x{3040}-\x{309F}\x{30A0}-\x{30FF}]+"' # Hiragana & Katakana
+alias rg-lang-japanese-kanji='rg -oz "[\x{4E00}-\x{9FAF}]+"' # Japanese Kanji
+alias rg-lang-korean-hangul='rg -oz "[\x{1100}-\x{11FF}\x{3130}-\x{318F}\x{AC00}-\x{D7AF}\x{A960}-\x{A97F}]+"' # Korean Hangul
 
 #### South Asian Scripts
-alias rg-bengali='rg -oz "[\x{0980}-\x{09FF}]+"' # Bengali
-alias rg-devanagari='rg -oz "[\x{0900}-\x{097F}]+"' # Devanagari (Hindi/Sanskrit)
-alias rg-gujarati='rg -oz "[\x{0A80}-\x{0AFF}]+"' # Gujarati
-alias rg-gurmukhi='rg -oz "[\x{0A00}-\x{0A7F}]+"' # Gurmukhi (Punjabi)
-alias rg-hindi='rg -oz "[\x{0905}-\x{097f}]+"' # Hindi
-alias rg-kannada='rg -oz "[\x{0C80}-\x{0CFF}]+"' # Kannada
-alias rg-malayalam='rg -oz "[\x{0D00}-\x{0D7F}]+"' # Malayalam
-alias rg-tamil='rg -oz "[\x{0B80}-\x{0BFF}]+"' # Tamil
-alias rg-telugu='rg -oz "[\x{0C00}-\x{0C7F}]+"' # Telugu
+alias rg-lang-bengali='rg -oz "[\x{0980}-\x{09FF}]+"' # Bengali
+alias rg-lang-devanagari='rg -oz "[\x{0900}-\x{097F}]+"' # Devanagari (Hindi/Sanskrit)
+alias rg-lang-gujarati='rg -oz "[\x{0A80}-\x{0AFF}]+"' # Gujarati
+alias rg-lang-gurmukhi='rg -oz "[\x{0A00}-\x{0A7F}]+"' # Gurmukhi (Punjabi)
+alias rg-lang-hindi='rg -oz "[\x{0905}-\x{097f}]+"' # Hindi
+alias rg-lang-kannada='rg -oz "[\x{0C80}-\x{0CFF}]+"' # Kannada
+alias rg-lang-malayalam='rg -oz "[\x{0D00}-\x{0D7F}]+"' # Malayalam
+alias rg-lang-tamil='rg -oz "[\x{0B80}-\x{0BFF}]+"' # Tamil
+alias rg-lang-telugu='rg -oz "[\x{0C00}-\x{0C7F}]+"' # Telugu
 
 #### Middle Eastern Scripts
-alias rg-arabic='rg -oz "[\x{0621}-\x{0669}]+"' # Arabic
-alias rg-hebrew='rg -oz "[\x{0590}-\x{05FE}]+"' # Hebrew
+alias rg-lang-arabic='rg -oz "[\x{0621}-\x{0669}]+"' # Arabic
+alias rg-lang-hebrew='rg -oz "[\x{0590}-\x{05FE}]+"' # Hebrew
 
 #### European and Caucasian Scripts
-alias rg-armenian='rg -oz "[\x{0531}-\x{0587}]+"' # Armenian
-alias rg-georgian='rg -oz "[\x{10A0}-\x{10FF}]+"' # Georgian
-alias rg-greek='rg -oz "[\x{0374}-\x{03FF}]+"' # Greek
-alias rg-russian='rg -oz "[а-яёА-ЯЁ]+"' # Russian
-alias rg-accent-chars='rg -oz "[ąęáàâäãåćéèêëńíìîïóòôöõúùûüçñýÿźż]+"' # Latin Accented Characters
+alias rg-lang-armenian='rg -oz "[\x{0531}-\x{0587}]+"' # Armenian
+alias rg-lang-georgian='rg -oz "[\x{10A0}-\x{10FF}]+"' # Georgian
+alias rg-lang-greek='rg -oz "[\x{0374}-\x{03FF}]+"' # Greek
+alias rg-lang-russian='rg -oz "[а-яёА-ЯЁ]+"' # Russian
+alias rg-lang-accent-chars='rg -oz "[ąęáàâäãåćéèêëńíìîïóòôöõúùûüçñýÿźż]+"' # Latin Accented Characters
 
 #### Southeast Asian Scripts
-alias rg-khmer='rg -oz "[\x{1780}-\x{17FF}]+"' # Khmer
-alias rg-lao='rg -oz "[\x{0E80}-\x{0EFF}]+"' # Lao
-alias rg-myanmar='rg -oz "[\x{1000}-\x{109F}]+"' # Myanmar (Burmese)
-alias rg-thai='rg -oz "[\x{0E00}-\x{0E7F}]+"' # Thai
+alias rg-lang-khmer='rg -oz "[\x{1780}-\x{17FF}]+"' # Khmer
+alias rg-lang-lao='rg -oz "[\x{0E80}-\x{0EFF}]+"' # Lao
+alias rg-lang-myanmar='rg -oz "[\x{1000}-\x{109F}]+"' # Myanmar (Burmese)
+alias rg-lang-thai='rg -oz "[\x{0E00}-\x{0E7F}]+"' # Thai
 
 #### Other Scripts
-alias rg-ethiopic='rg -oz "[\x{1200}-\x{137F}]+"' # Ethiopic
-alias rg-mongolian='rg -oz "[\x{1800}-\x{18AF}]+"' # Mongolian
-alias rg-sinhala='rg -oz "[\x{0D80}-\x{0DFF}]+"' # Sinhala
-alias rg-tibetan='rg -oz "[\x{0F00}-\x{0FFF}]+"' # Tibetan
+alias rg-lang-ethiopic='rg -oz "[\x{1200}-\x{137F}]+"' # Ethiopic
+alias rg-lang-mongolian='rg -oz "[\x{1800}-\x{18AF}]+"' # Mongolian
+alias rg-lang-sinhala='rg -oz "[\x{0D80}-\x{0DFF}]+"' # Sinhala
+alias rg-lang-tibetan='rg -oz "[\x{0F00}-\x{0FFF}]+"' # Tibetan
 
 #### Symbols and Punctuation
 alias rg-arrows='rg -oz "[\x{2190}-\x{21FF}]+"' # Arrows
@@ -128,20 +127,20 @@ alias rg-punctuation='rg -oz "[\x{2000}-\x{206F}]+"' # General Punctuation
 alias rg-superscript='rg -oz "[\x{2070}-\x{209F}]+"' # Superscripts and Subscripts
 
 #### Combined Searches
-alias rg-all-cjk='rg -oz "[\x{4E00}-\x{9FFF}\x{3400}-\x{4DBF}\x{20000}-\x{2A6DF}]+"' # All CJK
-alias rg-all-indic='rg -oz "[\x{0900}-\x{0DFF}]+"' # All Indic Scripts
-alias rg-all-symbols='rg -oz "[\x{2190}-\x{22FF}\x{2700}-\x{27BF}]+"' # Arrows, Math, Dingbats
+alias rg-lang-cjk='rg -oz "[\x{4E00}-\x{9FFF}\x{3400}-\x{4DBF}\x{20000}-\x{2A6DF}]+"' # All CJK
+alias rg-lang-indic='rg -oz "[\x{0900}-\x{0DFF}]+"' # All Indic Scripts
+alias rg-lang-symbols='rg -oz "[\x{2190}-\x{22FF}\x{2700}-\x{27BF}]+"' # Arrows, Math, Dingbats
 
 #### Extended European Scripts
-alias rg-coptic='rg -oz "[\x{2C80}-\x{2CFF}]+"' # Coptic
-alias rg-cyrillic-ext='rg -oz "[\x{0400}-\x{04FF}\x{0500}-\x{052F}]+"' # Extended Cyrillic
-alias rg-gothic='rg -oz "[\x{10330}-\x{1034F}]+"' # Gothic
-alias rg-runic='rg -oz "[\x{16A0}-\x{16FF}]+"' # Runic
+alias rg-lang-coptic='rg -oz "[\x{2C80}-\x{2CFF}]+"' # Coptic
+alias rg-lang-cyrillic-ext='rg -oz "[\x{0400}-\x{04FF}\x{0500}-\x{052F}]+"' # Extended Cyrillic
+alias rg-lang-gothic='rg -oz "[\x{10330}-\x{1034F}]+"' # Gothic
+alias rg-lang-runic='rg -oz "[\x{16A0}-\x{16FF}]+"' # Runic
 
 #### Combined Searches (Additional)
-alias rg-all-east-asian='rg -oz "[\x{4E00}-\x{9FFF}\x{3040}-\x{30FF}\x{AC00}-\x{D7AF}]+"' # CJK Combined
-alias rg-all-south-asian='rg -oz "[\x{0900}-\x{0DFF}\x{0980}-\x{0FFF}]+"' # All South Asian Scripts
-alias rg-all-european='rg -oz "[\x{0100}-\x{024F}\x{1E00}-\x{1EFF}]+"' # Extended Latin
+alias rg-lang-east-asian='rg -oz "[\x{4E00}-\x{9FFF}\x{3040}-\x{30FF}\x{AC00}-\x{D7AF}]+"' # CJK Combined
+alias rg-lang-south-asian='rg -oz "[\x{0900}-\x{0DFF}\x{0980}-\x{0FFF}]+"' # All South Asian Scripts
+alias rg-lang-european='rg -oz "[\x{0100}-\x{024F}\x{1E00}-\x{1EFF}]+"' # Extended Latin
 
 ### Ripgrep All
 alias rgai="rga --color=never -I"
