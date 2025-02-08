@@ -88,16 +88,8 @@ alias conv_rm_xml_lines="rg -v '[<>]'"
 alias rg-all='rg -uuuz'
 alias rg-all-pipe='tr -d "\0" | rg -uuu'
 alias rg-accent-words='rg -o "\w{0,}[ąęáàâäãåćéèêëńíìîïóòôöõúùûüçñýÿźż]\w{0,}"'
-alias rg-arabic='rg -oz "[\x{0621}-\x{0669}]+"' # Arabic
-alias rg-armenian='rg -oz "[\x{0531}-\x{0587}]+"' # Armenian
 alias rg-btc-addr='rg -Howz "[13][a-km-zA-HJ-NP-Z1-9]{25,34}|^(bc1|ltc1)[ac-hj-np-z02-9]{39,59}$|^(BC1|LTC1)[AC-HJ-NP-Z02-9]{39,59}"'
-alias rg-chinese='rg -oz "[\x{4E00}-\x{9FFF}]+"' # Kanji
-alias rg-greek='rg -oz "[\x{0374}-\x{03FF}]+"' # Greek
-alias rg-hebrew='rg -oz "[\x{0590}-\x{05FE}]+"' # Hebrew
-alias rg-japanese1='rg -oz "[\x{3040}-\x{309F}ー]+"' # Hiragana
-alias rg-japanese2='rg -oz "[\x{30A0}-\x{30FF}ー]+"' # Katakana
-alias rg-japanese='rg -oz "[\x{3040}-\x{30FF}ー]+"' # Hiragana & Katakana
-alias rg-russian='rg -oz "[а-яёА-ЯЁ]+"' # Russian
+
 alias rg-domain='rg -oz "([a-z0-9]+(-[a-z0-9]+)*\.)+[a-z]{2,}"'
 alias rg-domain2urls='rg -o "([a-z0-9]+(-[a-z0-9]+)*\.)+[a-z]{2,}" -r "$(printf "\$0\nhttp://\$0\nhttps://\$0\nhttp://www.\$0\nhttps://www.\$0\n")"'
 alias rg-email="rg -ow '[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+'"
@@ -145,6 +137,68 @@ alias rg_8w="rg -o '(\w{3,20})\W(\w{3,20})\W(\w{3,20})\W(\w{3,20})\W(\w{3,20})\W
 alias rg_9S="rg -o '\S+\s+\S+\s+\S+\s+\S+\s+\S+\s+\S+\s+\S+\s+\S+\s+\S+'"
 alias rg_9w="rg -o '(\w{3,20})\W(\w{3,20})\W(\w{3,20})\W(\w{3,20})\W(\w{3,20})\W(\w{3,20})\W(\w{3,20})\W(\w{3,20})\W(\w{3,20})'"
 alias rg_ww="tee >(rg_2w) >(rg_3w) >(rg_4w) >(rg_5w) >(rg_6w) >(rg_7w) >(rg_8w) >(rg_9w) >/dev/null"
+
+### Ripgrep (language filtering)
+
+# East Asian Scripts
+alias rg-chinese='rg -oz "[\x{4E00}-\x{9FFF}]+"' # Kanji
+alias rg-chinese-ext='rg -oz "[\x{3400}-\x{4DBF}]+"' # CJK Extension A
+alias rg-chinese-rare='rg -oz "[\x{20000}-\x{2A6DF}]+"' # CJK Extension B
+alias rg-japanese='rg -oz "[\x{3040}-\x{30FF}ー]+"' # Hiragana & Katakana
+alias rg-japanese1='rg -oz "[\x{3040}-\x{309F}ー]+"' # Hiragana
+alias rg-japanese2='rg -oz "[\x{30A0}-\x{30FF}ー]+"' # Katakana
+alias rg-japanese-half='rg -oz "[\x{FF66}-\x{FF9F}]+"' # Halfwidth Katakana
+alias rg-korean-hangul='rg -oz "[\x{1100}-\x{11FF}\x{3130}-\x{318F}\x{AC00}-\x{D7AF}\x{A960}-\x{A97F}]+"' # Korean Hangul
+
+# South Asian Scripts
+alias rg-bengali='rg -oz "[\x{0980}-\x{09FF}]+"' # Bengali
+alias rg-devanagari='rg -oz "[\x{0900}-\x{097F}]+"' # Devanagari (Hindi/Sanskrit)
+alias rg-gujarati='rg -oz "[\x{0A80}-\x{0AFF}]+"' # Gujarati
+alias rg-gurmukhi='rg -oz "[\x{0A00}-\x{0A7F}]+"' # Gurmukhi (Punjabi)
+alias rg-hindi='rg -oz "[\x{0905}-\x{097f}]+"' # Hindi
+alias rg-kannada='rg -oz "[\x{0C80}-\x{0CFF}]+"' # Kannada
+alias rg-malayalam='rg -oz "[\x{0D00}-\x{0D7F}]+"' # Malayalam
+alias rg-tamil='rg -oz "[\x{0B80}-\x{0BFF}]+"' # Tamil
+alias rg-telugu='rg -oz "[\x{0C00}-\x{0C7F}]+"' # Telugu
+
+# Middle Eastern Scripts
+alias rg-arabic='rg -oz "[\x{0621}-\x{0669}]+"' # Arabic
+alias rg-hebrew='rg -oz "[\x{0590}-\x{05FE}]+"' # Hebrew
+
+# European and Caucasian Scripts
+alias rg-armenian='rg -oz "[\x{0531}-\x{0587}]+"' # Armenian
+alias rg-georgian='rg -oz "[\x{10A0}-\x{10FF}]+"' # Georgian
+alias rg-greek='rg -oz "[\x{0374}-\x{03FF}]+"' # Greek
+alias rg-russian='rg -oz "[а-яёА-ЯЁ]+"' # Russian
+alias rg-accent-chars='rg -oz "[ąęáàâäãåćéèêëńíìîïóòôöõúùûüçñýÿźż]+"' # Latin Accented Characters
+
+# Southeast Asian Scripts
+alias rg-khmer='rg -oz "[\x{1780}-\x{17FF}]+"' # Khmer
+alias rg-lao='rg -oz "[\x{0E80}-\x{0EFF}]+"' # Lao
+alias rg-myanmar='rg -oz "[\x{1000}-\x{109F}]+"' # Myanmar (Burmese)
+alias rg-thai='rg -oz "[\x{0E00}-\x{0E7F}]+"' # Thai
+
+# Other Scripts
+alias rg-ethiopic='rg -oz "[\x{1200}-\x{137F}]+"' # Ethiopic
+alias rg-mongolian='rg -oz "[\x{1800}-\x{18AF}]+"' # Mongolian
+alias rg-sinhala='rg -oz "[\x{0D80}-\x{0DFF}]+"' # Sinhala
+alias rg-tibetan='rg -oz "[\x{0F00}-\x{0FFF}]+"' # Tibetan
+
+# Symbols and Punctuation
+alias rg-arrows='rg -oz "[\x{2190}-\x{21FF}]+"' # Arrows
+alias rg-box-drawing='rg -oz "[\x{2500}-\x{257F}]+"' # Box Drawing
+alias rg-currency='rg -oz "[\x{20A0}-\x{20CF}]+"' # Currency Symbols
+alias rg-dingbats='rg -oz "[\x{2700}-\x{27BF}]+"' # Dingbats
+alias rg-emoji='rg -oz "[\x{1F300}-\x{1F9FF}]+"' # Emoji
+alias rg-emoji-basic='rg -oz "[\x{1F1FF}-\x{1F600}]+"' # Basic Emoji Range
+alias rg-math='rg -oz "[\x{2200}-\x{22FF}]+"' # Mathematical Operators
+alias rg-punctuation='rg -oz "[\x{2000}-\x{206F}]+"' # General Punctuation
+alias rg-superscript='rg -oz "[\x{2070}-\x{209F}]+"' # Superscripts and Subscripts
+
+# Combined Searches
+alias rg-all-cjk='rg -oz "[\x{4E00}-\x{9FFF}\x{3400}-\x{4DBF}\x{20000}-\x{2A6DF}]+"' # All CJK
+alias rg-all-indic='rg -oz "[\x{0900}-\x{0DFF}]+"' # All Indic Scripts
+alias rg-all-symbols='rg -oz "[\x{2190}-\x{22FF}\x{2700}-\x{27BF}]+"' # Arrows, Math, Dingbats
 
 ### Ripgrep All
 alias rgai="rga --color=never -I"
