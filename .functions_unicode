@@ -4,54 +4,108 @@
 # Print characters from Unicode ranges matching rg-lang patterns
 # Args: {name}
 pl-print-chars() {
-    case "$1" in
-        # East Asian
-        "chinese") pl-print-unicode-range "0x4E00" "0x9FFF" ;;
-        "chinese-ext") pl-print-unicode-range "0x3400" "0x4DBF" ;;
-        "japanese-kana")
-            pl-print-unicode-range "0x3040" "0x309F"
-            pl-print-unicode-range "0x30A0" "0x30FF" ;;
-        "korean-syllables") pl-print-unicode-range "0xAC00" "0xD7AF" ;;
+  case "$1" in
+    # East Asian Scripts
+    "chinese") pl-print-unicode-range 0x4E00 0x9FFF ;;
+    "chinese-ext") pl-print-unicode-range 0x3400 0x4DBF ;;
+    "chinese-rare") pl-print-unicode-range 0x20000 0x2A6DF ;;
+    "japanese-half") pl-print-unicode-range 0xFF66 0xFF9F ;;
+    "japanese-kana")
+      pl-print-unicode-range 0x3040 0x309F
+      pl-print-unicode-range 0x30A0 0x30FF ;;
+    "japanese-kanji") pl-print-unicode-range 0x4E00 0x9FAF ;;
+    "korean-jamo") pl-print-unicode-range 0x1100 0x11FF ;;
+    "korean-compat") pl-print-unicode-range 0x3130 0x318F ;;
+    "korean-syllables") pl-print-unicode-range 0xAC00 0xD7AF ;;
+    "korean-jamo-ext") pl-print-unicode-range 0xA960 0xA97F ;;
 
-        # South Asian
-        "devanagari") pl-print-unicode-range "0x0900" "0x097F" ;;
-        "bengali") pl-print-unicode-range "0x0980" "0x09FF" ;;
-        "tamil") pl-print-unicode-range "0x0B80" "0x0BFF" ;;
+    # South Asian Scripts
+    "bengali") pl-print-unicode-range 0x0980 0x09FF ;;
+    "devanagari") pl-print-unicode-range 0x0900 0x097F ;;
+    "gujarati") pl-print-unicode-range 0x0A80 0x0AFF ;;
+    "gurmukhi") pl-print-unicode-range 0x0A00 0x0A7F ;;
+    "kannada") pl-print-unicode-range 0x0C80 0x0CFF ;;
+    "malayalam") pl-print-unicode-range 0x0D00 0x0D7F ;;
+    "tamil") pl-print-unicode-range 0x0B80 0x0BFF ;;
+    "telugu") pl-print-unicode-range 0x0C00 0x0C7F ;;
 
-        # Middle Eastern
-        "arabic") pl-print-unicode-range "0x0621" "0x0669" ;;
-        "hebrew") pl-print-unicode-range "0x0590" "0x05FE" ;;
+    # Southeast Asian Scripts
+    "khmer") pl-print-unicode-range 0x1780 0x17FF ;;
+    "lao") pl-print-unicode-range 0x0E80 0x0EFF ;;
+    "myanmar") pl-print-unicode-range 0x1000 0x109F ;;
+    "thai") pl-print-unicode-range 0x0E00 0x0E7F ;;
 
-        # European
-        "greek") pl-print-unicode-range "0x0374" "0x03FF" ;;
-        "cyrillic") pl-print-unicode-range "0x0400" "0x04FF" ;;
-        "armenian") pl-print-unicode-range "0x0531" "0x0587" ;;
+    # Ancient Scripts
+    "cuneiform") pl-print-unicode-range 0x12000 0x123FF ;;
+    "linearb") pl-print-unicode-range 0x10000 0x1007F ;;
+    "phoenician") pl-print-unicode-range 0x10900 0x1091F ;;
+    "hieroglyph") pl-print-unicode-range 0x13000 0x1342F ;;
 
-        # Special Characters
-        "emoji") pl-print-unicode-range "0x1F300" "0x1F9FF" ;;
-        "math") pl-print-unicode-range "0x2200" "0x22FF" ;;
-        "arrows") pl-print-unicode-range "0x2190" "0x21FF" ;;
+    # European Scripts
+    "coptic") pl-print-unicode-range 0x2C80 0x2CFF ;;
+    "cyrillic-ext")
+      pl-print-unicode-range 0x0400 0x04FF
+      pl-print-unicode-range 0x0500 0x052F ;;
+    "gothic") pl-print-unicode-range 0x10330 0x1034F ;;
+    "glagolitic") pl-print-unicode-range 0x2C00 0x2C5F ;;
+    "ogham") pl-print-unicode-range 0x1680 0x169F ;;
+    "olditalic") pl-print-unicode-range 0x10300 0x1032F ;;
+    "runic") pl-print-unicode-range 0x16A0 0x16FF ;;
 
-        # Help
-        "help"|"--help"|"-h"|"")
-            echo "Usage: pl-print-chars TYPE"
-            echo "Print Unicode characters from specified script range"
-            echo
-            echo "Available scripts:"
-            echo "  East Asian: chinese, chinese-ext, japanese-kana, korean-syllables"
-            echo "  South Asian: devanagari, bengali, tamil"
-            echo "  Middle Eastern: arabic, hebrew"
-            echo "  European: greek, cyrillic, armenian"
-            echo "  Special: emoji, math, arrows"
-            echo
-            echo "Example: pl-print-chars chinese"
-            ;;
-        *)
-            echo "Unknown char types: $1"
-            echo "Use 'pl-print-chars help' to see available options"
-            return 1
-            ;;
-    esac
+    # African Scripts
+    "nko") pl-print-unicode-range 0x07C0 0x07FF ;;
+    "tifinagh") pl-print-unicode-range 0x2D30 0x2D7F ;;
+    "vai") pl-print-unicode-range 0xA500 0xA63F ;;
+    "bamum") pl-print-unicode-range 0xA6A0 0xA6FF ;;
+
+    # Special Notations
+    "arrows") pl-print-unicode-range 0x2190 0x21FF ;;
+    "box-drawing") pl-print-unicode-range 0x2500 0x257F ;;
+    "braille") pl-print-unicode-range 0x2800 0x28FF ;;
+    "currency") pl-print-unicode-range 0x20A0 0x20CF ;;
+    "dingbats") pl-print-unicode-range 0x2700 0x27BF ;;
+    "math") pl-print-unicode-range 0x2200 0x22FF ;;
+    "math-ext") pl-print-unicode-range 0x1D400 0x1D7FF ;;
+    "music") pl-print-unicode-range 0x1D100 0x1D1FF ;;
+    "phonetic") pl-print-unicode-range 0x1D00 0x1D7F ;;
+    "phonetic-ext") pl-print-unicode-range 0x1D80 0x1DBF ;;
+    "punctuation") pl-print-unicode-range 0x2000 0x206F ;;
+    "superscript") pl-print-unicode-range 0x2070 0x209F ;;
+
+    # Additional Ranges
+    "emoji") pl-print-unicode-range 0x1F300 0x1F9FF ;;
+    "emoji-basic") pl-print-unicode-range 0x1F1FF 0x1F600 ;;
+    "ethiopic") pl-print-unicode-range 0x1200 0x137F ;;
+    "georgian") pl-print-unicode-range 0x10A0 0x10FF ;;
+    "greek") pl-print-unicode-range 0x0374 0x03FF ;;
+    "hebrew") pl-print-unicode-range 0x0590 0x05FE ;;
+    "mongolian") pl-print-unicode-range 0x1800 0x18AF ;;
+    "sinhala") pl-print-unicode-range 0x0D80 0x0DFF ;;
+    "tibetan") pl-print-unicode-range 0x0F00 0x0FFF ;;
+
+    # Help
+    "help"|"--help"|"-h"|"")
+      echo "Usage: pl-print-chars TYPE"
+      echo "Print Unicode characters from specified script range"
+      echo
+      echo "Available scripts:"
+      echo "  East Asian: chinese, chinese-ext, chinese-rare, japanese-half, japanese-kana, japanese-kanji, korean-jamo, korean-compat, korean-syllables, korean-jamo-ext"
+      echo "  South Asian: bengali, devanagari, gujarati, gurmukhi, kannada, malayalam, tamil, telugu"
+      echo "  Southeast Asian: khmer, lao, myanmar, thai"
+      echo "  Ancient: cuneiform, linearb, phoenician, hieroglyph"
+      echo "  European: coptic, cyrillic-ext, gothic, glagolitic, ogham, olditalic, runic"
+      echo "  African: nko, tifinagh, vai, bamum"
+      echo "  Special: arrows, box-drawing, braille, currency, dingbats, math, math-ext, music, phonetic, phonetic-ext, punctuation, superscript"
+      echo "  Additional: emoji, emoji-basic, ethiopic, georgian, greek, hebrew, mongolian, sinhala, tibetan"
+      echo
+      echo "Example: pl-print-chars chinese"
+      ;;
+    *)
+      echo "Unknown char types: $1"
+      echo "Use 'pl-print-chars help' to see available options"
+      return 1
+      ;;
+  esac
 }
 
 # Print Unicode range.
