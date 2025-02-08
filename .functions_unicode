@@ -1,6 +1,59 @@
 # ~/.functions_unicode
 # Defines shell functions for parsing unicode characters.
 
+# Print characters from Unicode ranges matching rg-lang patterns
+# Args: {name}
+pl-print-chars() {
+    case "$1" in
+        # East Asian
+        "chinese") pl-print-unicode-range "0x4E00" "0x9FFF" ;;
+        "chinese-ext") pl-print-unicode-range "0x3400" "0x4DBF" ;;
+        "japanese-kana")
+            pl-print-unicode-range "0x3040" "0x309F"
+            pl-print-unicode-range "0x30A0" "0x30FF" ;;
+        "korean-syllables") pl-print-unicode-range "0xAC00" "0xD7AF" ;;
+
+        # South Asian
+        "devanagari") pl-print-unicode-range "0x0900" "0x097F" ;;
+        "bengali") pl-print-unicode-range "0x0980" "0x09FF" ;;
+        "tamil") pl-print-unicode-range "0x0B80" "0x0BFF" ;;
+
+        # Middle Eastern
+        "arabic") pl-print-unicode-range "0x0621" "0x0669" ;;
+        "hebrew") pl-print-unicode-range "0x0590" "0x05FE" ;;
+
+        # European
+        "greek") pl-print-unicode-range "0x0374" "0x03FF" ;;
+        "cyrillic") pl-print-unicode-range "0x0400" "0x04FF" ;;
+        "armenian") pl-print-unicode-range "0x0531" "0x0587" ;;
+
+        # Special Characters
+        "emoji") pl-print-unicode-range "0x1F300" "0x1F9FF" ;;
+        "math") pl-print-unicode-range "0x2200" "0x22FF" ;;
+        "arrows") pl-print-unicode-range "0x2190" "0x21FF" ;;
+
+        # Help
+        "help"|"--help"|"-h"|"")
+            echo "Usage: pl-print-chars TYPE"
+            echo "Print Unicode characters from specified script range"
+            echo
+            echo "Available scripts:"
+            echo "  East Asian: chinese, chinese-ext, japanese-kana, korean-syllables"
+            echo "  South Asian: devanagari, bengali, tamil"
+            echo "  Middle Eastern: arabic, hebrew"
+            echo "  European: greek, cyrillic, armenian"
+            echo "  Special: emoji, math, arrows"
+            echo
+            echo "Example: pl-print-chars chinese"
+            ;;
+        *)
+            echo "Unknown char types: $1"
+            echo "Use 'pl-print-chars help' to see available options"
+            return 1
+            ;;
+    esac
+}
+
 # Print Unicode range.
 # Args: {range1} {range2}
 pl-print-unicode-range() {
