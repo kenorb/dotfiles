@@ -26,6 +26,10 @@ if [ -f ~/.aliasesrc ]; then
   . ~/.aliasesrc
 fi
 
+if [ -f ~/.aliasesrc_rg ]; then
+  . ~/.aliasesrc_rg
+fi
+
 if [ -f ~/.bash_aliases ]; then
   . ~/.bash_aliases
 fi
