@@ -146,6 +146,38 @@ alias rg-lang-east-asian='rg -oz "[\x{4E00}-\x{9FFF}\x{3040}-\x{30FF}\x{AC00}-\x
 alias rg-lang-south-asian='rg -oz "[\x{0900}-\x{0DFF}\x{0980}-\x{0FFF}]+"' # All South Asian Scripts
 alias rg-lang-european='rg -oz "[\x{0100}-\x{024F}\x{1E00}-\x{1EFF}]+"' # Extended Latin
 
+#### Ancient Scripts
+alias rg-lang-cuneiform='rg -oz "[\x{12000}-\x{123FF}]+"' # Cuneiform
+alias rg-lang-linearb='rg -oz "[\x{10000}-\x{1007F}]+"' # Linear B
+alias rg-lang-phoenician='rg -oz "[\x{10900}-\x{1091F}]+"' # Phoenician
+alias rg-lang-hieroglyph='rg -oz "[\x{13000}-\x{1342F}]+"' # Egyptian Hieroglyphs
+
+#### Additional European Scripts
+alias rg-lang-ogham='rg -oz "[\x{1680}-\x{169F}]+"' # Ogham
+alias rg-lang-olditalic='rg -oz "[\x{10300}-\x{1032F}]+"' # Old Italic
+alias rg-lang-glagolitic='rg -oz "[\x{2C00}-\x{2C5F}]+"' # Glagolitic
+alias rg-lang-runic='rg -oz "[\x{16A0}-\x{16FF}]+"' # Runic
+
+#### African Scripts
+alias rg-lang-nko='rg -oz "[\x{07C0}-\x{07FF}]+"' # N'Ko
+alias rg-lang-tifinagh='rg -oz "[\x{2D30}-\x{2D7F}]+"' # Tifinagh
+alias rg-lang-vai='rg -oz "[\x{A500}-\x{A63F}]+"' # Vai
+alias rg-lang-bamum='rg -oz "[\x{A6A0}-\x{A6FF}]+"' # Bamum
+
+#### Phonetic and IPA
+alias rg-lang-ipa='rg -oz "[\x{0250}-\x{02AF}]+"' # IPA Extensions
+alias rg-lang-phonetic='rg -oz "[\x{1D00}-\x{1D7F}]+"' # Phonetic Extensions
+alias rg-lang-phonetic-ext='rg -oz "[\x{1D80}-\x{1DBF}]+"' # Phonetic Extensions Supplement
+
+#### Special Notations
+alias rg-lang-music='rg -oz "[\x{1D100}-\x{1D1FF}]+"' # Musical Symbols
+alias rg-lang-math-a='rg -oz "[\x{1D400}-\x{1D7FF}]+"' # Mathematical Alphanumeric Symbols
+alias rg-lang-braille='rg -oz "[\x{2800}-\x{28FF}]+"' # Braille Patterns
+
+#### Combined Extended Searches
+alias rg-lang-ancient-all='rg -oz "[\x{12000}-\x{123FF}\x{10000}-\x{1007F}\x{10900}-\x{1091F}\x{13000}-\x{1342F}]+"' # All Ancient Scripts
+alias rg-lang-phonetic-all='rg -oz "[\x{0250}-\x{02AF}\x{1D00}-\x{1D7F}\x{1D80}-\x{1DBF}]+"' # All Phonetic Symbols
+
 ### Ripgrep All
 alias rgai="rga --color=never -I"
 alias rgai-words="rga --color=never -I '\w+(\s\w+)+'"
