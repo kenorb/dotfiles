@@ -79,7 +79,11 @@ alias rg-lang-chinese-rare='rg -oz "[\x{20000}-\x{2A6DF}]+"' # CJK Extension B
 alias rg-lang-japanese-half='rg -oz "[\x{FF66}-\x{FF9F}]+"' # Halfwidth Katakana
 alias rg-lang-japanese-kana='rg -oz "[\x{3040}-\x{309F}\x{30A0}-\x{30FF}]+"' # Hiragana & Katakana
 alias rg-lang-japanese-kanji='rg -oz "[\x{4E00}-\x{9FAF}]+"' # Japanese Kanji
-alias rg-lang-korean-hangul='rg -oz "[\x{1100}-\x{11FF}\x{3130}-\x{318F}\x{AC00}-\x{D7AF}\x{A960}-\x{A97F}]+"' # Korean Hangul
+alias rg-lang-korean-jamo='rg -oz "[\x{1100}-\x{11FF}]+"' # Hangul Jamo (Basic consonants and vowels)
+alias rg-lang-korean-compat='rg -oz "[\x{3130}-\x{318F}]+"' # Hangul Compatibility Jamo
+alias rg-lang-korean-syllables='rg -oz "[\x{AC00}-\x{D7AF}]+"' # Hangul Syllables
+alias rg-lang-korean-jamo-ext='rg -oz "[\x{A960}-\x{A97F}]+"' # Hangul Jamo Extended-A
+alias rg-lang-korean-all='rg -oz "[\x{1100}-\x{11FF}\x{3130}-\x{318F}\x{AC00}-\x{D7AF}\x{A960}-\x{A97F}]+"' # All Korean ranges
 
 #### South Asian Scripts
 alias rg-lang-bengali='rg -oz "[\x{0980}-\x{09FF}]+"' # Bengali
