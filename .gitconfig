@@ -13,7 +13,7 @@
   whitespace = trailing-space,space-before-tab
   excludesfile = ~/.gitignore
   autocrlf = false
-  pager = delta ; @see: https://github.com/dandavison/delta
+; pager = delta ; @see: https://github.com/dandavison/delta
 
 [delta]
     navigate = true    # use n and N to move between diff sections
