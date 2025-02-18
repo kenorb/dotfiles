@@ -16,6 +16,7 @@ alias rg-numbers-sep='rg -oz "\d+(,.\d+)+"'
 alias rg-hex='rg -oz "[0-9a-fA-F]{2,}"'
 
 ### Cryptography & Hashes
+alias rg-hex='rg -owz "[A-Fa-f0-9]{4,}"'
 alias rg-sha256='rg -owz "[A-Fa-f0-9]{64}"'
 alias rg-uuid='rg "[0-9a-f]{8}\b-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-\b[0-9a-f]{12}"'
 alias rg-btc-addr='rg -Howz "[13][a-km-zA-HJ-NP-Z1-9]{25,34}|^(bc1|ltc1)[ac-hj-np-z02-9]{39,59}$|^(BC1|LTC1)[AC-HJ-NP-Z02-9]{39,59}"'
@@ -264,4 +265,7 @@ alias rg-cjk-ext-d='rg -oz "[\x{2B740}-\x{2B81F}]+"' # CJK Extension D
 
 ### Ripgrep All
 alias rgai="rga --color=never -I"
+alias rgaiz="rga --color=never -Iz"
+alias rgaizu="rga --color=never -Izu"
+alias rgaizul="rga --color=never -IzuL"
 alias rgai-words="rga --color=never -I '\w+(\s\w+)+'"
