@@ -184,6 +184,7 @@ pl-print-chars() {
 # Print Unicode range.
 # Args: {range1} {range2}
 pl-print-unicode-range() {
+  [[ -z "$1" || -z "$2" ]] && echo "Usage: pl-print-unicode-range range1 range2" && return 1
   cat <<_EOF | perl
     binmode(STDOUT, ":encoding(UTF-8)");
     for (\$n = $1; \$n <= $2; \$n++) { print chr(\$n) }
