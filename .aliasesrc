@@ -89,7 +89,7 @@ alias conv_rm_xml_tags="sed -e 's/<[^>]*>//g'"
 alias conv_xml_tags_to_nl="sed -e 's/<[^>]*>/\n/g'"
 
 ### Sort
-alias sort-fast="sort --parallel=40"
+alias sort-fast="LC_ALL=C sort --parallel=40 -S 80%"
 
 ### Spellout
 
