@@ -42,8 +42,10 @@ alias rg-handle='rg -oz "@[a-zA-Z]\w{4,}"'
 alias rg-hashtag='rg -oz "#[a-zA-Z]\w{4,}"'
 
 ### System & File Utilities
-alias rg-all='rg -uuuz'
 alias rg-all-pipe='tr -d "\0" | rg -uuu'
+alias rg-all='rg -uuuz'
+alias rgu='rg -u'
+alias rgul='rg -uL'
 alias conv_rm_xml_lines="rg -v '[<>]'"
 
 ### Sequential Pattern Matching
