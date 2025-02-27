@@ -330,6 +330,11 @@ alias mysql-fix-collation='sed "s/utf8mb4_0900_ai_ci\|utf8mb4_unicode_ci/utf8_ge
 
 ## Network
 
+# SSH
+alias s="ssh"
+alias sio="ssh -o IdentitiesOnly=yes"
+alias ssh-io="ssh -o IdentitiesOnly=yes"
+
 # Get external IP
 alias whatismyip='curl ifconfig.me' # Or: ip.appspot.com
 
