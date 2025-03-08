@@ -81,6 +81,11 @@ fi
 [ -d "$HOME"/.cargo/bin ] \
   && export PATH="$PATH:$HOME/.cargo/bin"
 
+# User defined exports.
+if [ -f ~/.exportsrc_user ]; then
+  . ~/.exportsrc_user
+fi
+
 # Terminal colors (e.g. echo "${COLOR_RED}foo").
 export COLOR_RESET=$(tput sgr0)
 export COLOR_BLACK=$(tput setaf 0)
