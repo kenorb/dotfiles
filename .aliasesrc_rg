@@ -46,6 +46,7 @@ alias rg-all-pipe='tr -d "\0" | rg -uuu'
 alias rg-all='rg -uuuz'
 alias rgu='rg -u'
 alias rgul='rg -uL'
+alias rgulz='rg -uLz'
 alias conv_rm_xml_lines="rg -v '[<>]'"
 
 ### Sequential Pattern Matching
