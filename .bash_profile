@@ -24,7 +24,7 @@ fi
 #############################################################################
 
 # Changes the ulimit limits.
-#ulimit -Sn 200000   # open files
+ulimit -Sn 10240 # open files
 ulimit -Sl unlimited # max locked memory
 
 # Enable Bash auto-completion for Drupal Console if exists.
