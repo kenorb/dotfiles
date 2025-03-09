@@ -45,6 +45,12 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# Configure dagger completion.
+if type dagger &>/dev/null; then
+  mkdir -vp "$HOME"/.local/share/bash-completion/completions
+  dagger completion bash > "$HOME"/.local/share/bash-completion/completions/dagger
+fi
+
 # added by travis gem
 [ -f $HOME/.travis/travis.sh ] && source $HOME/.travis/travis.sh
 
