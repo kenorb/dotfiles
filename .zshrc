@@ -37,3 +37,6 @@ bindkey "^R" history-incremental-search-backward
 
 # Installs Shell Integration for iTerm2.
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+autoload -U compinit
+compinit -i
