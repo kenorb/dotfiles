@@ -24,7 +24,7 @@ fi
 #############################################################################
 
 # Changes the ulimit limits.
-ulimit -Sn 10240     # open files
+ulimit -Sn 20480     # open files
 ulimit -Sl unlimited # max locked memory
 
 # Enable Bash auto-completion for Drupal Console if exists.
@@ -186,4 +186,9 @@ fi
 # Setup kubectl autocomplete.
 if command -v kubectl &>/dev/null; then
   source <(kubectl completion bash)
+fi
+
+# Load Nix environment profile if the file exists.
+if [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then
+  . "$HOME/.nix-profile/etc/profile.d/nix.sh"
 fi

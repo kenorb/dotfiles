@@ -38,5 +38,10 @@ bindkey "^R" history-incremental-search-backward
 # Installs Shell Integration for iTerm2.
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
+# Load Nix environment profile if the file exists.
+if [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then
+  . "$HOME/.nix-profile/etc/profile.d/nix.sh"
+fi
+
 autoload -U compinit
 compinit -i
