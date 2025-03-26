@@ -55,6 +55,12 @@ dups() {
   fdupes -v && fdupes -rS1 "$1" | sed '$!N;s/\n/ /' | sort -n
 }
 
+# AWK's string global replacement.
+# Usage: gsub (arg1) (arg2)
+gsub() {
+  mawk '{gsub(/'$1'/, "'$2'"); print}'
+}
+
 # Search for command in history.
 # Usage: hs (string)
 hs() {
