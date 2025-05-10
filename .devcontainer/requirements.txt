@@ -1,0 +1,9 @@
+# Python's requirements
+# Usage: pip install -r requirements.txt
+ansible
+ansible-lint
+docker>=7.1
+jinja2-cli
+pipenv
+pre-commit
+requests==2.31.0
