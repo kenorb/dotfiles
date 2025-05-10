@@ -1,0 +1,18 @@
+---
+name: reviewdog
+
+# yamllint disable-line rule:truthy
+on:
+  pull_request:
+  push:
+
+jobs:
+  actionlint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: reviewdog/action-actionlint@v1
+      - name: Add Problem Matcher for actionlint
+        run: |
+          echo "::add-matcher::.github/actionlint-matcher.json"
+        shell: bash
