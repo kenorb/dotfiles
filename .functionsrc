@@ -18,6 +18,18 @@ cdf() {
   pushd "$(find . -name "$1")"
 }
 
+# Copy source to multiple destinations.
+# Note: It uses xargs to copy files in parallel.
+# Usage: cp2 (src) (dest1) (dest2)
+cp-multi() {
+  [ -z "$1" ] && { echo "Usage: cp-multi (src) (dest1) (dest2)" >&2; return; }
+  [ -z "$2" ] && { echo "Usage: cp-multi (src) (dest1) (dest2)" >&2; return; }
+  [ -z "$3" ] && { echo "Usage: cp-multi (src) (dest1) (dest2)" >&2; return; }
+  src="$1"
+  shift
+  printf "%s\n" "$@" | xargs -I{} -P4 cp -v "$src" "{}"
+}
+
 # Find files/dirs by name recursively.
 # Usage: ff (file)
 f() {
