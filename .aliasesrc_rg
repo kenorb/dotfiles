@@ -13,10 +13,9 @@ alias rg-quoted="rg -ow -e '[\"]([^\"]+)\"' -e \"[']([^']+)'\" -r '\$1'"
 ### Numbers & Basic Patterns
 alias rg-number='rg -oz "[0-9]{2,}"'
 alias rg-numbers-sep='rg -oz "\d+(,.\d+)+"'
-alias rg-hex='rg -oz "[0-9a-fA-F]{2,}"'
 
 ### Cryptography & Hashes
-alias rg-hex='rg -owz "[A-Fa-f0-9]{4,}"'
+alias rg-hex='rg -oz "[A-Fa-f0-9]{4,}"'
 alias rg-sha256='rg -owz "[A-Fa-f0-9]{64}"'
 alias rg-uuid='rg "[0-9a-f]{8}\b-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-\b[0-9a-f]{12}"'
 alias rg-btc-addr='rg -Howz "[13][a-km-zA-HJ-NP-Z1-9]{25,34}|^(bc1|ltc1)[ac-hj-np-z02-9]{39,59}$|^(BC1|LTC1)[AC-HJ-NP-Z02-9]{39,59}"'
