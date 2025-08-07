@@ -27,6 +27,8 @@ cp-multi() {
   [ -z "$3" ] && { echo "Usage: cp-multi (src) (dest1) (dest2)" >&2; return; }
   src="$1"
   shift
+  # Expand wildcards in arguments
+  set -- $(eval echo "$@")
   printf "%s\n" "$@" | xargs -I{} -P4 cp -v "$src" "{}"
 }
 
