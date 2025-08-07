@@ -14,6 +14,9 @@ alias 7zcat="7z e -bd -so"
 ### Brotli
 alias brcat="brotli -cd"
 
+### LZ4
+alias lz4cat="lz4 -cd"
+
 ### Rar
 
 alias rarcat="unrar p"
