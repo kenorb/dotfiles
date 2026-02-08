@@ -18,7 +18,7 @@ alias rg-numbers-sep='rg -oz "\d+(,.\d+)+"'
 alias rg-hex='rg -oz "[A-Fa-f0-9]{4,}"'
 alias rg-sha256='rg -owz "[A-Fa-f0-9]{64}"'
 alias rg-uuid='rg "[0-9a-f]{8}\b-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-\b[0-9a-f]{12}"'
-alias rg-btc-addr='rg -Howz "[13][a-km-zA-HJ-NP-Z1-9]{25,34}|^(bc1|ltc1)[ac-hj-np-z02-9]{39,59}$|^(BC1|LTC1)[AC-HJ-NP-Z02-9]{39,59}"'
+alias rg-btc-addr='rg -Howz "[13][a-km-zA-HJ-NP-Z1-9]{25,34}|(bc1|ltc1)[ac-hj-np-z02-9]{39,59}|(BC1|LTC1)[AC-HJ-NP-Z02-9]{39,59}"'
 alias rg-wif='rg -owz "[59KLc][1-9A-HJ-NP-Za-km-z]{50,51}"'
 
 ### Internet & Network

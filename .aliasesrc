@@ -2,6 +2,9 @@
 
 ## ALIASES ##
 
+## Cloud
+alias ic-s3-eu-central-2="aws s3 --endpoint-url=https://eu-central-2.storage.impossibleapi.net --profile=ic"
+
 ## Crypto
 alias base58tohex='base58 -d | xxd -p -c200'
 alias wif2sha='base58 -d | xxd -p -c200 | sed s/^80// | rg -oz "[A-Fa-f0-9]{64}"'
@@ -30,7 +33,7 @@ alias zipcat="unzip -p"
 alias tarzs-rm="tar -cv --remove-files --zstd -f"
 alias tarzs="tar -cv --zstd -f"
 alias zs="zstd -18 -T0"
-alias zscat="zstdcat"
+alias zscat="zstdcat --long=31"
 alias zsless="zstdless"
 alias zsrm="zstd -18 --rm -T0"
 
