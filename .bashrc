@@ -48,7 +48,7 @@ fi
 # Configure dagger completion.
 if type dagger &>/dev/null; then
   mkdir -vp "$HOME"/.local/share/bash-completion/completions
-  dagger completion bash > "$HOME"/.local/share/bash-completion/completions/dagger
+  dagger completion bash >"$HOME"/.local/share/bash-completion/completions/dagger
 fi
 
 # added by travis gem
@@ -90,3 +90,10 @@ if [ -d "$HOME/.nvm" ]; then
   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
   [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 fi
+
+# Perl
+PATH="$USER/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="$USER/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="$USER/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"$USER/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=$USER/perl5"; export PERL_MM_OPT;
