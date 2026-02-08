@@ -4,6 +4,19 @@
 
 # COMMON FUNCTIONS
 
+# Decode URLs
+awk-urldecode() {
+  awk '{
+    gsub(/\+/," ");
+    while(match($0,/%[0-9a-fA-F][0-9a-fA-F]/)) {
+      hex=substr($0,RSTART+1,2);
+      char=sprintf("%c",strtonum("0x" hex));
+      $0=substr($0,1,RSTART-1) char substr($0,RSTART+RLENGTH);
+    }
+    print
+  }'
+}
+
 # Realpath to provide absolute path with OSX
 # See: http://stackoverflow.com/questions/3572030/bash-script-absolute-path-with-osx
 realpath () {
@@ -198,10 +211,27 @@ open-rdp() {
   open rdp://full%20address=s:$*
 }
 
-# GitHub clone all user repositories.
+# GitHub clone all user repositories (up to 100).
 # Usage: gh-clone-user (user)
 gh-clone-user() {
-  curl -sL "https://api.github.com/users/$1/repos?per_page=1000" | jq -r '.[]|.clone_url' | xargs -L1 git clone --recurse-submodules
+  curl -sL "https://api.github.com/users/$1/repos?per_page=100" | jq -r '.[]|.clone_url' | xargs -L1 git clone --recurse-submodules
+}
+
+# GitHub clone all user repositories (>100).
+# Usage: gh-clone-user-all (user)
+gh-clone-user-all() {
+    set -x
+    page=1
+    while :
+    do
+        repos=$(curl -sL -H "Authorization: token $GITHUB_PAT" "https://api.github.com/users/$1/repos?per_page=100&page=$page" | jq -r '.[]|.clone_url')
+        if [ -z "$repos" ]; then
+            break
+        fi
+        echo "Page: $page..."
+        echo "$repos" | xargs -L1 git clone --recurse-submodules && sleep 20
+        ((page++))
+    done
 }
 
 # GitHub clone all user private repositories.
