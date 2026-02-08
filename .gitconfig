@@ -3,6 +3,9 @@
   email = kenorb@users.noreply.github.com
   signingkey = 20640DB6D61A7BBBD3DBF898E95815EEE495E904
 
+[checkout]
+  defaultRemote=origin
+
 [credential]
   helper = osxkeychain
 
@@ -165,7 +168,8 @@ clean = "sed -e 's/^password=.*/#password=TODO/'"
                 | sort -uk3 \
                 | sort -nk4"
   c            = checkout
-  checkout-all = !"find . -name .git -type d -print -execdir git checkout -f HEAD \\;"
+  checkout-detach = checkout --detach HEAD
+  checkout-all    = !"find . -name .git -type d -print -execdir git checkout -f HEAD \\;"
   ca           = commit -a
   cp           = cherry-pick
   cpa          = cherry-pick --abort
