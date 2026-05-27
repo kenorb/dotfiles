@@ -1,9 +1,14 @@
 # Python's requirements
 # Usage: pip install -r requirements.txt
+# Note: Keep dependencies sorted alphabetically.
 ansible
 ansible-lint
+argcomplete>=1.9.4
 docker>=7.1
 jinja2-cli
+molecule
+molecule-docker
 pipenv
 pre-commit
-requests==2.31.0
+requests==2.32.5
+uv

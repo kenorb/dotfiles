@@ -18,8 +18,8 @@ jobs:
       - uses: actions/setup-python@v5
       - name: Installs shfmt
         run: >
-          sudo install /dev/stdin /usr/local/bin/shfmt
-          < <(curl -L "$SHFMT_URL")
+          curl -fsSL "$SHFMT_URL" | sudo tee /usr/local/bin/shfmt >/dev/null &&
+          sudo chmod +x /usr/local/bin/shfmt
         env:
           # yamllint disable rule:line-length
           SHFMT_URL: https://github.com/mvdan/sh/releases/download/v3.1.1/shfmt_v3.1.1_linux_amd64

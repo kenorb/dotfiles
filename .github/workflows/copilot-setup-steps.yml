@@ -1,0 +1,67 @@
+---
+# GitHub Copilot cloud agent customization.
+# <https://docs.github.com/en/copilot/how-tos/use-copilot-agents/cloud-agent/customize-the-agent-environment>
+name: Copilot Setup Steps
+env:
+  # Pin external repositories to specific SHAs for reproducibility.
+  COGNI_AI_AGENTS_REF: main
+  COGNI_AI_AGENT_INSTRUCTIONS_REF: main
+  COGNI_AI_AGENT_SKILLS_REF: main
+# yamllint disable-line rule:truthy
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - .github/workflows/copilot-setup-steps.yml
+      - .devcontainer/requirements.txt
+  pull_request:
+    paths:
+      - .github/workflows/copilot-setup-steps.yml
+      - .devcontainer/requirements.txt
+jobs:
+  copilot-setup-steps:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v6
+      - name: Clone agents
+        run: |
+          git clone --branch "$COGNI_AI_AGENTS_REF" --depth=1 \
+            https://github.com/Cogni-AI-OU/cogni-ai-agents \
+            "$HOME/.copilot/agents"
+      - name: Clone instructions
+        run: |
+          git clone --branch "$COGNI_AI_AGENT_INSTRUCTIONS_REF" --depth=1 \
+            https://github.com/Cogni-AI-OU/cogni-ai-agent-instructions \
+            "$HOME/.copilot/instructions"
+      - name: Clone skills
+        run: |
+          git clone --branch "$COGNI_AI_AGENT_SKILLS_REF" --depth=1 \
+            https://github.com/Cogni-AI-OU/cogni-ai-agent-skills \
+            "$HOME/.copilot/skills"
+      - uses: actions/setup-python@v6.2.0
+        with:
+          cache: >-
+            ${{ hashFiles('.devcontainer/requirements.txt', 'requirements.txt',
+            '**/pyproject.toml') != '' && 'pip' || '' }}
+          cache-dependency-path: |
+            .devcontainer/requirements.txt
+            requirements.txt
+            **/pyproject.toml
+          python-version: '3.12'
+      - name: Restore Python user site
+        id: python-user-site
+        uses: actions/cache@v5.0.5
+        with:
+          path: ~/.local
+          key: ${{ runner.os }}-pip-${{ hashFiles('.devcontainer/requirements.txt') }}
+      - name: Install Python dependencies
+        run: |
+          if [ -f .devcontainer/requirements.txt ]; then
+            pip install -r .devcontainer/requirements.txt
+          elif [ -f requirements.txt ]; then
+            pip install -r requirements.txt
+          fi
+      - name: Ensure local bin on PATH
+        run: echo "$HOME/.local/bin" >> "$GITHUB_PATH"
