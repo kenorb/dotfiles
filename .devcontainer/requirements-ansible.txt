@@ -1,0 +1,4 @@
+# Python packages injected into the pipx-managed Ansible environment.
+# Keep dependencies sorted alphabetically.
+docker>=7.1
+requests==2.32.5
