@@ -1,0 +1,51 @@
+---
+# Ansible playbook file.
+# Usage: ansible-playbook .devcontainer/provision.yml
+# Note: Keep keys and lists in alphabetical order.
+- name: Provision dev container
+  hosts: localhost
+  connection: local
+  become: true
+  tasks:
+    - name: Load apt packages from file
+      ansible.builtin.set_fact:
+        apt_packages: >-
+          {{ lookup('file', playbook_dir + '/apt-packages.txt').splitlines()
+          | map('trim') | reject('equalto', '') | reject('match', '^#') | list }}
+    - name: Update apt cache
+      ansible.builtin.apt:
+        update_cache: true
+    - name: Install apt packages
+      ansible.builtin.apt:
+        name: '{{ apt_packages }}'
+        state: present
+    - name: Install ansible via pipx
+      ansible.builtin.command: pipx install --include-deps ansible
+      args:
+        creates: '{{ ansible_env.HOME }}/.local/bin/ansible'
+      become: false
+    - name: Inject ansible python requirements
+      ansible.builtin.command:
+        argv:
+          - pipx
+          - runpip
+          - ansible
+          - install
+          - -r
+          - '{{ playbook_dir }}/requirements-ansible.txt'
+      become: false
+      register: pipx_runpip
+      changed_when: "'Successfully installed' in (pipx_runpip.stdout + pipx_runpip.stderr)"
+      failed_when: pipx_runpip.rc != 0
+    - name: Install python requirements
+      ansible.builtin.pip:
+        requirements: '{{ playbook_dir }}/requirements.txt'
+        extra_args: --break-system-packages --user
+        state: present
+      become: false
+    - name: Install pre-commit hooks
+      ansible.builtin.command: pre-commit install
+      args:
+        chdir: '{{ playbook_dir }}/..'
+        creates: .git/hooks/pre-commit
+      become: false
