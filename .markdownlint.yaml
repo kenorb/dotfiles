@@ -1,3 +1,11 @@
 ---
+# MD013 line-length - Line length
 MD013:
   line_length: 120
+  tables: false
+# MD033 no-inline-html - Inline HTML
+MD033:
+  allowed_elements: [details]
+# MD046 code-block-style - Code block style
+MD046:
+  style: consistent

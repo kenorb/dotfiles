@@ -1,0 +1,108 @@
+---
+# .ansible/variables-example.yml
+# Use the variables.yml file to override these values.
+# Keep the list in lexical order for easier maintenance.
+apt:
+  install:
+    - 7zip
+    - btop
+    - btrfs-progs
+    - coreutils
+    - curl
+    - fdupes
+    - figlet
+    - findutils
+    - gawk
+    - gdb
+    - gh
+    - git
+    - git-lfs
+    - gpg
+    - gzip
+    - htop
+    - iotop
+    - libhyperscan-dev
+    - libicu-dev
+    - libpcre2-dev
+    - libssl-dev
+    - libvirt-clients
+    - libzstd-dev
+    - lz4
+    - mawk
+    - net-tools  # ifconfig
+    - p7zip
+    - parallel
+    - pipenv
+    - plocate  # locate, updatedb
+    - python3-pip
+    - pv
+    - rename
+    - screen
+    - sed
+    - speedtest-cli
+    - sqlite3
+    - time
+    - tmux
+    - unrar
+    - vim
+    - wget
+    - zstd
+  releases:
+    brave: true
+    code: true
+  upgrade: true
+
+# List of files and directories to symlink into the home directory.
+dotfiles:
+  dirs:
+    .ssh: true
+    .vim: true
+  files:
+    .aliasesrc: true
+    .aliasesrc_linux: true
+    .aliasesrc_macos: true
+    .aliasesrc_rg: true
+    .bash_aliases: true
+    .bash_completion: true
+    .bash_exports: true
+    .bash_exports_linux: true
+    .bash_exports_macos: true
+    .bash_logout: true
+    .bash_options: true
+    .bash_profile: true
+    .bashrc: true
+    .ctags: true
+    .curlrc: true
+    .editorconfig: true
+    .exportsrc: true
+    .functions_unicode: true
+    .functionsrc: true
+    .gdbinit: true
+    .gitconfig: true
+    .gitignore: true
+    .gitmodules: true
+    .htaccess: true
+    .hyper.js: true
+    .inputrc: true
+    .iterm2_shell_integration.zsh: true
+    .lldbinit: true
+    .markdownlint.yaml: true
+    .mdlrc: true
+    .my.cnf: true
+    .netrc: true
+    .npmrc: true
+    .pre-commit-config.yaml: true
+    .profile: true
+    .screenrc: true
+    .terraformrc: true
+    .torrc: true
+    .trafshow: true
+    .vimrc: true
+    .wgetrc: true
+    .yamllint: true
+    .zprofile: true
+    .zshrc: true
+
+nvidia:
+  cuda_toolkit: true
+  cuda_toolkit_package: cuda-toolkit-13-1

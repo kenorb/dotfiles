@@ -10,3 +10,9 @@
 
 # Ignores lock files.
 Brewfile.lock.json
+
+# Node.js dependencies
+node_modules/
+
+# Ansible local variables
+.ansible/variables.yml

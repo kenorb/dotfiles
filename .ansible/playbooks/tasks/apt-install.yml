@@ -1,0 +1,6 @@
+---
+- name: Install APT packages from variables.yml list
+  ansible.builtin.apt:
+    name: '{{ apt.install }}'
+    state: present
+    update_cache: true
