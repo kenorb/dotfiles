@@ -16,7 +16,7 @@ sudo apt --yes install pipenv
 cd .ansible/
 cp variables-example.yml variables.yml # Modify after copy.
 pipenv sync
-pipenv run ansible-playbook -i inventory/hosts playbooks/setup-linux.yml
+pipenv run ansible-playbook -i inventory/hosts playbooks/setup-linux.yml -K
 ```
 
 ### Apply dotfiles
