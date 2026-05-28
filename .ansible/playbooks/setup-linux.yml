@@ -1,7 +1,6 @@
 ---
 - name: Setup Linux
   hosts: localhost
-  become: true
   vars_files:
     - ../variables.yml
   vars:
@@ -13,23 +12,40 @@
           - ansible_facts['distribution'] == 'Ubuntu'
           - ansible_facts['distribution_major_version'] == '24'
         fail_msg: This playbook supports Ubuntu 24.x hosts only
+      become: true
+
   tasks:
     - name: Import apt upgrade tasks
       ansible.builtin.import_tasks: tasks/apt-upgrade.yml
       when: apt.upgrade | default(true) | bool
+      become: true
+      tags: [apt, upgrade]
 
     - name: Import apt install tasks
       ansible.builtin.import_tasks: tasks/apt-install.yml
       when: apt.install is defined and (apt.install | length > 0)
+      become: true
+      tags: [apt, install]
 
     - name: Import CUDA Toolkit installation tasks
       ansible.builtin.import_tasks: tasks/cuda-toolkit.yml
       when: nvidia.cuda_toolkit | default(false) | bool
+      become: true
+      tags: [nvidia, cuda]
 
     - name: Import VS Code installation tasks
       ansible.builtin.import_tasks: tasks/apt-release-code.yml
       when: apt.releases.code | default(false) | bool
+      become: true
+      tags: [apt, code, vscode]
 
     - name: Import Brave installation tasks
       ansible.builtin.import_tasks: tasks/apt-release-brave.yml
       when: apt.releases.brave | default(false) | bool
+      become: true
+      tags: [apt, brave]
+
+    - name: Import dotfiles symlink tasks
+      ansible.builtin.import_tasks: tasks/dotfiles.yml
+      when: dotfiles is defined
+      tags: [dotfiles]

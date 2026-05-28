@@ -1,0 +1,93 @@
+- name: Check if dotfiles exist (files)
+  ansible.builtin.stat:
+    path: "{{ lookup('env', 'HOME') }}/{{ item.key }}"
+  loop: "{{ dotfiles.files | dict2items }}"
+  register: dotfiles_stat
+
+- name: Suggest manual removal if file exists and is not a symlink
+  ansible.builtin.debug:
+    msg: "Warning: {{ item.stat.path }} exists and is NOT a symlink. Consider moving or removing it and re-run again."
+  loop: "{{ dotfiles_stat.results }}"
+  when:
+    - item.item.value | bool
+    - item.stat.exists
+    - not item.stat.islnk | default(false)
+
+- name: Remove symlink if set to false (files)
+  ansible.builtin.file:
+    path: "{{ lookup('env', 'HOME') }}/{{ item.item.key }}"
+    state: absent
+  loop: "{{ dotfiles_stat.results }}"
+  when:
+    - not (item.item.value | bool)
+    - item.stat.islnk | default(false)
+
+- name: Create symlinks for dotfiles (files)
+  ansible.builtin.file:
+    src: "{{ (playbook_dir + '/../../' + item.item.key) | realpath }}"
+    dest: "{{ lookup('env', 'HOME') }}/{{ item.item.key }}"
+    state: link
+    force: false
+  loop: "{{ dotfiles_stat.results }}"
+  when:
+    - item.item.value | bool
+    - not item.stat.exists or item.stat.islnk
+
+- name: Create symlinks for dotfiles with .new extension if file exists
+  ansible.builtin.file:
+    src: "{{ (playbook_dir + '/../../' + item.item.key) | realpath }}"
+    dest: "{{ lookup('env', 'HOME') }}/{{ item.item.key }}.new"
+    state: link
+    force: true
+  loop: "{{ dotfiles_stat.results }}"
+  when:
+    - item.item.value | bool
+    - item.stat.exists
+    - not item.stat.islnk | default(false)
+
+- name: Check if dotfiles exist (directories)
+  ansible.builtin.stat:
+    path: "{{ lookup('env', 'HOME') }}/{{ item.key }}"
+  loop: "{{ dotfiles.dirs | dict2items }}"
+  register: dotdirs_stat
+
+- name: Suggest manual removal if directory exists and is not a symlink
+  ansible.builtin.debug:
+    msg: "Warning: {{ item.stat.path }} exists and is NOT a symlink. Consider moving or removing it and re-run again."
+  loop: "{{ dotdirs_stat.results }}"
+  when:
+    - item.item.value | bool
+    - item.stat.exists
+    - not item.stat.islnk | default(false)
+
+- name: Remove symlink if set to false (directories)
+  ansible.builtin.file:
+    path: "{{ lookup('env', 'HOME') }}/{{ item.item.key }}"
+    state: absent
+  loop: "{{ dotdirs_stat.results }}"
+  when:
+    - not (item.item.value | bool)
+    - item.stat.islnk | default(false)
+
+- name: Create symlinks for dotfiles (directories)
+  ansible.builtin.file:
+    src: "{{ (playbook_dir + '/../../' + item.item.key) | realpath }}"
+    dest: "{{ lookup('env', 'HOME') }}/{{ item.item.key }}"
+    state: link
+    force: false
+  loop: "{{ dotdirs_stat.results }}"
+  when:
+    - item.item.value | bool
+    - not item.stat.exists or item.stat.islnk
+
+- name: Create symlinks for dotfiles (directories) with .new extension if directory exists
+  ansible.builtin.file:
+    src: "{{ (playbook_dir + '/../../' + item.item.key) | realpath }}"
+    dest: "{{ lookup('env', 'HOME') }}/{{ item.item.key }}.new"
+    state: link
+    force: true
+  loop: "{{ dotdirs_stat.results }}"
+  when:
+    - item.item.value | bool
+    - item.stat.exists
+    - not item.stat.islnk | default(false)
