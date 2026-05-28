@@ -1,0 +1,3 @@
+---
+- import_playbook: tasks/apt-upgrade.yml
+- import_playbook: tasks/apt-install.yml

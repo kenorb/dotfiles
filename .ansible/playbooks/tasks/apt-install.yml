@@ -1,0 +1,20 @@
+---
+- name: Install listed APT packages on Ubuntu 24 hosts
+  hosts: ubuntu_24
+  become: true
+  vars:
+    apt_packages: >-
+      {{
+        lookup('ansible.builtin.file', 'files/apt-install-base.txt')
+        .splitlines()
+        | map('trim')
+        | reject('equalto', '')
+        | reject('match', '^#')
+        | list
+      }}
+  tasks:
+    - name: Install APT packages from files/apt-install-base.txt
+      ansible.builtin.apt:
+        name: '{{ apt_packages }}'
+        state: present
+        update_cache: true

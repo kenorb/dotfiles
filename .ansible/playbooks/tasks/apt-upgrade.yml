@@ -1,0 +1,9 @@
+---
+- name: Upgrade all installed APT packages on Ubuntu 24 hosts
+  hosts: ubuntu_24
+  become: true
+  tasks:
+    - name: Upgrade all installed APT packages
+      ansible.builtin.apt:
+        upgrade: dist
+        update_cache: true
