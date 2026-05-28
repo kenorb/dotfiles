@@ -25,7 +25,7 @@ apt:
     - mawk
     - net-tools  # ifconfig
     - pipenv
-    - plocate
+    - plocate  # locate, updatedb
     - python3-pip
     - pv
     - screen
