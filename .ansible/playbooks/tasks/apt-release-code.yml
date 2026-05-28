@@ -19,11 +19,17 @@
     url: https://packages.microsoft.com/keys/microsoft.asc
     dest: /etc/apt/keyrings/packages.microsoft.asc
     mode: '0644'
+  register: microsoft_gpg_key_download
+
+- name: Check for dearmored Microsoft GPG key
+  ansible.builtin.stat:
+    path: /etc/apt/keyrings/packages.microsoft.gpg
+  register: microsoft_gpg_keyring
 
 - name: Dearmor Microsoft GPG key
   ansible.builtin.command:
-    cmd: gpg --dearmor -o /etc/apt/keyrings/packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.asc
-    creates: /etc/apt/keyrings/packages.microsoft.gpg
+    cmd: gpg --dearmor --yes -o /etc/apt/keyrings/packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.asc
+  when: microsoft_gpg_key_download.changed or not microsoft_gpg_keyring.stat.exists
 
 - name: Add VS Code repository
   ansible.builtin.apt_repository:

@@ -24,7 +24,7 @@
 
     - name: Import CUDA Toolkit installation tasks
       ansible.builtin.import_tasks: tasks/cuda-toolkit.yml
-      when: nvidia.cuda_toolkit | default(true) | bool
+      when: nvidia.cuda_toolkit | default(false) | bool
 
     - name: Import VS Code installation tasks
       ansible.builtin.import_tasks: tasks/apt-release-code.yml
