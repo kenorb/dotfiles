@@ -23,6 +23,7 @@ apt:
     - libzstd-dev
     - lz4
     - mawk
+    - net-tools  # ifconfig
     - pipenv
     - plocate
     - python3-pip
