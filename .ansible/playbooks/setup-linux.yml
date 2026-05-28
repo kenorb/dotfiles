@@ -1,3 +1,10 @@
 ---
-- import_playbook: tasks/apt-upgrade.yml
-- import_playbook: tasks/apt-install.yml
+- name: Setup Linux
+  hosts: ubuntu_24
+  become: true
+  tasks:
+    - name: Import apt upgrade tasks
+      ansible.builtin.import_tasks: tasks/apt-upgrade.yml
+
+    - name: Import apt install tasks
+      ansible.builtin.import_tasks: tasks/apt-install.yml

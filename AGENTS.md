@@ -2,7 +2,6 @@
 
 Persistent single-source truth for autonomous agent behavior in this repository.
 
-
 ## Common tasks
 
 ### Before each commit
@@ -26,12 +25,10 @@ pre-commit run yamllint -a
 
 TBC
 
-
 ## Tooling
 
 - Use MCP when possible.
 - Use `pre-commit` for linting and validation if installed.
-
 
 ## Troubleshooting
 
