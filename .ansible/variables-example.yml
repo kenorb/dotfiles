@@ -32,6 +32,7 @@ apt:
     - sqlite3
     - time
     - unrar
+    - vim
   releases:
     brave: true
     code: true
