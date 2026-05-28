@@ -1,6 +1,7 @@
 {
     "chat.tools.terminal.autoApprove": {
         "locale": true,
+        "pipenv": true,
         "pre-commit": true
     }
 }

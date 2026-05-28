@@ -6,12 +6,10 @@ name = "pypi"
 [packages]
 ansible = "*"
 jinja2 = "*"
-pyyaml = "*"
-numpy = "*"
-pandas = "*"
-tensorboard = "*"
+pre-commit = "*"
 
 [dev-packages]
+ansible-lint = "*"
 
 [requires]
 python_version = "3.12"

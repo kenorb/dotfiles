@@ -1,3 +1,4 @@
+---
 - name: Check if dotfiles exist (files)
   ansible.builtin.stat:
     path: "{{ lookup('env', 'HOME') }}/{{ item.key }}"

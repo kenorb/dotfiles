@@ -30,6 +30,7 @@
   ansible.builtin.command:
     cmd: gpg --dearmor --yes -o /etc/apt/keyrings/packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.asc
   when: microsoft_gpg_key_download.changed or not microsoft_gpg_keyring.stat.exists
+  changed_when: microsoft_gpg_key_download.changed or not microsoft_gpg_keyring.stat.exists
 
 - name: Add VS Code repository
   ansible.builtin.apt_repository:
