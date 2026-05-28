@@ -1,9 +1,12 @@
 ---
 # .ansible/variables-example.yml
+# Use the variables.yml file to override these values.
+# Keep the list in lexical order for easier maintenance.
 apt:
   install:
     - 7zip
     - btop
+    - btrfs-progs
     - coreutils
     - figlet
     - findutils
