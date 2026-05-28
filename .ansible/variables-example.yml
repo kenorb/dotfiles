@@ -29,6 +29,8 @@ apt:
     - sqlite3
     - time
     - unrar
+  releases:
+    brave: true
   upgrade: true
 
 nvidia:

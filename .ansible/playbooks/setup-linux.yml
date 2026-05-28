@@ -25,3 +25,7 @@
     - name: Import CUDA Toolkit installation tasks
       ansible.builtin.import_tasks: tasks/cuda-toolkit.yml
       when: nvidia.cuda_toolkit | default(true) | bool
+
+    - name: Import Brave installation tasks
+      ansible.builtin.import_tasks: tasks/app-brave.yml
+      when: apt.releases.brave | default(false) | bool
