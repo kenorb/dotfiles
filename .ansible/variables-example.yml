@@ -8,11 +8,17 @@ apt:
     - btop
     - btrfs-progs
     - coreutils
+    - curl
+    - fdupes
     - figlet
     - findutils
+    - gawk
+    - gdb
     - gh
     - git
     - git-lfs
+    - gpg
+    - gzip
     - htop
     - iotop
     - libhyperscan-dev
@@ -24,6 +30,8 @@ apt:
     - lz4
     - mawk
     - net-tools  # ifconfig
+    - p7zip
+    - parallel
     - pipenv
     - plocate  # locate, updatedb
     - python3-pip
@@ -33,8 +41,10 @@ apt:
     - speedtest-cli
     - sqlite3
     - time
+    - tmux
     - unrar
     - vim
+    - wget
     - zstd
   releases:
     brave: true
