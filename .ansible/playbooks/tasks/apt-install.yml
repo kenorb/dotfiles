@@ -1,14 +1,6 @@
 ---
-- name: Install APT packages from files/apt-install-base.txt
+- name: Install APT packages from variables.yml list
   ansible.builtin.apt:
-    name: >-
-      {{
-        lookup('ansible.builtin.file', '../files/apt-install-base.txt')
-        .splitlines()
-        | map('trim')
-        | reject('equalto', '')
-        | reject('match', '^#')
-        | list
-      }}
+    name: '{{ apt.install }}'
     state: present
     update_cache: true

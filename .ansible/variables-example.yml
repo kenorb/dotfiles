@@ -1,5 +1,35 @@
 ---
 # .ansible/variables-example.yml
-enable_apt_upgrade: true
-enable_apt_install: true
-enable_cuda_toolkit: true
+apt:
+  install:
+    - 7zip
+    - btop
+    - coreutils
+    - figlet
+    - findutils
+    - gh
+    - git
+    - git-lfs
+    - htop
+    - iotop
+    - libhyperscan-dev
+    - libicu-dev
+    - libpcre2-dev
+    - libssl-dev
+    - libvirt-clients
+    - libzstd-dev
+    - lz4
+    - mawk
+    - pipenv
+    - plocate
+    - pv
+    - screen
+    - sed
+    - speedtest-cli
+    - sqlite3
+    - time
+    - unrar
+  upgrade: true
+
+nvidia:
+  cuda_toolkit: true
