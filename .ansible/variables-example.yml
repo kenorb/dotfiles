@@ -36,6 +36,7 @@ apt:
     - plocate  # locate, updatedb
     - python3-pip
     - pv
+    - rename
     - screen
     - sed
     - speedtest-cli
