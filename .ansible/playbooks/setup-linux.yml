@@ -1,6 +1,6 @@
 ---
 - name: Setup Linux
-  hosts: ubuntu_24
+  hosts: localhost
   become: true
   vars_files:
     - ../variables.yml

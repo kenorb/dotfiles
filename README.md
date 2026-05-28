@@ -8,10 +8,15 @@ Clone repository into your HOME dir, then execute in the repo folder:
 
 ### Ansible Setup
 
-Before running Ansible playbooks (like `setup-linux.yml`), copy the example variables file and adjust it to your needs:
+Before running Ansible playbooks (like `setup-linux.yml`),
+perform the initial setup:
 
 ```console
-dotfiles$ cp .ansible/variables-example.yml .ansible/variables.yml
+sudo apt --yes install pipenv
+cd .ansible/
+cp variables-example.yml variables.yml # Modify after copy.
+pipenv sync
+pipenv run ansible-playbook -i inventory/hosts playbooks/setup-linux.yml
 ```
 
 ### Apply dotfiles
