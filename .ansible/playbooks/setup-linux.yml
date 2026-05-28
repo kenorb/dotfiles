@@ -2,9 +2,21 @@
 - name: Setup Linux
   hosts: ubuntu_24
   become: true
+  vars:
+    cuda_toolkit_package: cuda-toolkit-13-1
+  pre_tasks:
+    - name: Validate host OS is Ubuntu 24.x
+      ansible.builtin.assert:
+        that:
+          - ansible_distribution == 'Ubuntu'
+          - ansible_distribution_major_version == '24'
+        fail_msg: This playbook supports Ubuntu 24.x hosts only
   tasks:
     - name: Import apt upgrade tasks
       ansible.builtin.import_tasks: tasks/apt-upgrade.yml
 
     - name: Import apt install tasks
       ansible.builtin.import_tasks: tasks/apt-install.yml
+
+    - name: Import CUDA Toolkit installation tasks
+      ansible.builtin.import_tasks: tasks/cuda-toolkit.yml

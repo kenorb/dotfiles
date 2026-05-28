@@ -1,0 +1,7 @@
+---
+- name: Install CUDA Toolkit 13.1 package
+  ansible.builtin.apt:
+    name: '{{ cuda_toolkit_package }}'
+    state: present
+    update_cache: true
+  when: not ansible_check_mode
