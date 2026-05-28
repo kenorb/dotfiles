@@ -14,7 +14,7 @@ permissions:
   pull-requests: write
 jobs:
   comment:
-    uses: Cogni-AI-OU/.github/.github/workflows/check-pr-comment.yml@main
+    uses: kenorb/.github/.github/workflows/check-pr-comment.yml@main
     with:
       conclusion: ${{ github.event.workflow_run.conclusion }}
       head_sha: ${{ github.event.workflow_run.head_sha }}
