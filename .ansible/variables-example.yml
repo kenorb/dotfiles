@@ -25,6 +25,7 @@ apt:
     - mawk
     - pipenv
     - plocate
+    - python3-pip
     - pv
     - screen
     - sed
