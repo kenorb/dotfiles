@@ -35,6 +35,7 @@ apt:
     - time
     - unrar
     - vim
+    - zstd
   releases:
     brave: true
     code: true
