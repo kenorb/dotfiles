@@ -71,6 +71,7 @@ dotfiles:
     .bash_options: true
     .bash_profile: true
     .bashrc: true
+    .codespellrc: true
     .ctags: true
     .curlrc: true
     .editorconfig: true
