@@ -2,6 +2,8 @@
 - name: Setup Linux
   hosts: ubuntu_24
   become: true
+  vars_files:
+    - ../variables.yml
   vars:
     cuda_toolkit_package: cuda-toolkit-13-1
   pre_tasks:
@@ -14,9 +16,12 @@
   tasks:
     - name: Import apt upgrade tasks
       ansible.builtin.import_tasks: tasks/apt-upgrade.yml
+      when: enable_apt_upgrade | default(true) | bool
 
     - name: Import apt install tasks
       ansible.builtin.import_tasks: tasks/apt-install.yml
+      when: enable_apt_install | default(true) | bool
 
     - name: Import CUDA Toolkit installation tasks
       ansible.builtin.import_tasks: tasks/cuda-toolkit.yml
+      when: enable_cuda_toolkit | default(true) | bool

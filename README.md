@@ -6,6 +6,16 @@ Various configuration files.
 
 Clone repository into your HOME dir, then execute in the repo folder:
 
+### Ansible Setup
+
+Before running Ansible playbooks (like `setup-linux.yml`), copy the example variables file and adjust it to your needs:
+
+```console
+dotfiles$ cp .ansible/variables-example.yml .ansible/variables.yml
+```
+
+### Apply dotfiles
+
 ```console
 dotfiles$ make install
 ```

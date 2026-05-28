@@ -1,0 +1,5 @@
+---
+# .ansible/variables-example.yml
+enable_apt_upgrade: true
+enable_apt_install: true
+enable_cuda_toolkit: true
