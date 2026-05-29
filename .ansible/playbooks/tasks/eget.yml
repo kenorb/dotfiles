@@ -74,36 +74,29 @@
     eget_package_map:
       alpha-miner: "-a .tar.gz --file alpha/alpha --tag v1.7.5-beta --to alpha-miner AlphaMine-Tech/alpha-miner"
       bat: >-
-        -a {{ eget_plain_arch }}-unknown-linux-{{ 'gnu' if eget_plain_arch == 'x86_64' else 'musl' }}
+        -a {{ eget_arch }}-unknown-linux-{{ 'gnu' if eget_arch == 'x86_64' else 'musl' }}
         -a tar.gz sharkdp/bat
       btop: "-a btop-{{ eget_plain_arch }}-unknown-linux-musl.tar.gz aristocratos/btop"
       duf: "-a linux_{{ eget_arch }}.tar.gz muesli/duf"
       eza: "-a {{ eget_plain_arch }}-unknown-linux-gnu -a ^no_libgit -a tar.gz eza-community/eza"
-      fd: "-a {{ eget_plain_arch }}-unknown-linux-gnu -a tar.gz sharkdp/fd"
+      fd: "-a {{ eget_arch }}-unknown-linux-gnu -a tar.gz sharkdp/fd"
       jq: >-
-        -a {{ 'linux-amd64' if eget_arch == 'x86_64' else 'linux-arm64' if eget_arch == 'arm64' else 'linux-arm' }}
+        -a {{ 'linux64' if eget_arch == 'x86_64' else 'linux-arm64' if eget_arch == 'arm64' else 'linux-arm' }}
         jqlang/jq
       pandoc: "-a linux-{{ 'amd64' if eget_arch == 'x86_64' else 'arm64' }}.tar.gz jgm/pandoc"
-      rg: >-
-        -a {{ eget_plain_arch }}-unknown-linux-{{ 'musl' if eget_plain_arch == 'x86_64' else 'gnu' }}.tar.gz
-        BurntSushi/ripgrep
-      tealdeer: "-a tealdeer-linux-{{ eget_plain_arch }}-musl -a ^sha256 tealdeer-rs/tealdeer"
+      rg: "-a {{ eget_plain_arch }}-unknown-linux-musl.tar.gz BurntSushi/ripgrep"
+      tealdeer: "-a tealdeer-linux-{{ eget_arch }}-musl -a ^sha256 dbrgn/tealdeer"
       vale: "-a {{ 'Linux_64-bit' if eget_arch == 'x86_64' else 'Linux_arm64' }}.tar.gz errata-ai/vale"
       yq: "-a ^.tar.gz mikefarah/yq"
 
 - name: Install eget packages
   ansible.builtin.shell:
     cmd: "eget {{ eget_package_map[item] }} && sleep 1"
+    creates: "{{ ansible_facts['user_dir'] }}/.local/bin/{{ item }}"
   environment:
     EGET_BIN: "{{ ansible_facts['user_dir'] }}/.local/bin"
     PATH: "{{ ansible_facts['user_dir'] }}/.local/bin:{{ ansible_facts['env']['PATH'] }}"
   loop: "{{ eget_packages | default([]) }}"
-  register: eget_install_result
-  changed_when: >
-    'Downloaded' in eget_install_result.stdout or
-    'Extracted' in eget_install_result.stdout or
-    'Updated' in eget_install_result.stdout
-  when: >
-    eget_packages is defined and item in eget_package_map and
-    (ansible_run_tags | intersect(['upgrade', 'eget-upgrade']) | length > 0 or
-    not (ansible_facts['user_dir'] ~ '/.local/bin/' ~ item) is exists)
+  register: eget_install_results
+  changed_when: "'Downloaded' in eget_install_results.stdout or 'Extracted' in eget_install_results.stdout"
+  when: eget_packages is defined and item in eget_package_map
