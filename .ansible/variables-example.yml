@@ -75,6 +75,7 @@ dotfiles:
     .ctags: true
     .curlrc: true
     .editorconfig: true
+    .eget.toml: true
     .exportsrc: true
     .functions_unicode: true
     .functionsrc: true
