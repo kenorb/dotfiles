@@ -45,6 +45,11 @@
       become: true
       tags: [apt, brave]
 
+    - name: Import eget installation tasks
+      ansible.builtin.import_tasks: tasks/eget.yml
+      when: eget | default(false) | bool
+      tags: [eget, upgrade, install]
+
     - name: Import dotfiles symlink tasks
       ansible.builtin.import_tasks: tasks/dotfiles.yml
       when: dotfiles is defined

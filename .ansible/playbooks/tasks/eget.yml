@@ -1,0 +1,102 @@
+---
+- name: Ensure ~/.local/bin exists
+  ansible.builtin.file:
+    path: "{{ ansible_facts['user_dir'] }}/.local/bin"
+    state: directory
+    mode: '0755'
+
+- name: Check if eget is already installed
+  ansible.builtin.stat:
+    path: "{{ ansible_facts['user_dir'] }}/.local/bin/eget"
+  register: eget_stat
+
+- name: Get latest release of eget
+  ansible.builtin.uri:
+    url: https://api.github.com/repos/zyedidia/eget/releases/latest
+    return_content: true
+  register: eget_latest
+  when: not eget_stat.stat.exists
+
+- name: Set eget facts
+  ansible.builtin.set_fact:
+    eget_version: "{{ eget_latest.json.tag_name | regex_replace('^v', '') }}"
+    eget_platform: >-
+      linux_{{
+        'amd64' if ansible_facts['architecture'] == 'x86_64'
+        else 'arm64' if ansible_facts['architecture'] == 'aarch64'
+        else 'arm'
+      }}
+  when: not eget_stat.stat.exists
+
+- name: Create temporary directory for eget
+  ansible.builtin.tempfile:
+    state: directory
+    suffix: eget
+  register: eget_tmp
+  when: not eget_stat.stat.exists
+
+- name: Download and extract eget
+  ansible.builtin.unarchive:
+    src: >-
+      https://github.com/zyedidia/eget/releases/download/v{{ eget_version }}/eget-{{
+        eget_version }}-{{ eget_platform }}.tar.gz
+    dest: "{{ eget_tmp.path }}"
+    remote_src: true
+    extra_opts:
+      - "--strip-components=1"
+      - "eget-{{ eget_version }}-{{ eget_platform }}/eget"
+  when: not eget_stat.stat.exists
+
+- name: Install eget to ~/.local/bin
+  ansible.builtin.copy:
+    src: "{{ eget_tmp.path }}/eget"
+    dest: "{{ ansible_facts['user_dir'] }}/.local/bin/eget"
+    mode: '0755'
+    remote_src: true
+  when: not eget_stat.stat.exists
+
+- name: Cleanup temporary directory
+  ansible.builtin.file:
+    path: "{{ eget_tmp.path }}"
+    state: absent
+  when: not eget_stat.stat.exists and eget_tmp.path is defined
+
+- name: Define eget package mapping
+  ansible.builtin.set_fact:
+    eget_arch: >-
+      {{ 'x86_64' if ansible_facts['architecture'] == 'x86_64'
+      else 'arm64' if ansible_facts['architecture'] == 'aarch64'
+      else 'arm' }}
+    eget_plain_arch: "{{ ansible_facts['architecture'] }}"
+
+- name: Set architecture-aware package mappings
+  ansible.builtin.set_fact:
+    eget_package_map:
+      alpha-miner: "-a .tar.gz --file alpha/alpha --tag v1.7.5-beta --to alpha-miner AlphaMine-Tech/alpha-miner"
+      bat: >-
+        -a {{ eget_arch }}-unknown-linux-{{ 'gnu' if eget_arch == 'x86_64' else 'musl' }}
+        -a tar.gz sharkdp/bat
+      btop: "-a btop-{{ eget_plain_arch }}-unknown-linux-musl.tar.gz aristocratos/btop"
+      duf: "-a linux_{{ eget_arch }}.tar.gz muesli/duf"
+      eza: "-a {{ eget_plain_arch }}-unknown-linux-gnu -a ^no_libgit -a tar.gz eza-community/eza"
+      fd: "-a {{ eget_arch }}-unknown-linux-gnu -a tar.gz sharkdp/fd"
+      jq: >-
+        -a {{ 'linux64' if eget_arch == 'x86_64' else 'linux-arm64' if eget_arch == 'arm64' else 'linux-arm' }}
+        jqlang/jq
+      pandoc: "-a linux-{{ 'amd64' if eget_arch == 'x86_64' else 'arm64' }}.tar.gz jgm/pandoc"
+      rg: "-a {{ eget_plain_arch }}-unknown-linux-musl.tar.gz BurntSushi/ripgrep"
+      tealdeer: "-a tealdeer-linux-{{ eget_arch }}-musl -a ^sha256 dbrgn/tealdeer"
+      vale: "-a {{ 'Linux_64-bit' if eget_arch == 'x86_64' else 'Linux_arm64' }}.tar.gz errata-ai/vale"
+      yq: "-a ^.tar.gz mikefarah/yq"
+
+- name: Install eget packages
+  ansible.builtin.shell:
+    cmd: "eget {{ eget_package_map[item] }} && sleep 1"
+    creates: "{{ ansible_facts['user_dir'] }}/.local/bin/{{ item }}"
+  environment:
+    EGET_BIN: "{{ ansible_facts['user_dir'] }}/.local/bin"
+    PATH: "{{ ansible_facts['user_dir'] }}/.local/bin:{{ ansible_facts['env']['PATH'] }}"
+  loop: "{{ eget_packages | default([]) }}"
+  register: eget_install_results
+  changed_when: "'Downloaded' in eget_install_results.stdout or 'Extracted' in eget_install_results.stdout"
+  when: eget_packages is defined and item in eget_package_map

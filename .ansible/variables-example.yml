@@ -5,7 +5,6 @@
 apt:
   install:
     - 7zip
-    - btop
     - btrfs-progs
     - coreutils
     - curl
@@ -75,6 +74,7 @@ dotfiles:
     .ctags: true
     .curlrc: true
     .editorconfig: true
+    .eget.toml: true
     .exportsrc: true
     .functions_unicode: true
     .functionsrc: true
@@ -87,6 +87,7 @@ dotfiles:
     .inputrc: true
     .iterm2_shell_integration.zsh: true
     .lldbinit: true
+    .lycheeignore: true
     .markdownlint.yaml: true
     .mdlrc: true
     .my.cnf: true
@@ -103,6 +104,21 @@ dotfiles:
     .yamllint: true
     .zprofile: true
     .zshrc: true
+
+eget: true
+eget_packages:
+  - alpha-miner
+  - bat
+  - btop
+  - duf
+  - eza
+  - fd
+  - jq
+  - pandoc
+  - rg
+  - tealdeer
+  - vale
+  - yq
 
 nvidia:
   cuda_toolkit: true

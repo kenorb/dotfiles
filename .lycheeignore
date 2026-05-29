@@ -1,0 +1,11 @@
+# Lychee config to exclude links
+# @docs: <https://lychee.cli.rs/recipes/excluding-links/>
+# Keep the order sorted.
+
+^https?://127\.0\.0\.1
+^https?://example\.com
+^https?://localhost
+
+# Placeholders and templates
+^https://github\.com/org/repo
+^https://github\.com/zyedidia/eget/releases/download/v

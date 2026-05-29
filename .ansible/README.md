@@ -5,21 +5,21 @@ These playbooks are used to set up and configure your Linux environment autonomo
 ## Requirements
 
 - `pipenv`
+  Install by: `sudo apt --yes install pipenv`
 - `ansible` (installed via Pipenv)
 
 ## Usage
 
-Before running the playbooks, ensure you have your `variables.yml` set up:
+Before running the playbook, ensure you have your `variables.yml` set up:
 
 ```bash
-cd .ansible/
-cp variables-example.yml variables.yml
-# Edit variables.yml to your liking
+cp variables-example.yml variables.yml # Modify after copy.
 ```
 
 Run the setup playbook:
 
 ```bash
+pipenv sync
 pipenv run ansible-playbook -i inventory/hosts playbooks/setup-linux.yml -K
 ```
 
@@ -30,13 +30,14 @@ You can use tags to run specific parts of the playbook using the `--tags` flag.
 | Tag | Description |
 | --- | --- |
 | `apt` | Runs all APT related tasks (upgrade, install, releases). |
-| `upgrade` | Performs `apt upgrade`. |
-| `install` | Installs the list of packages defined in `apt.install`. |
-| `dotfiles` | Manages symlinks for dotfiles in your home directory. |
-| `nvidia` | Handles NVIDIA/CUDA related installations. |
-| `cuda` | Specific tasks for CUDA Toolkit. |
-| `vscode` | Installs Visual Studio Code. |
 | `brave` | Installs Brave Browser. |
+| `cuda` | Specific tasks for CUDA Toolkit. |
+| `dotfiles` | Manages symlinks for dotfiles in your home directory. |
+| `eget` | Installs `eget` and configured binary packages. |
+| `install` | Installs the list of packages defined in `apt.install` and `eget` packages. |
+| `nvidia` | Handles NVIDIA/CUDA related installations. |
+| `upgrade` | Performs `apt upgrade` and updates `eget` packages. |
+| `vscode` | Installs Visual Studio Code. |
 
 Example:
 
@@ -54,7 +55,8 @@ The `setup-linux.yml` playbook performs the following operations:
 3. **CUDA Toolkit**: Configures and installs NVIDIA CUDA drivers and toolkit.
 4. **VS Code**: Adds the Microsoft repository and installs Visual Studio Code.
 5. **Brave Browser**: Adds the Brave repository and installs the browser.
-6. **Dotfiles**: Symlinks configuration files from this repository into your `$HOME`.
+6. **Eget**: Installs the `eget` binary and a set of useful CLI tools to `~/.local/bin`.
+7. **Dotfiles**: Symlinks configuration files from this repository into your `$HOME`.
 
 ### Note on Dotfiles Conflicts
 
