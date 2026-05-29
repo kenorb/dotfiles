@@ -276,12 +276,9 @@ cask "google-cloud-sdk"
 cask 'dashlane'
 
 # Casks (Social).
-cask "google-hangouts"
 cask "mplayerx"
 cask "openemu"
 cask "qbittorrent"
-cask "skype"
-cask "skype" unless system "test -d /Applications/Skype.app"
 cask "slack" unless system "test -d /Applications/Slack.app"
 cask "steam"
 cask "the-unarchiver"

@@ -1,0 +1,25 @@
+---
+- name: Install CUDA Toolkit 13.1 package
+  ansible.builtin.apt:
+    name: '{{ cuda_toolkit_package }}'
+    state: present
+    update_cache: true
+  when: not ansible_check_mode
+
+- name: Run nvidia-smi to verify driver status
+  ansible.builtin.command: nvidia-smi
+  register: nvidia_smi_result
+  ignore_errors: true
+  changed_when: false
+  when: not ansible_check_mode
+
+- name: Warn that system needs reboot if nvidia-smi failed
+  ansible.builtin.debug:
+    msg: >
+      nvidia-smi failed with exit code {{ nvidia_smi_result.rc | default('unknown') }}.
+      Often caused by NVML driver/library version mismatch.
+      THE SYSTEM NEEDS A REBOOT!
+      Details: {{ nvidia_smi_result.stderr | default(nvidia_smi_result.stdout | default('None')) }}
+  when:
+    - not ansible_check_mode
+    - nvidia_smi_result.failed

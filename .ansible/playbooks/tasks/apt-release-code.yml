@@ -1,0 +1,47 @@
+---
+- name: Install dependencies for VS Code
+  ansible.builtin.apt:
+    name:
+      - wget
+      - gpg
+      - apt-transport-https
+    state: present
+    update_cache: true
+
+- name: Create keyrings directory
+  ansible.builtin.file:
+    path: /etc/apt/keyrings
+    state: directory
+    mode: '0755'
+
+- name: Download Microsoft GPG key
+  ansible.builtin.get_url:
+    url: https://packages.microsoft.com/keys/microsoft.asc
+    dest: /etc/apt/keyrings/packages.microsoft.asc
+    mode: '0644'
+  register: microsoft_gpg_key_download
+
+- name: Check for dearmored Microsoft GPG key
+  ansible.builtin.stat:
+    path: /etc/apt/keyrings/packages.microsoft.gpg
+  register: microsoft_gpg_keyring
+
+- name: Dearmor Microsoft GPG key
+  ansible.builtin.command:
+    cmd: gpg --dearmor --yes -o /etc/apt/keyrings/packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.asc
+  when: microsoft_gpg_key_download.changed or not microsoft_gpg_keyring.stat.exists
+  changed_when: microsoft_gpg_key_download.changed or not microsoft_gpg_keyring.stat.exists
+
+- name: Add VS Code repository
+  ansible.builtin.apt_repository:
+    repo: >-
+      deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg]
+      https://packages.microsoft.com/repos/code stable main
+    filename: vscode
+    state: present
+
+- name: Install VS Code
+  ansible.builtin.apt:
+    name: code
+    state: present
+    update_cache: true
