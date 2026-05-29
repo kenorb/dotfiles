@@ -111,18 +111,18 @@ dotfiles:
 
 eget: true
 eget_packages:
-  - alpha-miner
-  - bat
-  - btop
-  - duf
-  - eza
-  - fd
-  - jq
-  - pandoc
-  - rg
-  - tealdeer
-  - vale
-  - yq
+  - alpha-miner  # Fastest Available Pearl Mining Software (AlphaMine-Tech/alpha-miner)
+  - bat          # A cat(1) clone with wings (sharkdp/bat)
+  - btop         # Resource monitor that shows usage and stats (aristocratos/btop)
+  - duf          # Disk Usage/Free Utility - a better 'df' (muesli/duf)
+  - eza          # A modern, maintained replacement for 'ls' (eza-community/eza)
+  - fd           # A simple, fast and user-friendly alternative to 'find' (sharkdp/fd)
+  - jq           # Command-line JSON processor (jqlang/jq)
+  - pandoc       # Universal markup converter (jgm/pandoc)
+  - rg           # ripgrep recursively searches directories for a regex pattern (BurntSushi/ripgrep)
+  - tealdeer     # A fast tldr client written in Rust (dbrgn/tealdeer)
+  - vale         # A syntax-aware linter for prose (errata-ai/vale)
+  - yq           # Portable command-line YAML, JSON, XML, CSV, TOML and properties processor (mikefarah/yq)
 
 nvidia:
   cuda_toolkit: true
