@@ -19,7 +19,7 @@
 
 - name: Set eget facts
   ansible.builtin.set_fact:
-    eget_version: "{{ eget_latest.json.tag_name | replace('v', '') }}"
+    eget_version: "{{ eget_latest.json.tag_name | regex_replace('^v', '') }}"
     eget_platform: >-
       linux_{{
         'amd64' if ansible_architecture == 'x86_64'
