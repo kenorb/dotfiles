@@ -59,16 +59,22 @@
 - name: Define eget package mapping
   ansible.builtin.set_fact:
     eget_package_map:
+      bat: "-a x86_64-unknown-linux-gnu -a tar.gz sharkdp/bat"
+      btop: "-a btop-x86_64-unknown-linux-musl.tar.gz aristocratos/btop"
+      duf: "-a linux_x86_64.tar.gz muesli/duf"
       exa: "-a linux-x86_64 -a ^musl ogham/exa"
-      fd: "-a x86_64-unknown-linux-gnu sharkdp/fd"
+      fd: "-a x86_64-unknown-linux-gnu -a tar.gz sharkdp/fd"
       jq: "-a linux64 jqlang/jq"
-      pandoc: "jgm/pandoc"
-      rg: "BurntSushi/ripgrep"
+      pandoc: "-a linux-amd64.tar.gz jgm/pandoc"
+      rg: "-a x86_64-unknown-linux-musl.tar.gz BurntSushi/ripgrep"
+      tealdeer: "-a tealdeer-linux-x86_64-musl -a ^sha256 dbrgn/tealdeer"
+      vale: "-a Linux_64-bit.tar.gz errata-ai/vale"
       yq: "-a ^.tar.gz mikefarah/yq"
 
 - name: Install eget packages
-  ansible.builtin.command:
-    cmd: "eget {{ eget_package_map[item] }}"
+  ansible.builtin.shell:
+    cmd: "eget {{ eget_package_map[item] }} && sleep 1"
+    creates: "{{ lookup('env', 'HOME') }}/.local/bin/{{ item }}"
   environment:
     EGET_BIN: "{{ lookup('env', 'HOME') }}/.local/bin"
     PATH: "{{ lookup('env', 'HOME') }}/.local/bin:{{ ansible_facts['env']['PATH'] }}"

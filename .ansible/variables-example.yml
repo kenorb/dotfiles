@@ -106,11 +106,16 @@ dotfiles:
 
 eget: true
 eget_packages:
+  - bat
+  - btop
+  - duf
   - exa
   - fd
   - jq
   - pandoc
   - rg
+  - tealdeer
+  - vale
   - yq
 
 nvidia:
