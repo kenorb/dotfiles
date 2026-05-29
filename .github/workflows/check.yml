@@ -1,26 +1,13 @@
 ---
 name: Check
-
-# yamllint disable-line rule:truthy
 on:
   pull_request:
   push:
-
+  schedule:
+    - cron: 0 0 * * 1  # Run every Monday at 00:00 UTC
+  workflow_dispatch:
 jobs:
-  Pre-commit:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/cache@v4
-        with:
-          path: ~/.cache/pre-commit
-          key: pre-commit|${{ hashFiles('.pre-commit-config.yaml') }}
-      - uses: actions/setup-python@v5
-      - name: Installs shfmt
-        run: >
-          curl -fsSL "$SHFMT_URL" | sudo tee /usr/local/bin/shfmt >/dev/null &&
-          sudo chmod +x /usr/local/bin/shfmt
-        env:
-          # yamllint disable rule:line-length
-          SHFMT_URL: https://github.com/mvdan/sh/releases/download/v3.1.1/shfmt_v3.1.1_linux_amd64
-      - uses: pre-commit/action@v3.0.1
+  check:
+    uses: kenorb/.github/.github/workflows/check.yml@main
+    with:
+      submodules: 'false'  # Set to 'true' or 'recursive' if repository uses submodules

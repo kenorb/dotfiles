@@ -1,5 +1,7 @@
 {
     "chat.tools.terminal.autoApprove": {
+        "git rev-parse": true,
+        "git submodule": true,
         "locale": true,
         "pipenv": true,
         "pre-commit": true

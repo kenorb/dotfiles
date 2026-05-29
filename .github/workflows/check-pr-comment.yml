@@ -1,0 +1,22 @@
+---
+name: Check — PR Comment
+# yamllint disable-line rule:truthy
+on:
+  workflow_run:
+    workflows:
+      - Check
+    types:
+      - completed
+permissions:
+  actions: read
+  checks: read
+  issues: write
+  pull-requests: write
+jobs:
+  comment:
+    uses: kenorb/.github/.github/workflows/check-pr-comment.yml@main
+    with:
+      conclusion: ${{ github.event.workflow_run.conclusion }}
+      head_sha: ${{ github.event.workflow_run.head_sha }}
+      run_id: ${{ github.event.workflow_run.id }}
+      run_url: ${{ github.event.workflow_run.html_url }}

@@ -35,13 +35,13 @@
 
     - name: Import VS Code installation tasks
       ansible.builtin.import_tasks: tasks/apt-release-code.yml
-      when: apt.releases.code | default(false) | bool
+      when: (apt.releases.code | default(false)) if apt.releases is defined else false
       become: true
       tags: [apt, code, vscode]
 
     - name: Import Brave installation tasks
       ansible.builtin.import_tasks: tasks/apt-release-brave.yml
-      when: apt.releases.brave | default(false) | bool
+      when: (apt.releases.brave | default(false)) if apt.releases is defined else false
       become: true
       tags: [apt, brave]
 
