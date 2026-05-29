@@ -5,7 +5,6 @@
 apt:
   install:
     - 7zip
-    - btop
     - btrfs-progs
     - coreutils
     - curl
@@ -111,7 +110,7 @@ eget_packages:
   - bat
   - btop
   - duf
-  - exa
+  - eza
   - fd
   - jq
   - pandoc
