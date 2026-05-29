@@ -1,7 +1,7 @@
 ---
 - name: Check if dotfiles exist (files)
   ansible.builtin.stat:
-    path: "{{ lookup('env', 'HOME') }}/{{ item.key }}"
+    path: "{{ ansible_user_dir }}/{{ item.key }}"
   loop: "{{ dotfiles.files | dict2items }}"
   register: dotfiles_stat
 
@@ -16,7 +16,7 @@
 
 - name: Remove symlink if set to false (files)
   ansible.builtin.file:
-    path: "{{ lookup('env', 'HOME') }}/{{ item.item.key }}"
+    path: "{{ ansible_user_dir }}/{{ item.item.key }}"
     state: absent
   loop: "{{ dotfiles_stat.results }}"
   when:
@@ -26,7 +26,7 @@
 - name: Create symlinks for dotfiles (files)
   ansible.builtin.file:
     src: "{{ (playbook_dir + '/../../' + item.item.key) | realpath }}"
-    dest: "{{ lookup('env', 'HOME') }}/{{ item.item.key }}"
+    dest: "{{ ansible_user_dir }}/{{ item.item.key }}"
     state: link
     force: false
   loop: "{{ dotfiles_stat.results }}"
@@ -37,7 +37,7 @@
 - name: Create symlinks for dotfiles with .new extension if file exists
   ansible.builtin.file:
     src: "{{ (playbook_dir + '/../../' + item.item.key) | realpath }}"
-    dest: "{{ lookup('env', 'HOME') }}/{{ item.item.key }}.new"
+    dest: "{{ ansible_user_dir }}/{{ item.item.key }}.new"
     state: link
     force: true
   loop: "{{ dotfiles_stat.results }}"
@@ -48,7 +48,7 @@
 
 - name: Check if dotfiles exist (directories)
   ansible.builtin.stat:
-    path: "{{ lookup('env', 'HOME') }}/{{ item.key }}"
+    path: "{{ ansible_user_dir }}/{{ item.key }}"
   loop: "{{ dotfiles.dirs | dict2items }}"
   register: dotdirs_stat
 
@@ -63,7 +63,7 @@
 
 - name: Remove symlink if set to false (directories)
   ansible.builtin.file:
-    path: "{{ lookup('env', 'HOME') }}/{{ item.item.key }}"
+    path: "{{ ansible_user_dir }}/{{ item.item.key }}"
     state: absent
   loop: "{{ dotdirs_stat.results }}"
   when:
@@ -73,7 +73,7 @@
 - name: Create symlinks for dotfiles (directories)
   ansible.builtin.file:
     src: "{{ (playbook_dir + '/../../' + item.item.key) | realpath }}"
-    dest: "{{ lookup('env', 'HOME') }}/{{ item.item.key }}"
+    dest: "{{ ansible_user_dir }}/{{ item.item.key }}"
     state: link
     force: false
   loop: "{{ dotdirs_stat.results }}"
@@ -84,7 +84,7 @@
 - name: Create symlinks for dotfiles (directories) with .new extension if directory exists
   ansible.builtin.file:
     src: "{{ (playbook_dir + '/../../' + item.item.key) | realpath }}"
-    dest: "{{ lookup('env', 'HOME') }}/{{ item.item.key }}.new"
+    dest: "{{ ansible_user_dir }}/{{ item.item.key }}.new"
     state: link
     force: true
   loop: "{{ dotdirs_stat.results }}"
