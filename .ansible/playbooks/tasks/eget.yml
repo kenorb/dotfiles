@@ -1,4 +1,10 @@
 ---
+- name: Ensure ~/.local/bin exists
+  ansible.builtin.file:
+    path: "{{ lookup('env', 'HOME') }}/.local/bin"
+    state: directory
+    mode: '0755'
+
 - name: Check if eget is already installed
   ansible.builtin.command: eget --version
   register: eget_check
