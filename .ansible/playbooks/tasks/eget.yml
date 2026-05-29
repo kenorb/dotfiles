@@ -1,0 +1,78 @@
+---
+- name: Check if eget is already installed
+  ansible.builtin.command: eget --version
+  register: eget_check
+  ignore_errors: true
+  changed_when: false
+
+- name: Get latest release of eget
+  ansible.builtin.uri:
+    url: https://api.github.com/repos/zyedidia/eget/releases/latest
+    return_content: true
+  register: eget_latest
+  when: eget_check.failed
+
+- name: Set eget facts
+  ansible.builtin.set_fact:
+    eget_version: "{{ eget_latest.json.tag_name | replace('v', '') }}"
+    eget_platform: >-
+      linux_{{
+        'amd64' if ansible_architecture == 'x86_64'
+        else 'arm64' if ansible_architecture == 'aarch64'
+        else 'arm'
+      }}
+  when: eget_check.failed
+
+- name: Create temporary directory for eget
+  ansible.builtin.tempfile:
+    state: directory
+    suffix: eget
+  register: eget_tmp
+  when: eget_check.failed
+
+- name: Download and extract eget
+  ansible.builtin.unarchive:
+    src: >-
+      https://github.com/zyedidia/eget/releases/download/v{{ eget_version }}/eget-{{
+        eget_version }}-{{ eget_platform }}.tar.gz
+    dest: "{{ eget_tmp.path }}"
+    remote_src: true
+    extra_opts:
+      - "--strip-components=1"
+      - "eget-{{ eget_version }}-{{ eget_platform }}/eget"
+  when: eget_check.failed
+
+- name: Install eget to ~/.local/bin
+  ansible.builtin.copy:
+    src: "{{ eget_tmp.path }}/eget"
+    dest: "{{ lookup('env', 'HOME') }}/.local/bin/eget"
+    mode: '0755'
+    remote_src: true
+  when: eget_check.failed
+
+- name: Cleanup temporary directory
+  ansible.builtin.file:
+    path: "{{ eget_tmp.path }}"
+    state: absent
+  when: eget_check.failed and eget_tmp.path is defined
+
+- name: Define eget package mapping
+  ansible.builtin.set_fact:
+    eget_package_map:
+      exa: "-a linux-x86_64 -a ^musl ogham/exa"
+      fd: "-a x86_64-unknown-linux-gnu sharkdp/fd"
+      jq: "-a linux64 jqlang/jq"
+      pandoc: "jgm/pandoc"
+      rg: "BurntSushi/ripgrep"
+      yq: "-a ^.tar.gz mikefarah/yq"
+
+- name: Install eget packages
+  ansible.builtin.command:
+    cmd: "eget {{ eget_package_map[item] }}"
+  environment:
+    EGET_BIN: "{{ lookup('env', 'HOME') }}/.local/bin"
+    PATH: "{{ lookup('env', 'HOME') }}/.local/bin:{{ ansible_facts['env']['PATH'] }}"
+  loop: "{{ eget_packages | default([]) }}"
+  register: eget_install_results
+  changed_when: "'Downloaded' in eget_install_results.stdout or 'Extracted' in eget_install_results.stdout"
+  when: eget_packages is defined and item in eget_package_map

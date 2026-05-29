@@ -104,6 +104,15 @@ dotfiles:
     .zprofile: true
     .zshrc: true
 
+eget: true
+eget_packages:
+  - exa
+  - fd
+  - jq
+  - pandoc
+  - rg
+  - yq
+
 nvidia:
   cuda_toolkit: true
   cuda_toolkit_package: cuda-toolkit-13-1
