@@ -61,7 +61,7 @@
     "bat": "eget -a x86_64-unknown-linux-gnu -a tar.gz sharkdp/bat",
     "btop": "eget -a btop-x86_64-unknown-linux-musl.tar.gz aristocratos/btop",
     "duf": "eget -a linux_x86_64.tar.gz muesli/duf",
-    "eza": "eget -a linux-x86_64 -a ^musl eza-community/eza",
+    "eza": "eget -a x86_64-unknown-linux-gnu -a ^no_libgit -a tar.gz eza-community/eza",
     "fd": "eget -a x86_64-unknown-linux-gnu -a tar.gz sharkdp/fd",
     "jq": "eget -a linux64 jqlang/jq",
     "pandoc": "eget -a linux-amd64.tar.gz jgm/pandoc",
