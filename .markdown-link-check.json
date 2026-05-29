@@ -2,28 +2,19 @@
   "aliveStatusCodes": [200, 206],
   "ignorePatterns": [
     {
-      "pattern": "^http://localhost"
+      "pattern": "^https?://localhost"
     },
     {
-      "pattern": "^https://localhost"
+      "pattern": "^https?://127\\.0\\.0\\.1"
     },
     {
-      "pattern": "^http://127.0.0.1"
+      "pattern": "^https?://example\\.com"
     },
     {
-      "pattern": "^https://127.0.0.1"
+      "pattern": "^https://github\\.com/kenorb/dotfiles"
     },
     {
-      "pattern": "^http://example.com"
-    },
-    {
-      "pattern": "^https://example.com"
-    },
-    {
-      "pattern": "^https://github.com/org/repo"
-    },
-    {
-      "pattern": "^https://github.com/zyedidia/eget/releases/download/v"
+      "pattern": "^https://github\\.com/zyedidia/eget/releases/download/v"
     }
   ],
   "retryCount": 3,

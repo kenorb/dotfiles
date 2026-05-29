@@ -54,20 +54,23 @@
 
   // Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
   "remoteUser": "vscode",
+  "containerEnv": {
+    "EGET_BIN": "/home/vscode/.local/bin"
+  },
   // Note: Python dependencies can be added in the `requirements.txt` file.
   "onCreateCommand": "sudo apt-get update && sudo DEBIAN_FRONTEND=noninteractive apt-get install -y ansible && ansible-playbook .devcontainer/provision.yml",
 
   "postCreateCommand": {
-    "bat": "eget -a x86_64-unknown-linux-gnu -a tar.gz sharkdp/bat",
-    "btop": "eget -a btop-x86_64-unknown-linux-musl.tar.gz aristocratos/btop",
-    "duf": "eget -a linux_x86_64.tar.gz muesli/duf",
-    "eza": "eget -a x86_64-unknown-linux-gnu -a ^no_libgit -a tar.gz eza-community/eza",
-    "fd": "eget -a x86_64-unknown-linux-gnu -a tar.gz sharkdp/fd",
-    "jq": "eget -a linux64 jqlang/jq",
-    "pandoc": "eget -a linux-amd64.tar.gz jgm/pandoc",
-    "rg": "eget -a x86_64-unknown-linux-musl.tar.gz BurntSushi/ripgrep",
-    "tealdeer": "eget -a tealdeer-linux-x86_64-musl -a ^sha256 dbrgn/tealdeer",
-    "vale": "eget -a Linux_64-bit.tar.gz errata-ai/vale",
-    "yq": "eget -a ^.tar.gz mikefarah/yq"
+    "bat": "eget sharkdp/bat",
+    "btop": "eget aristocratos/btop",
+    "duf": "eget muesli/duf",
+    "eza": "eget eza-community/eza",
+    "fd": "eget sharkdp/fd",
+    "jq": "eget jqlang/jq",
+    "pandoc": "eget jgm/pandoc",
+    "rg": "eget BurntSushi/ripgrep",
+    "tealdeer": "eget tealdeer-rs/tealdeer",
+    "vale": "eget errata-ai/vale",
+    "yq": "eget mikefarah/yq"
   }
 }

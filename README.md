@@ -8,7 +8,7 @@ Clone repository into your HOME dir, then execute in the repo folder:
 
 ### Ansible Setup
 
-Follow steps from: [`./ansible/README.md`](./ansible/README.md)
+Follow steps from: [`.ansible/README.md`](./.ansible/README.md)
 
 ## Development
 
