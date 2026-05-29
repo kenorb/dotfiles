@@ -88,6 +88,7 @@ dotfiles:
     .inputrc: true
     .iterm2_shell_integration.zsh: true
     .lldbinit: true
+    .lycheeignore: true
     .markdownlint.yaml: true
     .mdlrc: true
     .my.cnf: true
