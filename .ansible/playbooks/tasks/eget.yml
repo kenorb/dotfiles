@@ -6,17 +6,16 @@
     mode: '0755'
 
 - name: Check if eget is already installed
-  ansible.builtin.command: eget --version
-  register: eget_check
-  ignore_errors: true
-  changed_when: false
+  ansible.builtin.stat:
+    path: "{{ ansible_user_dir }}/.local/bin/eget"
+  register: eget_stat
 
 - name: Get latest release of eget
   ansible.builtin.uri:
     url: https://api.github.com/repos/zyedidia/eget/releases/latest
     return_content: true
   register: eget_latest
-  when: eget_check.failed
+  when: not eget_stat.stat.exists
 
 - name: Set eget facts
   ansible.builtin.set_fact:
@@ -27,14 +26,14 @@
         else 'arm64' if ansible_architecture == 'aarch64'
         else 'arm'
       }}
-  when: eget_check.failed
+  when: not eget_stat.stat.exists
 
 - name: Create temporary directory for eget
   ansible.builtin.tempfile:
     state: directory
     suffix: eget
   register: eget_tmp
-  when: eget_check.failed
+  when: not eget_stat.stat.exists
 
 - name: Download and extract eget
   ansible.builtin.unarchive:
@@ -46,7 +45,7 @@
     extra_opts:
       - "--strip-components=1"
       - "eget-{{ eget_version }}-{{ eget_platform }}/eget"
-  when: eget_check.failed
+  when: not eget_stat.stat.exists
 
 - name: Install eget to ~/.local/bin
   ansible.builtin.copy:
@@ -54,13 +53,13 @@
     dest: "{{ ansible_user_dir }}/.local/bin/eget"
     mode: '0755'
     remote_src: true
-  when: eget_check.failed
+  when: not eget_stat.stat.exists
 
 - name: Cleanup temporary directory
   ansible.builtin.file:
     path: "{{ eget_tmp.path }}"
     state: absent
-  when: eget_check.failed and eget_tmp.path is defined
+  when: not eget_stat.stat.exists and eget_tmp.path is defined
 
 - name: Define eget package mapping
   ansible.builtin.set_fact:
