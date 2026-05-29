@@ -72,6 +72,7 @@
 - name: Set architecture-aware package mappings
   ansible.builtin.set_fact:
     eget_package_map:
+      alpha-miner: "-a .tar.gz --file alpha/alpha --tag v1.7.5-beta --to alpha-miner AlphaMine-Tech/alpha-miner"
       bat: >-
         -a {{ eget_arch }}-unknown-linux-{{ 'gnu' if eget_arch == 'x86_64' else 'musl' }}
         -a tar.gz sharkdp/bat
