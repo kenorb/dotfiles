@@ -5,21 +5,21 @@ These playbooks are used to set up and configure your Linux environment autonomo
 ## Requirements
 
 - `pipenv`
+  Install by: `sudo apt --yes install pipenv`
 - `ansible` (installed via Pipenv)
 
 ## Usage
 
-Before running the playbooks, ensure you have your `variables.yml` set up:
+Before running the playbook, ensure you have your `variables.yml` set up:
 
 ```bash
-cd .ansible/
-cp variables-example.yml variables.yml
-# Edit variables.yml to your liking
+cp variables-example.yml variables.yml # Modify after copy.
 ```
 
 Run the setup playbook:
 
 ```bash
+pipenv sync
 pipenv run ansible-playbook -i inventory/hosts playbooks/setup-linux.yml -K
 ```
 
