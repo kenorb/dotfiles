@@ -28,6 +28,7 @@
   // Features to add to the dev container. More info: https://containers.dev/features.
   "features": {
     "ghcr.io/devcontainers-contrib/features/actionlint:1": {},
+    "ghcr.io/devcontainers-extra/features/eget:1": { "version": "1.3.4" },
     "ghcr.io/devcontainers-contrib/features/node-asdf:0": {},
     "ghcr.io/devcontainers-extra/features/pipx-package:1": {},
     "ghcr.io/devcontainers/features/docker-in-docker:2": {},
