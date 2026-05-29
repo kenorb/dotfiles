@@ -21,6 +21,9 @@
     },
     {
       "pattern": "^https://github.com/org/repo"
+    },
+    {
+      "pattern": "^https://github.com/zyedidia/eget/releases/download/v"
     }
   ],
   "retryCount": 3,
