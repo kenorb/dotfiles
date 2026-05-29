@@ -1,0 +1,29 @@
+{
+  "aliveStatusCodes": [200, 206],
+  "ignorePatterns": [
+    {
+      "pattern": "^http://localhost"
+    },
+    {
+      "pattern": "^https://localhost"
+    },
+    {
+      "pattern": "^http://127.0.0.1"
+    },
+    {
+      "pattern": "^https://127.0.0.1"
+    },
+    {
+      "pattern": "^http://example.com"
+    },
+    {
+      "pattern": "^https://example.com"
+    },
+    {
+      "pattern": "^https://github.com/org/repo"
+    }
+  ],
+  "retryCount": 3,
+  "retryOn429": true,
+  "timeout": "10s"
+}
