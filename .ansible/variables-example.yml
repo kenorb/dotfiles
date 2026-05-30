@@ -21,6 +21,7 @@ apt:
     - hashcat
     - htop
     - iotop
+    - john
     - libhyperscan-dev
     - libicu-dev
     - libpcre2-dev
