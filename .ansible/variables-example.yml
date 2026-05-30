@@ -18,6 +18,7 @@ apt:
     - git-lfs
     - gpg
     - gzip
+    - hashcat
     - htop
     - iotop
     - libhyperscan-dev
