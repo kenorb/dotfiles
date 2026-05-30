@@ -28,6 +28,7 @@ apt:
     - libzstd-dev
     - lz4
     - mawk
+    - mkisofs
     - net-tools  # ifconfig
     - p7zip
     - parallel
