@@ -6,6 +6,7 @@ apt:
   install:
     - 7zip
     - btrfs-progs
+    - cifs-utils  # The SMB/CIFS protocol for cross-platform file sharing.
     - coreutils
     - curl
     - fdupes
