@@ -45,6 +45,7 @@ apt:
     - speedtest-cli
     - sqlite3
     - time
+    - transmission
     - tmux
     - unrar
     - vim
