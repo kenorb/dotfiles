@@ -6,11 +6,14 @@ apt:
   install:
     - 7zip
     - btrfs-progs
+    - build-essential
+    - cargo
     - cifs-utils  # The SMB/CIFS protocol for cross-platform file sharing.
     - coreutils
     - cpuid
     - curl
     - fdupes
+    - ffmpeg
     - figlet
     - findutils
     - gawk
@@ -35,9 +38,11 @@ apt:
     - mkisofs
     - net-tools  # ifconfig
     - p7zip
+    - pandoc
     - parallel
     - pipenv
     - plocate  # locate, updatedb
+    - poppler-utils
     - python3-pip
     - pv
     - rename
@@ -48,6 +53,7 @@ apt:
     - time
     - transmission
     - tmux
+    - ugrep
     - unrar
     - vim
     - vlc
@@ -123,7 +129,6 @@ eget_packages:
   - fd           # A simple, fast and user-friendly alternative to 'find' (sharkdp/fd)
   - jq           # Command-line JSON processor (jqlang/jq)
   - oyster       # Pearl Wallet management (pearl-research-labs/pearl)
-  - pandoc       # Universal markup converter (jgm/pandoc)
   - pearld       # Pearl Full node (pearl-research-labs/pearl)
   - prlctl       # Pearl Control utility (pearl-research-labs/pearl)
   - rg           # ripgrep recursively searches directories for a regex pattern (BurntSushi/ripgrep)
