@@ -48,6 +48,7 @@ apt:
     - time
     - transmission
     - tmux
+    - ugrep
     - unrar
     - vim
     - vlc
