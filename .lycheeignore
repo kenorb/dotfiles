@@ -7,4 +7,5 @@
 ^https?://localhost
 
 # Placeholders and templates
+^https://github\.com/org/repo
 ^https://github\.com/zyedidia/eget/releases/download/v
