@@ -127,6 +127,7 @@ eget_packages:
   - pearld       # Pearl Full node (pearl-research-labs/pearl)
   - prlctl       # Pearl Control utility (pearl-research-labs/pearl)
   - rg           # ripgrep recursively searches directories for a regex pattern (BurntSushi/ripgrep)
+  - rga          # ripgrep, but also search in PDFs, E-Books, Office documents, zip, tar.gz, etc. (phiresky/ripgrep-all)
   - tealdeer     # A fast tldr client written in Rust (dbrgn/tealdeer)
   - vale         # A syntax-aware linter for prose (errata-ai/vale)
   - yq           # Portable command-line YAML, JSON, XML, CSV, TOML and properties processor (mikefarah/yq)
