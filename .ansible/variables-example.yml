@@ -6,11 +6,14 @@ apt:
   install:
     - 7zip
     - btrfs-progs
+    - build-essential
+    - cargo
     - cifs-utils  # The SMB/CIFS protocol for cross-platform file sharing.
     - coreutils
     - cpuid
     - curl
     - fdupes
+    - ffmpeg
     - figlet
     - findutils
     - gawk
@@ -38,6 +41,7 @@ apt:
     - parallel
     - pipenv
     - plocate  # locate, updatedb
+    - poppler-utils
     - python3-pip
     - pv
     - rename
@@ -48,6 +52,7 @@ apt:
     - time
     - transmission
     - tmux
+    - ugrep
     - unrar
     - vim
     - vlc
