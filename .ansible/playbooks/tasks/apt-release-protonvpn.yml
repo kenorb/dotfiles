@@ -1,0 +1,17 @@
+---
+- name: Download Proton VPN stable release package
+  ansible.builtin.get_url:
+    url: https://repo.protonvpn.com/debian/dists/stable/main/binary-all/protonvpn-stable-release_1.0.8_all.deb
+    dest: /tmp/protonvpn-stable-release_1.0.8_all.deb
+    mode: '0644'
+
+- name: Install Proton VPN repository package
+  ansible.builtin.apt:
+    deb: /tmp/protonvpn-stable-release_1.0.8_all.deb
+    state: present
+
+- name: Install Proton VPN app
+  ansible.builtin.apt:
+    name: proton-vpn-gnome-desktop
+    state: present
+    update_cache: true

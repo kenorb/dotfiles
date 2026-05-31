@@ -49,11 +49,13 @@ apt:
     - tmux
     - unrar
     - vim
+    - vlc
     - wget
     - zstd
   releases:
     brave: true
     code: true
+    protonvpn: true
   upgrade: true
 
 # List of files and directories to symlink into the home directory.
