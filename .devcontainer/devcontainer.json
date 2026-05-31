@@ -66,6 +66,7 @@
     "jq": "eget -a linux64 jqlang/jq",
     "pandoc": "eget -a linux-amd64.tar.gz jgm/pandoc",
     "rg": "eget -a x86_64-unknown-linux-musl.tar.gz BurntSushi/ripgrep",
+    "rga": "eget -a ripgrep_all -a x86_64-unknown-linux-musl -a tar.gz --file rga phiresky/ripgrep-all",
     "tealdeer": "eget -a tealdeer-linux-x86_64-musl -a ^sha256 dbrgn/tealdeer",
     "vale": "eget -a Linux_64-bit.tar.gz errata-ai/vale",
     "yq": "eget -a ^.tar.gz mikefarah/yq"
