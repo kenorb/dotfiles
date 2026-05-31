@@ -10,4 +10,5 @@ minizinc
 poppler-utils
 sed
 time
+ugrep
 vim
