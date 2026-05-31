@@ -38,7 +38,6 @@ apt:
     - mkisofs
     - net-tools  # ifconfig
     - p7zip
-    - pandoc
     - parallel
     - pipenv
     - plocate  # locate, updatedb
@@ -129,6 +128,7 @@ eget_packages:
   - fd           # A simple, fast and user-friendly alternative to 'find' (sharkdp/fd)
   - jq           # Command-line JSON processor (jqlang/jq)
   - oyster       # Pearl Wallet management (pearl-research-labs/pearl)
+  - pandoc       # Universal markup converter (jgm/pandoc)
   - pearld       # Pearl Full node (pearl-research-labs/pearl)
   - prlctl       # Pearl Control utility (pearl-research-labs/pearl)
   - rg           # ripgrep recursively searches directories for a regex pattern (BurntSushi/ripgrep)

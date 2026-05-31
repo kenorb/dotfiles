@@ -30,6 +30,12 @@ TBC
 - Use MCP when possible.
 - Use `pre-commit` for linting and validation if installed.
 
+## Agent Directives (Contract Style)
+
+- **MUST** prioritize package installation via `eget` (for latest binaries) over `apt` when both are
+  available and appropriate (e.g., `pandoc`).
+- **MUST** maintain lexical order in Ansible variable lists.
+
 ## Troubleshooting
 
 ### Validation tooling missing locally
