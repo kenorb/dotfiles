@@ -45,6 +45,12 @@
       become: true
       tags: [apt, brave]
 
+    - name: Import Proton VPN installation tasks
+      ansible.builtin.import_tasks: tasks/apt-release-protonvpn.yml
+      when: (apt.releases.protonvpn | default(false)) if apt.releases is defined else false
+      become: true
+      tags: [apt, protonvpn, vpn]
+
     - name: Import eget installation tasks
       ansible.builtin.import_tasks: tasks/eget.yml
       when: eget | default(false) | bool
