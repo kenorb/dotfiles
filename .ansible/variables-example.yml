@@ -12,6 +12,7 @@ apt:
     - coreutils
     - cpuid
     - curl
+    - extundelete
     - fdupes
     - ffmpeg
     - figlet
