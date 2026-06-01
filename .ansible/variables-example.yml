@@ -51,6 +51,7 @@ apt:
     - sed
     - speedtest-cli
     - sqlite3
+    - testdisk
     - time
     - transmission
     - tmux
