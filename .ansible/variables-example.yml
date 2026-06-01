@@ -21,6 +21,7 @@ apt:
     - gh
     - git
     - git-lfs
+    - golang-github-dcso-bloom-cli  # Highly efficient bloom filter implementation for Go (DCSO/bloom).
     - gpg
     - gzip
     - hashcat
