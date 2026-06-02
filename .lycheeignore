@@ -7,5 +7,6 @@
 ^https?://localhost
 
 # Placeholders and templates
+^https://dl\.deno\.land/release/
 ^https://github\.com/org/repo
 ^https://github\.com/zyedidia/eget/releases/download/v
