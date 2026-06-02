@@ -8,4 +8,7 @@
 
 # Placeholders and templates
 ^https://github\.com/org/repo
+
+# Links to ignore.
+^https://dl\.deno\.land/release/
 ^https://github\.com/zyedidia/eget/releases/download/v

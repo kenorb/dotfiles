@@ -39,6 +39,8 @@ apt:
     - mawk
     - mkisofs
     - net-tools  # ifconfig
+    - nodejs
+    - npm
     - p7zip
     - parallel
     - pipenv
@@ -53,10 +55,11 @@ apt:
     - sqlite3
     - testdisk
     - time
-    - transmission
     - tmux
+    - transmission
     - ugrep
     - unrar
+    - unzip
     - vim
     - vlc
     - wget
@@ -66,6 +69,8 @@ apt:
     code: true
     protonvpn: true
   upgrade: true
+
+deno: true
 
 # List of files and directories to symlink into the home directory.
 dotfiles:
