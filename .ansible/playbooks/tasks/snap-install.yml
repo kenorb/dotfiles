@@ -1,5 +1,8 @@
 ---
-- name: Install snap packages from variables.yml list
+- name: Install snap packages
   community.general.snap:
-    name: '{{ snap.install }}'
+    name: '{{ item.name | default(item) }}'
+    classic: '{{ item.classic | default(omit) }}'
     state: present
+  loop: '{{ snap.install }}'
+  when: snap.install is defined

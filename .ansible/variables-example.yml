@@ -150,5 +150,6 @@ nvidia:
 
 snap:
   install:
-    - sublime-text
+    - name: sublime-text
+      classic: true
     - telegram-desktop

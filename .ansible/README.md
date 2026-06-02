@@ -20,6 +20,7 @@ Run the setup playbook:
 
 ```bash
 pipenv sync
+pipenv run ansible-galaxy install -r requirements.yml
 pipenv run ansible-playbook -i inventory/hosts playbooks/setup-linux.yml -K
 ```
 
