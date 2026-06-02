@@ -5,6 +5,7 @@
 apt:
   install:
     - 7zip
+    - ansible-lint
     - btrfs-progs
     - build-essential
     - cargo
@@ -46,6 +47,7 @@ apt:
     - pipenv
     - plocate  # locate, updatedb
     - poppler-utils
+    - pre-commit
     - python3-pip
     - pv
     - rename
