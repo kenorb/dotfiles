@@ -53,6 +53,7 @@ apt:
     - sed
     - speedtest-cli
     - sqlite3
+    - telegram-cli
     - testdisk
     - time
     - tmux
