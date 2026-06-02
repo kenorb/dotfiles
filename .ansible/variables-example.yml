@@ -68,9 +68,9 @@ apt:
     protonvpn: true
   upgrade: true
 
-# List of files and directories to symlink into the home directory.
 deno: true
 
+# List of files and directories to symlink into the home directory.
 dotfiles:
   dirs:
     .ssh: true
