@@ -65,3 +65,9 @@
       ansible.builtin.import_tasks: tasks/deno.yml
       when: deno | default(false) | bool
       tags: [deno, install]
+
+    - name: Import snap install tasks
+      ansible.builtin.import_tasks: tasks/snap-install.yml
+      when: snap.install is defined and (snap.install | length > 0)
+      become: true
+      tags: [snap, install]

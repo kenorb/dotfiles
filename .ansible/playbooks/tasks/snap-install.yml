@@ -1,0 +1,5 @@
+---
+- name: Install snap packages from variables.yml list
+  community.general.snap:
+    name: '{{ snap.install }}'
+    state: present

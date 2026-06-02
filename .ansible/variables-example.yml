@@ -147,3 +147,7 @@ eget_packages:
 nvidia:
   cuda_toolkit: true
   cuda_toolkit_package: cuda-toolkit-13-1
+
+snap:
+  install:
+    - telegram-desktop
