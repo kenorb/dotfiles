@@ -33,6 +33,7 @@
   when:
     - item.item.value | bool
     - not item.stat.exists or item.stat.islnk
+    - (playbook_dir + '/../../' + item.item.key) is exists
 
 - name: Create symlinks for dotfiles with .new extension if file exists
   ansible.builtin.file:
@@ -45,6 +46,7 @@
     - item.item.value | bool
     - item.stat.exists
     - not item.stat.islnk | default(false)
+    - (playbook_dir + '/../../' + item.item.key) is exists
 
 - name: Check if dotfiles exist (directories)
   ansible.builtin.stat:
@@ -80,6 +82,7 @@
   when:
     - item.item.value | bool
     - not item.stat.exists or item.stat.islnk
+    - (playbook_dir + '/../../' + item.item.key) is exists
 
 - name: Create symlinks for dotfiles (directories) with .new extension if directory exists
   ansible.builtin.file:
@@ -92,3 +95,4 @@
     - item.item.value | bool
     - item.stat.exists
     - not item.stat.islnk | default(false)
+    - (playbook_dir + '/../../' + item.item.key) is exists

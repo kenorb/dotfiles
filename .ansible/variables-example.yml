@@ -97,7 +97,6 @@ dotfiles:
     .gdbinit: true
     .gitconfig: true
     .gitignore: true
-    .gitmodules: true
     .htaccess: true
     .hyper.js: true
     .inputrc: true
