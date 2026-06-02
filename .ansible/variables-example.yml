@@ -39,6 +39,8 @@ apt:
     - mawk
     - mkisofs
     - net-tools  # ifconfig
+    - nodejs
+    - npm
     - p7zip
     - parallel
     - pipenv
