@@ -1,0 +1,51 @@
+---
+- name: Ensure ~/.deno/bin exists
+  ansible.builtin.file:
+    path: "{{ ansible_facts['user_dir'] }}/.deno/bin"
+    state: directory
+    mode: '0755'
+
+- name: Check if deno is already installed
+  ansible.builtin.stat:
+    path: "{{ ansible_facts['user_dir'] }}/.deno/bin/deno"
+  register: deno_stat
+
+- name: Get latest release of deno
+  ansible.builtin.uri:
+    url: https://dl.deno.land/release-latest.txt
+    return_content: true
+  register: deno_latest
+  when: not deno_stat.stat.exists
+
+- name: Define architecture facts for deno
+  ansible.builtin.set_fact:
+    deno_target: >-
+      {{ 'x86_64-unknown-linux-gnu' if ansible_facts['architecture'] == 'x86_64'
+      else 'aarch64-unknown-linux-gnu' if ansible_facts['architecture'] == 'aarch64'
+      else 'unknown' }}
+  when: not deno_stat.stat.exists
+
+- name: Fail if architecture is unknown for deno
+  ansible.builtin.fail:
+    msg: "Unsupported architecture for deno: {{ ansible_facts['architecture'] }}"
+  when: not deno_stat.stat.exists and deno_target == 'unknown'
+
+- name: Download and extract deno
+  ansible.builtin.unarchive:
+    src: "https://dl.deno.land/release/{{ deno_latest.content | trim }}/deno-{{ deno_target }}.zip"
+    dest: "{{ ansible_facts['user_dir'] }}/.deno/bin"
+    remote_src: true
+  when: not deno_stat.stat.exists
+
+- name: Ensure deno binary is executable
+  ansible.builtin.file:
+    path: "{{ ansible_facts['user_dir'] }}/.deno/bin/deno"
+    mode: '0755'
+  when: not deno_stat.stat.exists
+
+- name: Run deno shell setup
+  ansible.builtin.command:
+    cmd: "{{ ansible_facts['user_dir'] }}/.deno/bin/deno run -A --reload jsr:@deno/installer-shell-setup/bundled {{ ansible_facts['user_dir'] }}/.deno -y"
+  register: deno_setup
+  changed_when: "'Added' in deno_setup.stdout"
+  when: not deno_stat.stat.exists

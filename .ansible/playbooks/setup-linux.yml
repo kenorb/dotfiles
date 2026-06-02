@@ -60,3 +60,8 @@
       ansible.builtin.import_tasks: tasks/dotfiles.yml
       when: dotfiles is defined
       tags: [dotfiles]
+
+    - name: Import deno installation tasks
+      ansible.builtin.import_tasks: tasks/deno.yml
+      when: deno | default(false) | bool
+      tags: [deno, install]
