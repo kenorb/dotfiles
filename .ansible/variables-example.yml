@@ -69,6 +69,7 @@ apt:
   releases:
     brave: true
     code: true
+    mega: true
     protonvpn: true
   upgrade: true
 
