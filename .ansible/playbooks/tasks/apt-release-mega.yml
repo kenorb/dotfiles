@@ -9,8 +9,8 @@
   ansible.builtin.set_fact:
     mega_arch: >-
       {{
-        'amd64' if ansible_architecture == 'x86_64' else
-        'arm64' if ansible_architecture in ['aarch64', 'arm64'] else
+        'amd64' if ansible_facts['architecture'] == 'x86_64' else
+        'arm64' if ansible_facts['architecture'] in ['aarch64', 'arm64'] else
         omit
       }}
 
@@ -18,13 +18,13 @@
   ansible.builtin.assert:
     that:
       - mega_arch is defined
-    fail_msg: "MEGA installation is not supported on architecture: {{ ansible_architecture }}"
+    fail_msg: "MEGA installation is not supported on architecture: {{ ansible_facts['architecture'] }}"
 
 - name: Set MEGA download URL
   ansible.builtin.set_fact:
     mega_deb_url: >-
-      {{ 'https://mega.nz/linux/repo/xUbuntu_' ~ ansible_distribution_version ~
-      '/' ~ mega_arch ~ '/megasync-xUbuntu_' ~ ansible_distribution_version ~
+      {{ 'https://mega.nz/linux/repo/xUbuntu_' ~ ansible_facts['distribution_version'] ~
+      '/' ~ mega_arch ~ '/megasync-xUbuntu_' ~ ansible_facts['distribution_version'] ~
       '_' ~ mega_arch ~ '.deb' }}
 
 - name: Download MEGA desktop app package
