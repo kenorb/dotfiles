@@ -69,7 +69,7 @@ apt:
   releases:
     brave: true
     code: true
-    mega: true
+    mega: true  # MEGA Desktop App (https://mega.io/desktop)
     protonvpn: true
   upgrade: true
 
