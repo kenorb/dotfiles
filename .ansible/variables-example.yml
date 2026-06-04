@@ -150,6 +150,8 @@ nvidia:
 
 snap:
   install:
+    - name: aws-cli
+      classic: true
     - name: sublime-text
       classic: true
-    - telegram-desktop
+    - name: telegram-desktop
