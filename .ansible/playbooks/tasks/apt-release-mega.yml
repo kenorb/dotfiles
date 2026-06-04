@@ -20,11 +20,15 @@
       - mega_arch is defined
     fail_msg: "MEGA installation is not supported on architecture: {{ ansible_facts['architecture'] }}"
 
-- name: Set MEGA download URL
+- name: Set MEGA download URLs
   ansible.builtin.set_fact:
     mega_deb_url: >-
       {{ 'https://mega.nz/linux/repo/xUbuntu_' ~ ansible_facts['distribution_version'] ~
       '/' ~ mega_arch ~ '/megasync-xUbuntu_' ~ ansible_facts['distribution_version'] ~
+      '_' ~ mega_arch ~ '.deb' }}
+    megacmd_deb_url: >-
+      {{ 'https://mega.nz/linux/repo/xUbuntu_' ~ ansible_facts['distribution_version'] ~
+      '/' ~ mega_arch ~ '/megacmd-xUbuntu_' ~ ansible_facts['distribution_version'] ~
       '_' ~ mega_arch ~ '.deb' }}
 
 - name: Download MEGA desktop app package
@@ -33,7 +37,18 @@
     dest: /tmp/megasync.deb
     mode: '0644'
 
+- name: Download MEGA CMD package
+  ansible.builtin.get_url:
+    url: "{{ megacmd_deb_url }}"
+    dest: /tmp/megacmd.deb
+    mode: '0644'
+
 - name: Install MEGA desktop app package
   ansible.builtin.apt:
     deb: /tmp/megasync.deb
+    state: present
+
+- name: Install MEGA CMD package
+  ansible.builtin.apt:
+    deb: /tmp/megacmd.deb
     state: present
