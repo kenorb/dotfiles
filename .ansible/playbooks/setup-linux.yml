@@ -53,7 +53,7 @@
 
     - name: Import MEGA installation tasks
       ansible.builtin.import_tasks: tasks/apt-release-mega.yml
-      when: (apt.releases.mega | default(false)) if apt.releases is defined else false
+      when: apt.releases is defined and (apt.releases.mega | default(false))
       become: true
       tags: [apt, mega]
 

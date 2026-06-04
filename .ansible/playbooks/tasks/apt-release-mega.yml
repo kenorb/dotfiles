@@ -7,7 +7,18 @@
 
 - name: Determine architecture for MEGA
   ansible.builtin.set_fact:
-    mega_arch: "{{ 'amd64' if ansible_architecture == 'x86_64' else 'arm64' }}"
+    mega_arch: >-
+      {{
+        'amd64' if ansible_architecture == 'x86_64' else
+        'arm64' if ansible_architecture in ['aarch64', 'arm64'] else
+        omit
+      }}
+
+- name: Fail on unsupported architecture for MEGA
+  ansible.builtin.assert:
+    that:
+      - mega_arch is defined
+    fail_msg: "MEGA installation is not supported on architecture: {{ ansible_architecture }}"
 
 - name: Set MEGA download URL
   ansible.builtin.set_fact:
