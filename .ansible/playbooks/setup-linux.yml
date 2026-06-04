@@ -51,6 +51,12 @@
       become: true
       tags: [apt, protonvpn, vpn]
 
+    - name: Import MEGA installation tasks
+      ansible.builtin.import_tasks: tasks/apt-release-mega.yml
+      when: apt.releases is defined and (apt.releases.mega | default(false))
+      become: true
+      tags: [apt, mega]
+
     - name: Import eget installation tasks
       ansible.builtin.import_tasks: tasks/eget.yml
       when: eget | default(false) | bool
