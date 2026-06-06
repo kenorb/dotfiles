@@ -1,4 +1,7 @@
 ---
+# Install MEGA Desktop App & MEGA CMD.
+# @see: <https://mega.io/cmd>
+# @see: <https://mega.io/desktop>
 - name: Ensure OS is Ubuntu for MEGA
   ansible.builtin.assert:
     that:
