@@ -6,6 +6,7 @@ apt:
   install:
     - 7zip
     - ansible-lint
+    - aria2
     - btrfs-progs
     - build-essential
     - cargo
