@@ -25,6 +25,7 @@ apt:
     - gh
     - git
     - git-lfs
+    - gkrellm  # GTK system monitoring application (dud3/gkrellm)
     - golang-github-dcso-bloom-cli  # Highly efficient bloom filter implementation for Go (DCSO/bloom).
     - gpg
     - gzip
