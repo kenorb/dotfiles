@@ -65,6 +65,7 @@ apt:
     - ugrep
     - unrar
     - unzip
+    - yt-dlp
     - vim
     - vlc
     - wget
