@@ -87,6 +87,7 @@ dotfiles:
     .aliasesrc_linux: true
     .aliasesrc_macos: true
     .aliasesrc_rg: true
+    .aria2.conf: true
     .bash_aliases: true
     .bash_completion: true
     .bash_exports: true
