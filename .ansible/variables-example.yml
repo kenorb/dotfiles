@@ -7,6 +7,7 @@ apt:
     - 7zip
     - ansible-lint
     - aria2
+    - athena-jot  # Print sequential or random data.
     - btrfs-progs
     - build-essential
     - cargo
