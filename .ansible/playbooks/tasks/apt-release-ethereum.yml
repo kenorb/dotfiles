@@ -1,0 +1,12 @@
+---
+- name: Add Ethereum PPA repository
+  ansible.builtin.apt_repository:
+    repo: ppa:ethereum/ethereum
+    state: present
+    update_cache: true
+
+- name: Install Ethereum package
+  ansible.builtin.apt:
+    name: ethereum
+    state: present
+    update_cache: true

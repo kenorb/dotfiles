@@ -57,6 +57,12 @@
       become: true
       tags: [apt, mega]
 
+    - name: Import Ethereum installation tasks
+      ansible.builtin.import_tasks: tasks/apt-release-ethereum.yml
+      when: (apt.releases.ethereum | default(false)) if apt.releases is defined else false
+      become: true
+      tags: [apt, ethereum]
+
     - name: Import eget installation tasks
       ansible.builtin.import_tasks: tasks/eget.yml
       when: eget | default(false) | bool

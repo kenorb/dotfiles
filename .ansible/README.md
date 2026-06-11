@@ -34,6 +34,7 @@ You can use tags to run specific parts of the playbook using the `--tags` flag.
 | `cuda` | Specific tasks for CUDA Toolkit. |
 | `dotfiles` | Manages symlinks for dotfiles in your home directory. |
 | `eget` | Installs `eget` and configured binary packages. |
+| `ethereum` | Installs Ethereum tools from the official Ethereum PPA. |
 | `install` | Installs the list of packages defined in `apt.install` and `eget` packages. |
 | `nvidia` | Handles NVIDIA/CUDA related installations. |
 | `protonvpn` | Installs Proton VPN app from the official Proton APT repository. |
@@ -58,8 +59,9 @@ The `setup-linux.yml` playbook performs the following operations:
 4. **VS Code**: Adds the Microsoft repository and installs Visual Studio Code.
 5. **Brave Browser**: Adds the Brave repository and installs the browser.
 6. **Proton VPN**: Adds the official Proton VPN repository and installs the GUI app.
-7. **Eget**: Installs the `eget` binary and a set of useful CLI tools to `~/.local/bin`.
-8. **Dotfiles**: Symlinks configuration files from this repository into your `$HOME`.
+7. **Ethereum**: Adds the official Ethereum PPA and installs the `ethereum` package.
+8. **Eget**: Installs the `eget` binary and a set of useful CLI tools to `~/.local/bin`.
+9. **Dotfiles**: Symlinks configuration files from this repository into your `$HOME`.
 
 ### Note on Dotfiles Conflicts
 

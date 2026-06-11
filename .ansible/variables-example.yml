@@ -75,6 +75,7 @@ apt:
   releases:
     brave: true
     code: true
+    ethereum: true  # For geth, clef, devp2p, abigen, bootnode, evm and rlpdump (ethereum/go-ethereum).
     mega: true  # MEGA CMD and Desktop App (https://mega.io/desktop & https://mega.io/cmd)
     protonvpn: true
   upgrade: true
