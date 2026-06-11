@@ -42,6 +42,7 @@ apt:
     - lz4
     - mawk
     - mkisofs
+    - moreutils  # Additional Unix utilities (e.g. pee, sponge).
     - net-tools  # ifconfig
     - nodejs
     - npm
