@@ -25,7 +25,9 @@ apt:
     - gh
     - git
     - git-lfs
+    - gkrellm  # GTK system monitoring application (dud3/gkrellm).
     - golang-github-dcso-bloom-cli  # Highly efficient bloom filter implementation for Go (DCSO/bloom).
+    - golang-go  # The Go programming language (golang/go).
     - gpg
     - gzip
     - hashcat
@@ -41,6 +43,7 @@ apt:
     - lz4
     - mawk
     - mkisofs
+    - moreutils  # Additional Unix utilities (e.g. pee, sponge).
     - net-tools  # ifconfig
     - nodejs
     - npm
@@ -64,6 +67,7 @@ apt:
     - ugrep
     - unrar
     - unzip
+    - yt-dlp
     - vim
     - vlc
     - wget
