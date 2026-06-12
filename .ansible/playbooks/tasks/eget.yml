@@ -107,6 +107,12 @@
       tealdeer: "-a tealdeer-linux-{{ eget_arch }}-musl -a ^sha256 dbrgn/tealdeer"
       vale: "-a {{ 'Linux_64-bit' if eget_arch == 'x86_64' else 'Linux_arm64' }}.tar.gz errata-ai/vale"
       yq: "-a ^.tar.gz mikefarah/yq"
+      yt-dlp: >-
+        -a {{
+          'yt-dlp_linux' if eget_arch == 'x86_64'
+          else 'yt-dlp_linux_aarch64' if eget_arch == 'arm64'
+          else 'yt-dlp_linux_armv7l'
+        }} --to yt-dlp yt-dlp/yt-dlp
 
 - name: Install eget packages
   ansible.builtin.shell:
