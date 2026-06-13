@@ -80,12 +80,15 @@
     eget_package_map:
       alpha-miner: "-a .tar.gz --file alpha/alpha --tag v1.7.5-beta --to alpha-miner AlphaMine-Tech/alpha-miner"
       bat: >-
-        -a {{ eget_arch }}-unknown-linux-{{ 'gnu' if eget_arch == 'x86_64' else 'musl' }}
+        -a {{ 'aarch64' if eget_arch == 'arm64' else eget_arch }}
+        -unknown-linux-{{ 'gnu' if eget_arch == 'x86_64' else 'musl' }}
         -a tar.gz sharkdp/bat
       btop: "-a btop-{{ eget_plain_arch }}-unknown-linux-musl.tar.gz aristocratos/btop"
       duf: "-a linux_{{ eget_arch }}.tar.gz muesli/duf"
       eza: "-a {{ eget_plain_arch }}-unknown-linux-gnu -a ^no_libgit -a tar.gz eza-community/eza"
-      fd: "-a {{ eget_arch }}-unknown-linux-gnu -a tar.gz sharkdp/fd"
+      fd: >-
+        -a {{ 'aarch64' if eget_arch == 'arm64' else eget_arch }}
+        -unknown-linux-gnu -a tar.gz sharkdp/fd
       jq: >-
         -a {{ 'linux64' if eget_arch == 'x86_64' else 'linux-arm64' if eget_arch == 'arm64' else 'linux-arm' }}
         jqlang/jq
@@ -104,14 +107,19 @@
           }[eget_arch]
         }}
         -a tar.gz --file rga phiresky/ripgrep-all
-      tealdeer: "-a tealdeer-linux-{{ eget_arch }}-musl -a ^sha256 dbrgn/tealdeer"
+      tealdeer: >-
+        -a tealdeer-linux-{{ 'aarch64' if eget_arch == 'arm64' else eget_arch }}
+        -musl -a ^sha256 dbrgn/tealdeer
       vale: "-a {{ 'Linux_64-bit' if eget_arch == 'x86_64' else 'Linux_arm64' }}.tar.gz errata-ai/vale"
       yq: "-a ^.tar.gz mikefarah/yq"
       yt-dlp: >-
         -a {{
-          'yt-dlp_linux' if eget_arch == 'x86_64'
-          else 'yt-dlp_linux_aarch64' if eget_arch == 'arm64'
-          else 'yt-dlp_linux_armv7l'
+          {
+            'x86_64': 'yt-dlp_linux',
+            'arm64': 'yt-dlp_linux_aarch64',
+            'aarch64': 'yt-dlp_linux_aarch64',
+            'arm': 'yt-dlp_linux_armv7l'
+          }[eget_arch]
         }} --to yt-dlp yt-dlp/yt-dlp
 
 - name: Install eget packages
