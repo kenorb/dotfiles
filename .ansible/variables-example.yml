@@ -144,6 +144,7 @@ eget_packages:
   - eza          # A modern, maintained replacement for 'ls' (eza-community/eza)
   - fd           # A simple, fast and user-friendly alternative to 'find' (sharkdp/fd)
   - jq           # Command-line JSON processor (jqlang/jq)
+  - nethermind   # A robust execution client for Ethereum node operators (NethermindEth/nethermind)
   - oyster       # Pearl Wallet management (pearl-research-labs/pearl)
   - pandoc       # Universal markup converter (jgm/pandoc)
   - pearld       # Pearl Full node (pearl-research-labs/pearl)
