@@ -34,9 +34,11 @@ apt:
     - htop
     - iotop
     - john
+    - libcurl4-openssl-dev
     - libhyperscan-dev
     - libicu-dev
     - libpcre2-dev
+    - libpcre3-dev
     - libssl-dev
     - libvirt-clients
     - libzstd-dev
