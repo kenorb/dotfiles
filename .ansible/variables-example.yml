@@ -40,6 +40,7 @@ apt:
     - libdb5.3++-dev  # Headers and static libraries for the Berkeley v5.3 database library.
     - libhyperscan-dev
     - libicu-dev
+    - libleveldb-dev  # Fast key-value storage library (development files).
     - libpcre2-dev
     - libpcre3-dev
     - libssl-dev
