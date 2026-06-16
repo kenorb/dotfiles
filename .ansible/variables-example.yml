@@ -34,7 +34,10 @@ apt:
     - htop
     - iotop
     - john
+    - libb2-dev  # Portable implementation of BLAKE2.
+    - libboost-all-dev  # Complete Boost C++ Libraries.
     - libcurl4-openssl-dev
+    - libdb5.3++-dev  # Headers and static libraries for the Berkeley v5.3 database library.
     - libhyperscan-dev
     - libicu-dev
     - libpcre2-dev
