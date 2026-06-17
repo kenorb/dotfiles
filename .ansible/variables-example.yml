@@ -64,6 +64,7 @@ apt:
     - rename
     - screen
     - sed
+    - snappy-tools  # Google's Snappy compression algorithm.
     - speedtest-cli
     - sqlite3
     - testdisk
