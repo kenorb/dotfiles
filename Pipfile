@@ -8,6 +8,7 @@ ansible = "*"
 jinja2 = "*"
 pre-commit = "*"
 ratarmount = "*"
+vastai = "*"
 
 [dev-packages]
 ansible-lint = "*"
