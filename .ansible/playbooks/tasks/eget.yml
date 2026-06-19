@@ -93,6 +93,9 @@
       jq: >-
         -a {{ 'linux64' if eget_arch == 'x86_64' else 'linux-arm64' if eget_arch == 'arm64' else 'linux-arm' }}
         jqlang/jq
+      lighthouse: >-
+        -a lighthouse -a {{ 'aarch64' if eget_arch == 'arm64' else eget_arch }}
+        -unknown-linux-gnu.tar.gz -a ^.asc sigp/lighthouse
       nethermind: "-a linux-{{ 'x64' if eget_arch == 'x86_64' else 'arm64' }}.zip -a ^.asc NethermindEth/nethermind"
       oyster: "--tag pearl-wallet-v1.0.0 -a .tar.gz --file oyster --to oyster pearl-research-labs/pearl"
       pandoc: "-a linux-{{ 'amd64' if eget_arch == 'x86_64' else 'arm64' }}.tar.gz jgm/pandoc"
