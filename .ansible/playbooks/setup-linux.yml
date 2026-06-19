@@ -39,6 +39,12 @@
       become: true
       tags: [apt, code, vscode]
 
+    - name: Import Docker installation tasks
+      ansible.builtin.import_tasks: tasks/apt-release-docker.yml
+      when: (apt.releases.docker | default(false)) if apt.releases is defined else false
+      become: true
+      tags: [apt, docker]
+
     - name: Import Brave installation tasks
       ansible.builtin.import_tasks: tasks/apt-release-brave.yml
       when: (apt.releases.brave | default(false)) if apt.releases is defined else false
