@@ -73,6 +73,7 @@ apt:
     - time
     - tmux
     - transmission
+    - tree
     - ugrep
     - unrar
     - unzip
