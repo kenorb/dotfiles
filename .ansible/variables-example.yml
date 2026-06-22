@@ -50,6 +50,7 @@ apt:
     - mawk
     - mkisofs
     - moreutils  # Additional Unix utilities (e.g. pee, sponge).
+    - mpv  # Cross-platform media player for the command line.
     - net-tools  # ifconfig
     - nodejs
     - npm
