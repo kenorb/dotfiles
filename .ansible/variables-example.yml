@@ -53,6 +53,7 @@ apt:
     - net-tools  # ifconfig
     - nodejs
     - npm
+    - nvidia-vaapi-driver  # A VA-API implemention using NVIDIA's NVDEC.
     - p7zip
     - parallel
     - pipenv
