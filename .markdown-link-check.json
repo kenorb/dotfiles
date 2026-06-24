@@ -24,6 +24,9 @@
     },
     {
       "pattern": "^https://github.com/zyedidia/eget/releases/download/v"
+    },
+    {
+      "pattern": "^https://prerelease.keybase.io/keybase_"
     }
   ],
   "retryCount": 3,
