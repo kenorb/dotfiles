@@ -57,6 +57,12 @@
       become: true
       tags: [apt, protonvpn, vpn]
 
+    - name: Import Keybase installation tasks
+      ansible.builtin.import_tasks: tasks/apt-release-keybase.yml
+      when: (apt.releases.keybase | default(false)) if apt.releases is defined else false
+      become: true
+      tags: [apt, keybase]
+
     - name: Import MEGA installation tasks
       ansible.builtin.import_tasks: tasks/apt-release-mega.yml
       when: apt.releases is defined and (apt.releases.mega | default(false))

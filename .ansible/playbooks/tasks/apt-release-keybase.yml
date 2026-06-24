@@ -1,0 +1,8 @@
+---
+- name: Install Keybase
+  ansible.builtin.apt:
+    deb: >-
+      https://prerelease.keybase.io/keybase_{{
+      'amd64' if ansible_facts['architecture'] == 'x86_64' else 'i386'
+      }}.deb
+    state: present

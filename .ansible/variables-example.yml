@@ -86,6 +86,7 @@ apt:
     code: true
     docker: true  # Docker Engine and CLI tools (https://docs.docker.com/engine/install/ubuntu/).
     ethereum: true  # For geth, clef, devp2p, abigen, bootnode, evm and rlpdump (ethereum/go-ethereum).
+    keybase: true  # Keybase app (https://keybase.io/).
     mega: true  # MEGA CMD and Desktop App (https://mega.io/desktop & https://mega.io/cmd)
     protonvpn: true
   upgrade: true
