@@ -85,6 +85,7 @@
         -a tar.gz sharkdp/bat
       btop: "-a btop-{{ eget_plain_arch }}-unknown-linux-musl.tar.gz aristocratos/btop"
       duf: "-a linux_{{ eget_arch }}.tar.gz muesli/duf"
+      erigon: "-a linux_{{ 'amd64' if eget_arch == 'x86_64' else 'arm64' }}.tar.gz -a ^amd64v2 erigontech/erigon"
       eza: "-a {{ eget_plain_arch }}-unknown-linux-gnu -a ^no_libgit -a tar.gz eza-community/eza"
       fd: >-
         -a {{ 'aarch64' if eget_arch == 'arm64' else eget_arch }}
@@ -92,6 +93,9 @@
       jq: >-
         -a {{ 'linux64' if eget_arch == 'x86_64' else 'linux-arm64' if eget_arch == 'arm64' else 'linux-arm' }}
         jqlang/jq
+      lighthouse: >-
+        -a lighthouse -a {{ 'aarch64' if eget_arch == 'arm64' else eget_arch }}
+        -unknown-linux-gnu.tar.gz -a ^.asc sigp/lighthouse
       nethermind: "-a linux-{{ 'x64' if eget_arch == 'x86_64' else 'arm64' }}.zip -a ^.asc NethermindEth/nethermind"
       oyster: "--tag pearl-wallet-v1.0.0 -a .tar.gz --file oyster --to oyster pearl-research-labs/pearl"
       pandoc: "-a linux-{{ 'amd64' if eget_arch == 'x86_64' else 'arm64' }}.tar.gz jgm/pandoc"
