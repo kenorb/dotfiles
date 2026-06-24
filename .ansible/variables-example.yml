@@ -48,6 +48,7 @@ apt:
     - libzstd-dev
     - lz4
     - mawk
+    - mbuffer
     - mkisofs
     - moreutils  # Additional Unix utilities (e.g. pee, sponge).
     - mpv  # Cross-platform media player for the command line.
