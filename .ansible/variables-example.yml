@@ -5,6 +5,7 @@
 apt:
   install:
     - 7zip
+    - android-file-transfer
     - ansible-lint
     - aria2
     - athena-jot  # Print sequential or random data.
