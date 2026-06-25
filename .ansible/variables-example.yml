@@ -57,6 +57,7 @@ apt:
     - nodejs
     - npm
     - nvidia-vaapi-driver  # A VA-API implemention using NVIDIA's NVDEC.
+    - nvitop
     - nvtop
     - p7zip
     - parallel
