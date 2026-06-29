@@ -67,6 +67,7 @@ apt:
     - pre-commit
     - python3-pip
     - pv
+    - rclone
     - rename
     - screen
     - sed
