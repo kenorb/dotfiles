@@ -178,3 +178,11 @@ eget_packages:
 nvidia:
   cuda_toolkit: true
   cuda_toolkit_package: cuda-toolkit-13-1
+
+snap:
+  install:
+    - name: aws-cli
+      classic: true
+    - name: sublime-text
+      classic: true
+    - name: telegram-desktop
