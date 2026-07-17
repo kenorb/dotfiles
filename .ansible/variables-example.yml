@@ -47,6 +47,7 @@ apt:
     - libssl-dev
     - libvirt-clients
     - libzstd-dev
+    - lm-sensors
     - lz4
     - mawk
     - mbuffer
