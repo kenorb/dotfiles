@@ -75,6 +75,7 @@ apt:
     - snappy-tools  # Google's Snappy compression algorithm.
     - speedtest-cli
     - sqlite3
+    - squashfs-tools  # Compressed read-only file system for Linux
     - testdisk
     - time
     - tmux
