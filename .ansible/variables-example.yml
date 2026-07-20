@@ -170,6 +170,7 @@ eget_packages:
   - pandoc       # Universal markup converter (jgm/pandoc)
   - pearld       # Pearl Full node (pearl-research-labs/pearl)
   - prlctl       # Pearl Control utility (pearl-research-labs/pearl)
+  - reth         # Modular, contributor-friendly, and blazing-fast implementation of the Ethereum protocol (paradigmxyz/reth)
   - rg           # ripgrep recursively searches directories for a regex pattern (BurntSushi/ripgrep)
   - rga          # ripgrep, but also search in PDFs, E-Books, Office documents, zip, tar.gz, etc. (phiresky/ripgrep-all)
   - tealdeer     # A fast tldr client written in Rust (dbrgn/tealdeer)
