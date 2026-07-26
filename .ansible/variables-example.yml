@@ -71,6 +71,7 @@ apt:
     - pv
     - rclone
     - rename
+    - rustup
     - screen
     - sed
     - snappy-tools  # Google's Snappy compression algorithm.
