@@ -55,8 +55,6 @@ apt:
     - moreutils  # Additional Unix utilities (e.g. pee, sponge).
     - mpv  # Cross-platform media player for the command line.
     - net-tools  # ifconfig
-    - nodejs
-    - npm
     - nvidia-vaapi-driver  # A VA-API implemention using NVIDIA's NVDEC.
     - nvitop
     - nvtop
@@ -166,6 +164,7 @@ eget_packages:
   - jq           # Command-line JSON processor (jqlang/jq)
   - lighthouse   # Ethereum consensus client in Rust (sigp/lighthouse)
   - nethermind   # A robust execution client for Ethereum node operators (NethermindEth/nethermind)
+  - node         # JavaScript runtime built on Chrome's V8 JavaScript engine (nodejs/node)
   - oyster       # Pearl Wallet management (pearl-research-labs/pearl)
   - pandoc       # Universal markup converter (jgm/pandoc)
   - pearld       # Pearl Full node (pearl-research-labs/pearl)
@@ -177,6 +176,8 @@ eget_packages:
   - vale         # A syntax-aware linter for prose (errata-ai/vale)
   - yq           # Portable command-line YAML, JSON, XML, CSV, TOML and properties processor (mikefarah/yq)
   - yt-dlp       # A feature-rich command-line audio/video downloader (yt-dlp/yt-dlp)
+
+nodejs_version: v24.18.0
 
 nvidia:
   cuda_toolkit: true
