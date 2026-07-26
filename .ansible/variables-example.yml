@@ -9,6 +9,7 @@ apt:
     - ansible-lint
     - aria2
     - athena-jot  # Print sequential or random data.
+    - base58
     - btrfs-progs
     - build-essential
     - cargo
