@@ -30,8 +30,9 @@ alias zipcat="unzip -p"
 
 ### ZStandard (zstd).
 
-alias tarzs-rm="tar -cv --remove-files --zstd -f"
-alias tarzs="tar -cv --zstd -f"
+alias tar-lz4="tar -I lz4"
+alias tar-zs-rm="tar -cv --remove-files --zstd -f"
+alias tar-zs="tar -cv --zstd -f"
 alias zs="zstd -18 -T0"
 alias zscat="zstdcat --long=31"
 alias zsless="zstdless"
