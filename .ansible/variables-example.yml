@@ -184,3 +184,5 @@ nodejs_version: v24.18.0
 nvidia:
   cuda_toolkit: true
   cuda_toolkit_package: cuda-toolkit-13-1
+
+zed: true
