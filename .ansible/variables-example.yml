@@ -168,6 +168,7 @@ eget_packages:
   - lighthouse   # Ethereum consensus client in Rust (sigp/lighthouse)
   - nethermind   # A robust execution client for Ethereum node operators (NethermindEth/nethermind)
   - node         # JavaScript runtime built on Chrome's V8 JavaScript engine (nodejs/node)
+  - ollama       # Run large language models locally (ollama/ollama)
   - oyster       # Pearl Wallet management (pearl-research-labs/pearl)
   - pandoc       # Universal markup converter (jgm/pandoc)
   - pearld       # Pearl Full node (pearl-research-labs/pearl)
