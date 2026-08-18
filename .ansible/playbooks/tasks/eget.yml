@@ -113,6 +113,7 @@
           else 'arm64' if eget_arch == 'arm64'
           else 'armv7l'
         }}.tar.xz
+      ollama: "-a ollama-linux-{{ 'amd64' if eget_arch == 'x86_64' else 'arm64' }}.tar.zst -a ^mlx -a ^rocm ollama/ollama"
       oyster: "--tag pearl-wallet-v1.0.0 -a .tar.gz --file oyster --to oyster pearl-research-labs/pearl"
       pandoc: "-a linux-{{ 'amd64' if eget_arch == 'x86_64' else 'arm64' }}.tar.gz jgm/pandoc"
       pearld: "--tag pearl-wallet-v1.0.0 -a .tar.gz --file pearld --to pearld pearl-research-labs/pearl"
