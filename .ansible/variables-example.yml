@@ -22,6 +22,7 @@ apt:
     - ffmpeg
     - figlet
     - findutils
+    - flameshot
     - gawk
     - gdb
     - gh
