@@ -91,6 +91,7 @@ apt:
     - vim
     - vlc
     - wget
+    - zbar-tools
     - zstd
   releases:
     brave: true
