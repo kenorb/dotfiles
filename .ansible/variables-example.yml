@@ -42,6 +42,7 @@ apt:
     - libboost-all-dev  # Complete Boost C++ Libraries.
     - libcurl4-openssl-dev
     - libdb5.3++-dev  # Headers and static libraries for the Berkeley v5.3 database library.
+    - libgoogle-perftools-dev # TBC (used by bitcoin)
     - libhyperscan-dev
     - libicu-dev
     - libleveldb-dev  # Fast key-value storage library (development files).
@@ -49,6 +50,7 @@ apt:
     - libpcre3-dev
     - libssl-dev
     - libvirt-clients
+    - libzmq3-dev # TBC (used by bitcoin)
     - libzstd-dev
     - lld
     - lm-sensors
@@ -59,6 +61,7 @@ apt:
     - moreutils  # Additional Unix utilities (e.g. pee, sponge).
     - mpv  # Cross-platform media player for the command line.
     - net-tools  # ifconfig
+    - ninja-build # TBC (used by bitcoin)
     - nodejs
     - npm
     - nvidia-vaapi-driver  # A VA-API implemention using NVIDIA's NVDEC.
