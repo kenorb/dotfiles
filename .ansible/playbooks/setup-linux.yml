@@ -17,25 +17,25 @@
   tasks:
     - name: Import apt upgrade tasks
       ansible.builtin.import_tasks: tasks/apt-upgrade.yml
-      when: apt.upgrade | default(true) | bool
+      when: apt is defined and (apt.upgrade | default(true) | bool)
       become: true
       tags: [apt, upgrade]
 
     - name: Import apt install tasks
       ansible.builtin.import_tasks: tasks/apt-install.yml
-      when: apt.install is defined and (apt.install | length > 0)
+      when: apt is defined and apt.install is defined and (apt.install | length > 0)
       become: true
       tags: [apt, install]
 
     - name: Import CUDA Toolkit installation tasks
       ansible.builtin.import_tasks: tasks/cuda-toolkit.yml
-      when: nvidia.cuda_toolkit | default(false) | bool
+      when: nvidia is defined and (nvidia.cuda_toolkit | default(false) | bool)
       become: true
       tags: [nvidia, cuda]
 
     - name: Import VS Code installation tasks
       ansible.builtin.import_tasks: tasks/apt-release-code.yml
-      when: (apt.releases.code | default(false)) if apt.releases is defined else false
+      when: apt is defined and apt.releases is defined and (apt.releases.code | default(false))
       become: true
       tags: [apt, code, vscode]
 
@@ -47,13 +47,13 @@
 
     - name: Import Brave installation tasks
       ansible.builtin.import_tasks: tasks/apt-release-brave.yml
-      when: (apt.releases.brave | default(false)) if apt.releases is defined else false
+      when: apt is defined and apt.releases is defined and (apt.releases.brave | default(false))
       become: true
       tags: [apt, brave]
 
     - name: Import Proton VPN installation tasks
       ansible.builtin.import_tasks: tasks/apt-release-protonvpn.yml
-      when: (apt.releases.protonvpn | default(false)) if apt.releases is defined else false
+      when: apt is defined and apt.releases is defined and (apt.releases.protonvpn | default(false))
       become: true
       tags: [apt, protonvpn, vpn]
 
@@ -77,7 +77,7 @@
 
     - name: Import eget installation tasks
       ansible.builtin.import_tasks: tasks/eget.yml
-      when: eget | default(false) | bool
+      when: eget is defined and (eget | default(false) | bool)
       tags: [eget, upgrade, install]
 
     - name: Import dotfiles symlink tasks
@@ -87,5 +87,11 @@
 
     - name: Import deno installation tasks
       ansible.builtin.import_tasks: tasks/deno.yml
-      when: deno | default(false) | bool
+      when: deno is defined and (deno | default(false) | bool)
       tags: [deno, install]
+
+    - name: Import snap install tasks
+      ansible.builtin.import_tasks: tasks/snap-install.yml
+      when: snap is defined and snap.install is defined and (snap.install | length > 0)
+      become: true
+      tags: [snap, install]
