@@ -57,6 +57,7 @@ apt:
     - lz4
     - mawk
     - mbuffer
+    - memcached
     - mkisofs
     - moreutils  # Additional Unix utilities (e.g. pee, sponge).
     - mpv  # Cross-platform media player for the command line.
