@@ -29,7 +29,9 @@ apt:
     - gh
     - git
     - git-lfs
+    - git-remote-gcrypt
     - gkrellm  # GTK system monitoring application (dud3/gkrellm).
+    - gnupg
     - golang-github-dcso-bloom-cli  # Highly efficient bloom filter implementation for Go (DCSO/bloom).
     - golang-go  # The Go programming language (golang/go).
     - gpg
