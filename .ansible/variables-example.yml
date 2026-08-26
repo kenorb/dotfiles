@@ -35,6 +35,7 @@ apt:
     - golang-github-dcso-bloom-cli  # Highly efficient bloom filter implementation for Go (DCSO/bloom).
     - golang-go  # The Go programming language (golang/go).
     - gpg
+    - graphviz  # Graph drawing utility (installs: dot).
     - gzip
     - hashcat
     - htop
