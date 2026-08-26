@@ -50,6 +50,7 @@ apt:
     - libleveldb-dev  # Fast key-value storage library (development files).
     - libpcre2-dev
     - libpcre3-dev
+    - libsox-fmt-mp3  # MP3 support for SoX.
     - libssl-dev
     - libvirt-clients
     - libzmq3-dev # TBC (used by bitcoin)
@@ -84,6 +85,7 @@ apt:
     - screen
     - sed
     - snappy-tools  # Google's Snappy compression algorithm.
+    - sox  # SoX’s rec command.
     - speedtest-cli
     - sqlite3
     - squashfs-tools  # Compressed read-only file system for Linux
