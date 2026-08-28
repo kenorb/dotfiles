@@ -74,6 +74,7 @@ apt:
     - nvtop
     - p7zip
     - parallel
+    - pavucontrol  # PulseAudio Volume Control (pavucontrol) for the PulseAudio sound server.
     - pipenv
     - plocate  # locate, updatedb
     - poppler-utils
