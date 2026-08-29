@@ -11,6 +11,7 @@ apt:
     - athena-jot  # Print sequential or random data.
     - btrfs-progs
     - build-essential
+    - ccache  # Compiler cache for fast recompilation of C/C++ code. Recommended for llama.
     - cargo
     - cifs-utils  # The SMB/CIFS protocol for cross-platform file sharing.
     - coreutils
@@ -42,6 +43,7 @@ apt:
     - libhyperscan-dev
     - libicu-dev
     - libleveldb-dev  # Fast key-value storage library (development files).
+    - libopenblas-dev  # BLAS library. Recommended for llama.
     - libpcre2-dev
     - libpcre3-dev
     - libssl-dev
