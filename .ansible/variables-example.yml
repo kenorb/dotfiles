@@ -69,6 +69,7 @@ apt:
     - ninja-build # TBC (used by bitcoin)
     - nodejs
     - npm
+    - nsight-compute-2026.2.1  # Kernel profiler for CUDA.
     - nvidia-vaapi-driver  # A VA-API implemention using NVIDIA's NVDEC.
     - nvitop
     - nvtop
