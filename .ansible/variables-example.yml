@@ -102,6 +102,7 @@ apt:
     - unzip
     - vim
     - vlc
+    - vmtouch  # the Virtual Memory Toucher. It can discover which files the OS is caching.
     - wget
     - zbar-tools
     - zstd
