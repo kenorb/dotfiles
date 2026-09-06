@@ -94,3 +94,8 @@
       ansible.builtin.import_tasks: tasks/zed.yml
       when: zed | default(false) | bool
       tags: [zed, install]
+
+    - name: Import Sage installation tasks
+      ansible.builtin.import_tasks: tasks/sage.yml
+      when: sage | default(false) | bool
+      tags: [sage, install]
