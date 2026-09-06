@@ -63,8 +63,7 @@ The `setup-linux.yml` playbook performs the following operations:
 7. **Ethereum**: Adds the official Ethereum PPA and installs the `ethereum` package.
 8. **Eget**: Installs the `eget` binary and a set of useful CLI tools to `~/.local/bin`.
 9. **Dotfiles**: Symlinks configuration files from this repository into your `$HOME`.
-10. **SageMath**: Downloads and extracts the SageMath source distribution into `~/sage`,
-    configures, builds, and symlinks `sage` into `~/.local/bin`.
+10. **SageMath**: Downloads pre-compiled SageMath binaries via `micromamba` from Conda-forge, creating a wrapper script in `~/.local/bin/sage`.
 
 ### Note on Dotfiles Conflicts
 
