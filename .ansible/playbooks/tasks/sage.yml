@@ -1,0 +1,50 @@
+---
+- name: Set facts for Sage installation
+  ansible.builtin.set_fact:
+    sage_mamba_root: "{{ ansible_facts['user_dir'] }}/.local/share/mamba"
+
+- name: Ensure ~/.local/bin exists
+  ansible.builtin.file:
+    path: "{{ ansible_facts['user_dir'] }}/.local/bin"
+    state: directory
+    mode: '0755'
+
+- name: Check if micromamba is installed
+  ansible.builtin.stat:
+    path: "{{ ansible_facts['user_dir'] }}/.local/bin/micromamba"
+  register: micromamba_stat
+
+- name: Fail if micromamba is not installed
+  ansible.builtin.fail:
+    msg: "micromamba is required to install SageMath. Please ensure 'micromamba' is in eget_packages."
+  when: not micromamba_stat.stat.exists
+
+- name: Check if Sage environment exists
+  ansible.builtin.stat:
+    path: "{{ sage_mamba_root }}/envs/sage/bin/sage"
+  register: sage_env_stat
+
+- name: Install pre-compiled SageMath via micromamba (Conda-forge)
+  ansible.builtin.command:
+    cmd: >-
+      {{ ansible_facts['user_dir'] }}/.local/bin/micromamba create
+      -r {{ sage_mamba_root }} -n sage -c conda-forge sage python=3.12 -y
+  when: not sage_env_stat.stat.exists
+  register: sage_mamba_install
+  changed_when: "'Transaction finished' in sage_mamba_install.stdout"
+
+- name: Create Sage wrapper script in ~/.local/bin
+  ansible.builtin.copy:
+    dest: "{{ ansible_facts['user_dir'] }}/.local/bin/sage"
+    mode: '0755'
+    content: |
+      #!/bin/bash
+      exec {{ ansible_facts['user_dir'] }}/.local/bin/micromamba run -r {{ sage_mamba_root }} -n sage sage "$@"
+
+- name: Create Sage Python wrapper script in ~/.local/bin
+  ansible.builtin.copy:
+    dest: "{{ ansible_facts['user_dir'] }}/.local/bin/sage-python"
+    mode: '0755'
+    content: |
+      #!/bin/bash
+      exec {{ ansible_facts['user_dir'] }}/.local/bin/micromamba run -r {{ sage_mamba_root }} -n sage python "$@"

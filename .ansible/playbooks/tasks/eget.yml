@@ -106,6 +106,10 @@
         -a lighthouse -a {{ 'aarch64' if eget_arch == 'arm64' else eget_arch }}
         -unknown-linux-gnu.tar.gz -a ^.asc sigp/lighthouse
       nethermind: "-a linux-{{ 'x64' if eget_arch == 'x86_64' else 'arm64' }}.zip -a ^.asc NethermindEth/nethermind"
+      micromamba: >-
+        -a linux-{{ '64' if eget_arch == 'x86_64' else 'aarch64' if eget_arch == 'arm64' else 'ppc64le' }}.tar.bz2
+        -a ^sha256
+        --file '*/micromamba' --to micromamba mamba-org/micromamba-releases
       node: >-
         --file '*/bin/node' --to node
         https://nodejs.org/dist/{{ nodejs_version | default('v24.18.0') }}/node-{{ nodejs_version | default('v24.18.0') }}-linux-{{
