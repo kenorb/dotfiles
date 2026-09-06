@@ -108,6 +108,7 @@
       nethermind: "-a linux-{{ 'x64' if eget_arch == 'x86_64' else 'arm64' }}.zip -a ^.asc NethermindEth/nethermind"
       micromamba: >-
         -a linux-{{ '64' if eget_arch == 'x86_64' else 'aarch64' if eget_arch == 'arm64' else 'ppc64le' }}.tar.bz2
+        -a ^sha256
         --file '*/micromamba' --to micromamba mamba-org/micromamba-releases
       node: >-
         --file '*/bin/node' --to node
