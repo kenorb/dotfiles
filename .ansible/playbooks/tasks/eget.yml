@@ -101,6 +101,7 @@
       pandoc: "-a linux-{{ 'amd64' if eget_arch == 'x86_64' else 'arm64' }}.tar.gz jgm/pandoc"
       pearld: "--tag pearl-wallet-v1.0.0 -a .tar.gz --file pearld --to pearld pearl-research-labs/pearl"
       prlctl: "--tag pearl-wallet-v1.0.0 -a .tar.gz --file prlctl --to prlctl pearl-research-labs/pearl"
+      reth: "-a {{ 'aarch64' if eget_arch == 'arm64' else eget_arch }}-unknown-linux-gnu.tar.gz -a ^.asc paradigmxyz/reth"
       rg: "-a {{ eget_plain_arch }}-unknown-linux-musl.tar.gz BurntSushi/ripgrep"
       rga: >-
         -a ripgrep_all
