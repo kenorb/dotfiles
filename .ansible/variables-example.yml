@@ -88,6 +88,7 @@ apt:
     - rustup
     - screen
     - sed
+    - smem  # Memory reporting tool.
     - snappy-tools  # Google's Snappy compression algorithm.
     - sox  # SoX’s rec command.
     - speedtest-cli
