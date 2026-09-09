@@ -70,6 +70,7 @@
     "rga": "eget -a ripgrep_all -a x86_64-unknown-linux-musl -a tar.gz --file rga phiresky/ripgrep-all",
     "tealdeer": "eget -a tealdeer-linux-x86_64-musl -a ^sha256 dbrgn/tealdeer",
     "vale": "eget -a Linux_64-bit.tar.gz errata-ai/vale",
+    "vopono": "eget -a linux_x86-64_gcc -a ^gui --to vopono jamesmcm/vopono",
     "yq": "eget -a ^.tar.gz mikefarah/yq"
   }
 }

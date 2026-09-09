@@ -137,6 +137,15 @@
         -a tealdeer-linux-{{ 'aarch64' if eget_arch == 'arm64' else eget_arch }}
         -musl -a ^sha256 dbrgn/tealdeer
       vale: "-a {{ 'Linux_64-bit' if eget_arch == 'x86_64' else 'Linux_arm64' }}.tar.gz errata-ai/vale"
+      vopono: >-
+        -a {{
+          {
+            'x86_64': 'linux_x86-64_musl' if ansible_facts['os_family'] == 'Alpine' else 'linux_x86-64_gcc',
+            'arm64': 'linux_aarch64',
+            'aarch64': 'linux_aarch64',
+            'arm': 'linux_armv7'
+          }[eget_arch]
+        }} -a ^gui --to vopono jamesmcm/vopono
       yq: "-a ^.tar.gz mikefarah/yq"
       yt-dlp: >-
         -a {{
