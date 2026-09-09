@@ -186,6 +186,7 @@ eget_packages:
   - jq           # Command-line JSON processor (jqlang/jq)
   - lighthouse   # Ethereum consensus client in Rust (sigp/lighthouse)
   - nethermind   # A robust execution client for Ethereum node operators (NethermindEth/nethermind)
+  - nono         # Secure sandboxed execution of AI agents (nolabs-ai/nono)
   - oyster       # Pearl Wallet management (pearl-research-labs/pearl)
   - pandoc       # Universal markup converter (jgm/pandoc)
   - pearld       # Pearl Full node (pearl-research-labs/pearl)
