@@ -213,3 +213,5 @@ snap:
     - name: sublime-text
       classic: true
     - name: telegram-desktop
+
+zed: true
