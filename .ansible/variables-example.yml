@@ -190,6 +190,7 @@ eget_packages:
   - fd           # A simple, fast and user-friendly alternative to 'find' (sharkdp/fd)
   - jq           # Command-line JSON processor (jqlang/jq)
   - lighthouse   # Ethereum consensus client in Rust (sigp/lighthouse)
+  - micromamba   # Tiny, statically linked conda package manager (mamba-org/micromamba)
   - nethermind   # A robust execution client for Ethereum node operators (NethermindEth/nethermind)
   - node         # JavaScript runtime built on Chrome's V8 JavaScript engine (nodejs/node)
   - nono         # Secure sandboxed execution of AI agents (nolabs-ai/nono)
@@ -212,6 +213,10 @@ nvidia:
   cuda_toolkit: true
   cuda_toolkit_package: cuda-toolkit-13-1
 
+sage: true
+sage_build: false
+sage_version: 10.9
+
 snap:
   install:
     - name: aws-cli
@@ -219,5 +224,4 @@ snap:
     - name: sublime-text
       classic: true
     - name: telegram-desktop
-
 zed: true
