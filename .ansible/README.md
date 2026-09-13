@@ -39,7 +39,7 @@ You can use tags to run specific parts of the playbook using the `--tags` flag.
 | `install` | Installs the list of packages defined in `apt.install` and `eget` packages. |
 | `nvidia` | Handles NVIDIA/CUDA related installations. |
 | `protonvpn` | Installs Proton VPN app from the official Proton APT repository. |
-| `sage` | Installs SageMath from source distribution tarball into `~/sage`. |
+| `sage` | Installs pre-compiled SageMath via micromamba from Conda-forge into `~/.local/share/mamba/envs/sage`, with wrappers in `~/.local/bin`. |
 | `upgrade` | Performs `apt upgrade` and updates `eget` packages. |
 | `vpn` | Runs VPN related tasks. |
 | `vscode` | Installs Visual Studio Code. |
