@@ -55,6 +55,7 @@
     src: "{{ ansible_env.HOME }}/.local/zed.app/bin/zed"
     dest: "{{ ansible_env.HOME }}/.local/bin/zed"
     state: link
+  when: not zed_bin.stat.exists
 
 - name: Install Zed desktop entry
   ansible.builtin.copy:
