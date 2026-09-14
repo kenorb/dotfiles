@@ -96,6 +96,7 @@ apt:
     protonvpn: true
   upgrade: true
 
+bitcoin_version: 31.1
 deno: true
 
 # List of files and directories to symlink into the home directory.
@@ -156,6 +157,7 @@ eget: true
 eget_packages:
   - alpha-miner  # Fastest Available Pearl Mining Software (AlphaMine-Tech/alpha-miner)
   - bat          # A cat(1) clone with wings (sharkdp/bat)
+  - bitcoind     # Bitcoin Core full node (bitcoin/bitcoin)
   - btop         # Resource monitor that shows usage and stats (aristocratos/btop)
   - duf          # Disk Usage/Free Utility - a better 'df' (muesli/duf)
   - erigon       # Ethereum execution client on the efficiency frontier (erigontech/erigon)
