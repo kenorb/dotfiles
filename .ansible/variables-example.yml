@@ -159,6 +159,7 @@ eget_packages:
   - bat          # A cat(1) clone with wings (sharkdp/bat)
   - bitcoind     # Bitcoin Core full node (bitcoin/bitcoin)
   - btop         # Resource monitor that shows usage and stats (aristocratos/btop)
+  - claude       # Claude Code CLI tool (Anthropic)
   - duf          # Disk Usage/Free Utility - a better 'df' (muesli/duf)
   - erigon       # Ethereum execution client on the efficiency frontier (erigontech/erigon)
   - eza          # A modern, maintained replacement for 'ls' (eza-community/eza)
