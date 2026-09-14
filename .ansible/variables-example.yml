@@ -96,6 +96,7 @@ apt:
     - speedtest-cli
     - sqlite3
     - squashfs-tools  # Compressed read-only file system for Linux
+    - telegram-cli
     - testdisk
     - time
     - tmux
