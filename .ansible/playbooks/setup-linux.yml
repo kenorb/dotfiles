@@ -89,3 +89,8 @@
       ansible.builtin.import_tasks: tasks/deno.yml
       when: deno | default(false) | bool
       tags: [deno, install]
+
+    - name: Import Zed installation tasks
+      ansible.builtin.import_tasks: tasks/zed.yml
+      when: zed | default(false) | bool
+      tags: [zed, install]

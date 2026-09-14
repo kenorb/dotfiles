@@ -1,0 +1,83 @@
+---
+- name: Check if Zed is already installed
+  ansible.builtin.stat:
+    path: "{{ ansible_env.HOME }}/.local/bin/zed"
+  register: zed_bin
+
+- name: Create temporary directory for Zed download
+  ansible.builtin.tempfile:
+    state: directory
+    suffix: zed
+  register: zed_temp
+  when: not zed_bin.stat.exists
+
+- name: Set facts for Zed installation
+  ansible.builtin.set_fact:
+    zed_channel: stable
+    zed_version: latest
+    zed_arch: >-
+      {%- if ansible_architecture in ['aarch64', 'arm64'] -%}aarch64{%- else -%}x86_64{%- endif -%}
+
+- name: Download Zed tarball
+  ansible.builtin.get_url:
+    url: "https://cloud.zed.dev/releases/{{ zed_channel }}/{{ zed_version }}/download?asset=zed&arch={{ zed_arch }}&os=linux&source=install.sh"
+    dest: "{{ zed_temp.path }}/zed-linux-{{ zed_arch }}.tar.gz"
+    mode: '0644'
+  when: not zed_bin.stat.exists
+
+- name: Prepare Zed application directory
+  ansible.builtin.file:
+    path: "{{ ansible_env.HOME }}/.local/zed.app"
+    state: directory
+    mode: '0755'
+  when: not zed_bin.stat.exists
+
+- name: Unpack Zed
+  ansible.builtin.unarchive:
+    src: "{{ zed_temp.path }}/zed-linux-{{ zed_arch }}.tar.gz"
+    dest: "{{ ansible_env.HOME }}/.local/"
+    remote_src: true
+  when: not zed_bin.stat.exists
+
+- name: Ensure ~/.local/bin and applications directories exist
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    mode: '0755'
+  loop:
+    - "{{ ansible_env.HOME }}/.local/bin"
+    - "{{ ansible_env.HOME }}/.local/share/applications"
+
+- name: Link Zed binary
+  ansible.builtin.file:
+    src: "{{ ansible_env.HOME }}/.local/zed.app/bin/zed"
+    dest: "{{ ansible_env.HOME }}/.local/bin/zed"
+    state: link
+
+- name: Install Zed desktop entry
+  ansible.builtin.copy:
+    src: "{{ ansible_env.HOME }}/.local/zed.app/share/applications/dev.zed.Zed.desktop"
+    dest: "{{ ansible_env.HOME }}/.local/share/applications/dev.zed.Zed.desktop"
+    remote_src: true
+    mode: '0644'
+  ignore_errors: true
+
+- name: Update icon path in desktop file
+  ansible.builtin.replace:
+    path: "{{ ansible_env.HOME }}/.local/share/applications/dev.zed.Zed.desktop"
+    regexp: '^Icon=zed$'
+    replace: 'Icon={{ ansible_env.HOME }}/.local/zed.app/share/icons/hicolor/512x512/apps/zed.png'
+  ignore_errors: true
+
+- name: Update Exec path in desktop file
+  ansible.builtin.replace:
+    path: "{{ ansible_env.HOME }}/.local/share/applications/dev.zed.Zed.desktop"
+    regexp: '^Exec=zed$'
+    replace: 'Exec={{ ansible_env.HOME }}/.local/zed.app/bin/zed'
+  ignore_errors: true
+
+- name: Cleanup temporary directory
+  ansible.builtin.file:
+    path: "{{ zed_temp.path }}"
+    state: absent
+  when: zed_temp is defined and zed_temp.path is defined
