@@ -1,0 +1,45 @@
+---
+- name: Set Node.js facts
+  ansible.builtin.set_fact:
+    nodejs_root: "{{ ansible_facts['user_dir'] }}/.local/share/node"
+    nodejs_arch: >-
+      {{ 'x64' if ansible_facts['architecture'] == 'x86_64'
+      else 'arm64' if ansible_facts['architecture'] == 'aarch64'
+      else 'armv7l' }}
+
+- name: Ensure ~/.local/bin exists
+  ansible.builtin.file:
+    path: "{{ ansible_facts['user_dir'] }}/.local/bin"
+    state: directory
+    mode: '0755'
+
+- name: Create Node.js installation directory
+  ansible.builtin.file:
+    path: "{{ nodejs_root }}"
+    state: directory
+    mode: '0755'
+
+# eget cannot install npm: the Node.js tarball ships bin/npm and bin/npx as
+# symlinks into lib/node_modules/npm, which eget flattens into empty files.
+# Extract the full distribution instead so node, npm and npx all work.
+- name: Download and extract Node.js (includes npm and npx)
+  ansible.builtin.unarchive:
+    src: >-
+      https://nodejs.org/dist/{{ nodejs_version | default('v24.18.0') }}/node-{{
+      nodejs_version | default('v24.18.0') }}-linux-{{ nodejs_arch }}.tar.xz
+    dest: "{{ nodejs_root }}"
+    remote_src: true
+    extra_opts:
+      - "--strip-components=1"
+    creates: "{{ nodejs_root }}/bin/node"
+
+- name: Symlink Node.js binaries into ~/.local/bin
+  ansible.builtin.file:
+    src: "{{ nodejs_root }}/bin/{{ item }}"
+    dest: "{{ ansible_facts['user_dir'] }}/.local/bin/{{ item }}"
+    state: link
+    force: true
+  loop:
+    - node
+    - npm
+    - npx

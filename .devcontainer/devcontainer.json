@@ -5,8 +5,14 @@
     "dockerfile": "Dockerfile",
     "args": {
       "VARIANT": "noble"
-    }
+    },
+    // The eget assets in postCreateCommand are x86_64-only, so pin the container
+    // platform to avoid installing incompatible binaries on ARM64 hosts.
+    "options": ["--platform=linux/amd64"]
   },
+
+  // Runtime platform must match the x86_64-only eget assets in postCreateCommand.
+  "runArgs": ["--platform=linux/amd64"],
 
   // Configure tool-specific properties.
   // Note: Keep the list in alphabetical order.
@@ -64,12 +70,14 @@
     "eza": "eget -a x86_64-unknown-linux-gnu -a ^no_libgit -a tar.gz eza-community/eza",
     "fd": "eget -a x86_64-unknown-linux-gnu -a tar.gz sharkdp/fd",
     "jq": "eget -a linux64 jqlang/jq",
+    "micromamba": "eget -a linux-64 -a ^sha256 -a ^tar.bz2 --to micromamba mamba-org/micromamba-releases",
     "nono": "eget -a x86_64-unknown-linux-gnu.tar.gz nolabs-ai/nono",
     "pandoc": "eget -a linux-amd64.tar.gz jgm/pandoc",
     "rg": "eget -a x86_64-unknown-linux-musl.tar.gz BurntSushi/ripgrep",
     "rga": "eget -a ripgrep_all -a x86_64-unknown-linux-musl -a tar.gz --file rga phiresky/ripgrep-all",
     "tealdeer": "eget -a tealdeer-linux-x86_64-musl -a ^sha256 dbrgn/tealdeer",
     "vale": "eget -a Linux_64-bit.tar.gz errata-ai/vale",
+    "vopono": "eget -a linux_x86-64_gcc -a ^gui --to vopono jamesmcm/vopono",
     "yq": "eget -a ^.tar.gz mikefarah/yq"
   }
 }

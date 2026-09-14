@@ -12,6 +12,7 @@ apt:
     - base58
     - btrfs-progs
     - build-essential
+    - ccache  # Compiler cache for fast recompilation of C/C++ code. Recommended for llama.
     - cargo
     - cifs-utils  # The SMB/CIFS protocol for cross-platform file sharing.
     - cmake
@@ -49,6 +50,9 @@ apt:
     - libhyperscan-dev
     - libicu-dev
     - libleveldb-dev  # Fast key-value storage library (development files).
+    - libnccl-dev  # NVIDIA Collective Communication Library (NCCL) Development Files. Recommended for llama.
+    - libnccl2  # Library of standard collective communication routines for GPUs. Recommended for llama.
+    - libopenblas-dev  # BLAS library. Recommended for llama.
     - libpcre2-dev
     - libpcre3-dev
     - libreoffice
@@ -68,8 +72,6 @@ apt:
     - mpv  # Cross-platform media player for the command line.
     - net-tools  # ifconfig
     - ninja-build  # TBC (used by bitcoin)
-    - nodejs
-    - npm
     - nsight-compute-2026.2.1  # Kernel profiler for CUDA.
     - nvidia-vaapi-driver  # A VA-API implemention using NVIDIA's NVDEC.
     - nvitop
@@ -118,6 +120,7 @@ apt:
     protonvpn: true
   upgrade: true
 
+bitcoin_version: 31.1
 deno: true
 
 # List of files and directories to symlink into the home directory.
@@ -178,19 +181,25 @@ eget: true
 eget_packages:
   - alpha-miner  # Fastest Available Pearl Mining Software (AlphaMine-Tech/alpha-miner)
   - bat          # A cat(1) clone with wings (sharkdp/bat)
+  - bitcoind     # Bitcoin Core full node (bitcoin/bitcoin)
   - btop         # Resource monitor that shows usage and stats (aristocratos/btop)
+  - claude       # Claude Code CLI tool (Anthropic)
   - duf          # Disk Usage/Free Utility - a better 'df' (muesli/duf)
   - erigon       # Ethereum execution client on the efficiency frontier (erigontech/erigon)
   - eza          # A modern, maintained replacement for 'ls' (eza-community/eza)
   - fd           # A simple, fast and user-friendly alternative to 'find' (sharkdp/fd)
   - jq           # Command-line JSON processor (jqlang/jq)
   - lighthouse   # Ethereum consensus client in Rust (sigp/lighthouse)
+  - micromamba   # Tiny, statically linked conda package manager (mamba-org/micromamba)
   - nethermind   # A robust execution client for Ethereum node operators (NethermindEth/nethermind)
+  - node         # JavaScript runtime with npm (installed via tasks/node.yml, not eget)
   - nono         # Secure sandboxed execution of AI agents (nolabs-ai/nono)
+  - ollama       # Run large language models locally (ollama/ollama)
   - oyster       # Pearl Wallet management (pearl-research-labs/pearl)
   - pandoc       # Universal markup converter (jgm/pandoc)
   - pearld       # Pearl Full node (pearl-research-labs/pearl)
   - prlctl       # Pearl Control utility (pearl-research-labs/pearl)
+  - reth         # Fast, modular Ethereum protocol implementation (paradigmxyz/reth)
   - rg           # ripgrep recursively searches directories for a regex pattern (BurntSushi/ripgrep)
   - rga          # ripgrep, but also search in PDFs, E-Books, Office documents, zip, tar.gz, etc. (phiresky/ripgrep-all)
   - tealdeer     # A fast tldr client written in Rust (dbrgn/tealdeer)
@@ -198,9 +207,15 @@ eget_packages:
   - yq           # Portable command-line YAML, JSON, XML, CSV, TOML and properties processor (mikefarah/yq)
   - yt-dlp       # A feature-rich command-line audio/video downloader (yt-dlp/yt-dlp)
 
+nodejs_version: v24.18.0
+
 nvidia:
   cuda_toolkit: true
   cuda_toolkit_package: cuda-toolkit-13-1
+
+sage: true
+sage_build: false
+sage_version: 10.9
 
 snap:
   install:
@@ -209,3 +224,4 @@ snap:
     - name: sublime-text
       classic: true
     - name: telegram-desktop
+zed: true

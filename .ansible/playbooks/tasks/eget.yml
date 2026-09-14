@@ -83,7 +83,21 @@
         -a {{ 'aarch64' if eget_arch == 'arm64' else eget_arch }}
         -unknown-linux-{{ 'gnu' if eget_arch == 'x86_64' else 'musl' }}
         -a tar.gz sharkdp/bat
+      bitcoind: >-
+        --file '*/bin/bitcoind' --to bitcoind
+        https://bitcoincore.org/bin/bitcoin-core-{{ bitcoin_version |
+        default('31.1') }}/bitcoin-{{ bitcoin_version | default('31.1') }}-{{
+          'x86_64' if eget_arch == 'x86_64'
+          else 'aarch64' if eget_arch == 'arm64'
+          else 'arm'
+        }}-linux-gnu.tar.gz
       btop: "-a btop-{{ eget_plain_arch }}-unknown-linux-musl.tar.gz aristocratos/btop"
+      claude: >-
+        --to claude
+        https://downloads.claude.ai/claude-code-releases/$(curl -s
+        https://downloads.claude.ai/claude-code-releases/latest)/{{ 'linux-musl' if
+        eget_arch == 'x86_64' and ansible_facts['os_family'] == 'Alpine' else 'linux'
+        }}-{{ 'x64' if eget_arch == 'x86_64' else 'arm64' if eget_arch == 'arm64' else 'arm' }}/claude
       duf: "-a linux_{{ eget_arch }}.tar.gz muesli/duf"
       erigon: "-a linux_{{ 'amd64' if eget_arch == 'x86_64' else 'arm64' }}.tar.gz -a ^amd64v2 erigontech/erigon"
       eza: "-a {{ eget_plain_arch }}-unknown-linux-gnu -a ^no_libgit -a tar.gz eza-community/eza"
@@ -97,11 +111,23 @@
         -a lighthouse -a {{ 'aarch64' if eget_arch == 'arm64' else eget_arch }}
         -unknown-linux-gnu.tar.gz -a ^.asc sigp/lighthouse
       nethermind: "-a linux-{{ 'x64' if eget_arch == 'x86_64' else 'arm64' }}.zip -a ^.asc NethermindEth/nethermind"
+      micromamba: >-
+        -a linux-{{ '64' if eget_arch == 'x86_64' else 'aarch64' if eget_arch == 'arm64' else 'ppc64le' }}
+        -a ^sha256 -a ^tar.bz2
+        --to micromamba mamba-org/micromamba-releases
+      # node is installed by tasks/node.yml: eget cannot extract the npm/npx
+      # symlinks from the Node.js tarball, so the full distribution is used.
       nono: "-a {{ eget_plain_arch }}-unknown-linux-gnu.tar.gz nolabs-ai/nono"
+      ollama: >-
+        -a ollama-linux-{{ 'amd64' if eget_arch == 'x86_64' else 'arm64' }}.tar.zst
+        -a ^mlx -a ^rocm ollama/ollama
       oyster: "--tag pearl-wallet-v1.0.0 -a .tar.gz --file oyster --to oyster pearl-research-labs/pearl"
       pandoc: "-a linux-{{ 'amd64' if eget_arch == 'x86_64' else 'arm64' }}.tar.gz jgm/pandoc"
       pearld: "--tag pearl-wallet-v1.0.0 -a .tar.gz --file pearld --to pearld pearl-research-labs/pearl"
       prlctl: "--tag pearl-wallet-v1.0.0 -a .tar.gz --file prlctl --to prlctl pearl-research-labs/pearl"
+      reth: >-
+        -a {{ 'aarch64' if eget_arch == 'arm64' else eget_arch }}-unknown-linux-gnu.tar.gz
+        -a ^.asc paradigmxyz/reth
       rg: "-a {{ eget_plain_arch }}-unknown-linux-musl.tar.gz BurntSushi/ripgrep"
       rga: >-
         -a ripgrep_all
@@ -117,6 +143,15 @@
         -a tealdeer-linux-{{ 'aarch64' if eget_arch == 'arm64' else eget_arch }}
         -musl -a ^sha256 dbrgn/tealdeer
       vale: "-a {{ 'Linux_64-bit' if eget_arch == 'x86_64' else 'Linux_arm64' }}.tar.gz errata-ai/vale"
+      vopono: >-
+        -a {{
+          {
+            'x86_64': 'linux_x86-64_musl' if ansible_facts['os_family'] == 'Alpine' else 'linux_x86-64_gcc',
+            'arm64': 'linux_aarch64',
+            'aarch64': 'linux_aarch64',
+            'arm': 'linux_armv7'
+          }[eget_arch]
+        }} -a ^gui --to vopono jamesmcm/vopono
       yq: "-a ^.tar.gz mikefarah/yq"
       yt-dlp: >-
         -a {{

@@ -37,8 +37,10 @@ You can use tags to run specific parts of the playbook using the `--tags` flag.
 | `eget` | Installs `eget` and configured binary packages. |
 | `ethereum` | Installs Ethereum tools from the official Ethereum PPA. |
 | `install` | Installs the list of packages defined in `apt.install` and `eget` packages. |
+| `nodejs` | Installs Node.js with `npm` and `npx` into `~/.local/bin`. |
 | `nvidia` | Handles NVIDIA/CUDA related installations. |
 | `protonvpn` | Installs Proton VPN app from the official Proton APT repository. |
+| `sage` | Installs pre-compiled SageMath via micromamba from Conda-forge into `~/.local/share/mamba/envs/sage`, with wrappers in `~/.local/bin`. Also runs the `eget` tasks, which provide micromamba. |
 | `upgrade` | Performs `apt upgrade` and updates `eget` packages. |
 | `vpn` | Runs VPN related tasks. |
 | `vscode` | Installs Visual Studio Code. |
@@ -62,7 +64,11 @@ The `setup-linux.yml` playbook performs the following operations:
 6. **Proton VPN**: Adds the official Proton VPN repository and installs the GUI app.
 7. **Ethereum**: Adds the official Ethereum PPA and installs the `ethereum` package.
 8. **Eget**: Installs the `eget` binary and a set of useful CLI tools to `~/.local/bin`.
-9. **Dotfiles**: Symlinks configuration files from this repository into your `$HOME`.
+9. **Node.js**: Extracts Node.js (including `npm` and `npx`) to `~/.local/share/node`
+    and symlinks the binaries into `~/.local/bin`.
+10. **Dotfiles**: Symlinks configuration files from this repository into your `$HOME`.
+11. **SageMath**: Downloads pre-compiled SageMath binaries via `micromamba`
+    from Conda-forge, creating a wrapper script in `~/.local/bin/sage`.
 
 ### Note on Dotfiles Conflicts
 
