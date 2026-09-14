@@ -5,9 +5,14 @@ name = "pypi"
 
 [packages]
 ansible = "*"
+bitcoin = "*"
+bs4 = "*"
+huggingface-hub = "*"
 jinja2 = "*"
+parquet-tools = "*"
 pre-commit = "*"
 ratarmount = "*"
+tg-archive = "*"
 vastai = "*"
 
 [dev-packages]
