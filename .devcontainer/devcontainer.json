@@ -5,8 +5,14 @@
     "dockerfile": "Dockerfile",
     "args": {
       "VARIANT": "noble"
-    }
+    },
+    // The eget assets in postCreateCommand are x86_64-only, so pin the container
+    // platform to avoid installing incompatible binaries on ARM64 hosts.
+    "options": ["--platform=linux/amd64"]
   },
+
+  // Runtime platform must match the x86_64-only eget assets in postCreateCommand.
+  "runArgs": ["--platform=linux/amd64"],
 
   // Configure tool-specific properties.
   // Note: Keep the list in alphabetical order.
