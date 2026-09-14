@@ -11,6 +11,7 @@ apt:
     - athena-jot  # Print sequential or random data.
     - btrfs-progs
     - build-essential
+    - ccache  # Compiler cache for fast recompilation of C/C++ code. Recommended for llama.
     - cargo
     - cifs-utils  # The SMB/CIFS protocol for cross-platform file sharing.
     - coreutils
@@ -40,8 +41,11 @@ apt:
     - libcurl4-openssl-dev
     - libdb5.3++-dev  # Headers and static libraries for the Berkeley v5.3 database library.
     - libhyperscan-dev
-    - libicu-dev
+    - libicu-dev 
     - libleveldb-dev  # Fast key-value storage library (development files).
+    - libnccl-dev  # NVIDIA Collective Communication Library (NCCL) Development Files. Recommended for llama.
+    - libnccl2  # Library of standard collective communication routines for GPUs. Recommended for llama.
+    - libopenblas-dev  # BLAS library. Recommended for llama.
     - libpcre2-dev
     - libpcre3-dev
     - libssl-dev
@@ -168,6 +172,7 @@ eget_packages:
   - lighthouse   # Ethereum consensus client in Rust (sigp/lighthouse)
   - nethermind   # A robust execution client for Ethereum node operators (NethermindEth/nethermind)
   - node         # JavaScript runtime built on Chrome's V8 JavaScript engine (nodejs/node)
+  - ollama       # Run large language models locally (ollama/ollama)
   - oyster       # Pearl Wallet management (pearl-research-labs/pearl)
   - pandoc       # Universal markup converter (jgm/pandoc)
   - pearld       # Pearl Full node (pearl-research-labs/pearl)
