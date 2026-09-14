@@ -115,14 +115,8 @@
         -a linux-{{ '64' if eget_arch == 'x86_64' else 'aarch64' if eget_arch == 'arm64' else 'ppc64le' }}
         -a ^sha256 -a ^tar.bz2
         --to micromamba mamba-org/micromamba-releases
-      node: >-
-        --file '*/bin/node' --to node
-        https://nodejs.org/dist/{{ nodejs_version |
-        default('v24.18.0') }}/node-{{ nodejs_version | default('v24.18.0') }}-linux-{{
-          'x64' if eget_arch == 'x86_64'
-          else 'arm64' if eget_arch == 'arm64'
-          else 'armv7l'
-        }}.tar.xz
+      # node is installed by tasks/node.yml: eget cannot extract the npm/npx
+      # symlinks from the Node.js tarball, so the full distribution is used.
       nono: "-a {{ eget_plain_arch }}-unknown-linux-gnu.tar.gz nolabs-ai/nono"
       ollama: >-
         -a ollama-linux-{{ 'amd64' if eget_arch == 'x86_64' else 'arm64' }}.tar.zst

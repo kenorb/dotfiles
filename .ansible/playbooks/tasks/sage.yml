@@ -16,7 +16,9 @@
 
 - name: Fail if micromamba is not installed
   ansible.builtin.fail:
-    msg: "micromamba is required to install SageMath. Please ensure 'micromamba' is in eget_packages."
+    msg: >-
+      micromamba is required to install SageMath. Ensure 'eget' is enabled
+      (eget: true) and 'micromamba' is listed in eget_packages.
   when: not micromamba_stat.stat.exists
 
 - name: Check if Sage environment exists

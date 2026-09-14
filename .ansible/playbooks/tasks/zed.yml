@@ -57,27 +57,36 @@
     state: link
   when: not zed_bin.stat.exists
 
+- name: Check if Zed desktop entry exists in the unpacked archive
+  ansible.builtin.stat:
+    path: "{{ ansible_env.HOME }}/.local/zed.app/share/applications/dev.zed.Zed.desktop"
+  register: zed_desktop_src
+
+- name: Fail if the Zed desktop entry is missing from the archive
+  ansible.builtin.fail:
+    msg: >-
+      Zed desktop entry not found at {{ zed_desktop_src.stat.path }}.
+      The Zed archive layout may have changed.
+  when: not zed_desktop_src.stat.exists
+
 - name: Install Zed desktop entry
   ansible.builtin.copy:
-    src: "{{ ansible_env.HOME }}/.local/zed.app/share/applications/dev.zed.Zed.desktop"
+    src: "{{ zed_desktop_src.stat.path }}"
     dest: "{{ ansible_env.HOME }}/.local/share/applications/dev.zed.Zed.desktop"
     remote_src: true
     mode: '0644'
-  failed_when: false
 
 - name: Update icon path in desktop file
   ansible.builtin.replace:
     path: "{{ ansible_env.HOME }}/.local/share/applications/dev.zed.Zed.desktop"
     regexp: '^Icon=zed$'
     replace: 'Icon={{ ansible_env.HOME }}/.local/zed.app/share/icons/hicolor/512x512/apps/zed.png'
-  failed_when: false
 
 - name: Update Exec path in desktop file
   ansible.builtin.replace:
     path: "{{ ansible_env.HOME }}/.local/share/applications/dev.zed.Zed.desktop"
-    regexp: '^Exec=zed$'
+    regexp: '^Exec=zed'
     replace: 'Exec={{ ansible_env.HOME }}/.local/zed.app/bin/zed'
-  failed_when: false
 
 - name: Cleanup temporary directory
   ansible.builtin.file:

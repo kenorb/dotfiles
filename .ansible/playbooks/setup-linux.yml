@@ -78,7 +78,14 @@
     - name: Import eget installation tasks
       ansible.builtin.import_tasks: tasks/eget.yml
       when: eget is defined and (eget | default(false) | bool)
-      tags: [eget, upgrade, install]
+      # `sage` is included so `--tags sage` also installs micromamba, which the
+      # Sage tasks require (see tasks/sage.yml).
+      tags: [eget, upgrade, install, sage]
+
+    - name: Import Node.js installation tasks
+      ansible.builtin.import_tasks: tasks/node.yml
+      when: eget_packages is defined and 'node' in eget_packages
+      tags: [nodejs, install]
 
     - name: Import dotfiles symlink tasks
       ansible.builtin.import_tasks: tasks/dotfiles.yml

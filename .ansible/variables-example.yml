@@ -192,7 +192,7 @@ eget_packages:
   - lighthouse   # Ethereum consensus client in Rust (sigp/lighthouse)
   - micromamba   # Tiny, statically linked conda package manager (mamba-org/micromamba)
   - nethermind   # A robust execution client for Ethereum node operators (NethermindEth/nethermind)
-  - node         # JavaScript runtime built on Chrome's V8 JavaScript engine (nodejs/node)
+  - node         # JavaScript runtime with npm (installed via tasks/node.yml, not eget)
   - nono         # Secure sandboxed execution of AI agents (nolabs-ai/nono)
   - ollama       # Run large language models locally (ollama/ollama)
   - oyster       # Pearl Wallet management (pearl-research-labs/pearl)
