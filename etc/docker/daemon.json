@@ -1,0 +1,9 @@
+{
+    "bip": "172.17.0.1/16",
+    "runtimes": {
+        "nvidia": {
+            "args": [],
+            "path": "nvidia-container-runtime"
+        }
+    }
+}
