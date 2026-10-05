@@ -5,6 +5,7 @@ name = "pypi"
 
 [packages]
 ansible = "*"
+apache-airflow = "*"
 
 [dev-packages]
 ansible-lint = "*"

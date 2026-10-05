@@ -181,9 +181,12 @@ dotfiles:
 eget: true
 eget_packages:
   - alpha-miner  # Fastest Available Pearl Mining Software (AlphaMine-Tech/alpha-miner)
+  - astro        # Astro CLI for Apache Airflow (astronomer/astro-cli)
+  - backlog      # Markdown-native project management for the terminal (MrLesk/Backlog.md)
   - bat          # A cat(1) clone with wings (sharkdp/bat)
   - bitcoind     # Bitcoin Core full node (bitcoin/bitcoin)
   - btop         # Resource monitor that shows usage and stats (aristocratos/btop)
+  - bun          # Fast all-in-one JavaScript runtime (oven-sh/bun)
   - claude       # Claude Code CLI tool (Anthropic)
   - duf          # Disk Usage/Free Utility - a better 'df' (muesli/duf)
   - erigon       # Ethereum execution client on the efficiency frontier (erigontech/erigon)

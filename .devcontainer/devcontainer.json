@@ -64,8 +64,12 @@
   "onCreateCommand": "sudo apt-get update && sudo DEBIAN_FRONTEND=noninteractive apt-get install -y ansible && ansible-playbook .devcontainer/provision.yml",
 
   "postCreateCommand": {
+    "astro": "eget -a linux_amd64 -a tar.gz --tag v1.46.0 astronomer/astro-cli",
+    "backlog": "eget -a linux -a x64 MrLesk/Backlog.md",
     "bat": "eget -a x86_64-unknown-linux-gnu -a tar.gz sharkdp/bat",
     "btop": "eget -a btop-x86_64-unknown-linux-musl.tar.gz aristocratos/btop",
+    "bun": "eget -a bun-linux-x64.zip -a ^profile -a ^baseline --file bun oven-sh/bun",
+    "claude": "eget https://downloads.claude.ai/claude-code-releases/2.1.266/linux-x64/claude",
     "duf": "eget -a linux_x86_64.tar.gz muesli/duf",
     "eza": "eget -a x86_64-unknown-linux-gnu -a ^no_libgit -a tar.gz eza-community/eza",
     "fd": "eget -a x86_64-unknown-linux-gnu -a tar.gz sharkdp/fd",
