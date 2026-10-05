@@ -104,6 +104,9 @@
       fd: >-
         -a {{ 'aarch64' if eget_arch == 'arm64' else eget_arch }}
         -unknown-linux-gnu -a tar.gz sharkdp/fd
+      glow: >-
+        -a Linux_{{ eget_arch }}.tar.gz -a ^sbom
+        charmbracelet/glow
       jq: >-
         -a {{ 'linux64' if eget_arch == 'x86_64' else 'linux-arm64' if eget_arch == 'arm64' else 'linux-arm' }}
         jqlang/jq

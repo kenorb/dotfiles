@@ -69,6 +69,7 @@
     "duf": "eget -a linux_x86_64.tar.gz muesli/duf",
     "eza": "eget -a x86_64-unknown-linux-gnu -a ^no_libgit -a tar.gz eza-community/eza",
     "fd": "eget -a x86_64-unknown-linux-gnu -a tar.gz sharkdp/fd",
+    "glow": "eget -a Linux_x86_64.tar.gz -a ^sbom charmbracelet/glow",
     "jq": "eget -a linux64 jqlang/jq",
     "micromamba": "eget -a linux-64 -a ^sha256 -a ^tar.bz2 --to micromamba mamba-org/micromamba-releases",
     "nono": "eget -a x86_64-unknown-linux-gnu.tar.gz nolabs-ai/nono",
