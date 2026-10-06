@@ -79,6 +79,10 @@
   ansible.builtin.set_fact:
     eget_package_map:
       alpha-miner: "-a .tar.gz --file alpha/alpha --tag v1.7.5-beta --to alpha-miner AlphaMine-Tech/alpha-miner"
+      astro: >-
+        -a linux_{{ 'amd64' if eget_arch == 'x86_64' else 'arm64' }}
+        -a tar.gz --file astro --tag v1.46.0 astronomer/astro-cli
+      backlog: "-a linux -a {{ 'x64' if eget_arch == 'x86_64' else 'arm64' }} MrLesk/Backlog.md"
       bat: >-
         -a {{ 'aarch64' if eget_arch == 'arm64' else eget_arch }}
         -unknown-linux-{{ 'gnu' if eget_arch == 'x86_64' else 'musl' }}
@@ -92,6 +96,10 @@
           else 'arm'
         }}-linux-gnu.tar.gz
       btop: "-a btop-{{ eget_plain_arch }}-unknown-linux-musl.tar.gz aristocratos/btop"
+      bun: >-
+        -a bun-linux-{{ 'x64' if eget_arch == 'x86_64' else 'aarch64' }}{{
+        '-musl' if ansible_facts['os_family'] == 'Alpine' else '' }}.zip
+        -a ^profile -a ^baseline --file bun oven-sh/bun
       claude: >-
         --to claude
         https://downloads.claude.ai/claude-code-releases/$(curl -s

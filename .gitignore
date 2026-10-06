@@ -19,3 +19,5 @@ node_modules/
 
 # NAS
 .nas_credentials
+
+**/.claude/settings.local.json
