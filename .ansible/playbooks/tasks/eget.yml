@@ -157,6 +157,9 @@
       tealdeer: >-
         -a tealdeer-linux-{{ 'aarch64' if eget_arch == 'arm64' else eget_arch }}
         -musl -a ^sha256 dbrgn/tealdeer
+      upctl: >-
+        -a linux_{{ 'x86_64' if eget_arch == 'x86_64' else 'arm64' }}
+        -a tar.gz -a ^spdx --file upctl --tag v3.36.0 UpCloudLtd/upcloud-cli
       vale: "-a {{ 'Linux_64-bit' if eget_arch == 'x86_64' else 'Linux_arm64' }}.tar.gz errata-ai/vale"
       vopono: >-
         -a {{
