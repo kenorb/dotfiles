@@ -206,6 +206,7 @@ eget_packages:
   - pearld       # Pearl Full node (pearl-research-labs/pearl)
   - prlctl       # Pearl Control utility (pearl-research-labs/pearl)
   - proton-drive  # Proton Drive CLI for end-to-end encrypted cloud storage (Proton)
+  - rclone       # Sync files and directories to and from cloud storage (rclone/rclone)
   - reth         # Fast, modular Ethereum protocol implementation (paradigmxyz/reth)
   - rg           # ripgrep recursively searches directories for a regex pattern (BurntSushi/ripgrep)
   - rga          # ripgrep, but also search in PDFs, E-Books, Office documents, zip, tar.gz, etc. (phiresky/ripgrep-all)

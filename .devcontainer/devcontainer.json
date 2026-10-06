@@ -80,6 +80,7 @@
     "opencode": "eget -a opencode-linux-x64.tar.gz anomalyco/opencode",
     "pandoc": "eget -a linux-amd64.tar.gz jgm/pandoc",
     "proton-drive": "eget https://proton.me/download/drive/cli/0.9.0/linux-x64/proton-drive",
+    "rclone": "eget -a linux-amd64.zip --tag v1.75.1 rclone/rclone",
     "rg": "eget -a x86_64-unknown-linux-musl.tar.gz BurntSushi/ripgrep",
     "rga": "eget -a ripgrep_all -a x86_64-unknown-linux-musl -a tar.gz --file rga phiresky/ripgrep-all",
     "tealdeer": "eget -a tealdeer-linux-x86_64-musl -a ^sha256 dbrgn/tealdeer",

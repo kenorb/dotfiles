@@ -145,6 +145,10 @@
         https://proton.me/download/drive/cli/{{ proton_drive_version | default('0.9.0') }}/linux-{{
         'x64' if eget_arch == 'x86_64' else 'arm64' }}{{
         '-musl' if ansible_facts['os_family'] == 'Alpine' else '' }}/proton-drive
+      rclone: >-
+        -a {{ 'linux-amd64' if eget_arch == 'x86_64'
+        else 'linux-arm64' if eget_arch == 'arm64'
+        else 'linux-arm' }}.zip --tag v1.75.1 rclone/rclone
       reth: >-
         -a {{ 'aarch64' if eget_arch == 'arm64' else eget_arch }}-unknown-linux-gnu.tar.gz
         -a ^.asc paradigmxyz/reth
