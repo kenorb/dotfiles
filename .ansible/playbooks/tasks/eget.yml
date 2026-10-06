@@ -149,6 +149,9 @@
         {{ 'https' ~ '://proton.me/download/drive/cli/' }}{{ proton_drive_version | default('0.9.0') }}/linux-{{
         'x64' if eget_arch == 'x86_64' else 'arm64' }}{{
         '-musl' if ansible_facts['os_family'] == 'Alpine' else '' }}/proton-drive
+      pulumi: >-
+        -a {{ 'linux-x64' if eget_arch == 'x86_64' else 'linux-arm64' }}.tar.gz -a ^.sig
+        --tag v3.267.0 pulumi/pulumi
       rclone: >-
         -a {{ 'linux-amd64' if eget_arch == 'x86_64'
         else 'linux-arm64' if eget_arch == 'arm64'
