@@ -115,6 +115,10 @@
       glow: >-
         -a Linux_{{ eget_arch }}.tar.gz -a ^sbom
         charmbracelet/glow
+      himalaya: >-
+        -a {{ 'x86_64-linux' if eget_arch == 'x86_64'
+        else 'aarch64-linux' if eget_arch == 'arm64'
+        else 'armv7l-linux' }}.tgz --tag v2.2.1 pimalaya/himalaya
       jq: >-
         -a {{ 'linux64' if eget_arch == 'x86_64' else 'linux-arm64' if eget_arch == 'arm64' else 'linux-arm' }}
         jqlang/jq
