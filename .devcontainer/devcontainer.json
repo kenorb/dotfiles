@@ -88,6 +88,7 @@
     "tealdeer": "eget -a tealdeer-linux-x86_64-musl -a ^sha256 dbrgn/tealdeer",
     "vale": "eget -a Linux_64-bit.tar.gz errata-ai/vale",
     "vopono": "eget -a linux_x86-64_gcc -a ^gui --to vopono jamesmcm/vopono",
+    "wireproxy": "eget -a linux_amd64.tar.gz --tag v1.1.3 windtf/wireproxy",
     "yq": "eget -a ^.tar.gz mikefarah/yq"
   }
 }

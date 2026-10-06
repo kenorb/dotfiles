@@ -186,6 +186,10 @@
             'arm': 'linux_armv7'
           }[eget_arch]
         }} -a ^gui --to vopono jamesmcm/vopono
+      wireproxy: >-
+        -a {{ 'linux_amd64' if eget_arch == 'x86_64'
+        else 'linux_arm64' if eget_arch == 'arm64'
+        else 'linux_arm' }}.tar.gz --tag v1.1.3 windtf/wireproxy
       yq: "-a ^.tar.gz mikefarah/yq"
       yt-dlp: >-
         -a {{
