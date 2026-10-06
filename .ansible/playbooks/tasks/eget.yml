@@ -81,7 +81,7 @@
       alpha-miner: "-a .tar.gz --file alpha/alpha --tag v1.7.5-beta --to alpha-miner AlphaMine-Tech/alpha-miner"
       astro: >-
         -a linux_{{ 'amd64' if eget_arch == 'x86_64' else 'arm64' }}
-        -a tar.gz --tag v1.46.0 astronomer/astro-cli
+        -a tar.gz --file astro --tag v1.46.0 astronomer/astro-cli
       backlog: "-a linux -a {{ 'x64' if eget_arch == 'x86_64' else 'arm64' }} MrLesk/Backlog.md"
       bat: >-
         -a {{ 'aarch64' if eget_arch == 'arm64' else eget_arch }}
