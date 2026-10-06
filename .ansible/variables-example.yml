@@ -205,6 +205,7 @@ eget_packages:
   - pandoc       # Universal markup converter (jgm/pandoc)
   - pearld       # Pearl Full node (pearl-research-labs/pearl)
   - prlctl       # Pearl Control utility (pearl-research-labs/pearl)
+  - proton-drive  # Proton Drive CLI for end-to-end encrypted cloud storage (Proton)
   - reth         # Fast, modular Ethereum protocol implementation (paradigmxyz/reth)
   - rg           # ripgrep recursively searches directories for a regex pattern (BurntSushi/ripgrep)
   - rga          # ripgrep, but also search in PDFs, E-Books, Office documents, zip, tar.gz, etc. (phiresky/ripgrep-all)
@@ -218,6 +219,8 @@ nodejs_version: v24.18.0
 nvidia:
   cuda_toolkit: true
   cuda_toolkit_package: cuda-toolkit-13-1
+
+proton_drive_version: 0.9.0
 
 sage: true
 sage_build: false
