@@ -200,6 +200,11 @@
             'arm': 'yt-dlp_linux_armv7l'
           }[eget_arch]
         }} --to yt-dlp yt-dlp/yt-dlp
+      # The tar.xz asset contains a whole browser tree; eget would extract only
+      # the launcher, so the self-contained AppImage is used instead.
+      zen: >-
+        -a zen-{{ 'x86_64' if eget_arch == 'x86_64' else 'aarch64' }}.AppImage
+        -a ^zsync --to zen zen-browser/desktop
 
 - name: Install eget packages
   ansible.builtin.shell:

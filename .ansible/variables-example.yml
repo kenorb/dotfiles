@@ -217,6 +217,7 @@ eget_packages:
   - wireproxy    # Userspace WireGuard client for proxying (windtf/wireproxy)
   - yq           # Portable command-line YAML, JSON, XML, CSV, TOML and properties processor (mikefarah/yq)
   - yt-dlp       # A feature-rich command-line audio/video downloader (yt-dlp/yt-dlp)
+  - zen          # Privacy-focused web browser based on Firefox (zen-browser/desktop)
 
 nodejs_version: v24.18.0
 
