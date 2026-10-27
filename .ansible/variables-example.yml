@@ -88,6 +88,7 @@ apt:
     - rclone
     - rename
     - rustup
+    - s3cmd
     - screen
     - sed
     - smem  # Memory reporting tool.
