@@ -75,6 +75,12 @@
       become: true
       tags: [apt, ethereum]
 
+    - name: Import GitComet installation tasks
+      ansible.builtin.import_tasks: tasks/apt-release-gitcomet.yml
+      when: (apt.releases.gitcomet | default(false)) if apt.releases is defined else false
+      become: true
+      tags: [apt, gitcomet]
+
     - name: Import eget installation tasks
       ansible.builtin.import_tasks: tasks/eget.yml
       when: eget is defined and (eget | default(false) | bool)
