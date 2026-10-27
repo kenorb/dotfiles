@@ -1,0 +1,18 @@
+---
+- name: Download GitComet archive keyring
+  ansible.builtin.get_url:
+    url: https://apt.gitcomet.dev/gitcomet-archive-keyring.gpg
+    dest: /usr/share/keyrings/gitcomet-archive-keyring.gpg
+    mode: '0644'
+
+- name: Download GitComet sources list
+  ansible.builtin.get_url:
+    url: https://apt.gitcomet.dev/gitcomet.sources
+    dest: /etc/apt/sources.list.d/gitcomet.sources
+    mode: '0644'
+
+- name: Install GitComet
+  ansible.builtin.apt:
+    name: gitcomet
+    state: present
+    update_cache: true
