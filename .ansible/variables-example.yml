@@ -76,6 +76,7 @@ apt:
     - nsight-compute-2026.2.1  # Kernel profiler for CUDA.
     - nvidia-vaapi-driver  # A VA-API implemention using NVIDIA's NVDEC.
     - nvitop
+    - nvme-cli
     - nvtop
     - p7zip
     - parallel
@@ -98,6 +99,7 @@ apt:
     - speedtest-cli
     - sqlite3
     - squashfs-tools  # Compressed read-only file system for Linux
+    - smartmontools
     - telegram-cli
     - testdisk
     - time
